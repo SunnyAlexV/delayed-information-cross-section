@@ -1,0 +1,25 @@
+loaded 2262 rows, 2017-09-12 to 2026-09-11
+test window: 694 days, 2023-11-27 to 2026-09-02;  base rate 0.468
+
+Decision variables:  a = log(YZ_{t-d}/M_{t-d})   b = log(CC_{t+h}/M_t)
+Target is 1{b>0}; the threshold rule is 1{a>0}.  Under joint normality
+the threshold rule IS the optimal rule, since P(b>0|a) crosses 1/2
+exactly at a=0, so the ceiling below is what ANY function of a can reach.
+
+ delta  corr(a,b)   ceiling  persist-YZ   har-YZ  % of ceiling
+     0     0.4502    64.87%      67.87%   68.59%       104.6%
+     1     0.4039    63.23%      66.71%   67.44%       105.5%
+     2     0.3595    61.71%      65.56%   66.57%       106.2%
+     3     0.3179    60.30%      63.26%   64.84%       104.9%
+     5     0.2539    58.17%      60.95%   60.95%       104.8%
+     8     0.1879    56.02%      57.20%   57.20%       102.1%
+    13     0.1712    55.48%      54.90%   53.75%        99.0%
+    21     0.1741    55.57%      50.00%   51.87%        90.0%
+    34    -0.0418    48.67%      49.86%   47.84%       102.4%
+    55    -0.1202    46.17%      44.24%   46.25%        95.8%
+
+Readings over 100% are non-normality and sampling noise, not a rule
+beating its own optimum.  The one real shortfall is at delta = 21,
+where the ceiling has flattened but the rule has not.
+
+Done.  Every number above came from this file.

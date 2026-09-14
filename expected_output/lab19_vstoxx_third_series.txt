@@ -1,0 +1,85 @@
+data folder: /home/claude/repo/delayed-information-cross-section/data
+
+  implied-volatility files and seams:
+    VIX files: ['CBOE_Volatility_Index_Historical_Data.csv', 'CBOE_Volatility_Index_Historical_Data_1.csv']
+    seam VIX: 251 overlapping rows, 0 mismatched  -> VERIFIED
+    VDAX files: ['DAX_New_Volatility_Historical_Data.csv', 'DAX_New_Volatility_Historical_Data_1.csv']
+    seam VDAX: 251 overlapping rows, 0 mismatched  -> VERIFIED
+    VSTOXX files: ['STOXX_50_Volatility_VSTOXX_EUR_Historical_Data_1.csv', 'STOXX_50_Volatility_VSTOXX_EUR_Historical_Data_2.csv']
+    seam VSTOXX: 253 overlapping rows, 0 mismatched  -> VERIFIED
+    VIX files: ['CBOE_Volatility_Index_Historical_Data.csv', 'CBOE_Volatility_Index_Historical_Data_1.csv']
+    seam VIX: 251 overlapping rows, 0 mismatched  -> VERIFIED
+    VDAX files: ['DAX_New_Volatility_Historical_Data.csv', 'DAX_New_Volatility_Historical_Data_1.csv']
+    seam VDAX: 251 overlapping rows, 0 mismatched  -> VERIFIED
+
+target SPX, 7 foreign peers, VIX at t-1 (STRICT)
+  two-series block  : 4525 test days, 2008-09-09 to 2026-09-03
+  three-series block: 1240 test days, 2020-04-23 to 2025-03-28
+  requiring the spot VSTOXX costs 3285 test days, 73% of the sample
+  two-series block restricted to the same days: 1240
+
+======================================================================================
+A.  WHAT THE SHORTER WINDOW COSTS, BEFORE THE THIRD SERIES IS ADDED
+======================================================================================
+The same two-series specification the paper reports, on the full sample and
+on the sub-window the spot series forces.  Any difference here belongs to the
+window, not to VSTOXX, and it is the larger of the two effects.
+
+ delta   own (full)   +iv (full)   own (short)   +iv (short)
+     0       0.4958       0.5379        0.4052        0.4386
+     3       0.3822       0.5162        0.2977        0.4024
+     5       0.3350       0.5151        0.2510        0.4008
+    13       0.1990       0.5083        0.1674        0.3936
+    21       0.1082       0.5068        0.1558        0.3901
+    55      -0.0369       0.5088       -0.1055        0.3952
+
+======================================================================================
+B.  DOES THE THIRD SERIES ADD ANYTHING TO THE OPTIONS BLOCK?
+======================================================================================
+Identical days, identical estimator.  Only the implied-volatility block
+changes, from VIX + VDAX to VIX + VDAX + VSTOXX.
+
+ delta       own      +IV2      +IV3   IV3 - IV2     GW z       p
+     0    0.4052    0.4386    0.4348     -0.0039    -1.27   0.203
+     3    0.2977    0.4024    0.3974     -0.0050    -1.24   0.216
+     5    0.2510    0.4008    0.3947     -0.0061    -1.60   0.111
+    13    0.1674    0.3936    0.3864     -0.0072    -1.96   0.050
+    21    0.1558    0.3901    0.3824     -0.0077    -1.94   0.052
+    55   -0.1055    0.3952    0.3886     -0.0065    -1.76   0.079
+
+======================================================================================
+C.  IS THE FOREIGN BLOCK STILL REDUNDANT GIVEN THE RICHER OPTIONS BLOCK?
+======================================================================================
+This is the question Section 9's assertion turns on.  'foreign | IV3' is what
+the seven foreign closes add on top of all three implied-volatility series;
++IV3 is nested inside +both, so Giacomini-White applies and DM would not.
+
+ delta      +IV3     +both   foreign | IV3     GW z       p
+     0    0.4348    0.4285         -0.0063    -0.60   0.551
+     3    0.3974    0.3758         -0.0216    -2.08   0.038
+     5    0.3947    0.3706         -0.0241    -2.37   0.018
+    13    0.3864    0.3621         -0.0243    -2.47   0.014
+    21    0.3824    0.3586         -0.0237    -2.40   0.016
+    55    0.3886    0.3693         -0.0193    -1.78   0.075
+
+======================================================================================
+VERDICT
+======================================================================================
+  foreign block beats the three-series options block at 0 of 6 delays
+
+  Read every number above against 1240 test days, not 4,525, and against a
+  window containing no volatility crisis: peak VIX inside it is 41.4, against
+  82.7 in the full sample.  Intervals are correspondingly wide and the power to
+  detect a small incremental contribution is low, so 'adds nothing' here is a
+  weaker statement than the same words in Section 7.
+
+  What this can support: on the window where a third implied-volatility series is
+  available, adding it does not overturn the redundancy of the foreign block.
+  What it cannot support: anything about 2008 to 2012, or about crisis regimes,
+  because the data required to add the third series does not reach them.
+
+  The honest conclusion is that the spot VSTOXX export obtained here does not do
+  the job it was obtained for.  Its history begins in December 2012 and ends in
+  March 2025, so it neither covers the sample nor reaches the present.  The paper
+  keeps VIX and VDAX over the full window as its headline and reports this file
+  as the sensitivity run that the third series makes possible.

@@ -1,0 +1,153 @@
+data folder: /home/claude/repo/delayed-information-cross-section/data
+target SPX, peers ['N225', 'AXJO', 'HSI', 'NSEI', 'FTSE', 'DAX', 'BVSP']
+4862 test days, training window 1500 rows, horizon 5 days
+
+================================================================================
+P1.  DOES THE delta = 0 PENALTY SCALE WITH THE NUMBER OF PEERS?
+================================================================================
+Each row adds peers to the SAME own-only model at delta = 0, where the
+cross-section has nothing to contribute: domestic data is fully current.
+Subsets are drawn at random and averaged, so no single market drives it.
+If this is estimation cost, the penalty is a straight line through the
+origin.  If foreign markets actively mislead, it need not be.
+
+own-only R2 at delta = 0: 0.4987
+
+  peers    mean dR2    per peer     spread over subsets
+      1     -0.0004     -0.0004       [-0.0012,+0.0009]
+      2     -0.0029     -0.0014       [-0.0031,-0.0027]
+      3     -0.0028     -0.0009       [-0.0040,-0.0020]
+      5     -0.0078     -0.0016       [-0.0091,-0.0064]
+      7     -0.0103     -0.0015             (all peers)
+
+line through the origin: dR2 = -0.00143 per peer, fraction of variation explained 0.979
+implied cost of the full 7-peer cross-section: -0.0100
+
+================================================================================
+P2.  DOES SHRINKAGE CURE IT?
+================================================================================
+Both models are forced to the same ridge penalty, so the comparison is
+like for like.  Estimation cost is an artefact of estimating; it must
+vanish as the penalty rises.  A genuinely misleading signal would not.
+
+delta = 0 is where the cost should be ALL there is.
+delta = 21 is where the paper claims a real benefit.
+Both are shown, because the test only means something if they differ.
+
+   lambda    dR2 at d=0   dR2 at d=21   reading
+        1       -0.0102       +0.2586   cost present
+       10       -0.0099       +0.2592   cost present
+      100       -0.0078       +0.2638   cost shrinking
+     1000       +0.0063       +0.2714   cost gone - sign flipped
+
+The delta = 0 column must go to zero; the delta = 21 column must not.
+
+================================================================================
+P3.  IS THE COST THE SAME AT EVERY DELAY?
+================================================================================
+P1 measured the cost at delta = 0.  Treating it as a constant would be
+convenient, and lab06's placebo says not to: shifted peers cost -0.019
+at delta = 5 but -0.044 at delta = 21.
+
+But a CIRCULAR SHIFT is the wrong instrument for this.  Shifting by two
+or five years can park a crisis period against a calm one, and the
+validation step will happily fit that spurious structure.  What it
+measures is estimation cost PLUS misalignment damage, and the two are
+not separable.  A first run confirmed the problem: four shift lengths
+gave -0.0074 to -0.0424 for the same quantity at delta = 0, against a
+tight -0.0100 from P1.  A statistic whose value depends that much on an
+arbitrary choice of shift is not measuring what it claims to.
+
+So build surrogates that are uninformative BY CONSTRUCTION: fit an
+AR(1) to each peer and simulate from it.  Same persistence, same
+variance, no relationship to the target at any lag.  Ten draws.
+
+AR(1) fits to the real peers:
+     N225  phi 0.905   innovation sd 0.3197
+     AXJO  phi 0.936   innovation sd 0.2501
+      HSI  phi 0.921   innovation sd 0.2793
+     NSEI  phi 0.932   innovation sd 0.2953
+     FTSE  phi 0.948   innovation sd 0.2473
+      DAX  phi 0.952   innovation sd 0.2577
+     BVSP  phi 0.943   innovation sd 0.2311
+  innovation correlation across peers: mean 0.217, range 0.094 to 0.618
+  Surrogates draw innovations from a multivariate normal with THIS
+  covariance, not independently.  Correlated regressors share degrees of
+  freedom under ridge, so independent draws would price a cross-section
+  that is more spread out than the real one and overstate the cost.
+
+ delta       cost   MC std err       95% MC interval
+     0    -0.0131    0.0003     [-0.0137,-0.0126]
+     1    -0.0155    0.0004     [-0.0162,-0.0148]
+     2    -0.0180    0.0004     [-0.0188,-0.0171]
+     3    -0.0201    0.0005     [-0.0212,-0.0191]
+     5    -0.0244    0.0007     [-0.0257,-0.0231]
+     8    -0.0306    0.0009     [-0.0323,-0.0289]
+    13    -0.0409    0.0011     [-0.0431,-0.0386]
+    21    -0.0536    0.0015     [-0.0565,-0.0506]
+
+At delta = 0: surrogates give -0.0131 [-0.0137,-0.0126];
+the peer-count line in P1 gives -0.0100.  They differ by 0.0031.
+Read that as agreement on the MAGNITUDE, not as a formal match.  The
+interval above is over surrogate draws only: it conditions on this one
+sample of the target, so it understates the true uncertainty, and P1's
+slope carries its own error that is not quantified here.  What the two
+methods establish together is that the cost is about one R-squared
+point at zero delay, which is what the argument below needs; neither is
+precise enough to support a third decimal place.
+
+Cost at delta 21 minus cost at delta 0: -0.0404.  It grows with delay.
+That is not an artefact: as own information goes stale the fit weakens,
+validation picks a looser penalty, and useless regressors get more rope.
+
+================================================================================
+WHAT THIS BUYS THE PAPER
+================================================================================
+Gross benefit = measured dR2 minus the cost of carrying the regressors
+at that same delay.  Gross is what the foreign markets actually KNOW;
+net is what a forecaster actually GETS after paying to estimate it.
+
+Gross is a DIFFERENCE OF TWO ESTIMATED QUANTITIES, so it gets an
+interval before it gets a label.  Two warning signs said this matters:
+under heavy shrinkage in P2 the delta = 0 gap read +0.0063, four times
+the +0.0016 the point estimate gives, and both are far smaller than the
+interval lab06 put on the NET figure alone.
+
+Each bootstrap replicate resamples test days in moving blocks of ten and
+recomputes the net difference AND the surrogate cost on those SAME days.
+Sharing the resample is what keeps the two errors correlated instead of
+adding them blindly, and it is why no model is refitted here: both are
+sums of per-day squared-error differentials cached above.
+
+ delta   net dR2      cost     gross             gross 95%   reading
+     0   -0.0103   -0.0131   +0.0028     [-0.0060,+0.0115]   no measurable content
+     1   -0.0006   -0.0155   +0.0149     [+0.0009,+0.0280]   real, but does not cover its cost
+     2   +0.0188   -0.0180   +0.0368     [+0.0179,+0.0555]   pays for itself
+     3   +0.0414   -0.0201   +0.0616     [+0.0382,+0.0849]   pays for itself
+     5   +0.0831   -0.0244   +0.1075     [+0.0785,+0.1373]   pays for itself
+     8   +0.1289   -0.0306   +0.1595     [+0.1226,+0.1955]   pays for itself
+    13   +0.1896   -0.0409   +0.2305     [+0.1830,+0.2788]   pays for itself
+    21   +0.2605   -0.0536   +0.3141     [+0.2559,+0.3735]   pays for itself
+
+Gross content first clears zero at delta = 1.
+A label is only claimed where the interval supports it.
+
+Three things follow, and none of them were in the paper:
+  1. At delta = 0 gross is +0.0028, interval [-0.0060,+0.0115],
+     which covers zero and caps the content at about +0.011.  Foreign
+     markets do not MISLEAD about the current US state; whatever they
+     know about it beyond current domestic data is too small to measure
+     here.  The negative was the bill, not the information.  That cap is
+     the useful part against Korkusuz and Jayawardena et al.: it does not
+     say they are wrong, it says how large their effect can be and still
+     sit inside what we see.
+  2. The tempting middle band - real signal that cannot yet pay for its
+     own estimation - is NOT established.  At delta = 1 the interval is
+     [+0.0009,+0.0280], which includes zero.  Suggestive, and not
+     something the paper may assert.
+  3. At delta = 21 estimation eats 17% of what the
+     cross-section knows (+0.3141 gross -> +0.2605 net).  A method that
+     estimated those seven coefficients more cheaply would recover part
+     of it.  We have not built one and claim nothing about how much.
+
+runtime 417s

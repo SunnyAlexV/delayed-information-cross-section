@@ -1,0 +1,84 @@
+data folder: /home/claude/repo/delayed-information-cross-section/data
+4862 test days
+
+====================================================================================
+0.  IS OUR QLIKE THE VARIANCE-SCALE QLIKE?
+====================================================================================
+QLIKE(variance)            1.7946513593
+QLIKE(variance / median)   1.7946513593
+identical -> True.  QLIKE depends on the
+ratio alone, so the median normalisation cancels and Patton's result applies.
+Squared error on LOG variance has no such property and is not in the family.
+
+====================================================================================
+1.  THE SUBSTITUTION RATE UNDER THREE LOSSES
+====================================================================================
+R(d) = [S_cross(d) - S_own(d)] / [S_own(0) - S_own(d)].  Intervals bootstrap
+the WHOLE ratio: numerator and denominator are recomputed on the same
+resampled days, which the paper previously did not do.
+
+  sq(log)  squared error on log variance   - NOT in Patton's robust family
+  QLIKE    variance scale                  - robust
+  MSE(var) squared error on variance, Duan-smeared - robust
+
+ delta              R(d) sq(log)              R(d) QLIKE           R(d) MSE(var)
+     1           -1% [-32%, 26%]         -4% [-43%, 31%]        60% [-146%,103%]
+     3           36% [ 17%, 54%]         40% [ 16%, 62%]        75% [-112%,117%]
+     5           51% [ 36%, 66%]         56% [ 37%, 73%]         85% [-74%,126%]
+     8           60% [ 47%, 71%]         66% [ 50%, 78%]         88% [-32%,122%]
+    13           64% [ 53%, 73%]         73% [ 59%, 83%]         83% [ 14%,105%]
+    21           67% [ 57%, 76%]         77% [ 64%, 86%]         83% [ 40%, 97%]
+    34           70% [ 61%, 77%]         80% [ 69%, 87%]         82% [ 47%, 94%]
+    55           72% [ 64%, 79%]         80% [ 69%, 88%]         90% [ 49%,105%]
+
+====================================================================================
+1b. SKILL UNDER EACH LOSS, WHICH IS WHAT THE PAPER'S TABLE 1 REPORTS
+====================================================================================
+Skill = 1 - loss(model) / loss(training-mean benchmark), so all three are
+on a comparable 'fraction of benchmark loss removed' footing.
+
+ delta    R2 own   R2 cross   QLIKE own  QLIKE cross  MSEvar own  MSEvar cross
+     0    0.4987     0.4884      0.5721       0.5578      0.3012        0.3084
+     1    0.4518     0.4512      0.5196       0.5173      0.2437        0.2782
+     3    0.3848     0.4262      0.4384       0.4920      0.1717        0.2683
+     5    0.3371     0.4202      0.3738       0.4855      0.1302        0.2764
+     8    0.2822     0.4111      0.2873       0.4749      0.0893        0.2753
+    13    0.2011     0.3907      0.1309       0.4526      0.0328        0.2569
+    21    0.1121     0.3726     -0.0182       0.4358     -0.0045        0.2507
+    34    0.0404     0.3603     -0.1366       0.4282     -0.0293        0.2416
+    55   -0.0351     0.3470     -0.1769       0.4223     -0.0347        0.2679
+
+====================================================================================
+2.  DOES THE CHOICE OF SCALE CHANGE THE VERDICT?
+====================================================================================
+ delta  S own sq(log)  S cross sq(log)  S own MSE(var)  S cross MSE(var)
+     0         0.4987           0.4884          0.3012            0.3084
+     1         0.4518           0.4512          0.2437            0.2782
+     3         0.3848           0.4262          0.1717            0.2683
+     5         0.3371           0.4202          0.1302            0.2764
+     8         0.2822           0.4111          0.0893            0.2753
+    13         0.2011           0.3907          0.0328            0.2569
+    21         0.1121           0.3726         -0.0045            0.2507
+    34         0.0404           0.3603         -0.0293            0.2416
+    55        -0.0351           0.3470         -0.0347            0.2679
+
+====================================================================================
+3.  THE delta = 0 ROW, WHICH CHANGES SIGN
+====================================================================================
+On log-scale squared error the cross-section is slightly WORSE at zero delay,
+and the paper leans on that row when discussing Korkusuz and Jayawardena.
+On the robust variance-scale loss the sign flips.  Either way the question is
+whether the difference is distinguishable from zero, so test it.
+
+      loss     S own   S cross   difference          95% interval
+   sq(log)    0.4987    0.4884      -0.0103     [-0.0192,-0.0016]  <- excludes zero
+     QLIKE    0.5721    0.5578      -0.0142     [-0.0292,-0.0023]  <- excludes zero
+  MSE(var)    0.3012    0.3084      +0.0071     [-0.0470,+0.0280]
+
+A claim that rests on a row whose SIGN depends on the scale is a claim the
+paper should not make.  Whatever survives here is what it may say.
+
+The robust loss is the one to believe if they disagree.  If the rates in
+part 1 sit on top of each other, the headline survives the correction and
+the paper owes the reader a sentence naming which loss is robust, not a
+new set of numbers.

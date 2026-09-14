@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Why a Simple Threshold Rule Is Hard to Beat</title>
+<style>
+@page{size:A4;margin:24mm 22mm 20mm 22mm}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:"TeX Gyre Pagella","Palatino Linotype",Palatino,"DejaVu Serif",serif;
+  font-size:10.5pt;line-height:1.48;color:#000;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1{font-size:16pt;line-height:1.22;text-align:center;font-weight:700;margin:0 0 14pt}
+.byline{text-align:center;font-size:10.5pt;margin-bottom:2pt}
+.aff{text-align:center;font-size:9.5pt;font-style:italic;margin-bottom:2pt}
+.date{text-align:center;font-size:9.5pt;margin-bottom:20pt}
+h2{font-size:11.5pt;font-weight:700;margin:16pt 0 6pt}
+h3{font-size:10.5pt;font-weight:700;margin:11pt 0 4pt}
+p{margin:0 0 6pt;text-align:justify;hyphens:auto}
+.abs{margin:0 26pt 16pt;font-size:9.6pt;line-height:1.45}
+.abs .t{text-align:center;font-weight:700;font-size:10pt;margin-bottom:5pt}
+.eq{text-align:center;margin:8pt 0;font-family:"DejaVu Serif",serif;font-size:10pt}
+table{border-collapse:collapse;width:100%;font-size:9pt;font-variant-numeric:tabular-nums;margin:4pt 0 6pt}
+caption{caption-side:top;font-size:9.3pt;text-align:left;margin-bottom:4pt}
+caption b{font-weight:700}
+th,td{padding:2.6pt 6pt;text-align:right}
+th:first-child,td:first-child{text-align:left}
+thead th{border-bottom:0.5pt solid #000;font-weight:700}
+.toprule{border-top:1pt solid #000}
+.botrule{border-bottom:1pt solid #000}
+.note{font-size:8.6pt;line-height:1.4;margin-top:3pt}
+ol.refs{font-size:9pt;line-height:1.4;padding-left:16pt;margin:4pt 0}
+ol.refs li{margin-bottom:3pt}
+.small{font-size:9.3pt}
+code{font-family:"DejaVu Sans Mono",monospace;font-size:8.8pt}
+.pb{break-before:page}
+</style>
+</head>
+<body>
+
+<h1>Why a Simple Threshold Rule Is Hard to Beat: Volatility<br>Regime Prediction Under Information Delay</h1>
+<p class="byline">Sunny Alex Vellanikaran</p>
+<p class="aff">Independent</p>
+<p class="date">12 September 2026</p>
+
+<div class="abs">
+<p class="t">Abstract</p>
+<p>We ask how quickly the ability to predict a volatility regime decays when the forecaster's information is &delta; days out of date. On nine years of daily S&amp;P 500 data we evaluate four forecasters against a binary target — will realised variance five days hence exceed its trailing 252-day median — at delays from zero to 55 trading days. A trivial rule, "is volatility above its median now", retains accuracy clearly above a constant forecast out to roughly one week of delay and is indistinguishable from one beyond two weeks. Neither the Yang-Zhang estimator (+2.0 points at zero delay, 95% CI [−3.3, +7.3]) nor a walk-forward HAR classifier (−4.0 points, 95% CI [−11.7, +3.2]) improves on it at any delay. We explain the result rather than report it: for a median-split target, and under approximate joint lognormality of the volatility proxy, the threshold rule is the Bayes rule among functions of the delayed state alone. The measured accuracies sit at 90–106% of that benchmark, exceeding it at eight of ten delays, so Section 5 treats it as an approximation rather than a ceiling. The headroom a better model could occupy is small relative to sampling uncertainty, and neither refinement we evaluated exploits it reliably, so the negative result is a statement about the target rather than about the models. The constant-forecast hurdle the rule is measured against is itself construction-dependent: chosen ex post it is 53.2%, chosen from a rolling training window 53.2%, and from an expanding one 46.8%.</p>
+</div>
+
+<h2>1. Introduction</h2>
+<p>A forecaster whose data arrives late is in a different position from one whose data is merely noisy. The question of how much predictive content survives a delay of &delta; periods is distinct from — though in population equivalent to — the familiar question of multi-step forecasting, and it has an obvious practical reading: how much is timely data worth?</p>
+<p>This note reports a small, fully reproducible experiment on that question, and a negative result. The contribution is not a method. It is a measurement, a set of baselines that the measurement is compared against, and an argument for why the measurement could not have come out any other way.</p>
+<p>Two things motivated the exercise. First, the volatility-forecasting literature almost never reports what was attainable, only what was attained; Andersen and Bollerslev [1] are the exception, and their point — that a low R&sup2; may be a property of the target rather than a failure of the model — is the point made here in a different setting. Second, claims about model sophistication under delay are usually made without a trivial baseline in view, and trivial baselines on persistent series are unusually strong.</p>
+
+<h2>2. Data</h2>
+<p>Daily open, high, low and close for the S&amp;P 500 index, 12 September 2017 to 11 September 2026, 2,262 trading days, from a retail export. The series was reordered to ascending and validated: dates strictly increasing, high not below low, high not below either open or close, low not above either, prices strictly positive. No survivorship or revision adjustment is possible with this source, which is a limitation recorded in Section 6.</p>
+
+<h2>3. Method</h2>
+<h3>3.1 Volatility proxies</h3>
+<p>Two proxies are computed over rolling five-day windows. The close-to-close proxy is the mean of squared log returns. The Yang-Zhang proxy combines overnight, open-to-close and Rogers-Satchell [7] components,</p>
+<p class="eq">&sigma;&sup2;<sub>YZ</sub> = &sigma;&sup2;<sub>o</sub> + k&nbsp;&sigma;&sup2;<sub>c</sub> + (1 &minus; k)&nbsp;&sigma;&sup2;<sub>RS</sub>,&nbsp;&nbsp;&nbsp;&nbsp; k = 0.34 / (1.34 + (n+1)/(n&minus;1)),</p>
+<p>with n = 5, following Yang and Zhang [8]. The close-to-close proxy discards the overnight gap entirely; the comparison between the two is therefore a direct test of whether that gap carries regime information.</p>
+
+<h3>3.2 Target</h3>
+<p>Let v<sub>t</sub> be the close-to-close proxy and M<sub>t</sub> its median over the trailing 252 days, computed using data up to t only. The target is</p>
+<p class="eq">y<sub>t</sub> = <b>1</b>{ v<sub>t+h</sub> &gt; M<sub>t</sub> },&nbsp;&nbsp;&nbsp; h = 5.</p>
+<p>A forecaster who is &delta; days late knows the proxy only to t &minus; &delta;, and therefore knows M<sub>t&minus;&delta;</sub>, not M<sub>t</sub>. Comparing a delayed observation against a contemporaneous threshold is a look-ahead error; we avoid it, and measure its size in Section 4.3.</p>
+
+<h3>3.3 Forecasters</h3>
+<p>Four forecasters, each seeing only information dated t &minus; &delta; or earlier. <i>Majority</i> predicts the class that was more frequent in training. <i>Persist</i> predicts <b>1</b>{ v<sub>t&minus;&delta;</sub> &gt; M<sub>t&minus;&delta;</sub> }, in close-to-close and Yang-Zhang variants. <i>HAR</i> is a logistic regression on the daily, weekly and monthly averages of the log proxy — the heterogeneous-autoregressive structure of Corsi [3] cast as a classifier — fitted by iteratively reweighted least squares on a rolling 1,250-day window, refitted every 21 days. Its training pairs are restricted to labels already resolved at t &minus; &delta;, so no label information crosses the information boundary.</p>
+
+<h3>3.4 Evaluation</h3>
+<p>Walk-forward over 694 test days, 27 November 2023 to 2 September 2026, after the 252-day median warm-up, the 1,250-day training window and the 55-day maximum delay are set aside. Because the five-day targets overlap, ordinary binomial intervals would be too narrow; we use a moving-block bootstrap [6] on the correctness series with block length 2h = 10 and 2,000 resamples, and the same procedure on paired differences.</p>
+
+<h2>4. Results</h2>
+<p>Table 1 reports out-of-sample accuracy. The base rate in the test window is 0.468, so a constant "no" forecast would have scored 53.2% &mdash; but that constant is chosen with hindsight. A forecaster at the start of the window does not know which way the balance will fall, and choosing from the training window gives two answers depending on its shape: a rolling 1,250-day window picks "no" at every refit and also scores 53.2%, while the expanding window behind the majority rule in Table 1 picks the other class and scores 46.8%. Both are honest and they differ by 6.3 points, which is wider than several of the model differences discussed below. We take 53.2% as the hurdle because two of the three constructions agree on it, and report the expanding-window rule in Table 1 so that a reader can see the other. The walk-forward majority rule scores 46.8% because the training-window majority was the opposite class, which is honest walk-forward behaviour rather than an error.</p>
+
+<table>
+<caption><b>Table 1.</b> Out-of-sample accuracy (%) by delay, with 95% moving-block bootstrap intervals.</caption>
+<thead><tr class="toprule"><th>&delta;</th><th>majority</th><th>persist-CC</th><th>persist-YZ</th><th>har-CC</th><th>har-YZ</th></tr></thead>
+<tbody>
+<tr><td>0</td><td>46.83</td><td>65.85 [58.6, 71.9]</td><td>67.87 [61.1, 73.3]</td><td>61.82 [53.9, 68.4]</td><td>68.59 [62.0, 74.5]</td></tr>
+<tr><td>1</td><td>46.83</td><td>65.56 [58.5, 71.2]</td><td>66.71 [59.9, 73.2]</td><td>61.53 [53.5, 68.4]</td><td>67.44 [60.1, 73.5]</td></tr>
+<tr><td>2</td><td>46.83</td><td>64.41 [57.6, 70.0]</td><td>65.56 [58.5, 72.0]</td><td>61.24 [53.2, 68.2]</td><td>66.57 [59.5, 72.2]</td></tr>
+<tr><td>3</td><td>46.83</td><td>62.10 [55.0, 68.2]</td><td>63.26 [55.8, 69.5]</td><td>60.81 [53.2, 67.7]</td><td>64.84 [58.1, 71.0]</td></tr>
+<tr><td>5</td><td>46.83</td><td>60.23 [53.3, 66.4]</td><td>60.95 [53.6, 67.3]</td><td>58.50 [50.4, 65.3]</td><td>60.95 [53.9, 67.6]</td></tr>
+<tr><td>8</td><td>46.83</td><td>56.34 [49.4, 63.3]</td><td>57.20 [49.6, 63.4]</td><td>54.76 [47.3, 62.0]</td><td>57.20 [49.4, 63.8]</td></tr>
+<tr><td>13</td><td>46.83</td><td>52.88 [46.1, 59.5]</td><td>54.90 [47.7, 61.0]</td><td>52.74 [45.1, 59.9]</td><td>53.75 [46.1, 60.5]</td></tr>
+<tr><td>21</td><td>46.83</td><td>49.86 [43.7, 56.9]</td><td>50.00 [42.9, 57.4]</td><td>54.03 [46.4, 62.1]</td><td>51.87 [44.2, 59.2]</td></tr>
+<tr><td>34</td><td>46.83</td><td>50.43 [43.8, 56.5]</td><td>49.86 [43.1, 56.5]</td><td>50.43 [42.2, 56.8]</td><td>47.84 [40.2, 54.6]</td></tr>
+<tr class="botrule"><td>55</td><td>46.83</td><td>48.27 [40.8, 55.0]</td><td>44.24 [37.5, 51.3]</td><td>46.54 [38.8, 54.0]</td><td>46.25 [38.6, 53.3]</td></tr>
+</tbody>
+</table>
+
+<h3>4.1 The decay</h3>
+<p>Accuracy falls from about 68% at zero delay to the constant-forecast level by roughly two weeks. Taking 53.2% as the reference, the threshold rule is clearly above it through &delta; = 5, marginal at &delta; = 8, and indistinguishable from it at &delta; = 13 and beyond. The apparent non-monotonicity between &delta; = 13 and &delta; = 21 is within noise: those two accuracies differ by less than one point against a bootstrap standard error of roughly five on the difference.</p>
+
+<h3>4.2 Neither refinement helps</h3>
+<table>
+<caption><b>Table 2.</b> Paired accuracy differences (percentage points) with 95% block-bootstrap intervals. No interval excludes zero.</caption>
+<thead><tr class="toprule"><th>&delta;</th><th>har-CC &minus; persist-CC</th><th>har-YZ &minus; persist-YZ</th><th>persist-YZ &minus; persist-CC</th></tr></thead>
+<tbody>
+<tr><td>0</td><td>&minus;4.03 [&minus;11.7, +3.2]</td><td>+0.72 [&minus;4.9, +6.9]</td><td>+2.02 [&minus;3.3, +7.3]</td></tr>
+<tr><td>3</td><td>&minus;1.30 [&minus;8.2, +5.2]</td><td>+1.59 [&minus;3.6, +7.2]</td><td>+1.15 [&minus;4.0, +6.3]</td></tr>
+<tr><td>5</td><td>&minus;1.73 [&minus;8.6, +4.6]</td><td>+0.00 [&minus;5.3, +5.3]</td><td>+0.72 [&minus;4.3, +5.5]</td></tr>
+<tr><td>8</td><td>&minus;1.59 [&minus;8.5, +4.8]</td><td>+0.00 [&minus;5.2, +5.0]</td><td>+0.86 [&minus;4.8, +5.6]</td></tr>
+<tr><td>13</td><td>&minus;0.14 [&minus;6.6, +6.5]</td><td>&minus;1.15 [&minus;6.9, +4.5]</td><td>+2.02 [&minus;3.2, +6.3]</td></tr>
+<tr class="botrule"><td>21</td><td>+4.18 [&minus;3.2, +11.1]</td><td>+1.87 [&minus;4.2, +7.8]</td><td>+0.14 [&minus;5.5, +5.0]</td></tr>
+</tbody>
+</table>
+<p>The Yang-Zhang proxy is worth about two accuracy points at zero delay and less thereafter, never distinguishable from zero. The HAR classifier is worse than the threshold rule at short delays and no better at long ones. On this target, over this sample, the overnight gap and the multi-horizon regression structure both fail to earn their place.</p>
+
+<h3>4.3 The look-ahead leak is negligible</h3>
+<p>Comparing the delayed proxy against M<sub>t</sub> rather than M<sub>t&minus;&delta;</sub> — the error described in Section 3.2 — changes accuracy by at most 0.43 points at any delay where the rule has skill, and at &delta; = 34 it lowers accuracy by 1.73. The leak is real and should be avoided, but it explains nothing.</p>
+
+<h2 class="pb">5. Why the threshold rule is a strong benchmark</h2>
+<p>A negative result is only interesting with a mechanism attached. Here there is one, and it is close to trivial once stated.</p>
+<p>Write the two decision variables in log form relative to their own thresholds: a = log(v<sub>t&minus;&delta;</sub> / M<sub>t&minus;&delta;</sub>) for the forecaster, b = log(v<sub>t+h</sub> / M<sub>t</sub>) for the outcome. The target is <b>1</b>{b &gt; 0} and the threshold rule is <b>1</b>{a &gt; 0}. If (a, b) are approximately jointly normal with correlation &rho; and near-zero medians, then P(b &gt; 0 | a) is monotone in a and crosses one half at a = 0, and the threshold rule is the Bayes rule <em>among functions of a alone</em>. The accuracy it then attains is</p>
+<p class="eq">A*(&delta;) = 1/2 + arcsin &rho;(&delta;) / &pi;.</p>
+<p>Two things must be said about that object before Table 3 is read, because an earlier draft said neither and called it a ceiling.</p>
+
+<p>It is not a ceiling for the models compared against it. The HAR classifier sees three features &mdash; the current delayed state and its five- and twenty-two-day means &mdash; and making the sign rule optimal over that larger set needs a sufficiency condition, P(b &gt; 0 | a, w, m) = P(b &gt; 0 | a), which bivariate normality of (a, b) does not supply. We tested it: a logistic on all three features beats a logistic on a alone at none of the ten delays at |z| &gt; 1.96, so the condition is not rejected here, and the extra lags are not where the excess over A* comes from.</p>
+
+<p>What does fail is the centring assumption, and our own data rejects it. Estimating P(b &gt; 0 | a) non-parametrically on deciles of a gives a function that is not monotone and that crosses one half at a = +0.27 rather than at zero. The rule's threshold is in the wrong place. That is why a logistic free to choose its own threshold beats the sign rule at several short delays, and why measured accuracy exceeds A* at eight of the ten delays below. A quantity the process can exceed is an approximation and not a bound, so we call A* a <em>restricted-information Gaussian benchmark</em> and claim nothing stronger for it.</p>
+
+<p>Table 3 evaluates it on the same test window.</p>
+
+<table>
+<caption><b>Table 3.</b> Attainable accuracy under the normal approximation, against measured accuracy.</caption>
+<thead><tr class="toprule"><th>&delta;</th><th>&rho;(a, b)</th><th>ceiling A*</th><th>persist-YZ</th><th>har-YZ</th><th>% of ceiling</th></tr></thead>
+<tbody>
+<tr><td>0</td><td>0.4502</td><td>64.87</td><td>67.87</td><td>68.59</td><td>104.6</td></tr>
+<tr><td>1</td><td>0.4039</td><td>63.23</td><td>66.71</td><td>67.44</td><td>105.5</td></tr>
+<tr><td>3</td><td>0.3179</td><td>60.30</td><td>63.26</td><td>64.84</td><td>104.9</td></tr>
+<tr><td>5</td><td>0.2539</td><td>58.17</td><td>60.95</td><td>60.95</td><td>104.8</td></tr>
+<tr><td>8</td><td>0.1879</td><td>56.02</td><td>57.20</td><td>57.20</td><td>102.1</td></tr>
+<tr><td>13</td><td>0.1712</td><td>55.48</td><td>54.90</td><td>53.75</td><td>99.0</td></tr>
+<tr><td>21</td><td>0.1741</td><td>55.57</td><td>50.00</td><td>51.87</td><td>90.0</td></tr>
+<tr class="botrule"><td>55</td><td>&minus;0.1202</td><td>46.17</td><td>44.24</td><td>46.25</td><td>95.8</td></tr>
+</tbody>
+</table>
+<p>The measured accuracies sit between 90% and 106% of the ceiling. The excess above 100% at short delays is expected and instructive: log realised variance has heavier tails than the normal approximation allows, which makes the real problem slightly easier than the bound, and the 694-day sample gives intervals of roughly seven points either way. The reading is not that the rule exceeds what is possible, but that it is at the boundary, and that the normal approximation is the binding assumption rather than the models.</p>
+<p>This is the substance of the negative result. Estimated headroom is small relative to sampling uncertainty, and neither refinement we evaluated exploits it reliably, so their failure to improve on the threshold rule is not evidence that those tools are weak. It is a property of the target: a median-split label discards exactly the magnitude information that a better estimator or a richer regression would have supplied. A study wanting to discriminate between volatility models should not use one.</p>
+
+<h2>6. Limitations</h2>
+<p>The test window is 694 days and the intervals are wide; nothing here separates differences smaller than about five accuracy points. A single index over a single nine-year window cannot speak to other markets or other regimes, and the period contains one major volatility episode whose influence has not been isolated. The price series is a retail export with no point-in-time guarantee, so any revision to the underlying index is silently inherited. The ceiling in Section 5 is a normal approximation, and Table 3 shows it is not exact. The delay axis is applied to an information set assumed empty after t &minus; &delta;; a real late forecaster would still observe contemporaneous prices, so these numbers are a lower bound on what such a forecaster could do. Finally, accuracy on a binary target is a coarse loss; for continuous volatility forecasting, QLIKE and the robust family of Patton [5] would be the appropriate measures.</p>
+
+<h2>7. Reproducibility</h2>
+<p>Every number in this note was produced by three scripts, <code>lab02_delay_curve.py</code>, <code>lab02b_threshold_ceiling.py</code> and <code>lab20_ceiling_is_not_a_ceiling.py</code>, run on the data described in Section 2 with a fixed seed. Both ship in the repository named in the main paper, are run by <code>run_all.py&nbsp;--check</code>, and are diffed line by line against stored reference output. The second imports the first rather than restating it, so the accuracy column of Table 3 and the accuracy columns of Table 1 cannot drift apart. A separate script, <code>verify_paper.py</code>, checks every row of Table 3 in this note against that reference output, and fails if any cell disagrees.</p>
+
+<p>That check exists because of what it found. Until late in the writing, Table 3 came from a scratch script that read a price file from the author's desktop and compared the ceiling against accuracy figures pasted in as literals from an earlier run. Nobody else could have run it, and had <code>lab02</code> changed, the pasted column would have gone on agreeing with a number that no longer existed. Every figure in the table survived being recomputed properly, which is the good outcome and was not the guaranteed one.</p>
+
+<h2>References</h2>
+<ol class="refs">
+<li>Andersen, T. G. and Bollerslev, T. (1998). Answering the skeptics: yes, standard volatility models do provide accurate forecasts. <i>International Economic Review</i> 39(4), 885–905.</li>
+<li>Bollerslev, T., Patton, A. J. and Quaedvlieg, R. (2016). Exploiting the errors: a simple approach for improved volatility forecasting. <i>Journal of Econometrics</i> 192(1), 1–18.</li>
+<li>Corsi, F. (2009). A simple approximate long-memory model of realized volatility. <i>Journal of Financial Econometrics</i> 7(2), 174–196.</li>
+<li>Hansen, P. R. and Lunde, A. (2014). Estimating the persistence and the autocorrelation function of a time series that is measured with error. <i>Econometric Theory</i> 30(1), 60–93.</li>
+<li>Patton, A. J. (2011). Volatility forecast comparison using imperfect volatility proxies. <i>Journal of Econometrics</i> 160(1), 246–256.</li>
+<li>Künsch, H. R. (1989). The jackknife and the bootstrap for general stationary observations. <i>Annals of Statistics</i> 17(3), 1217–1241.</li>
+<li>Rogers, L. C. G. and Satchell, S. E. (1991). Estimating variance from high, low and closing prices. <i>Annals of Applied Probability</i> 1(4), 504–512.</li>
+<li>Yang, D. and Zhang, Q. (2000). Drift-independent volatility estimation based on high, low, open, and close prices. <i>Journal of Business</i> 73(3), 477–491.</li>
+<li>Li, Z. and Zakamulin, V. (2020). The term structure of volatility predictability. <i>International Journal of Forecasting</i> 36(2), 723–737.</li>
+<li>Buccheri, G. and Corsi, F. (2021). HARK the SHARK: realized volatility modeling with measurement errors and nonlinear dependencies. <i>Journal of Financial Econometrics</i> 19(4), 614–649.</li>
+</ol>
+
+</body>
+</html>
