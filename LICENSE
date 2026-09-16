@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2026 SunnyAlexV
+Copyright (c) 2026 Sunny Alex Vellanikaran
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,15 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+----------------------------------------------------------------------------
+SCOPE
+
+This licence covers the code, the papers and the documentation in this
+repository -- everything the author wrote.
+
+It does NOT cover the contents of data/.  Those files are third-party
+end-of-day exports from Investing.com, redistributed here so that the results
+can be reproduced exactly, and they remain subject to that provider's own
+terms.  They are not the author's to license.  Anyone wanting the series for
+another purpose should obtain them from the provider or from the exchange.
