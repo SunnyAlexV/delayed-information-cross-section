@@ -1,0 +1,66 @@
+data folder: /home/claude/repo/delayed-information-cross-section/data
+fitting both models at 10 delays...
+
+==================================================================================
+1. FORMAL TESTS OF EQUAL PREDICTIVE ABILITY (continuous target, SPX)
+==================================================================================
+H0: the foreign cross-section adds nothing.  Positive statistic favours cross.
+ delta    GW (sq loss)      GW (QLIKE)      Clark-West   DM (ref only)
+     0   -2.22 (0.026)   -2.25 (0.025)    0.23 (0.819)   -4.45 (0.000)
+     1   -0.08 (0.933)   -0.14 (0.888)    3.35 (0.001)   -0.17 (0.867)
+     2    1.88 (0.061)    1.66 (0.097)    5.80 (0.000)    3.76 (0.000)
+     3    3.18 (0.001)    2.57 (0.010)    7.09 (0.000)    6.55 (0.000)
+     5    4.48 (0.000)    3.18 (0.001)    8.02 (0.000)    9.96 (0.000)
+     8    5.08 (0.000)    3.24 (0.001)    8.28 (0.000)   12.33 (0.000)
+    13    5.34 (0.000)    2.77 (0.006)    8.09 (0.000)   14.01 (0.000)
+    21    5.66 (0.000)    2.87 (0.004)    8.01 (0.000)   15.57 (0.000)
+    34    6.21 (0.000)    3.00 (0.003)    8.51 (0.000)   17.37 (0.000)
+    55    7.02 (0.000)    3.28 (0.001)    9.21 (0.000)   19.80 (0.000)
+
+GW and Clark-West are HAC-adjusted; p-values in brackets.
+Diebold-Mariano uses the naive standard error and is shown only because
+readers expect it; it is not valid for nested models.
+
+==================================================================================
+2. SIMULTANEOUS BANDS ACROSS THE DELTA GRID
+==================================================================================
+Ten pointwise 95% intervals will breach somewhere by chance.  We bootstrap
+the whole delta-vector jointly and take the sup-t critical value.
+
+sup-t critical value 6.51  (pointwise 95% would use 1.96)
+
+ delta       dR2         pointwise 95%        simultaneous 95%
+     0   -0.0103  [-0.0195,-0.0015]   [-0.0254,+0.0048] 
+     1   -0.0006  [-0.0142,+0.0140]   [-0.0238,+0.0226] 
+     2   +0.0188  [-0.0003,+0.0401]   [-0.0137,+0.0513] 
+     3   +0.0414  [+0.0169,+0.0687]   [+0.0003,+0.0825]*
+     5   +0.0831  [+0.0499,+0.1227]   [+0.0288,+0.1373]*
+     8   +0.1289  [+0.0827,+0.1829]   [+0.0609,+0.1969]*
+    13   +0.1896  [+0.1269,+0.2641]   [+0.1016,+0.2777]*
+    21   +0.2605  [+0.1799,+0.3582]   [+0.1516,+0.3695]*
+    34   +0.3199  [+0.2304,+0.4270]   [+0.2001,+0.4398]*
+    55   +0.3821  [+0.2867,+0.4953]   [+0.2565,+0.5077]*
+
+* = still excludes zero under the simultaneous band.
+
+==================================================================================
+3. PLACEBO: foreign block circularly shifted by five years
+==================================================================================
+Same series, same distribution, same autocorrelation - alignment destroyed.
+If the result is real the substitution rate must collapse.
+
+ delta    R2 own   R2 cross       dR2     rate
+     5    0.3371     0.3184   -0.0187  -11.6%
+    21    0.1121     0.0684   -0.0437  -11.3%
+    55   -0.0351    -0.0780   -0.0429   -8.0%
+
+==================================================================================
+4. TESTING THE CONVERGENCE CLAIM
+==================================================================================
+The paper says the substitution rate flattens. That is a hypothesis,
+not an observation. H0: R(55) = R(d) for earlier d.
+
+      comparison   R(55) - R(d)          95% interval  verdict
+  R(55) vs R(13)         +0.079   [+0.037,+0.129]  still rising
+  R(55) vs R(21)         +0.042   [+0.014,+0.076]  still rising
+  R(55) vs R(34)         +0.018   [-0.001,+0.039]  flat - cannot reject equality

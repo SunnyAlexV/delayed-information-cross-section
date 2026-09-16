@@ -1,0 +1,92 @@
+proxy Yang-Zhang, 2261 rows
+common test window: 476 days, fixed across every cell
+  (the note's own window is 694 days; the most demanding cell here is
+   median 504 + training 1250, which costs the difference)
+block bootstrap, block 10, 2000 draws
+
+============================================================================================
+A.  THE THRESHOLD RULE AGAINST THE CONSTANT BASELINE, AT EVERY WINDOW
+============================================================================================
+Accuracies are NOT comparable across columns - a different median window
+is a different target.  What is comparable is whether the rule beats the
+constant, within each column.
+
+ delta                med 63               med 126               med 252               med 504
+             rule - constant       rule - constant       rule - constant       rule - constant
+     0   +20.59[ +8.6,+34.7]   +25.00[+11.8,+39.7]   +18.91[ +4.2,+31.3]   +15.34[ +2.1,+26.7]
+     3   +15.55[ +3.8,+29.0]   +18.70[ +5.0,+33.0]   +13.45[ -0.6,+26.1]   +11.55[ -1.9,+22.5]
+     5   +13.87[ +1.9,+26.5]   +15.97[ +2.1,+30.9]   +10.29[ -3.6,+23.3]   +10.08[ -2.7,+21.2]
+    13    +6.72[ -4.8,+19.5]   +10.71[ -2.5,+26.3]    +4.62[ -8.8,+16.2]    +4.83[ -8.8,+15.8]
+    21    +0.21[-12.8,+16.8]    +4.20[ -9.9,+21.6]    -1.47[-13.7,+10.9]    -0.63[-12.2,+11.6]
+
+  base rates by median window: med 63: 0.500  med 126: 0.500  med 252: 0.519  med 504: 0.534
+  med  63: rule beats the constant at 3 of 5 delays [0, 3, 5]
+  med 126: rule beats the constant at 3 of 5 delays [0, 3, 5]
+  med 252: rule beats the constant at 1 of 5 delays [0]
+  med 504: rule beats the constant at 1 of 5 delays [0]
+
+============================================================================================
+B.  DOES THE HAR CLASSIFIER EVER BEAT THE THRESHOLD RULE?
+============================================================================================
+The note's negative result, re-run in every cell of the window grid.
+Positive favours the HAR classifier.
+
+  med  train                   d=0                   d=3                   d=5                  d=13                  d=21
+   63    500    -5.67[-11.6, +0.8]    -6.93[-13.0, -1.1]    -9.45[-16.6, -2.9]    -7.77[-14.9, -1.3]    -2.94[-10.3, +4.2]
+   63   1250    -5.25[-10.7, +0.8]    -5.88[-11.6, -0.6]    -7.14[-12.4, -2.1]    -0.63[ -7.8, +5.3]    +3.36[ -3.2,+10.7]
+  126    500    -7.77[-14.5, -1.3]    -9.45[-16.6, -3.2]   -10.71[-18.5, -4.0]    -9.66[-17.7, -3.8]    -7.56[-14.7, -0.4]
+  126   1250    -7.35[-14.3, -0.4]    -6.93[-14.1, +0.4]    -8.19[-15.5, -1.9]    -2.94[-10.7, +4.0]    -2.31[-10.5, +5.9]
+  252    500    -4.41[-11.1, +1.7]    -6.09[-12.6, -0.8]    -5.46[-12.4, +0.0]    -6.30[-13.2, -0.8]    -2.94[ -9.9, +4.0]
+  252   1250    -1.89[ -7.4, +3.4]    -2.52[ -8.0, +1.9]    -2.94[ -8.4, +1.5]    -5.46[-10.7, -0.4]    -1.47[ -8.0, +4.2]
+  504    500    -3.57[-12.2, +4.2]    -4.62[-12.4, +2.5]    -6.09[-13.9, +1.3]    -5.67[-13.9, +1.1]    -6.30[-14.3, +1.1]
+  504   1250    +0.63[ -6.1, +7.8]    -0.84[ -7.1, +5.3]    -2.31[ -9.0, +3.6]    -2.10[ -8.8, +4.0]    -2.31[ -9.0, +3.8]
+
+  cells where the HAR classifier significantly BEATS the rule: 0 of 40 
+  cells where the rule significantly beats the HAR classifier: 15 of 40 [(63, 500, 3), (63, 500, 5), (63, 500, 13), (63, 1250, 3), (63, 1250, 5), (126, 500, 0), (126, 500, 3), (126, 500, 5), (126, 500, 13), (126, 500, 21), (126, 1250, 0), (126, 1250, 5), (252, 500, 3), (252, 500, 13), (252, 1250, 13)]
+
+  The HAR classifier beats the threshold rule in no cell of the grid.
+  The note's negative result is not an artefact of the 252-day median or
+  the 1,250-day training window: it survives a fourfold change in the
+  first and a 2.5-fold change in the second.
+
+============================================================================================
+C.  WHERE THE DECAY BITES, BY WINDOW
+============================================================================================
+The note's headline is that the rule holds out to about a week and is
+indistinguishable from a constant beyond about two.  That boundary is a
+property of the target, so it should move with the median window.
+
+  med    last delay where the rule still beats the constant
+   63                                                5 days
+  126                                                5 days
+  252                                                0 days
+  504                                                0 days
+
+  The boundary moves across windows, from 0 to 5 days on the
+  delays tested, and it is LATER for shorter median windows.  Shorter windows
+  also give a target closer to a 50/50 split, which is easier to beat by
+  construction, so this is about the target as much as about the rule.
+
+============================================================================================
+D.  HOW MUCH OF PART C IS THE SHORTER WINDOW?
+============================================================================================
+Part C scores every cell on 476 days so the cells are comparable.  The note
+itself has 694.  A boundary that moves in when the sample shrinks is a loss
+of power, not a finding, so the note's own cell is re-run on the largest
+window IT can afford and the two are put side by side.
+
+  common window 476 days   vs   this cell's own window 728 days
+
+ delta     common: rule - constant        own: rule - constant
+     0         +18.91[ +4.2,+31.3]         +19.64[ +8.7,+30.5]
+     3         +13.45[ -0.6,+26.1]         +12.64[ +1.5,+24.0]
+     5         +10.29[ -3.6,+23.3]          +9.34[ -2.6,+20.2]
+    13          +4.62[ -8.8,+16.2]          +4.12[ -7.0,+14.8]
+    21          -1.47[-13.7,+10.9]          +0.14[ -9.3,+11.3]
+
+  boundary on the common window: 0   boundary on its own window: 3
+
+  The boundary moves OUT when the sample grows, so part C's inward move at
+  the longer median windows is at least partly lost power rather than a
+  property of the window.  Read part C as a ranking across windows on equal
+  footing, not as a revision of the note's own figure.

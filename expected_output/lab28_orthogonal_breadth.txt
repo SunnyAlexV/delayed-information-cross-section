@@ -1,0 +1,46 @@
+data folder: /home/claude/repo/delayed-information-cross-section/data
+target SPX, 4862 test days, 7 foreign peers
+
+================================================================================================
+0.  THE ROTATION IS A ROTATION
+================================================================================================
+PC1+REST spans the same column space as the raw block, so the two arms must
+agree up to the ridge penalty acting on a rotated basis.  A large gap would
+mean the decomposition is wrong, not that rotation matters.
+
+ delta        FULL    PC1+REST   difference
+     0      0.4884      0.4882      +0.0002
+     3      0.4262      0.4253      +0.0008
+     5      0.4202      0.4192      +0.0010
+    13      0.3907      0.3902      +0.0006
+    21      0.3726      0.3716      +0.0010
+    55      0.3470      0.3461      +0.0009
+
+  largest gap: 0.0010 of R2
+  The rotation reproduces the raw block, so splitting it is legitimate.
+
+================================================================================================
+A.  WHICH HALF CARRIES THE RECOVERY?
+================================================================================================
+OWN is the domestic-only model.  PC1 adds the global component alone; REST
+adds components two through seven, which are orthogonal to it by construction.
+The last column tests PC1 against REST by Giacomini-White; positive favours
+the global component.
+
+ delta       OWN      +PC1     +REST     +FULL   PC1-OWN   REST-OWN    GW z
+     0    0.4987    0.5001    0.4873    0.4884   +0.0014    -0.0114    2.94
+     3    0.3848    0.4385    0.3737    0.4262   +0.0538    -0.0111    4.92
+     5    0.3371    0.4325    0.3276    0.4202   +0.0954    -0.0095    5.60
+    13    0.2011    0.4032    0.1943    0.3907   +0.2021    -0.0067    6.01
+    21    0.1121    0.3873    0.0992    0.3726   +0.2753    -0.0128    5.94
+    55   -0.0351    0.3664   -0.0629    0.3470   +0.4015    -0.0277    7.22
+
+  delays at which the GLOBAL component alone beats domestic-only (GW z > 1.96): 5 of 6 [3, 5, 13, 21, 55]
+  delays at which the ORTHOGONAL remainder beats domestic-only: 0 of 6 []
+
+  The recovery is the global component.  Orthogonalised against it, the
+  foreign block has nothing left that this design can detect, so what the
+  paper calls breadth is one common factor observed while the domestic
+  series is stale - not bilateral diffusion between markets.  The
+  substitution rate is unaffected; what changes is the name of the
+  mechanism, and the referee is right that the paper should give it.

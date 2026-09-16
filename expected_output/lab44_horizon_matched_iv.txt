@@ -1,0 +1,124 @@
+data folder: ../data
+Prints the horizon-matched implied-volatility race, Section 8.
+
+  implied-volatility files and seams:
+    VIX files: ['VIX_History.csv']
+    VIX9D files: ['VIX9D_History.csv']
+    VDAX files: ['DAX_New_Volatility_Historical_Data.csv', 'DAX_New_Volatility_Historical_Data_1.csv']
+    seam VDAX: 251 overlapping rows, 0 mismatched  -> VERIFIED
+
+====================================================================================================
+A0.  HOW MUCH OF ANY DIFFERENCE IS THE WINDOW RATHER THAN THE HORIZON?
+====================================================================================================
+The thirty-day block alone, on the window Table 8 uses and on the shorter
+one VIX9D forces. Nothing else changes, so the gap between these two
+columns is the sample and nothing but the sample.
+
+  full window: 4525 test days, 2008-09-09 to 2026-09-03
+  VIX9D window: 2098 test days, 2018-05-01 to 2026-09-03
+
+ delta   +IV30 full   +IV30 short   difference
+     0       0.5379        0.5165      -0.0214
+     5       0.5151        0.4918      -0.0233
+    13       0.5082        0.4893      -0.0189
+    21       0.5068        0.4906      -0.0161
+    55       0.5088        0.4936      -0.0151
+
+  full window   4525 days, 2008-09-09 to 2026-09-03
+  VIX9D window  2098 days, 2018-05-01 to 2026-09-03, 46% of the days
+  Every comparison below is inside the VIX9D window, so the sample is held
+  fixed and the horizon is the only thing that varies.
+
+====================================================================================================
+A.  DOES MATCHING THE HORIZON MAKE THE INSTRUMENT BETTER?
+====================================================================================================
+Both blocks carry two series, so the estimation cost is identical and
+cancels. 'IV9 - IV30' positive means nine-day implied volatility
+forecasts five-day realised variance better than thirty-day does.
+
+ delta      own    +IV30     +IV9    +TERM   IV9 - IV30    GW z   TERM - IV30    GW z
+     0   0.4720   0.5165   0.5408   0.5376      +0.0243    4.06       +0.0211    3.17
+     5   0.2979   0.4918   0.5321   0.5288      +0.0403    4.19       +0.0370    3.60
+    13   0.1696   0.4893   0.5303   0.5246      +0.0410    4.13       +0.0353    3.45
+    21   0.0921   0.4906   0.5304   0.5244      +0.0397    4.02       +0.0338    3.39
+    55  -0.0600   0.4936   0.5332   0.5312      +0.0396    4.06       +0.0375    3.80
+
+  nine-day beats thirty-day significantly at 5 of 5 delays
+
+====================================================================================================
+B.  THE QUESTION SECTION 8 ASKS, WITH THE HORIZON MATCHED
+====================================================================================================
+What the seven foreign closes add ON TOP of each implied-volatility block.
+Each block is nested inside its own 'with foreign' counterpart, so GW is
+the valid test and Diebold-Mariano would not be.
+
+ delta  fgn | IV30    GW z   fgn | IV9    GW z   fgn | TERM    GW z
+     0     -0.0156   -2.65     -0.0141   -2.41      -0.0158   -2.51
+     5     -0.0209   -3.50     -0.0179   -3.34      -0.0208   -3.57
+    13     -0.0217   -3.71     -0.0162   -3.38      -0.0194   -3.60
+    21     -0.0207   -3.65     -0.0155   -3.17      -0.0195   -3.54
+    55     -0.0190   -3.21     -0.0138   -2.59      -0.0197   -3.42
+
+  delays where the foreign block significantly HELPS, given each block:
+    given  IV30: 0 of 5
+    given   IV9: 0 of 5
+    given  TERM: 0 of 5
+
+  A positive, significant column here would overturn Section 8.
+
+====================================================================================================
+B2.  IS THE HORIZON RESULT JUST MARCH 2020?
+====================================================================================================
+The one stress episode in this window is dropped outright: every test day
+from 15 February to 30 June 2020 is deleted from the evaluation, the models
+are untouched, and the two blocks are compared on what is left.
+
+  94 test days removed, 2004 remain
+
+ delta    +IV30     +IV9   IV9 - IV30    GW z   fgn | IV9    GW z
+     0   0.4206   0.4470      +0.0264    3.59     -0.0158   -2.11
+     5   0.3956   0.4388      +0.0432    3.64     -0.0212   -3.11
+    13   0.3920   0.4352      +0.0432    3.54     -0.0199   -3.26
+    21   0.3917   0.4345      +0.0429    3.53     -0.0192   -3.12
+    55   0.3951   0.4347      +0.0396    3.37     -0.0176   -2.54
+
+  nine-day still beats thirty-day significantly at 5 of 5 delays with 2020 removed
+  The horizon result is not an artefact of one episode. It survives
+  deleting the only violent stretch the window contains.
+
+====================================================================================================
+C.  THE SLOPE ON ITS OWN, AND WHAT EACH BLOCK RECOVERS
+====================================================================================================
+The slope column replaces the nine-day LEVEL with the nine-to-thirty-day
+SLOPE, keeping the regressor count at two. If the slope carries what the
+nine-day level carries, the information is in the shape of the curve
+rather than in its near end.
+
+ delta   +SLOPE     +IV9   SLOPE - IV9    GW z
+     0   0.5254   0.5408       -0.0155   -2.29
+     5   0.4980   0.5321       -0.0341   -3.38
+    13   0.4869   0.5303       -0.0434   -3.92
+    21   0.4866   0.5304       -0.0437   -4.15
+    55   0.4888   0.5332       -0.0444   -4.11
+
+  the substitution rate each block recovers, on this window
+ delta  R(d) foreign   R(d) IV30   R(d) IV9   R(d) TERM
+     5           51%        111%       135%        133%
+    13           64%        106%       119%        117%
+    21           68%        105%       115%        114%
+    55           73%        104%       112%        111%
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  Nine-day implied volatility is the better instrument at 5 of
+  5 delays, which is the referee's point and it is correct.
+  It does not change the conclusion: the foreign cross-section still
+  adds nothing detectable on top of it. The horizon mismatch made the
+  paper's implied-volatility control WEAKER than it should have been,
+  and redundancy held even against the weaker control.
+
+  The window is the standing caveat: it begins after 2008 and cannot
+  speak to the episode where delay is most expensive. Table 8 remains the
+  paper's headline for that reason, and this lab is the sharper test on
+  the sample that exists.

@@ -1,0 +1,70 @@
+data folder: /home/claude/repo/delayed-information-cross-section/data
+Prints the Reality Check and SPA results of Section 9.3.
+
+target SPX, 4862 test days, 7 foreign peers
+stationary bootstrap, mean block 10 days, 2000 draws
+
+================================================================================================
+0.  DOES THE TEST REJECT AT THE RATE IT PROMISES?
+================================================================================================
+Under a true null - every model a pure noise forecast of the same target -
+a 5% test should reject about 5% of the time, and the Reality Check should
+reject LESS often than SPA because it recentres hopeless models too.
+
+  200 replications, 10 null models, 800 days each
+  Reality Check rejects at 5%: 5.5%
+  SPA rejects at 5%:           7.0%
+
+  Sizes are usable.
+  SPA rejects more often than the Reality Check, as Hansen predicts.
+
+================================================================================================
+A.  THE WHOLE FAMILY AGAINST THE DOMESTIC BENCHMARK
+================================================================================================
+Nine models per delay, all introduced somewhere in this project to beat the
+same domestic-only baseline.  p is for the BEST of the nine, corrected for
+there being nine.
+
+ delta  models                    best model  best dR2    RC p   SPA p  kept
+     0       9   5.1: + one real-time factor   +0.0014   0.658   0.430     7
+     3       9        lab31: mark-to-model +   +0.0596   0.000   0.000     9
+     5       9   5.1: + one real-time factor   +0.0954   0.000   0.000     9
+    13       9   5.1: + one real-time factor   +0.2021   0.000   0.000     9
+    21       9   5.1: + one real-time factor   +0.2753   0.000   0.000     9
+    55       9       lab33: filter + history   +0.4027   0.000   0.000     9
+
+  delays where the best of nine still beats the benchmark at 5%
+    Reality Check: 5 of 6 [3, 5, 13, 21, 55]
+    SPA:           5 of 6 [3, 5, 13, 21, 55]
+
+  The result survives at [3, 5, 13, 21, 55] and does NOT at [0].
+    delta = 0: best margin +0.0014 of R2.  nothing beats the benchmark there at all, so this is an absence
+
+  Where the best margin is near zero the correction is not what killed the
+  result - there was nothing to kill.  That is the delta = 0 row the paper
+  already declines to interpret, and this file agrees with it by a route
+  the paper does not use.
+
+================================================================================================
+B.  WHAT DOES THE CORRECTION ACTUALLY COST?
+================================================================================================
+The uncorrected p-value for the paper's own model, against the corrected one
+for the best of nine.  The gap is the price of the search.
+
+  bootstrap resolution is 1/2000 = 0.0005; a p-value at or below it
+  is reported as such rather than as a number the bootstrap cannot support.
+
+ delta  paper model z    uncorrected p   SPA p (best of 9)
+     0          -2.22           1.0000              0.4220
+     3           3.18           0.0007            < 0.0005
+     5           4.48         3.78e-06            < 0.0005
+    13           5.34         4.72e-08            < 0.0005
+    21           5.66         7.59e-09            < 0.0005
+    55           7.02         1.07e-12            < 0.0005
+
+  Where both columns sit below the bootstrap's resolution the honest
+  statement is that the correction demonstrably costs nothing, not that it
+  costs some particular amount: a ratio of two numbers the bootstrap cannot
+  resolve measures the bootstrap, not the search.  An earlier version of this
+  file printed that ratio and one row read 65,913, which is a statement about
+  2,000 draws and nothing else.

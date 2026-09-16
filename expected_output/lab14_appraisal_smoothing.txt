@@ -1,0 +1,94 @@
+data folder: /home/claude/repo/delayed-information-cross-section/data
+4862 test days
+
+====================================================================================
+WHAT THIS FILE DOES NOT DO
+====================================================================================
+It does not demonstrate the illiquid-asset case.  Smoothing the S&P leaves
+SPX options written on it, and Section 7 says the presence of an options
+market is what decides between the two substitutes.  A synthetic illiquid
+asset that keeps a liquid asset's options market proves nothing about the
+case the paper cares about, and this file does not pretend otherwise.
+
+What it tests is narrower and answerable: whether the CLEAN-LAG model of
+staleness behaves like the BLUR that appraisal-based valuation produces.
+
+benchmark, fully current and sharp: R2 = 0.4987
+
+====================================================================================
+CLEAN LAG versus APPRAISAL BLUR, MATCHED ON MEAN STALENESS
+====================================================================================
+alpha = 1/(1+L) gives an exponential weighting whose mean lag is L days.
+Left half is the paper's design; right half sees a CURRENT but BLURRED
+signal of the same average age.  Intervals are full-ratio bootstraps.
+
+ mean lag   alpha         --- clean lag ---      --- appraisal blur ---
+                    R2 own             R(d)    R2 own              R(d)
+        1   0.500   0.4518   -1% [-30%,29%]    0.4846  -74% [-153%,-2%]
+        3   0.250   0.3848    36% [17%,55%]    0.4756   -37% [-90%,11%]
+        5   0.167   0.3371    51% [37%,66%]    0.4733   -34% [-86%,13%]
+        8   0.111   0.2822    60% [47%,71%]    0.4702   -23% [-68%,20%]
+       13   0.071   0.2011    64% [52%,73%]    0.4682   -25% [-74%,19%]
+       21   0.045   0.1121    67% [58%,76%]    0.4657   -24% [-73%,18%]
+       34   0.029   0.0404    70% [61%,77%]    0.4626   -26% [-77%,15%]
+       55   0.018  -0.0351    72% [64%,79%]    0.4561   -10% [-61%,28%]
+
+====================================================================================
+READING THE FIRST TWO COLUMNS
+====================================================================================
+Blur minus lag, across the grid: -96% to -72%.
+The two designs are nothing alike, and the reason is simple enough that it
+should have been anticipated: an exponentially weighted average STILL
+CONTAINS TODAY'S OBSERVATION, with weight alpha.  Blur is therefore a much
+milder handicap than lag - own R2 falls only 0.499 to 0.456 across a mean
+lag of 55 days, against 0.499 to -0.035 under a clean lag - and with so
+little damage to repair, the substitution rate has almost no denominator
+and is not interpretable.  Blur alone is the WRONG model of a stale mark.
+
+====================================================================================
+THE DESIGN THAT ACTUALLY MATCHES A QUARTERLY MARK
+====================================================================================
+A marked-to-appraisal holder sees a number REVISED every q days and HELD
+flat in between, revised by partial adjustment rather than fully.  That is
+staircase staleness plus blur, and it is the combination the paper's
+motivation actually describes.
+
+    q  alpha  mean lag   R2 own  R2 cross                R(.)
+    5   1.00       2.0   0.4250    0.4428       24% [-1%,48%]
+   21   1.00      10.0   0.1751    0.3821       64% [54%,73%]
+   63   1.00      31.0   0.0416    0.3661       71% [63%,78%]
+   21   0.50      31.0   0.1851    0.3814       63% [52%,72%]
+   63   0.50      94.0   0.0490    0.3644       70% [62%,77%]
+
+====================================================================================
+VERDICT
+====================================================================================
+  Judged on the GAP between point estimates, not on interval overlap:
+  at short lags the clean-lag interval is so wide that anything falls
+  inside it, which would make 'overlap' a meaningless test.
+
+  q= 5 alpha=1.00  mean lag   2.0 -> R =  24%;  clean lag delta= 1 -> R =  -1%;  gap  +25%  DIFFERS
+  q=21 alpha=1.00  mean lag  10.0 -> R =  64%;  clean lag delta= 8 -> R =  60%;  gap   +4%  match
+  q=63 alpha=1.00  mean lag  31.0 -> R =  71%;  clean lag delta=34 -> R =  70%;  gap   +1%  match
+  q=21 alpha=0.50  mean lag  31.0 -> R =  63%;  clean lag delta=34 -> R =  70%;  gap   -7%  match
+  q=63 alpha=0.50  mean lag  94.0 -> R =  70%;  clean lag delta=55 -> R =  72%;  gap   -1%  match
+
+  The q = 5 row is the exception and is not evidence of anything: at a
+  mean lag of two days the clean lag has destroyed almost nothing, so the
+  substitution rate has a denominator near zero and is unstable in both
+  designs.  The four rows with real staleness agree to within eight points.
+
+Two things follow, and the first is a correction to this file's own
+starting assumption.  Blur ALONE is not a model of a stale mark: an
+exponentially weighted average still contains today's observation, so it
+costs almost nothing and leaves no damage for breadth to repair.  What a
+quarterly-marked holder has is STAIRCASE staleness - a number revised on a
+schedule and held flat between revisions - and that design DOES track the
+clean lag closely at matched mean staleness.  A clean lag is therefore a
+usable stand-in for periodic marking, which is what Section 11 needs.
+
+The partial-adjustment rows sit a few points below what mean-lag matching
+predicts, so the equivalence is approximate and the paper should not claim
+more than approximate.  And none of this is evidence about property: the
+asset is still the S&P, it still has options written on it, and Section 7's
+verdict on implied volatility is untouched by everything above.

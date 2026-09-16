@@ -1,0 +1,142 @@
+data folder: /home/claude/repo/delayed-information-cross-section/data
+target SPX, 4862 test days, 2007-05-09 to 2026-09-03, 7 peers
+
+  implied-volatility files and seams:
+    VIX files: ['VIX_History.csv']
+    VDAX files: ['DAX_New_Volatility_Historical_Data.csv', 'DAX_New_Volatility_Historical_Data_1.csv']
+    seam VDAX: 251 overlapping rows, 0 mismatched  -> VERIFIED
+================================================================================================
+0.  THE SPLITS, FIXED BEFORE THE RESULTS WERE LOOKED AT
+================================================================================================
+  2008 crisis          2008-09-01 to 2009-06-30     209 test days
+  2011 euro            2011-07-01 to 2011-12-31     127 test days
+  2015 devaluation     2015-08-01 to 2016-02-29     145 test days
+  2018 vol spike       2018-02-01 to 2018-03-31      40 test days
+  2020 COVID           2020-02-15 to 2020-06-30      94 test days
+  2022 inflation       2022-01-01 to 2022-12-31     251 test days
+
+  VIX top 33%                 1729 days  (35.6% of the window)
+  VIX top 10%                  644 days  (13.2% of the window)
+  VIX top 5%                   367 days  ( 7.5% of the window)
+  VIX bottom 67%              3074 days  (63.2% of the window)
+  episodes, full window        866 days  (17.8% of the window)
+  episodes, peak +/-20d        246 days  ( 5.1% of the window)
+  outside every episode       3996 days  (82.2% of the window)
+
+================================================================================================
+A.  DOES THE CROSS-SECTION STILL HELP WHEN THE MARKET IS STRESSED?
+================================================================================================
+d_t = squared error of the domestic model minus that of the cross-sectional
+model, per day.  Positive means the cross-section helps.  Each regime's
+subsequence is block-bootstrapped in its own time order.
+
+ delta                  regime   days    mean d   share of own MSE              95% CI  helps?
+     0             VIX top 33%   1729   -0.0193              -3.5%   [  -6.2%,  -0.4%]      no
+     0             VIX top 10%    644   -0.0230              -3.1%   [  -7.1%,  +1.2%]      no
+     0              VIX top 5%    367   -0.0250              -3.1%   [  -7.9%,  +2.2%]      no
+     0          VIX bottom 67%   3074   -0.0033              -0.8%   [  -2.9%,  +1.1%]      no
+     0   episodes, full window    866   -0.0204              -3.6%   [  -7.3%,  +0.5%]      no
+     0   episodes, peak +/-20d    246   -0.0572              -5.8%   [ -12.8%,  +0.9%]      no
+     0   outside every episode   3996   -0.0070              -1.6%   [  -3.6%,  +0.3%]      no
+
+     5             VIX top 33%   1729   +0.1317              16.3%   [  +7.9%, +23.8%]     yes
+     5             VIX top 10%    644   +0.3022              25.2%   [ +13.8%, +35.3%]     yes
+     5              VIX top 5%    367   +0.4859              32.5%   [ +19.8%, +44.5%]     yes
+     5          VIX bottom 67%   3074   +0.0447               9.2%   [  +5.1%, +13.4%]     yes
+     5   episodes, full window    866   +0.2106              23.1%   [ +12.4%, +32.6%]     yes
+     5   episodes, peak +/-20d    246   +0.4595              26.9%   [  +7.7%, +43.0%]     yes
+     5   outside every episode   3996   +0.0462               8.6%   [  +4.3%, +12.6%]     yes
+
+    21             VIX top 33%   1729   +0.4355              36.3%   [ +25.0%, +46.2%]     yes
+    21             VIX top 10%    644   +1.0830              50.9%   [ +39.6%, +61.4%]     yes
+    21              VIX top 5%    367   +1.6489              58.6%   [ +46.9%, +69.1%]     yes
+    21          VIX bottom 67%   3074   +0.1273              21.7%   [ +15.7%, +27.3%]     yes
+    21   episodes, full window    866   +0.7620              48.9%   [ +36.7%, +59.0%]     yes
+    21   episodes, peak +/-20d    246   +1.7281              55.1%   [ +34.3%, +69.3%]     yes
+    21   outside every episode   3996   +0.1231              19.1%   [ +12.7%, +24.5%]     yes
+
+    55             VIX top 33%   1729   +0.6067              43.3%   [ +32.9%, +52.5%]     yes
+    55             VIX top 10%    644   +1.4327              57.0%   [ +46.1%, +66.3%]     yes
+    55              VIX top 5%    367   +2.0048              63.1%   [ +51.3%, +72.6%]     yes
+    55          VIX bottom 67%   3074   +0.2040              29.9%   [ +23.8%, +35.5%]     yes
+    55   episodes, full window    866   +1.1637              58.6%   [ +49.4%, +66.9%]     yes
+    55   episodes, peak +/-20d    246   +2.4205              63.1%   [ +45.6%, +75.7%]     yes
+    55   outside every episode   3996   +0.1705              23.9%   [ +17.0%, +29.8%]     yes
+
+  Reading the ladder at the longest delay, where the effect is largest.
+                  regime    share of own MSE removed              95% CI
+             VIX top 33%                       43.3%   [ +32.9%, +52.5%]
+             VIX top 10%                       57.0%   [ +46.1%, +66.3%]
+              VIX top 5%                       63.1%   [ +51.3%, +72.6%]
+   episodes, peak +/-20d                       63.1%   [ +45.6%, +75.7%]
+          VIX bottom 67%                       29.9%   [ +23.8%, +35.5%]
+   outside every episode                       23.9%   [ +17.0%, +29.8%]
+
+  cells where the cross-section significantly helps, STRESS rungs: 12 of 16
+  the same on calm rungs:                                        6 of 8
+
+  severest rung vs calmest, at delta = 55: 63.1% [+51.3%,+72.6%] against 29.9% [+23.8%,+35.5%]
+  intervals disjoint: yes
+
+  The contribution is LARGER in stress even after the scale is removed,
+  which is the opposite of the objection and a stronger claim than the
+  paper currently makes.
+
+================================================================================================
+B.  IS BREADTH STILL REDUNDANT GIVEN IMPLIED VOLATILITY, IN STRESS?
+================================================================================================
+Section 7 finds the foreign block adds nothing once VIX and VDAX are held.
+If options markets distort under stress, that should fail exactly there.
+Positive means the foreign block adds to the implied-volatility model.
+
+  implied-volatility files and seams:
+    VIX files: ['VIX_History.csv']
+    VDAX files: ['DAX_New_Volatility_Historical_Data.csv', 'DAX_New_Volatility_Historical_Data_1.csv']
+    seam VDAX: 251 overlapping rows, 0 mismatched  -> VERIFIED
+  implied-volatility panel: 4525 test days, 2008-09-09 to 2026-09-03
+
+ delta                  regime   days    mean d   share of IV MSE              95% CI   adds?
+     0             VIX top 33%   1557   -0.0075             -1.5%   [  -4.3%,  +1.3%]      no
+     0             VIX top 10%    580   -0.0125             -1.9%   [  -5.6%,  +2.8%]      no
+     0              VIX top 5%    324   -0.0227             -3.2%   [  -7.7%,  +2.4%]      no
+     0          VIX bottom 67%   2909   -0.0092             -2.5%   [  -4.7%,  -0.3%]      no
+     0   episodes, full window    861   -0.0105             -2.0%   [  -5.3%,  +2.7%]      no
+     0   episodes, peak +/-20d    246   -0.0450             -5.4%   [  -9.7%,  -1.2%]      no
+     0   outside every episode   3664   -0.0097             -2.4%   [  -4.4%,  -0.4%]      no
+
+     5             VIX top 33%   1557   -0.0185             -3.4%   [  -6.8%,  -0.2%]      no
+     5             VIX top 10%    580   -0.0206             -3.1%   [  -7.3%,  +1.9%]      no
+     5              VIX top 5%    324   -0.0241             -3.2%   [  -8.8%,  +3.3%]      no
+     5          VIX bottom 67%   2909   -0.0034             -0.9%   [  -3.5%,  +1.4%]      no
+     5   episodes, full window    861   +0.0050              0.8%   [  -3.1%,  +5.2%]      no
+     5   episodes, peak +/-20d    246   -0.0273             -3.1%   [  -9.3%,  +3.4%]      no
+     5   outside every episode   3664   -0.0123             -3.0%   [  -5.4%,  -0.7%]      no
+
+    21             VIX top 33%   1557   -0.0269             -5.0%   [  -8.6%,  -1.3%]      no
+    21             VIX top 10%    580   -0.0375             -5.5%   [ -10.0%,  -0.6%]      no
+    21              VIX top 5%    324   -0.0400             -5.4%   [ -12.2%,  +1.3%]      no
+    21          VIX bottom 67%   2909   +0.0001              0.0%   [  -2.5%,  +2.5%]      no
+    21   episodes, full window    861   +0.0074              1.2%   [  -3.0%,  +5.3%]      no
+    21   episodes, peak +/-20d    246   -0.0453             -5.2%   [ -12.3%,  +1.2%]      no
+    21   outside every episode   3664   -0.0130             -3.2%   [  -5.8%,  -0.7%]      no
+
+    55             VIX top 33%   1557   -0.0270             -5.0%   [  -8.7%,  -1.1%]      no
+    55             VIX top 10%    580   -0.0273             -3.9%   [  -9.0%,  +1.4%]      no
+    55              VIX top 5%    324   -0.0287             -3.7%   [ -10.4%,  +3.3%]      no
+    55          VIX bottom 67%   2909   +0.0007              0.2%   [  -2.5%,  +2.7%]      no
+    55   episodes, full window    861   +0.0074              1.2%   [  -3.0%,  +6.0%]      no
+    55   episodes, peak +/-20d    246   -0.0465             -5.3%   [ -12.4%,  +2.1%]      no
+    55   outside every episode   3664   -0.0128             -3.1%   [  -5.9%,  -0.7%]      no
+
+  cells where the foreign block significantly ADDS given implied volatility
+    on STRESS rungs: 0 of 16  
+    on calm rungs:   0 of 8  
+
+  The severest rung carries 324 days, which is the
+  binding constraint on this test: a foreign block that helped only in the
+  very worst days would need more of them to show it.
+
+  The foreign block adds nothing detectable on any rung, calm or severe,
+  down to the top 5% of VIX days.  Redundancy given implied volatility is
+  not an average concealing a stressed subsample.  What this cannot rule
+  out is an effect confined to days more extreme than the ladder reaches.

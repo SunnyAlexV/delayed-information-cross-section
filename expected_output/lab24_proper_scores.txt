@@ -1,0 +1,179 @@
+test window: 694 days;  realised base rate 0.468
+block bootstrap, block 10, 2000 draws
+
+========================================================================================
+0.  RECONCILIATION WITH lab02's OWN ACCURACIES
+========================================================================================
+This file repeats lab02's walk-forward to keep the probability that
+lab02 discards.  A repeat is where a silent difference hides, so
+lab02's own evaluate() is called here and the accuracies compared.
+
+ delta         model      here     lab02
+     0    persist-YZ    67.87%    67.87%   ok
+     0        har-YZ    68.59%    68.59%   ok
+     5    persist-YZ    60.95%    60.95%   ok
+     5        har-YZ    60.95%    60.95%   ok
+    55    persist-YZ    44.24%    44.24%   ok
+    55        har-YZ    46.25%    46.25%   ok
+
+  the rewrite matches lab02 exactly
+
+========================================================================================
+A.  ACCURACY, RANKING, AND PROBABILITY QUALITY
+========================================================================================
+acc and AUC are available for every forecaster: the persistence rules
+are ranked by the margin a = log(v/M) whose sign IS the rule.  Brier
+and log score need a probability, which a hard rule does not emit;
+those cells are n/a by construction, not by omission.
+
+Two AUC columns, and the distance between them is the referee's point
+made into a measurement.  AUC(margin) ranks days by the continuous
+decision variable a forecaster HAS; AUC(label) ranks by the 0/1 it
+actually EMITS, and for a binary forecast it equals balanced accuracy.
+A rule that throws away its margin gives up the gap between them.
+
+ delta        model      acc  AUC(margin)  AUC(label)    Brier      log
+     0    base rate  50.00%        0.377       0.478   0.2506   0.6944
+     0   persist-CC  65.85%        0.699       0.657      n/a      n/a
+     0   persist-YZ  67.87%        0.735       0.681      n/a      n/a
+     0       har-CC  61.82%        0.684       0.600   0.2306   0.6566
+     0       har-YZ  68.59%        0.705       0.674   0.2195   0.6357
+
+     1    base rate  50.14%        0.367       0.479   0.2507   0.6946
+     1   persist-CC  65.56%        0.694       0.654      n/a      n/a
+     1   persist-YZ  66.71%        0.721       0.669      n/a      n/a
+     1       har-CC  61.53%        0.677       0.597   0.2325   0.6613
+     1       har-YZ  67.44%        0.690       0.663   0.2240   0.6469
+
+     2    base rate  50.29%        0.357       0.481   0.2508   0.6948
+     2   persist-CC  64.41%        0.687       0.643      n/a      n/a
+     2   persist-YZ  65.56%        0.705       0.657      n/a      n/a
+     2       har-CC  61.24%        0.667       0.595   0.2350   0.6678
+     2       har-YZ  66.57%        0.673       0.654   0.2295   0.6594
+
+     3    base rate  50.14%        0.349       0.480   0.2509   0.6949
+     3   persist-CC  62.10%        0.671       0.620      n/a      n/a
+     3   persist-YZ  63.26%        0.685       0.634      n/a      n/a
+     3       har-CC  60.81%        0.651       0.590   0.2392   0.6770
+     3       har-YZ  64.84%        0.653       0.637   0.2366   0.6757
+
+     5    base rate  49.57%        0.338       0.474   0.2510   0.6952
+     5   persist-CC  60.23%        0.656       0.601      n/a      n/a
+     5   persist-YZ  60.95%        0.660       0.611      n/a      n/a
+     5       har-CC  58.50%        0.629       0.567   0.2464   0.6928
+     5       har-YZ  60.95%        0.628       0.598   0.2470   0.6997
+
+     8    base rate  48.27%        0.330       0.461   0.2511   0.6954
+     8   persist-CC  56.34%        0.596       0.562      n/a      n/a
+     8   persist-YZ  57.20%        0.608       0.574      n/a      n/a
+     8       har-CC  54.76%        0.567       0.530   0.2651   0.7375
+     8       har-YZ  57.20%        0.581       0.561   0.2647   0.7449
+
+    13    base rate  46.40%        0.330       0.443   0.2512   0.6956
+    13   persist-CC  52.88%        0.544       0.528      n/a      n/a
+    13   persist-YZ  54.90%        0.579       0.550      n/a      n/a
+    13       har-CC  52.74%        0.527       0.510   0.2751   0.7622
+    13       har-YZ  53.75%        0.550       0.526   0.2723   0.7613
+
+    21    base rate  42.94%        0.336       0.409   0.2513   0.6958
+    21   persist-CC  49.86%        0.514       0.498      n/a      n/a
+    21   persist-YZ  50.00%        0.535       0.501      n/a      n/a
+    21       har-CC  54.03%        0.487       0.523   0.2835   0.7849
+    21       har-YZ  51.87%        0.508       0.507   0.2849   0.7890
+
+    34    base rate  40.63%        0.349       0.387   0.2513   0.6957
+    34   persist-CC  50.43%        0.482       0.503      n/a      n/a
+    34   persist-YZ  49.86%        0.501       0.500      n/a      n/a
+    34       har-CC  50.43%        0.442       0.487   0.3046   0.8357
+    34       har-YZ  47.84%        0.475       0.466   0.3045   0.8407
+
+    55    base rate  41.64%        0.367       0.399   0.2511   0.6954
+    55   persist-CC  48.27%        0.452       0.481      n/a      n/a
+    55   persist-YZ  44.24%        0.428       0.442      n/a      n/a
+    55       har-CC  46.54%        0.418       0.448   0.3135   0.8591
+    55       har-YZ  46.25%        0.412       0.450   0.3238   0.8905
+
+  persist-YZ's margin out-ranks its own label at 9 of 10 delays,
+  by as much as 0.055 of AUC at delta = 0.  At delta = 55 the
+  label ranks 0.014 HIGHER than the margin, which is possible
+  because a sign is not a monotone summary of a margin once the margin's
+  ordering stops tracking the outcome.  Either way the two differ, and the
+  note's accuracy table cannot see the difference.
+
+  A caution on the base-rate row, which reads below chance.  The recursive
+  base rate is a running mean of resolved labels: it is nearly constant, so
+  its ranking is decided by slow drift rather than by anything it knows.
+  Its AUC is 0.377; ranking by calendar time alone gives 0.504.
+  Those do NOT agree, so the drift is not a simple calendar trend - the
+  running mean rises after clusters of ones, and the target mean-reverts
+  against it.  We report the mechanism as unresolved rather than guess.
+  In either case the row is not a chance benchmark and should not be read as
+  one; chance for every other row is 0.500 by construction.
+
+========================================================================================
+B.  DOES THE CHANGE OF MEASURE CHANGE THE VERDICT?
+========================================================================================
+The note's claim is that har-YZ does not improve on persist-YZ.  It was
+established on accuracy.  Here it is put to AUC as well, paired on the
+same days, with a block bootstrap that respects the 5-day overlap.
+
+ delta    acc diff              95% CI   AUC diff              95% CI
+     0      +0.72     [ -5.04, +6.49]    -0.0299   [-0.0542,-0.0066]
+     1      +0.72     [ -5.48, +7.06]    -0.0311   [-0.0554,-0.0068]
+     2      +1.01     [ -4.32, +6.92]    -0.0322   [-0.0595,-0.0094]
+     3      +1.59     [ -3.89, +7.06]    -0.0312   [-0.0584,-0.0051]
+     5      +0.00     [ -5.19, +5.62]    -0.0323   [-0.0610,-0.0072]
+     8      +0.00     [ -4.90, +5.48]    -0.0272   [-0.0511,-0.0004]
+    13      -1.15     [ -7.06, +4.33]    -0.0287   [-0.0578,-0.0006]
+    21      +1.87     [ -4.32, +7.64]    -0.0261   [-0.0532,+0.0019]
+    34      -2.02     [ -9.08, +3.60]    -0.0256   [-0.0519,+0.0047]
+    55      +2.02     [ -3.60, +7.78]    -0.0158   [-0.0455,+0.0129]
+
+  delays at which the two forecasters are separated by either measure: 7 of 10
+    delta = 0: separated by AUC  (har-YZ worse on AUC)
+    delta = 1: separated by AUC  (har-YZ worse on AUC)
+    delta = 2: separated by AUC  (har-YZ worse on AUC)
+    delta = 3: separated by AUC  (har-YZ worse on AUC)
+    delta = 5: separated by AUC  (har-YZ worse on AUC)
+    delta = 8: separated by AUC  (har-YZ worse on AUC)
+    delta = 13: separated by AUC  (har-YZ worse on AUC)
+
+  significant AUC gaps favouring the SIMPLE rule: 7  [0, 1, 2, 3, 5, 8, 13]
+  significant AUC gaps favouring the HAR classifier: 0  
+
+  The objection is answered in the opposite direction to the one it
+  anticipated.  A measure that sees the whole ranking does separate the
+  two, and it separates them in the threshold rule's favour: the raw
+  margin orders the days better than the fitted logistic's probability
+  does.  The note's claim of parity on accuracy is, if anything, too
+  generous to the refinement.
+
+========================================================================================
+C.  THE ONE THING ACCURACY HIDES
+========================================================================================
+Forecasters with no probability, and so no Brier and no log score:
+    persist-CC
+    persist-YZ
+
+This is not a scoring inconvenience.  A user who needs to size a position
+needs P(high volatility), not a label.  The comparison that matters for
+them is between the probabilistic forecasters and the honest null.
+
+ delta   har-YZ Brier   base Brier      diff              95% CI  better?
+     0         0.2195       0.2506   -0.0312   [-0.0555,-0.0014]      yes
+     1         0.2240       0.2507   -0.0268   [-0.0516,+0.0048]       no
+     2         0.2295       0.2508   -0.0213   [-0.0482,+0.0117]       no
+     3         0.2366       0.2509   -0.0143   [-0.0406,+0.0199]       no
+     5         0.2470       0.2510   -0.0040   [-0.0335,+0.0332]       no
+     8         0.2647       0.2511   +0.0135   [-0.0165,+0.0503]       no
+    13         0.2723       0.2512   +0.0211   [-0.0081,+0.0577]       no
+    21         0.2849       0.2513   +0.0336   [+0.0001,+0.0697]       no
+    34         0.3045       0.2513   +0.0532   [+0.0210,+0.0890]       no
+    55         0.3238       0.2511   +0.0727   [+0.0339,+0.1137]       no
+
+  delays at which a probabilistic forecaster beats the recursive base rate
+  on Brier score: 1 of 10
+
+  Read with part B: where the two columns above disagree, the note's
+  accuracy table and a risk manager's Brier score are answering different
+  questions, and the note should report both rather than one.

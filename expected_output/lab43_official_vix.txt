@@ -1,0 +1,101 @@
+data folder: /home/claude/repo/delayed-information-cross-section/data
+Prints the provenance audit of the VIX series, Section 11.
+
+============================================================================================
+A.  THE TWO SOURCES
+============================================================================================
+  official (Cboe)   9272 rows  1990-01-02 to 2026-09-14  ['VIX_History.csv']
+  retail export     6762 rows  2000-01-03 to 2026-09-11  ['CBOE_Volatility_Index_Historical_Data.csv', 'CBOE_Volatility_Index_Historical_Data_1.csv']
+
+Only the close is used: the implied-volatility decision variable is the
+log of the level over its own trailing 252-day median, so the official
+file's open, high and low are read and discarded. That matters, because
+the official file has no intraday range before June 2004 - Cboe published
+closes only - and a range-based estimator would have inherited the gap.
+
+============================================================================================
+B.  WHERE BOTH SOURCES HAVE A ROW, DO THEY AGREE?
+============================================================================================
+  overlapping dates                         6747
+  identical to the cent                     6741  (99.91%)
+  within the 0.5% seam rule this project uses  6745  (99.97%)
+  mean absolute difference                  0.000222 index points
+  largest absolute difference               0.7500 on 2012-12-24
+
+  rows outside the 0.5% rule: 2
+        date   official   retail   difference    weekday
+  2008-11-28      55.84    55.28        +0.56     Friday
+  2012-12-24      17.84    18.59        -0.75     Monday
+
+  Both are shortened sessions, which is where a vendor's close and the
+  exchange's are most likely to part company.
+
+  A systematic level error would show here as a mass of differences.
+  What is here instead is agreement to the cent on essentially every row.
+
+============================================================================================
+C.  ROWS ONE SOURCE HAS AND THE OTHER DOES NOT
+============================================================================================
+A date the exchange was shut has no close. A source carrying one has
+invented an observation, and the invention is invisible to every
+admissibility rule in this paper because the row is well formed.
+
+  in the retail export but not in Cboe's file, over the retail span: 15
+  in Cboe's file but not in the retail export:                      0
+
+        date  retail value   S&P has a row   in the panel    weekday
+  2001-09-11         34.60              no             no    Tuesday
+  2019-04-19         12.09              no             no     Friday
+  2020-07-03         27.68              no             no     Friday
+  2020-11-26         21.25              no             no   Thursday
+  2020-12-25         21.53              no             no     Friday
+  2021-04-02         17.33              no             no     Friday
+  2021-11-25         18.58              no             no   Thursday
+  2021-12-24         17.96              no             no     Friday
+  2022-04-15         22.70              no             no     Friday
+  2022-12-26         20.87              no             no     Monday
+  2023-04-07         18.40              no             no     Friday
+  2023-12-25         13.03              no             no     Monday
+  2024-03-29         13.01              no             no     Friday
+  2026-01-01         14.95              no             no   Thursday
+  2026-04-03         23.87              no             no     Friday
+
+  of those 15 rows, 0 fall on a day the S&P traded, and 0 survive into the panel
+  Every fabricated row sits on a day United States equities were shut,
+  so the panel construction drops all of them before any model sees
+  one. The error is real and it is inert.
+
+============================================================================================
+D.  WOULD THE PAPER'S NUMBERS MOVE?
+============================================================================================
+    VDAX files: ['DAX_New_Volatility_Historical_Data.csv', 'DAX_New_Volatility_Historical_Data_1.csv']
+    seam VDAX: 251 overlapping rows, 0 mismatched  -> VERIFIED
+
+The strict arm of Section 8, run twice on identical days, once from each
+source. VIX enters at t-1 in both, VDAX at t, and the domestic block is
+held delta days stale exactly as in Table 8.
+
+  6342 rows carry both sources and the target
+  4525 test days, 2008-09-09 to 2026-09-03
+
+ delta  +iv official  +iv retail     diff  fgn|iv official  fgn|iv retail     diff
+     0        0.5379      0.5379  +0.0000          -0.0108        -0.0108  +0.0000
+     5        0.5151      0.5151  +0.0000          -0.0098        -0.0098  +0.0000
+    21        0.5068      0.5068  +0.0000          -0.0100        -0.0100  +0.0000
+    55        0.5088      0.5088  +0.0000          -0.0098        -0.0098  +0.0000
+
+  largest difference in any cell: 0.0000 of R-squared
+
+============================================================================================
+VERDICT
+============================================================================================
+  Cboe's own series and the retail export agree to the cent on
+  99.91% of 6747 shared rows, and the 2 rows outside
+  the project's 0.5% tolerance are shortened sessions. The export
+  additionally carries 15 rows on days United States equities were
+  shut, which is a fabrication rather than a discrepancy - but every one
+  falls outside the panel, so no model was ever shown one. Substituting
+  the official file moves no cell of Section 8 by as much as a thousandth
+  of R-squared. The paper now uses Cboe's file, and this lab is the
+  reason the change can be described as housekeeping rather than
+  asserted to be.

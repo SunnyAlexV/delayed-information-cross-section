@@ -1,0 +1,188 @@
+============================================================================================
+0.  THE NUMERICAL BENCHMARK, AGAINST THE NOTE'S CLOSED FORM
+============================================================================================
+At q = 0.5 the optimal cut is zero and the accuracy of the Bayes rule must
+equal 1/2 + arcsin(rho)/pi exactly.  If the quadrature cannot reproduce the
+formula the note already uses, it cannot be trusted at any other quantile.
+
+     rho    arcsin formula    quadrature    difference
+    0.05        0.51592213    0.51592213     +5.31e-09
+    0.15        0.54792737    0.54792735     +1.61e-08
+    0.25        0.58043062    0.58043060     +2.74e-08
+    0.35        0.61381842    0.61381838     +3.96e-08
+    0.45        0.64857602    0.64857597     +5.35e-08
+    0.60        0.70483276    0.70483269     +7.96e-08
+    0.80        0.79516724    0.79516709     +1.41e-07
+
+  largest absolute difference: 1.41e-07
+  The quadrature reproduces the closed form, so it can be used off the median.
+
+============================================================================================
+A.  THE BAYES CUT MOVES WITH THE QUANTILE
+============================================================================================
+c*(q) = z_q / rho.  The note's rule is a > 0, which is c* only at q = 0.5.
+rho is the in-sample correlation between the delayed and future states,
+reported here to show the size of the misspecification, not used as a
+forecast - the rules below estimate their cut from training data alone.
+
+     q      z_q  delta      rho     c*(q)   ceiling  note rule
+  0.50    0.000      0    0.521      0.00    67.45%     67.43%
+  0.50    0.000      5    0.315      0.00    60.20%     60.19%
+  0.65    0.385      0    0.521      0.74    71.06%     65.37%
+  0.65    0.385      5    0.315      1.22    66.39%     58.74%
+  0.75    0.674      0    0.521      1.29    77.13%     62.42%
+  0.75    0.674      5    0.315      2.14    75.15%     56.90%
+  0.90    1.282      0    0.521      2.46    90.11%     55.33%
+  0.90    1.282      5    0.315      4.07    90.00%     52.54%
+
+  At q = 0.50 the two right-hand columns coincide: the note's rule IS the
+  Bayes rule there.  Where they separate, carrying the median rule to a tail
+  target costs the difference, and that cost is a property of the rule being
+  wrong for the question, not of the delay.
+
+============================================================================================
+B.  MEASURED PERFORMANCE AT EACH QUANTILE
+============================================================================================
+acc is raw accuracy and is shown only to demonstrate that it stops being
+informative: 'majority' is the accuracy of never predicting the event.
+bal is balanced accuracy, chance 0.500 at every base rate.  AUC ranks by
+the margin.  The fitted rule estimates rho and c* from training data only.
+
+  q = 0.50   base rate 0.501   365 positive days of 728
+   delta          rule      acc  majority     bal            95% CI     AUC
+       0      note a>0   69.78%    49.86%   0.698   [ 0.635, 0.753]   0.753
+       0    fitted cut   69.51%    49.86%   0.695   [ 0.633, 0.750]   0.753
+       0  HAR logistic   67.86%    49.86%   0.679   [ 0.623, 0.733]   0.679
+       3      note a>0   62.77%    49.86%   0.628   [ 0.554, 0.689]   0.670
+       3    fitted cut   62.77%    49.86%   0.628   [ 0.553, 0.686]   0.670
+       3  HAR logistic   62.09%    49.86%   0.621   [ 0.557, 0.687]   0.621
+       5      note a>0   59.48%    49.86%   0.595   [ 0.514, 0.651]   0.631
+       5    fitted cut   59.34%    49.86%   0.593   [ 0.513, 0.650]   0.631
+       5  HAR logistic   58.38%    49.86%   0.584   [ 0.514, 0.644]   0.584
+      13      note a>0   54.26%    49.86%   0.543   [ 0.475, 0.621]   0.568
+      13    fitted cut   55.08%    49.86%   0.551   [ 0.482, 0.627]   0.568
+      13  HAR logistic   50.69%    49.86%   0.507   [ 0.444, 0.580]   0.507
+      21      note a>0   50.27%    49.86%   0.503   [ 0.434, 0.587]   0.539
+      21    fitted cut   50.41%    49.86%   0.504   [ 0.436, 0.586]   0.539
+      21  HAR logistic   49.31%    49.86%   0.494   [ 0.428, 0.578]   0.494
+    (the two threshold rules share an AUC by construction: they cut the
+     same margin at different points, so they induce the same ranking)
+
+  q = 0.65   base rate 0.353   257 positive days of 728
+   delta          rule      acc  majority     bal            95% CI     AUC
+       0      note a>0   68.41%    64.70%   0.705   [ 0.646, 0.766]   0.773
+       0    fitted cut   73.21%    64.70%   0.678   [ 0.615, 0.740]   0.773
+       0  HAR logistic   70.05%    64.70%   0.600   [ 0.543, 0.662]   0.600
+       3      note a>0   61.13%    64.70%   0.627   [ 0.545, 0.698]   0.690
+       3    fitted cut   69.78%    64.70%   0.627   [ 0.569, 0.683]   0.690
+       3  HAR logistic   67.86%    64.70%   0.576   [ 0.523, 0.634]   0.576
+       5      note a>0   59.48%    64.70%   0.610   [ 0.527, 0.678]   0.658
+       5    fitted cut   66.48%    64.70%   0.585   [ 0.521, 0.648]   0.658
+       5  HAR logistic   66.48%    64.70%   0.560   [ 0.504, 0.621]   0.560
+      13      note a>0   54.53%    64.70%   0.557   [ 0.476, 0.632]   0.578
+      13    fitted cut   63.32%    64.70%   0.531   [ 0.482, 0.587]   0.578
+      13  HAR logistic   64.97%    64.70%   0.544   [ 0.494, 0.600]   0.544
+      21      note a>0   53.57%    64.70%   0.546   [ 0.468, 0.629]   0.592
+      21    fitted cut   66.35%    64.70%   0.553   [ 0.509, 0.602]   0.592
+      21  HAR logistic   66.21%    64.70%   0.558   [ 0.509, 0.607]   0.558
+    (the two threshold rules share an AUC by construction: they cut the
+     same margin at different points, so they induce the same ranking)
+
+  q = 0.75   base rate 0.287   209 positive days of 728
+   delta          rule      acc  majority     bal            95% CI     AUC
+       0      note a>0   65.93%    71.29%   0.701   [ 0.642, 0.761]   0.779
+       0    fitted cut   74.04%    71.29%   0.591   [ 0.539, 0.649]   0.779
+       0  HAR logistic   72.94%    71.29%   0.554   [ 0.508, 0.605]   0.554
+       3      note a>0   59.75%    71.29%   0.628   [ 0.547, 0.697]   0.689
+       3    fitted cut   72.53%    71.29%   0.557   [ 0.507, 0.614]   0.689
+       3  HAR logistic   72.25%    71.29%   0.544   [ 0.495, 0.598]   0.544
+       5      note a>0   57.28%    71.29%   0.599   [ 0.518, 0.666]   0.652
+       5    fitted cut   71.98%    71.29%   0.545   [ 0.498, 0.601]   0.652
+       5  HAR logistic   71.43%    71.29%   0.534   [ 0.490, 0.590]   0.534
+      13      note a>0   53.43%    71.29%   0.553   [ 0.474, 0.636]   0.574
+      13    fitted cut   71.84%    71.29%   0.525   [ 0.497, 0.569]   0.574
+      13  HAR logistic   71.02%    71.29%   0.530   [ 0.493, 0.581]   0.530
+      21      note a>0   54.67%    71.29%   0.568   [ 0.493, 0.646]   0.612
+      21    fitted cut   71.84%    71.29%   0.517   [ 0.500, 0.539]   0.612
+      21  HAR logistic   71.84%    71.29%   0.541   [ 0.504, 0.589]   0.541
+    (the two threshold rules share an AUC by construction: they cut the
+     same margin at different points, so they induce the same ranking)
+
+  q = 0.90   base rate 0.143   104 positive days of 728
+   delta          rule      acc  majority     bal            95% CI     AUC
+       0      note a>0   57.83%    85.71%   0.678   [ 0.608, 0.749]   0.746
+       0    fitted cut   86.54%    85.71%   0.545   [ 0.499, 0.611]   0.746
+       0  HAR logistic   86.26%    85.71%   0.535   [ 0.499, 0.590]   0.535
+       3      note a>0   53.30%    85.71%   0.591   [ 0.489, 0.678]   0.648
+       3    fitted cut   86.13%    85.71%   0.534   [ 0.492, 0.601]   0.648
+       3  HAR logistic   85.85%    85.71%   0.525   [ 0.491, 0.580]   0.525
+       5      note a>0   51.92%    85.71%   0.567   [ 0.462, 0.657]   0.604
+       5    fitted cut   85.58%    85.71%   0.523   [ 0.493, 0.582]   0.604
+       5  HAR logistic   85.85%    85.71%   0.525   [ 0.493, 0.586]   0.525
+      13      note a>0   49.45%    85.71%   0.521   [ 0.412, 0.632]   0.559
+      13    fitted cut   85.03%    85.71%   0.496   [ 0.486, 0.500]   0.559
+      13  HAR logistic   84.75%    85.71%   0.502   [ 0.487, 0.521]   0.502
+      21      note a>0   50.96%    85.71%   0.550   [ 0.446, 0.656]   0.615
+      21    fitted cut   85.16%    85.71%   0.497   [ 0.490, 0.500]   0.615
+      21  HAR logistic   85.44%    85.71%   0.518   [ 0.488, 0.567]   0.518
+    (the two threshold rules share an AUC by construction: they cut the
+     same margin at different points, so they induce the same ranking)
+
+============================================================================================
+C.  THE TWO RULES OPTIMISE DIFFERENT THINGS, AND THE TABLE SHOWS IT
+============================================================================================
+The fitted cut maximises 0-1 accuracy; away from the median that means
+almost never calling the event.  The note's a>0 rule calls it about half
+the time, so it catches events at the cost of false alarms.  Which one is
+'better' is a choice of objective, not a fact, and both are reported.
+
+     q  delta    best on accuracy    best on balanced  same winner?
+  0.50      0            note a>0            note a>0           yes
+  0.50      3            note a>0            note a>0           yes
+  0.50      5            note a>0            note a>0           yes
+  0.50     13          fitted cut          fitted cut           yes
+  0.50     21          fitted cut          fitted cut           yes
+  0.65      0          fitted cut            note a>0            NO
+  0.65      3          fitted cut            note a>0            NO
+  0.65      5          fitted cut            note a>0            NO
+  0.65     13        HAR logistic            note a>0            NO
+  0.65     21          fitted cut        HAR logistic            NO
+  0.75      0          fitted cut            note a>0            NO
+  0.75      3          fitted cut            note a>0            NO
+  0.75      5          fitted cut            note a>0            NO
+  0.75     13          fitted cut            note a>0            NO
+  0.75     21          fitted cut            note a>0            NO
+  0.90      0          fitted cut            note a>0            NO
+  0.90      3          fitted cut            note a>0            NO
+  0.90      5        HAR logistic            note a>0            NO
+  0.90     13          fitted cut            note a>0            NO
+  0.90     21        HAR logistic            note a>0            NO
+
+  cells where the two objectives choose different rules: 15 of 20
+  So the referee's question has no single answer: at a tail target the rule
+  that is best at being right most often is not the rule that is best at
+  catching the event, and the note's median rule is on the catching side.
+
+============================================================================================
+D.  CAN THE DATA SEPARATE ANY OF IT?
+============================================================================================
+Two questions, both answered from the balanced-accuracy intervals in part B:
+is a rule better than chance, and is one rule separable from another?
+Intervals are block-bootstrapped, so they carry the 5-day overlap.
+
+     q  positives  episodes ~  rules above chance  pairs separated
+  0.50        365          36             9 of 15          0 of 15
+  0.65        257          25            11 of 15          0 of 15
+  0.75        209          20             7 of 15          1 of 15
+  0.90        104          10             1 of 15          1 of 15
+
+  'Rules above chance' counts (rule, delay) cells whose balanced-accuracy
+  interval lies entirely above 0.5.  'Pairs separated' counts pairs of rules
+  at the same delay whose intervals do not overlap - a conservative test, and
+  a deliberately demanding one.
+
+  Read together with part C: where rules are above chance but not separated
+  from each other, the honest statement is that the tail target is predictable
+  and that this sample cannot say which rule predicts it best.  Nine years
+  does not contain enough independent volatility spikes to settle that, and
+  no change of estimator fixes a shortage of events.

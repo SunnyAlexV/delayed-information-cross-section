@@ -1,0 +1,151 @@
+data folder: /home/claude/repo/delayed-information-cross-section/data
+EXPLORATORY - cited by neither paper.
+
+target SPX, 4862 test days, 2007-05-09 to 2026-09-03
+
+==============================================================================================
+0.  WHAT THE TRAINING WINDOW HAD SEEN
+==============================================================================================
+For each test day the model was fitted on the 1,500 trading days ending
+before t - delta - h.  This is the share of THAT window falling inside any
+episode in the list - a model with 0% had never been fitted on a crisis.
+
+             episode    mean crisis share of training window
+         2008 crisis                                   3.5%
+           2011 euro                                  15.1%
+    2015 devaluation                                  10.3%
+      2018 vol spike                                  10.4%
+          2020 COVID                                  12.7%
+      2022 inflation                                  14.8%
+
+==============================================================================================
+A.  EVERY EPISODE SEPARATELY
+==============================================================================================
+Share of the domestic model's mean squared error removed by the
+cross-section, inside each episode, with its own block bootstrap.
+
+  delta = 0
+             episode   days  blocks   share removed              95% CI    
+         2008 crisis    209      20           -6.0%   [ -11.8%,  +3.0%]      
+           2011 euro    127      12            2.7%   [  -0.2%,  +8.2%]      
+    2015 devaluation    145      14           -3.7%   [ -11.8%,  +2.2%]      
+      2018 vol spike     40       4          -13.4%   [ -33.2%,  +1.0%]  thin
+          2020 COVID     94       9           -1.1%   [ -11.6%, +10.7%]      
+      2022 inflation    251      25           -1.9%   [  -7.3%,  +6.8%]      
+
+  delta = 21
+             episode   days  blocks   share removed              95% CI    
+         2008 crisis    209      20           55.7%   [ +47.2%, +63.3%]      
+           2011 euro    127      12           56.1%   [ +16.6%, +78.0%]      
+    2015 devaluation    145      14           36.0%   [ +20.2%, +52.4%]      
+      2018 vol spike     40       4           25.1%   [  +4.8%, +42.2%]  thin
+          2020 COVID     94       9           66.1%   [ +42.4%, +86.2%]      
+      2022 inflation    251      25           27.8%   [  +6.0%, +50.7%]      
+
+  delta = 55
+             episode   days  blocks   share removed              95% CI    
+         2008 crisis    209      20           65.6%   [ +59.8%, +71.7%]      
+           2011 euro    127      12           70.4%   [ +51.3%, +85.6%]      
+    2015 devaluation    145      14           41.9%   [ +24.8%, +59.1%]      
+      2018 vol spike     40       4           30.7%   [ +23.8%, +46.3%]  thin
+          2020 COVID     94       9           75.5%   [ +64.4%, +91.2%]      
+      2022 inflation    251      25           38.1%   [ +21.9%, +56.2%]      
+
+==============================================================================================
+A2.  DOES THE POOLED FIGURE SURVIVE DROPPING EACH EPISODE?
+==============================================================================================
+lab27 pools all six.  If one carries the result, removing it should move
+the pooled number a long way.  'all six' is lab27's own episode figure.
+
+  delta = 0:  all six episodes  -3.6%  [-7.4%, +0.1%]  (866 days)
+            dropping   days left   pooled share              95% CI     move
+         2008 crisis         657          -3.1%   [  -7.3%,  +1.4%]    +0.5%
+           2011 euro         739          -4.4%   [  -8.3%,  -0.3%]    -0.7%
+    2015 devaluation         721          -3.6%   [  -7.8%,  +0.9%]    +0.0%
+      2018 vol spike         826          -2.3%   [  -5.7%,  +1.4%]    +1.3%
+          2020 COVID         772          -4.4%   [  -7.9%,  -0.5%]    -0.8%
+      2022 inflation         615          -4.0%   [  -8.3%,  +0.4%]    -0.4%
+
+    largest move: dropping 2018 vol spike shifts the pooled figure by +1.3%
+    No single episode moves the pooled figure by more than ten points,
+    so it is not the average of one crisis and five bystanders.
+
+  delta = 21:  all six episodes  48.9%  [+37.1%, +59.1%]  (866 days)
+            dropping   days left   pooled share              95% CI     move
+         2008 crisis         657          46.9%   [ +31.1%, +60.0%]    -1.9%
+           2011 euro         739          48.1%   [ +35.3%, +59.4%]    -0.8%
+    2015 devaluation         721          50.8%   [ +37.5%, +61.9%]    +2.0%
+      2018 vol spike         826          52.2%   [ +39.5%, +62.0%]    +3.3%
+          2020 COVID         772          41.4%   [ +32.2%, +50.3%]    -7.4%
+      2022 inflation         615          52.0%   [ +39.0%, +62.9%]    +3.2%
+
+    largest move: dropping 2020 COVID shifts the pooled figure by -7.4%
+    No single episode moves the pooled figure by more than ten points,
+    so it is not the average of one crisis and five bystanders.
+
+  delta = 55:  all six episodes  58.6%  [+49.4%, +67.2%]  (866 days)
+            dropping   days left   pooled share              95% CI     move
+         2008 crisis         657          56.4%   [ +44.6%, +66.8%]    -2.2%
+           2011 euro         739          57.1%   [ +46.3%, +66.2%]    -1.5%
+    2015 devaluation         721          60.8%   [ +50.9%, +69.8%]    +2.2%
+      2018 vol spike         826          62.1%   [ +52.7%, +69.7%]    +3.5%
+          2020 COVID         772          51.9%   [ +44.1%, +59.6%]    -6.7%
+      2022 inflation         615          61.8%   [ +52.1%, +70.4%]    +3.2%
+
+    largest move: dropping 2020 COVID shifts the pooled figure by -6.7%
+    No single episode moves the pooled figure by more than ten points,
+    so it is not the average of one crisis and five bystanders.
+
+==============================================================================================
+B.  ONE COMPLETE REGIME, END TO END: 2007-2010
+==============================================================================================
+Calm, escalation, trough and recovery in one series of quarters, so the
+question is not 'does it work at the peak' but 'does it hold throughout'.
+VIX is shown only as context for which quarter is which.
+
+  implied-volatility files and seams:
+    VIX files: ['VIX_History.csv']
+    VDAX files: ['DAX_New_Volatility_Historical_Data.csv', 'DAX_New_Volatility_Historical_Data_1.csv']
+    seam VDAX: 251 overlapping rows, 0 mismatched  -> VERIFIED
+  delta = 55
+
+   quarter   days  log VIX/med   share removed              95% CI      
+    2007Q2     37         0.13          -26.5%   [-134.9%,  -7.0%]  thin
+    2007Q3     63         0.52           43.6%   [ +33.3%, +52.2%]      
+    2007Q4     64         0.42          -59.4%   [ -88.9%, -28.2%]      
+    2008Q1     61         0.32           34.4%   [ +20.1%, +70.5%]      
+    2008Q2     64        -0.09           71.1%   [ +64.9%, +85.2%]      
+    2008Q3     64         0.05           44.8%   [ -36.9%, +57.0%]      
+    2008Q4     64         0.89           66.9%   [ +63.7%, +74.6%]      
+    2009Q1     61         0.49           19.9%   [-123.5%, +55.1%]      
+    2009Q2     63        -0.17           76.1%   [ +71.0%, +81.5%]      
+    2009Q3     64        -0.45           81.5%   [ +77.3%, +85.5%]      
+    2009Q4     64        -0.36           43.2%   [ -37.7%, +50.4%]      
+    2010Q1     61        -0.26           19.8%   [ -23.7%, +40.6%]      
+    2010Q2     63         0.03           29.1%   [  -2.2%, +65.9%]      
+    2010Q3     64         0.04           36.7%   [ -17.5%, +67.4%]      
+    2010Q4     64        -0.13           53.7%   [  +3.2%, +63.2%]      
+
+  quarters in the arc with enough blocks to read: 14 of 15
+    interval entirely ABOVE zero (cross-section helps): 7   ['2007Q3', '2008Q1', '2008Q2', '2008Q4', '2009Q2', '2009Q3', '2010Q4']
+    interval entirely BELOW zero (cross-section hurts): 1   ['2007Q4']
+    neither: 6
+    (at 5% and 14 readable quarters, about 0.7 cells
+     would breach in either direction by chance, so a single significant
+     quarter is not on its own evidence of anything - the phase view below
+     carries three to twelve times as many days per cell and is the one to read)
+  range across readable quarters: -59.4% (2007Q4) to 81.5% (2009Q3)
+
+  The same arc in four phases, which carry more days than a quarter:
+
+           phase                    window   days   share removed              95% CI
+   calm build-up  2007-01-01 to 2008-08-31    332           26.0%   [  +4.8%, +39.6%]
+      escalation  2008-09-01 to 2008-12-31     85           64.4%   [ +58.6%, +71.5%]
+          trough  2009-01-01 to 2009-06-30    124           70.8%   [ +50.0%, +77.1%]
+        recovery  2009-07-01 to 2010-12-31    380           48.2%   [ +32.4%, +60.0%]
+
+  phases where the cross-section significantly helps: 4 of 4  ['calm build-up', 'escalation', 'trough', 'recovery']
+  phases where it significantly hurts:                0 of 4  []
+
+  The cross-section helps in every phase of the arc that resolves, so
+  within this regime the contribution is not confined to the peak.

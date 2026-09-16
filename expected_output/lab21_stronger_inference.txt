@@ -1,0 +1,99 @@
+data folder: /home/claude/repo/delayed-information-cross-section/data
+target SPX, 4862 test days, 7 foreign peers
+
+========================================================================================
+A.  DOES THE COST OF BREADTH SURVIVE AN UNFITTED NULL?
+========================================================================================
+AR(1)   fitted Gaussian surrogates, matched on each peer's persistence and
+        on the innovation covariance - lab07's generator, and the one the
+        referee objects to because it cannot carry tails or clustering.
+SHIFT   the real foreign block moved circularly, with the real missing-data
+        mask held fixed.  Every marginal, tail and cluster is the real one;
+        only the alignment is destroyed.  Nothing is fitted.
+NAIVE   the same shift applied to the raw array, so the gaps move with the
+        values.  Reported to show what that costs, not as a candidate.
+
+  guard: 20 offsets over a 6427-row block, none closer than 200 rows to no shift at all
+  trap 1: rolling the raw array instead would cost the surrogate arm 187 of 4862 test days per draw (3.8%),
+          and the matching training rows, purely by moving the holidays.
+
+ delta   net dR2   cost AR(1)   cost SHIFT     (se)   cost NAIVE   gross AR(1)   gross SHIFT
+     0   -0.0103      -0.0125      -0.0122   0.0009      -0.0329       +0.0021       +0.0019
+     1   -0.0006      -0.0148      -0.0140   0.0010      -0.0331       +0.0142       +0.0134
+     3   +0.0414      -0.0198      -0.0176   0.0013      -0.0342       +0.0612       +0.0590
+     5   +0.0831      -0.0242      -0.0209   0.0016      -0.0355       +0.1073       +0.1040
+    13   +0.1896      -0.0409      -0.0349   0.0027      -0.0436       +0.2306       +0.2245
+    21   +0.2605      -0.0546      -0.0487   0.0039      -0.0519       +0.3151       +0.3092
+    55   +0.3821      -0.0701      -0.0694   0.0071      -0.0683       +0.4522       +0.4515
+
+  gap between the fitted and unfitted generator, against three combined
+  Monte Carlo standard errors, delay by delay:
+       0   gap 0.0002   tolerance 0.0028   inside
+       1   gap 0.0008   tolerance 0.0034   inside
+       3   gap 0.0021   tolerance 0.0044   inside
+       5   gap 0.0033   tolerance 0.0054   inside
+      13   gap 0.0060   tolerance 0.0100   inside
+      21   gap 0.0059   tolerance 0.0150   inside
+      55   gap 0.0007   tolerance 0.0267   inside
+
+  closest call: delta = 13, at 0.60 of its tolerance
+  delays where the two generators differ by more than that: 0 of 7 
+  verdict: the two generators agree at every delay within Monte Carlo error, so
+  the cost of breadth is not an artefact of assuming Gaussian AR(1) peers.
+
+  the NAIVE column is the same shift with the gaps allowed to move.  It sits
+  0.0207 of R2 below the unfitted estimate at delta = 0, where the real
+  cost is small, and 0.0011 below it at delta = 55, where the real cost is
+  large - the signature of a fixed penalty for lost days, not a cost of breadth.
+
+  trap 2: offsets are taken modulo the block length, so an offset just
+  short of it is a shift of a few rows BACKWARDS - the real block, barely
+  moved.  Below is the careless grid, spread over the raw array length
+  rather than the compacted one, at delta = 0.
+
+     260 (=  260 rows from identity)   cost   -0.0098
+    1140 (= 1140 rows from identity)   cost   -0.0138
+    2020 (= 2020 rows from identity)   cost   -0.0110
+    2900 (= 2900 rows from identity)   cost   -0.0105
+    3779 (= 2648 rows from identity)   cost   -0.0078
+    4659 (= 1768 rows from identity)   cost   -0.0109
+    5539 (=  888 rows from identity)   cost   -0.0135
+    6419 (=    8 rows from identity)   cost   +0.1893   <- not a null at all
+
+  that grid gives mean +0.0140 with standard deviation 0.0709,
+  against -0.0122 from the guarded grid.  The single offset 6419
+  scores +0.1893 on its own and carries the whole difference.
+
+========================================================================================
+B.  AN INTERVAL FOR THE RATE THAT KNOWS ITS DENOMINATOR CAN VANISH
+========================================================================================
+R(delta) = [skill(cross,delta) - skill(own,delta)] / [skill(own,0) - skill(own,delta)].
+Fieller inverts a t-test on num - R*den and solves the quadratic; where the
+denominator is weak the confidence SET is two half-lines or the whole line,
+which a percentile interval cannot report and so never does.
+
+ delta    R(d)        percentile 95%                   Fieller 95%
+     1     -1%       [  -31%,   28%]             [   -33%,    28%]
+     3     36%       [   17%,   55%]             [    16%,    55%]
+     5     51%       [   36%,   66%]             [    35%,    66%]
+    13     64%       [   53%,   73%]             [    52%,    73%]
+    21     67%       [   57%,   76%]             [    57%,    76%]
+    55     72%       [   64%,   78%]             [    63%,    79%]
+
+  confidence sets that are NOT an ordinary interval: 0 of 6 
+  largest disagreement between Fieller and the percentile bootstrap, either endpoint: 2.4%
+
+  Every row is an ordinary interval: no delay produced the two-half-lines or
+  whole-line confidence set that weak identification would have shown, and Fieller
+  sits within a point or two of the percentile bootstrap throughout.  So the
+  referee's objection is methodologically right and empirically inert at the delays
+  this paper reports - the denominator is weak at delta = 1 but not weak enough to
+  break identification, and the bootstrap intervals stand as published.
+
+  Two caveats keep this from being a clean vindication.  The first version of this
+  function used iid variances and came out NARROWER than the block bootstrap at
+  every delay, which is impossible for data whose targets overlap by five days and
+  was the signal that it was wrong; the numbers above use HAC variances with the
+  same Bartlett kernel as Section 6.  And delta = 0 is absent because its
+  denominator is identically zero by construction, which is the one case where the
+  ratio genuinely does not exist rather than being merely hard to pin down.

@@ -1,0 +1,95 @@
+data folder: /home/claude/repo/delayed-information-cross-section/data
+Prints the normalisation test of Section 9.1.
+
+target SPX, 4862 test days, 2007-05-09 to 2026-09-03, 7 foreign peers
+
+Three targets, differing only in when the normalising median is dated:
+  A  log(var t+5) - log(M t+5)       the paper's
+  B  log(var t+5) - log(M t)         origin-dated
+  C  log(var t+5) - log(M t-delta)   the forecaster's own information set
+
+================================================================================================
+A.  WHAT THE LEVEL IS WORTH, AGAINST EACH TARGET
+================================================================================================
+Domestic model only. 'gain' is adding log M at t-delta to the paper's three
+features; a Giacomini-White statistic tests it on the paired differential.
+
+     target  delta   R2 base  R2 +level      gain    GW z
+      A t+5      0    0.5025     0.5067   +0.0042    1.05
+      A t+5      5    0.3421     0.3530   +0.0109    1.30
+      A t+5     13    0.2056     0.2278   +0.0222    1.68
+      A t+5     21    0.1156     0.1479   +0.0323    1.95
+      A t+5     55   -0.0321     0.0346   +0.0667    2.65
+
+   B origin      0    0.5094     0.5131   +0.0036    0.97
+   B origin      5    0.3481     0.3585   +0.0104    1.27
+   B origin     13    0.2109     0.2326   +0.0217    1.65
+   B origin     21    0.1196     0.1517   +0.0320    1.93
+   B origin     55   -0.0299     0.0372   +0.0672    2.65
+
+  C t-delta      0    0.5094     0.5131   +0.0036    0.97
+  C t-delta      5    0.3600     0.3695   +0.0094    1.20
+  C t-delta     13    0.2386     0.2582   +0.0195    1.58
+  C t-delta     21    0.1585     0.1874   +0.0288    1.84
+  C t-delta     55    0.0168     0.0847   +0.0680    2.72
+
+  delays where the level significantly helps, by target:
+          A t+5: 1 of 5 [55]
+       B origin: 1 of 5 [55]
+      C t-delta: 1 of 5 [55]
+
+The discriminating quantity is not the significance count, which is the
+same for all three targets and is a statement about power. It is how much of
+the gain SURVIVES re-dating the normaliser: a gain that is the model
+predicting log M at t+5 must shrink when the target's normaliser is instead
+one the model has already been handed.
+
+ delta   gain, target A   gain, target C   C keeps
+     5          +0.0109          +0.0094       87%
+    13          +0.0222          +0.0195       88%
+    21          +0.0323          +0.0288       89%
+    55          +0.0667          +0.0680      102%
+
+  the implementable target keeps between 87% and 102% of the gain
+
+================================================================================================
+B.  DOES THE SUBSTITUTION RATE CORRECTION SURVIVE?
+================================================================================================
+Section 9.1 lowered R(55) from 72% to 68% by measuring it against a control
+that includes the level. If the level is arithmetic, that correction was
+arithmetic too. Here the rate is recomputed inside each target.
+
+     target  delta   R(d) base   R(d) +level     move
+      A t+5      5         50%           47%    -3.3%
+      A t+5     13         63%           60%    -2.8%
+      A t+5     21         67%           64%    -3.2%
+      A t+5     55         71%           67%    -3.7%
+
+   B origin      5         49%           46%    -3.3%
+   B origin     13         62%           60%    -2.7%
+   B origin     21         66%           63%    -3.1%
+   B origin     55         71%           67%    -3.6%
+
+  C t-delta      5         53%           49%    -3.5%
+  C t-delta     13         68%           65%    -2.9%
+  C t-delta     21         73%           70%    -3.1%
+  C t-delta     55         74%           70%    -4.1%
+
+================================================================================================
+VERDICT
+================================================================================================
+  Re-dating the normaliser changes nothing: the level is worth the same
+  against a denominator the model must predict and against one it has
+  been given exactly. It cannot be buying that by predicting a quantity
+  it already knows, so the gain is information about volatility. Knowing
+  the absolute level of recent variance - not merely where it sits
+  against its own median - is worth real skill to a stale forecaster,
+  and the normalisation this literature applies without comment throws
+  it away.
+  Two qualifications belong with that. The gain reaches significance
+  only at delta = 55 on every target ([55]), so the short-delay
+  column is a direction rather than a result; and the rate correction in
+  part B holds on the implementable target too, so Section 9.1's
+  arithmetic stands even though its caveat does not apply.
+
+  largest move in R(delta) from adding the level, on target C: 4.1%

@@ -1,0 +1,55 @@
+data folder: /home/claude/repo/delayed-information-cross-section/data
+4862 test days
+
+==================================================================================
+A.  HOW BIG IS THE THING IN DISPUTE?
+==================================================================================
+log(M_{t+h} / M_t) is the entire difference between the two targets.
+
+  mean +0.00092   sd 0.03499   |max| 0.1768
+  sd of the target itself                0.9535
+  ratio                                  3.7%
+  correlation with the target            +0.5184
+
+A median over 252 days moves slowly, so the two targets are close. Close
+is not the same as irrelevant, and the correlation above is the reason to
+check: the drift is not independent of what is being predicted.
+
+==================================================================================
+B.  DOES THE RESULT DEPEND ON WHICH TARGET IS USED?
+==================================================================================
+Identical features, identical estimator, identical days. Only the
+normalisation date of the outcome changes.
+
+ delta    --- target-dated (paper) ---          --- origin-dated ---
+             own     cross         dR2       own     cross       dR2
+     0    0.4987    0.4884     -0.0103    0.5069    0.4963   -0.0105
+     3    0.3848    0.4262     +0.0414    0.3915    0.4323   +0.0408
+     5    0.3371    0.4202     +0.0831    0.3434    0.4262   +0.0827
+    13    0.2011    0.3907     +0.1896    0.2066    0.3966   +0.1901
+    21    0.1121    0.3726     +0.2605    0.1159    0.3780   +0.2620
+    55   -0.0351    0.3470     +0.3821   -0.0328    0.3519   +0.3848
+
+==================================================================================
+C.  THE SUBSTITUTION RATE UNDER BOTH, WITH INTERVALS
+==================================================================================
+Full-ratio bootstrap, as in lab10: numerator and denominator recomputed
+on the same resampled days.
+
+ delta       R(d) target-dated       R(d) origin-dated
+     3         36% [ 17%, 55%]         35% [ 17%, 53%]
+     5         51% [ 36%, 66%]         51% [ 35%, 65%]
+    13         64% [ 52%, 73%]         63% [ 52%, 73%]
+    21         67% [ 57%, 76%]         67% [ 57%, 76%]
+    55         72% [ 64%, 79%]         71% [ 63%, 79%]
+
+==================================================================================
+VERDICT
+==================================================================================
+    target-dated (paper): R(55) = 72%, dR2 = +0.3821
+            origin-dated: R(55) = 71%, dR2 = +0.3848
+
+If those two lines agree, the median's five-day drift is not doing any
+work and the paper may keep its definition, reporting this run as the
+check that says so.  If they do not, the origin-dated target is the one a
+forecaster could act on and should become the headline.

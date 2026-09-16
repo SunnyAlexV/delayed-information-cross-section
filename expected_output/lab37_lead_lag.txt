@@ -1,0 +1,221 @@
+data folder: /home/claude/repo/delayed-information-cross-section/data
+Prints Tables 16 and 17 and the clock test of Section 8.3.
+
+target SPX, 4852 test days, 2007-05-23 to 2026-09-03, 7 foreign peers
+admissibility already applied: a peer closing at or after New York enters
+at its PREVIOUS session.  Shifted by one day: ['BVSP']
+
+======================================================================================================
+A.  WHICH WAY DOES IT RUN?
+======================================================================================================
+corr(peer at t-k, target at t) against corr(target at t-k, peer at t).
+A single global state read at different clock times is roughly symmetric;
+propagation is not.  CAVEAT, and it is a real one: the decision variable is
+a five-day rolling variance, so neighbouring lags share four days of data and
+no correlation here is independent of the one beside it.  The asymmetry is
+still readable because both directions carry the SAME overlap, and the paired
+bootstrap differences them out.
+
+   peer  peak lead k  corr at peak  corr at k=0   asym k=1                  95% CI
+   N225           -1         0.583        0.578     -0.028   [   -0.041,   -0.017]
+   AXJO           -1         0.690        0.686     -0.024   [   -0.034,   -0.014]
+    HSI           -1         0.618        0.611     -0.029   [   -0.041,   -0.019]
+   NSEI           -1         0.515        0.510     -0.024   [   -0.035,   -0.013]
+   FTSE            0         0.770        0.770     -0.013   [   -0.023,   -0.003]
+    DAX            0         0.789        0.789     -0.019   [   -0.028,   -0.010]
+   BVSP           -1         0.635        0.614     -0.051   [   -0.065,   -0.039]
+
+'asym k=1' is corr(peer leads target by a day) minus corr(target leads peer
+by a day).  Positive means the peer leads.
+  peers that significantly LEAD the target: 0 of 7 
+  peers that significantly LAG it:          7 of 7 ['N225', 'AXJO', 'HSI', 'NSEI', 'FTSE', 'DAX', 'BVSP']
+
+------------------------------------------------------------------------------------------------------
+A2.  BEFORE READING ANY OF THAT AS DIRECTION
+------------------------------------------------------------------------------------------------------
+A row of this panel is not an instant.  The target closes at 21:00 UTC and a
+peer closes hours EARLIER on the same row, so the two directions are measured
+over different amounts of elapsed time:
+
+    peer(t-1) -> target(t)   takes  24 + c  hours
+    target(t-1) -> peer(t)   takes  24 - c  hours
+
+where c is how many hours before the target's close that peer's close falls.
+For a persistent series the shorter gap gives the higher correlation, so a
+NEGATIVE asymmetry is exactly what the clock predicts even if nothing leads
+anything.  The clock's prediction is testable: the size of the asymmetry
+should track 2c across peers.  If it does, this table measures the clock.
+
+   peer  close UTC  shifted  c (hours)     2c   |asym|
+   N225        6.0       no       15.0     30    0.028
+   AXJO        6.0       no       15.0     30    0.024
+    HSI        8.0       no       13.0     26    0.029
+   NSEI       10.0       no       11.0     22    0.024
+   FTSE       16.5       no        4.5      9    0.013
+    DAX       16.5       no        4.5      9    0.019
+   BVSP       21.0      yes       24.0     48    0.051
+
+  correlation across peers between the clock gap 2c and |asymmetry|: +0.933
+  The asymmetry tracks the clock closely.  It is a measurement artefact of
+  putting differently-timed closes on one row, not evidence that anyone
+  leads anyone, and part A settles nothing about direction on its own.
+
+======================================================================================================
+B.  AGE THE FOREIGN FEED - THE QUESTION A DESK ACTUALLY HAS
+======================================================================================================
+Out-of-sample R-squared of the paper's model with the domestic block delta
+days stale AND the foreign block g days stale.  g = 0 is the paper.
+
+ delta   own only       g=0       g=1       g=2       g=3       g=5      g=10
+     0     0.4985    0.4883    0.4856    0.4858    0.4869    0.4896    0.4915
+     3     0.3851    0.4260    0.3952    0.3763    0.3680    0.3691    0.3742
+     5     0.3379    0.4200    0.3851    0.3586    0.3376    0.3207    0.3253
+    13     0.2016    0.3908    0.3546    0.3272    0.3037    0.2663    0.1982
+    21     0.1119    0.3729    0.3342    0.3056    0.2806    0.2413    0.1744
+    55    -0.0357    0.3460    0.3047    0.2747    0.2488    0.2080    0.1270
+
+Substitution rate: the share of the delay's damage that the foreign block
+puts back.  Undefined at delta = 0, where there is no damage.
+
+ delta       g=0       g=1       g=2       g=3       g=5      g=10
+     3       36%        9%       -8%      -15%      -14%      -10%
+     5       51%       29%       13%       -0%      -11%       -8%
+    13       64%       52%       42%       34%       22%       -1%
+    21       68%       57%       50%       44%       33%       16%
+    55       71%       64%       58%       53%       46%       30%
+
+What each extra day of foreign staleness costs, against g = 0:
+
+ delta                   g=1                   g=2                   g=3                   g=5                  g=10
+     0      -0.0027               -0.0025               -0.0015               +0.0013               +0.0031         
+     3      -0.0309 *             -0.0498 *             -0.0580 *             -0.0570 *             -0.0519 *       
+     5      -0.0349 *             -0.0614 *             -0.0824 *             -0.0993 *             -0.0947 *       
+    13      -0.0362 *             -0.0636 *             -0.0871 *             -0.1245 *             -0.1926 *       
+    21      -0.0387 *             -0.0672 *             -0.0923 *             -0.1316 *             -0.1984 *       
+    55      -0.0413 *             -0.0713 *             -0.0972 *             -0.1380 *             -0.2190 *       
+
+  * = staling the foreign feed by that much significantly reduces skill
+  cells where it does: 25 of 30
+  of which at g = 1, a single day: 5 of 6
+  One day of foreign staleness already costs skill nearly everywhere. The
+  value is in the timing, and both papers are assuming a same-day foreign
+  feed that they never say they assume.
+
+------------------------------------------------------------------------------------------------------
+B2.  THE SAME SURFACE IN UNITS A DESK CAN USE
+------------------------------------------------------------------------------------------------------
+An R-squared of 0.39 means nothing to anyone.  So price each cell in the one
+currency this project has: the age of a domestic mark.  The own-only curve is
+re-run on a fine grid, and each combined model is quoted as the age of the
+plain domestic mark that would forecast exactly as well.
+
+own-only skill against the age of the mark, the ruler everything is read on:
+  0d:0.498  1d:0.452  2d:0.415  3d:0.385  4d:0.359  5d:0.338  6d:0.318  8d:0.282
+  10d:0.249  13d:0.202  16d:0.160  21d:0.112  26d:0.077  34d:0.040  44d:-0.008  55d:-0.036
+
+Effective age of a delta-day-old mark once the foreign block is added,
+with that block itself g days stale.  '>55' means worse than the oldest mark
+on the curve.
+
+ delta       g=0       g=1       g=2       g=3       g=5      g=10
+     3      1.7d      2.7d      3.3d      3.7d      3.6d      3.4d
+     5      1.9d      3.0d      4.0d      5.0d      5.9d      5.6d
+    13      2.8d      4.2d      5.5d      6.8d      8.9d     13.2d
+    21      3.5d      5.2d      6.7d      8.1d     10.5d     15.0d
+    55      4.6d      6.8d      8.4d     10.0d     12.6d     19.4d
+
+Read the top-left corner: a mark this many days old, plus today's foreign
+closes, forecasts like a mark that many days old.  Read along a row to see
+what each day of foreign staleness gives back to the clock.
+
+The exchange rate between the two feeds: how many days of effective
+domestic freshness one day of foreign staleness costs, by least squares
+along each row.
+
+ delta   days lost per stale foreign day
+     3                              0.13
+     5                              0.35
+    13                              1.03
+    21                              1.13
+    55                              1.44
+
+  At delta = 55: today's foreign closes buy the desk back to a 4.6-day-old mark;
+  one day of foreign staleness moves that to 6.8 days.
+
+  the exchange rate runs from 0.13 to 1.44 days and rises with the domestic
+  delay at 4 of 4 steps
+  It is not one number, and the shape is the point.  When the domestic mark
+  is nearly fresh the foreign block is decoration and ageing it costs
+  almost nothing; when the mark is very stale the block is doing the work,
+  and then a day of foreign staleness costs about a day of domestic
+  freshness - one for one, which is what a second reading of ONE shared
+  state would cost.  The desks that most need this block are exactly the
+  ones whose feed must be current.
+
+======================================================================================================
+C.  WHERE IN TIME DOES THE GLOBAL FACTOR'S INFORMATION SIT?
+======================================================================================================
+One real-time PC1 factor - eigenvectors recomputed at every refit from the
+training window only, signs pinned, exactly as lab22 builds it - entered at
+ONE lag at a time.  Every arm is the same width, so the estimation cost is
+identical across the row and any difference within a row is information.
+
+ delta    PC1(t-0)    PC1(t-1)    PC1(t-2)    PC1(t-3)    PC1(t-5)   PC1(t-10)
+     0      0.4999      0.4975      0.4980      0.4987      0.4999      0.4973
+     3      0.4376      0.4095      0.3923      0.3849      0.3838      0.3842
+     5      0.4320      0.3992      0.3748      0.3555      0.3379      0.3371
+    13      0.4048      0.3707      0.3452      0.3233      0.2885      0.2198
+    21      0.3879      0.3520      0.3249      0.3012      0.2641      0.1976
+    55      0.3671      0.3288      0.3001      0.2744      0.2345      0.1616
+
+Against the contemporaneous factor:
+
+ delta                   t-1                   t-2                   t-3                   t-5                  t-10
+     0      -0.0024 *             -0.0019               -0.0012               -0.0000               -0.0026         
+     3      -0.0280 *             -0.0453 *             -0.0527 *             -0.0538 *             -0.0533 *       
+     5      -0.0328 *             -0.0573 *             -0.0765 *             -0.0941 *             -0.0949 *       
+    13      -0.0340 *             -0.0596 *             -0.0815 *             -0.1163 *             -0.1849 *       
+    21      -0.0359 *             -0.0630 *             -0.0867 *             -0.1238 *             -0.1903 *       
+    55      -0.0383 *             -0.0670 *             -0.0927 *             -0.1326 *             -0.2055 *       
+
+  * = that lag is significantly worse than the contemporaneous factor
+  cells where it is: 26 of 30
+
+And does the factor's CHANGE carry anything beyond its level?  PC1(t) plus
+PC1(t-1) against PC1(t) plus an AR(1) column matched to the factor's own
+persistence - equal width, so only content can separate them.
+(The surrogate's persistence, phi = 0.968, is calibrated on a full-sample
+basis.  That leaks nothing: the surrogate is a regressor with no content by
+construction, and only its persistence is borrowed.)
+
+ delta   lag1 - noise                    95% CI
+     0        +0.0024   [  -0.00017,  +0.00457]
+     3        +0.0170   [  +0.00907,  +0.02263]
+     5        +0.0118   [  +0.00554,  +0.01696]
+    13        +0.0027   [  -0.00098,  +0.00630]
+    21        +0.0004   [  -0.00300,  +0.00383]
+    55        +0.0007   [  -0.00256,  +0.00390]
+
+  delays where yesterday's factor adds to today's: 2 of 6 [3, 5]
+  Yesterday's factor adds to today's at the delays listed, so there IS
+  dynamic structure the contemporaneous design does not capture.
+
+======================================================================================================
+VERDICT
+======================================================================================================
+  raw asymmetry: 0 of 7 peers lead, 7 lag - but it tracks the trading
+  clock at rho = +0.933, so direction is NOT established by part A.
+  foreign staleness hurts in 25 of 30 cells, 5 of 6 at a single day; one stale foreign
+  day costs 0.13 to 1.44 days of domestic freshness, most where the mark is oldest.
+  lagged factor worse than contemporaneous in 26 of 30 cells; factor history adds at 2 of 6 delays.
+
+  THE PRACTICAL FINDING, and it is a limitation neither paper states: the
+  foreign block's value is largely its FRESHNESS.  One day of foreign
+  staleness costs real skill at almost every delay.  Both papers were
+  tested on a same-day foreign feed and never say they assume one; a desk
+  reading yesterday's foreign closes gets materially less than the tables
+  in those papers promise, and the size of the shortfall is in B2.
+  On direction: the raw asymmetry is the clock, but yesterday's factor
+  still adds to today's at [3, 5] - short delays only.  That is a small
+  amount of genuine dynamics sitting inside an otherwise contemporaneous
+  story, and it is where a richer specification would have to start.
