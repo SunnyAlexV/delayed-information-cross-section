@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>What Substitutes for a Stale Mark?</title>
+<style>
+@page{size:A4;margin:24mm 22mm 20mm 22mm}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#fff}
+body{font-family:"TeX Gyre Pagella","Palatino Linotype",Palatino,"DejaVu Serif",serif;
+  font-size:10.5pt;line-height:1.5;color:#000;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1{font-size:15.5pt;line-height:1.26;text-align:center;font-weight:700;margin:0 0 14pt}
+.byline{text-align:center;font-size:10.5pt;margin-bottom:2pt}
+.aff{text-align:center;font-size:9.5pt;font-style:italic;margin-bottom:2pt}
+.date{text-align:center;font-size:9.5pt;margin-bottom:20pt}
+/* The corresponding-author and keyword blocks are not the centred one-line
+   affiliation and must not borrow its class: set centred and italic, a
+   four-element contact line wraps mid-phrase and orphans the address. */
+.front{text-align:left;font-size:9pt;line-height:1.45;margin:0 0 5pt}
+.front b{font-style:normal}
+.front .nb{white-space:nowrap}
+.frontrule{border-top:0.5pt solid #000;margin:14pt 0 7pt}
+.kw{text-align:left;font-size:9pt;line-height:1.45;margin:8pt 0 0}
+.kw b{font-style:normal}
+h2{font-size:11.5pt;font-weight:700;margin:15pt 0 6pt;break-after:avoid}
+h3{font-size:10.5pt;font-weight:700;margin:12pt 0 5pt;break-after:avoid}
+p{margin:0 0 7pt;text-align:justify;hyphens:auto}
+.abs{margin:0 26pt 16pt;font-size:9.6pt;line-height:1.46}
+.abs .t{text-align:center;font-weight:700;font-size:10pt;margin-bottom:5pt}
+.eq{text-align:center;margin:9pt 0;font-size:10pt;position:relative}
+.eq .n{position:absolute;right:0;top:0;font-size:9.5pt}
+table{break-inside:avoid;border-collapse:collapse;width:100%;font-size:9pt;
+  font-variant-numeric:tabular-nums;margin:5pt 0 7pt}
+caption{caption-side:top;font-size:9.3pt;text-align:left;margin-bottom:4pt}
+th,td{padding:2.7pt 6pt;text-align:right}
+th:first-child,td:first-child{text-align:left}
+thead th{border-bottom:0.5pt solid #000;font-weight:700}
+.toprule{border-top:1pt solid #000}
+.botrule{border-bottom:1pt solid #000}
+ol.refs{font-size:9pt;line-height:1.4;padding-left:16pt;margin:4pt 0}
+ol.refs li{margin-bottom:3pt}
+code{font-family:"DejaVu Sans Mono",monospace;font-size:8.8pt}
+figure{margin:7pt 0 9pt;break-inside:avoid}
+svg{display:block;width:100%;height:auto}
+figcaption{font-size:8.8pt;line-height:1.44;margin-top:5pt}
+</style>
+</head>
+<body>
+
+<h1>What Substitutes for a Stale Mark? Breadth, Implied<br>Volatility, and the Price of Being Late</h1>
+<p class="byline">Sunny Alex Vellanikaran</p>
+<p class="aff">Independent</p>
+<p class="date">22 September 2026</p>
+
+<div class="frontrule"></div>
+<p class="front"><b>Corresponding author.</b> Sunny Alex Vellanikaran, Independent, United Kingdom. <span class="nb">Telephone supplied with the submission.</span> <span class="nb">Email sunnyalex1234@gmail.com.</span></p>
+
+<div class="abs">
+<p><b>Abstract</b></p>
+<p>A forecaster holding a stale mark must buy something in place of timeliness, with
+no accepted way to price that trade. Handicapping an S&amp;P 500 realised-variance
+forecaster by &delta; days, other sources current, we define the substitution rate
+R(&delta;), the share of delay damage a substitute repairs, and treat its inference as
+the weak-identification problem it is. A current foreign cross-section returns 71%
+[59, 81] of what eleven weeks of staleness takes. In both own-index option cases examined, the compressed cross-section adds no
+detectable information once own-index implied volatility is included; a chain on
+another asset does not do the same. Twenty house price
+indices carry it to a smoothed market with no listed options chain of its own.</p>
+<p class="kw"><b>Keywords:</b> information delay; substitution rate; volatility forecasting; ragged edge; weak identification.<br>
+<b>JEL codes:</b> C53, C58, G17, G12, C22.</p>
+</div>
+
+<h2>1. Introduction</h2>
+<p>A private equity portfolio is marked once a quarter. Direct property is appraised on a cycle, and the resulting series is smoothed in ways that have been documented for thirty years (Geltner et al. 2003). Hedge fund returns arrive with a serial correlation that understates their true volatility (Getmansky et al. 2004). In each case someone must produce a risk number today from marks that are weeks or months old, while public markets have gone on trading in plain sight.</p>
+<p>The instinct is to reach for those markets. The question is which of them, and how far it gets you. Two candidates present themselves. The first is breadth: other markets are correlated with yours, and some of them have already closed today. The second is the options market, which reports a forward-looking risk number continuously and without any delay at all. These are different purchases, and a practitioner choosing between a wider data feed and an options subscription would like to know which one buys back more of what staleness took.</p>
+<p>We cannot observe the truth for a private portfolio, so we run the experiment where the truth is observable. We take a forecaster of S&amp;P 500 realised variance, withhold their own data for &delta; days, leave the other sources untouched, and measure what each gives back. For foreign equities the asymmetry costs nothing to construct: Tokyo closes at 06:00 UTC, Hong Kong at 08:00, Mumbai at 10:00, London and Frankfurt at 16:30, New York at 21:00. On any given day the rest of the world has already finished trading when New York does.</p>
+
+<p>An experiment run where the truth is observable is still a proxy for the case that
+motivates it, and a paper that stopped there would be asking its reader to extrapolate
+from liquid equities to appraised assets and to trust the extrapolation. The last step is
+therefore to narrow that extrapolation as far as public data allows, with a housing-index
+panel that has appraisal-like persistence and infrequent marking. Twenty metropolitan
+house price indices, fourteen of them published monthly since January 1987 and the rest
+beginning later, carry the properties the first paragraph describes, though they remain a
+published index and not a book: each monthly figure is a
+three-month moving average of closings, no options chain on any of the twenty is currently listed and no daily own-market implied-volatility index exists for them, so the substitute Section 7 races against is unavailable here; CME does list futures on the composite and on ten of the metro indices, which is a derivative but not the one that race needs,
+and all twenty are published on the same day, so a stale mark sits inside a fresh
+cross-section exactly as the design requires. The same
+measurement is made there, on the same estimator, and it is the result the paper is
+built to deliver.</p>
+
+<p>Four findings carry it. First, breadth substitutes for timeliness and the amount can
+be priced: at eleven weeks of staleness a current foreign cross-section returns 71%
+[59, 81] of what the delay took, measured on the implementable target, the original model, the stronger
+control, the compressed specifications and the state-space alternative all landing
+between 68% and 75%, and 81% [74, 87] in this sample's stressed markets
+where the estimate is tight. Read as a clock rather than a
+share, a fifty-five-day-old mark plus today's foreign close forecasts as well as a mark
+4.6 days old [2.5, 8.4]. Second, an options market on the asset itself makes the
+cross-section redundant, but only on the asset itself: where the only chain available is
+written on another index the two candidates finish three points apart rather than
+thirty-one, and a compressed cross-section still adds in thirteen of twenty-four cells.
+Third, which of those worlds a holder is in can be measured before anything is bought,
+because the target's own correlation with the cross-section tracks the substitution rate
+at +0.98 across eight markets, and where that correlation is small the cross-section
+repairs nothing and charges for the attempt. Fourth, on the house price panel one
+quarterly appraisal cycle of extra staleness gives 67.8% [45, 92] on the next month's
+return and 19.0% [6, 31] on a backward-looking variance, positive on fourteen
+metros of fourteen and thirteen of fourteen.</p>
+
+<p>Those figures are not competing estimates of one quantity and it is worth saying so
+before a reader tries to reconcile them. Each answers a different question, and Table 1
+puts the question beside the number so that the paper's own hierarchy is visible in one
+place rather than assembled from six sections.</p>
+
+<table>
+<caption><b>Table 1.</b> The substitution rate at eleven weeks under each specification the
+paper regards as defensible, with the question each one answers. All are R&sup2;-scale. The first five are on the
+same 4,862 test days as Section 5; the stressed row is the 1,618 of those days in the
+upper volatility tercile; and the last is a different experiment on a different asset
+class at a different delay, 310 test months, included because it is the result the paper
+is built to deliver. No row here uses the 4,525-day window of Section 7, which is
+shortened by VDAX-NEW availability and carries the options race alone. Intervals are the full-ratio bootstrap of Section 6. Two rows
+carry none, because their evidence is a paired difference rather than a marginal
+interval: the stronger control is 4.1 points below the paper's own, interval
+[&minus;9.7, &minus;0.6] on that difference (Section S4), and the state-space filter is 3.8
+points above it (Section S20).</caption>
+<thead><tr class="toprule"><th>specification</th><th>R(55)</th><th>the question it answers</th></tr></thead>
+<tbody>
+<tr><td>implementable target, original block</td><td>71% [59, 81]</td><td>what a forecaster could have acted on</td></tr>
+<tr><td>strongest domestic control</td><td>68%</td><td>is it an artefact of a weak benchmark?</td></tr>
+<tr><td>equal-weighted cross-section</td><td>74.3% [64.4, 82.7]</td><td>what a practitioner should actually run</td></tr>
+<tr><td>one real-time factor</td><td>75.2% [65.4, 83.5]</td><td>where in the block the recovery lives</td></tr>
+<tr><td>state-space alternative</td><td>75.4%</td><td>does a better estimator change it?</td></tr>
+<tr><td>stressed markets only</td><td>81% [74, 87]</td><td>when is the mechanism worth having?</td></tr>
+<tr class="botrule"><td><i>house prices, one quarter, non-overlapping</i></td><td><i>57%</i></td><td><i>does it hold on a smoothed index of an illiquid market?</i></td></tr>
+</tbody>
+</table>
+
+<p>Read down the second column and the paper's own reading is the obvious one: nothing here
+turns on which row is called the headline, because the span is narrow relative to every
+interval in it. The 71% is the lower choice, and lower for two separable reasons: it is the implementable target, and it is the original specification
+and the implementable target; the 74% to 75% band is what the compression of Section 6.1
+recommends and is what a practitioner should expect; and the paper quotes the first while
+recommending the second, which is a gap worth naming rather than smoothing over.</p>
+
+<p>The contribution is four-fold, and the first of the four is a measurement problem
+rather than a finding. What a stale mark costs, and what a substitute returns, are both
+differences in forecast skill, so the quantity a buyer actually wants is their ratio.
+This paper defines that ratio as R(&delta;), gives it a real-time design in which the
+training window stops &delta; + h days before the forecast origin so that no label used
+to fit the model had resolved after the stale mark was current, and treats its inference
+as the weak-identification problem it is: the denominator is what delay costs, it
+approaches zero wherever delay costs little, and a percentile bootstrap of a ratio
+reports finite endpoints whether or not they mean anything. The intervals reported here are a moving-block bootstrap of the whole ratio, and every
+one of them is then re-derived by inverting a HAC t-test after Fieller (1954), a
+construction free to return a bounded interval, two half-lines or the whole line.
+Section 4.6 reports what that returned: an ordinary interval at every delay, within
+1.6 points of the bootstrap's throughout. The measure and that treatment of it are what the rest of the paper reuses,
+across loss functions, markets, candidate substitutes and one asset class outside
+equities.</p>
+
+<p>The other three follow from applying it. The rate prices the trade between timeliness
+and breadth in a unit-free way, so that a wider data feed and an options subscription can
+be compared on one ruler rather than argued about. The scope condition on that rate is
+identified in the examined markets rather than assumed: it depends on whether an option chain exists on the
+asset itself, and on a coupling statistic a practitioner can compute from data already in
+hand. And the illiquid case, which this literature has treated as the motivating example
+and left unmeasured, is brought within one step of measurement, on an asset class with no
+intraday range, no option chain and a mark that is smoothed before anyone touches it. One
+step, not none: a published index is not a book.</p>
+
+<p>The paper proceeds as follows. Section 2 places it against what is already known.
+Sections 3 and 4 give the data and the design, including the estimator, the loss
+functions and the definition of R(&delta;). Section S26 states the specification the
+measurements support. Sections 5 to 7 measure what breadth recovers, where it stops, and
+how it fares against implied volatility. Section 8 carries the measurement to house
+prices. Section 9 tests the result and bounds where it holds, with the working in the
+Internet Appendix. Section S30 says what a practitioner should do with it, Section 10 what
+the paper cannot say, and Section 11 what would test it next.</p>
+
+<h2 class="pb">2. Related work</h2>
+<p>Four findings underpin this exercise, and none of them is ours.</p>
+<p>Foreign equity volatility forecasts domestic volatility. Engle, Ito and Lin (1990) rejected the idea that volatility is a purely local phenomenon, and the spillover literature since has measured the connections in considerable detail (Corsi 2009; Diebold and Yilmaz 2014). Korkusuz augments a HAR model of S&amp;P 500 volatility with a European block and improves on it (2025). Buncic and Gisler (2016) run the mirror experiment, forecasting seventeen foreign markets from US volatility, and report out-of-sample R&sup2; between 4.6% and 14.5%.</p>
+<p>Non-synchronous closing times define which observations a forecaster may legitimately use. Zhao and Qiao say so explicitly and build an attention model whose mask prevents a closed exchange from acting as a source (Zhao and Qiao 2026). Jayawardena and co-authors forecast Tokyo volatility from markets that trade while Tokyo sleeps (2020).</p>
+<p>A live market can price a stale one. Goetzmann, Ivkovi&cacute; and Rouwenhorst showed that same-day US returns predict the next day's international fund NAVs strongly enough to trade on (Goetzmann et al. 2001): the mechanism of this paper stripped to its simplest form.</p>
+<p>Implied volatility carries much of the cross-market gain. This is the finding that shapes the design below. Both Korkusuz (2025) and Buncic and Gisler (2016) report that a large share of what looks like a cross-market effect is attributable to implied volatility, the VIX in particular. Their work does not settle the matter for a <em>delayed</em> forecaster, since in both cases the domestic information set is current, but it makes the comparison unavoidable: any claim that foreign markets substitute for timeliness has to be set against an options market that never goes stale.</p>
+<p>A second literature has the same problem and a different name for it. Macroeconomic nowcasting is built around exactly the asymmetry this paper constructs on purpose: series arrive on different schedules, so the most recent rows of a panel are present for some variables and missing for others. Wallis called it the ragged edge (1986), and the modern treatment is a dynamic factor model with a Kalman filter that handles the missing rows in the measurement equation rather than by imputation, which is how Giannone, Reichlin and Small measure the value of each release as it lands (2008) and how Doz, Giannone and Reichlin estimate the factor in two steps (2011). The mixed-frequency alternative regresses a low-frequency target directly on high-frequency data with a parsimonious lag polynomial, which is MIDAS (Ghysels et al. 2007), and the two approaches have been compared on precisely the ragged-edge problem (Marcellino and Schumacher 2010). A third strand insists on the vintages: Croushore and Stark's real-time data set exists because a forecast evaluated on revised data is not the forecast anyone could have made (Croushore and Stark 2001). And forecast combination is the standing answer to not knowing which of several models to trust (Timmermann 2006).</p>
+
+<p>The connection is close enough to be worth stating precisely, because the differences are what leave room for this paper. The apparatus is shared: our design is a ragged edge with one variable's edge pushed back by hand, our Kalman comparison in Section 10 is a nowcasting model, and our compressed peer block is a factor. What is not shared is the question. That literature asks how accurately the latent current value can be estimated, and answers in the units of the target. We ask what share of a <i>known</i> loss a <i>named purchasable</i> source repairs, and answer in a unit-free ratio that lets a data feed and an options subscription be compared with each other. Nor is the ragged edge in that work a variable: it is whatever the release calendar happens to deliver, so the delay is a fact about the data rather than a parameter to be swept. Sweeping it is what produces a delay curve, a ceiling and a rate.</p>
+
+<p>The stale-price literature in finance is the other half of the inheritance and is older. Scholes and Williams (1977) and Lo and MacKinlay (1990) showed what non-synchronous trading does to measured covariances, which is why a cross-section of closes taken at different hours cannot be treated as simultaneous; Getmansky, Lo and Makarov (2004) and Geltner and co-authors (2003) showed what smoothed or infrequent marking does to measured risk. Closest of all in spirit is Brown, Ghysels and Gredil (2023), who nowcast private equity net asset values from public market information between reporting dates: the same act on the same kind of asset, reported as a level rather than as a price paid for timeliness. Section 8's house price panel is the object that literature and this one share, and the substitution rate is what this paper adds to it.</p>
+
+<p>What none of this work does is treat the delay as a variable. In every case additional data is added to an information set that is already current, and the question is whether it helps. Ours is the complementary question: when domestic information is not current, how much of the damage does each candidate undo, and how does that fraction move as the damage grows? That is a rate of substitution between things a practitioner can actually buy, and we could not find it measured.</p>
+
+<h2 class="pb">3. Data</h2>
+<p>The data are daily open, high, low and close for eight equity indices: S&amp;P 500 (SPX), Nikkei 225 (N225), S&amp;P/ASX 200 (AXJO), Hang Seng (HSI), Nifty 50 (NSEI), FTSE 100 (FTSE), DAX (DAX) and Bovespa (BVSP), from January 2000 to September 2026 as raw data, of which the out-of-sample evaluation uses 4,862 days once the burn-in, training and validation blocks of Section 4.3 are spent, together with three implied-volatility indices: CBOE VIX, its nine-day counterpart VIX9D, and VDAX-NEW. The two CBOE series are Cboe's own published daily histories; the eight indices and VDAX-NEW are retail end-of-day exports from Investing.com, downloaded in September 2026. The repository lists every file, the identifier it maps to, and the column dictionary, and pins the environment to NumPy and pandas alone. Section S14 of the Internet Appendix adds four further index series, for Pakistan, Indonesia, Sri Lanka and Malaysia, from a different vendor and as one file each rather than two. They are kept in their own folder, they enter one subsection, and no other number in this paper is computed from them. Each retail series came in two exports, because the source caps a download at 5,000 rows, which leaves nine joins to be checked rather than trusted. Eight of the nine overlap by 120 to 251 trading days, and across every overlapping row the two exports agree exactly: no mismatches, largest absolute difference zero. The ninth is the S&amp;P itself, where the exports abut without overlapping and no cross-check is possible. We report it as unverified and fall back to two weaker tests: the join is contiguous, Friday 9 March 2018 to Monday 12 March 2018 with no session missing or duplicated, and the return across it is &minus;0.0013, or 0.11 standard deviations of the series' own daily returns, so there is no level shift where the exports meet.</p>
+<p>A foreign close is admissible only when its timestamp falls before the target's. Markets closing at or after the target therefore contribute their previous session. The rule generalises without special cases, which matters for Section S9 of the Internet Appendix: a Tokyo forecaster gets every other market a day late, because Tokyo closes first. The rule is implemented from a table of standard-time closes, and whether that simplification is safe is a question about real exchange clocks rather than about the design, so Section S35 of the Internet Appendix settles it with one: every close is rebuilt in UTC from its exchange's own local closing time and its own timezone, daylight-saving transitions included, on all 7,021 dates. Across every target, every peer and every date there are <b>zero</b> days on which the true clocks would have reordered a block, and the narrowest margin the rule relies on anywhere is two hours. The audit also shows the implementation is stricter than the rule it implements, which is the direction that costs information rather than validity, and Section S35 puts a number on that too. It also disciplines the implied-volatility block, and the discipline is awkward in a way worth setting out precisely. VDAX-NEW satisfies the rule outright, since Frankfurt finishes hours before New York. VIX does not. Its printed daily close is stamped 21:15 UTC, fifteen minutes after the 21:00 S&amp;P cash close, so that print is inadmissible. VIX is computed continuously from live SPX option quotes, so a value of it did exist at 21:00 and would be the right observation to use, but a retail end-of-day export carries no intraday snapshot and we do not have it. What we can run is a pair of timing specifications on either side of the one we want: the previous day's close, which is strictly admissible and discards a full day of information, and the same-day close, which contains fifteen minutes we are not entitled to. Section 7 leads with the lagged arm, because it is the one that obeys our own rule, and reports the same-day arm as a sensitivity check. The 21:00 observation is temporally between the two, and we are careful not to infer from that that its forecasting performance would be numerically between their results. Timestamps order; skill need not.</p>
+
+<h2 class="pb">4. Methodology</h2>
+<p>The object of this section is one number and the conditions under which it means
+anything. A forecaster loses skill when their own mark goes stale, and a substitute
+returns some of it; the quantity a buyer wants is the second as a share of the first,
+which is the ratio R(&delta;) of equation (9). Everything before that equation exists to
+make the two skills comparable: one volatility estimator, one decision variable, one
+real-time training window that stops &delta; + h days before the forecast origin, one
+family of losses. Section 4.6 is what stops the ratio being read further than
+the data supports, since its denominator is what delay costs and approaches zero wherever
+delay costs little. A reader interested only in the measure can read 4.5 and 4.6 and
+return.</p>
+<h3>4.1 The volatility estimator</h3>
+<p>Volatility is the Yang-Zhang estimator (2000) over rolling five-day windows, which uses the whole daily range and so sees more of each session than the close alone. Write O<sub>s</sub>, H<sub>s</sub>, L<sub>s</sub> and C<sub>s</sub> for the open, high, low and close of session s, and</p>
+
+<p>o<sub>s</sub> = log(O<sub>s</sub> / C<sub>s&minus;1</sub>),&nbsp;&nbsp; c<sub>s</sub> = log(C<sub>s</sub> / O<sub>s</sub>),&nbsp;&nbsp; u<sub>s</sub> = log(H<sub>s</sub> / O<sub>s</sub>),&nbsp;&nbsp; d<sub>s</sub> = log(L<sub>s</sub> / O<sub>s</sub>)</p>
+
+<p>for the overnight, open-to-close, high and low log returns. Over the n sessions ending at t the estimator is</p>
+
+<p class="eq">&sigma;&sup2;<sub>YZ,t</sub> = &sigma;&sup2;<sub>o</sub> + k&nbsp;&sigma;&sup2;<sub>c</sub> + (1 &minus; k)&nbsp;&sigma;&sup2;<sub>RS</sub>,&nbsp;&nbsp;&nbsp;&nbsp; k = 0.34 / (1.34 + (n+1)/(n&minus;1)),<span class="n">(1)</span></p>
+
+<p>where &sigma;&sup2;<sub>o</sub> and &sigma;&sup2;<sub>c</sub> are the sample variances of o<sub>s</sub> and c<sub>s</sub> over those n sessions, &sigma;&sup2;<sub>RS</sub> is the mean over them of the Rogers-Satchell term u<sub>s</sub>(u<sub>s</sub> &minus; c<sub>s</sub>) + d<sub>s</sub>(d<sub>s</sub> &minus; c<sub>s</sub>) (Rogers and Satchell 1991), and n = 5 throughout. The three components measure the overnight gap, the drift within the session, and the range net of that drift; k is the weight for which the sum is minimum-variance and drift-independent under a Brownian price (Yang and Zhang 2000). All variances use the n &minus; 1 divisor.</p>
+
+<h3>4.2 The decision variable and the forecast target</h3>
+<p>Let i index the eight series and t the target's trading day. The decision variable each model sees is the log of that series' variance against its own recent level,</p>
+
+<p class="eq">a<sub>i,t</sub> = log( &sigma;&sup2;<sub>YZ,i,t</sub> / M<sub>i,t</sub> ),&nbsp;&nbsp;&nbsp;&nbsp; M<sub>i,t</sub> = median( &sigma;&sup2;<sub>YZ,i,s</sub> : t &minus; 251 &le; s &le; t ),<span class="n">(2)</span></p>
+
+<p>and the quantity to be forecast, with horizon h = 5 trading days and target market denoted SPX, is</p>
+
+<p class="eq">y<sub>t</sub> = a<sub>SPX,&thinsp;t+h</sub>.<span class="n">(3)</span></p>
+
+<p>So M<sub>i,t</sub> is the trailing 252-day median, and the implied-volatility series enter the same way, as the log of the level over its own trailing median. Dividing by a series' own median puts Tokyo, São Paulo and the VIX on one scale and keeps each series' units out of the regression. The target at t + h carries a median whose window includes the five days between origin and outcome, which a forecaster at t does not know; no feature is affected, since every one is dated t &minus; &delta; or earlier for the domestic block and t for the others. Section S16 of the Internet Appendix runs the whole experiment under the implementable alternative, which normalises the outcome at the origin. <b>One definition per place, stated once:</b> unless a caption says otherwise, the equity-result tables in this paper report the target-dated rate and every headline sentence reports the implementable origin-dated one. Table 1 is the labelled exception, since it collects the headline specifications and therefore carries the origin-dated figure, and its housing row is a different experiment on a different asset class. The two differ by at most a point at every delay, and Table S12 of the Internet Appendix gives both columns, so a reader who wants a single definition throughout can have either. The target is a<sub>t+5</sub>, five trading days ahead, left continuous: a companion note (Vellanikaran 2026) showed that splitting such a target at its median throws away exactly the magnitude information a cross-sectional model would use, so we do not split it.</p>
+
+<h3>4.3 Feature blocks and estimation</h3>
+<p>Models are built from three feature blocks. The domestic block is the target's own history at daily, weekly and monthly aggregation, in the manner of Corsi (2009), observed at t &minus; &delta;. The foreign block is seven index decision variables at their admissible timestamps: the six that close before New York, plus Bovespa a session late. The implied-volatility block is VIX and VDAX. Only the domestic block is delayed; the others are what a forecaster could see today, and that asymmetry is the whole point of the comparison. Every model is a ridge regression refitted every 21 days, with features standardised on training statistics alone. The training window needs stating carefully, because where it ends is not where a reader would guess and the gap is the reason the design is honest. Formally, let x<sub>t</sub> be the feature vector a model sees at t, assembled from the blocks above. Training cannot run up to t: the most recent pair whose outcome had resolved by the time the target's own mark was current ends at </p>
+
+<p class="eq">c<sub>t</sub> = t &minus; &delta; &minus; h,&nbsp;&nbsp;&nbsp;&nbsp; T<sub>&delta;</sub>(t) = {c<sub>t</sub> &minus; 1499, &hellip;, c<sub>t</sub>},<span class="n">(4)</span></p>
+
+<p>so the window holds 1,500 days and slides with &delta; as well as with t. That is worth naming precisely, because &delta; does not only make one number old. It freezes the whole domestic information system for &delta; days: the current state, the labels available for fitting, the coefficient vintage, the ridge penalty the validation tail selects, and the quantity of training data. What this paper measures is therefore a domestic-data <em>outage</em> of &delta; days, not a stale mark beside an otherwise current desk, and R(&delta;) is the share of an outage's damage that a substitute repairs. Section S36 of the Internet Appendix prices the difference by running a third arm that no forecaster could run, with a stale input but coefficients refitted to t &minus; h, and finds that freezing the estimation accounts for 0.4% of the damage at a week and 2.7% at eleven weeks. The denominator R(&delta;) divides by is information rather than estimation, and the rate computed inside the infeasible arm is 2.8 points higher at most, so the paper's design is also the conservative one. The naming is a matter of accuracy; the measurement barely moves. Features are centred and scaled by that window's own mean &mu;<sub>T</sub> and standard deviation s<sub>T</sub>, giving z<sub>t</sub> = (x<sub>t</sub> &minus; &mu;<sub>T</sub>) / s<sub>T</sub> elementwise, and the coefficients (&beta;<sub>0</sub>, &beta;) solve</p>
+
+<p class="eq">min<sub>&beta;<sub>0</sub>, &beta;</sub>&nbsp; &sum;<sub>u &isin; T<sub>&delta;</sub>(t)</sub> ( y<sub>u</sub> &minus; &beta;<sub>0</sub> &minus; z<sub>u</sub>&prime;&beta; )&sup2; &nbsp;+&nbsp; &lambda; &beta;&prime;&beta;,<span class="n">(5)</span></p>
+
+<p>with the intercept &beta;<sub>0</sub> left unpenalised. &lambda; is chosen from {0.3, 1, 3, 10, 30} in two steps, and the second step is worth stating because it is easy to assume otherwise: candidate penalties are fitted on the first 1,250 days of T<sub>&delta;</sub>(t) and scored on the last 250, which are held out of the fits that select between them, and the chosen &lambda; is then refitted on all 1,500. The validation tail is therefore held out of the candidate fits, which is what lets it choose between them, and is not held out of the final model. The forecast is f<sub>t</sub> = &beta;<sub>0</sub> + z<sub>t</sub>&prime;&beta;. Standardising on training statistics alone matters: scaling a feature by a full-sample standard deviation would let the test period influence the fit through the scale, which is a small leak but a real one. All are trained on the same labels, a pair being admitted only once its outcome was resolvable at t &minus; &delta;, so differences between them are features and nothing else. The rolling fixed window is not incidental; it is what makes the tests in Sections 5 and 6 valid. Figure 1 draws the whole arrangement, because six dates matter to it and prose makes a reader assemble them.</p>
+
+<figure>
+<svg viewBox="0 0 720 320" role="img" aria-label="Two-panel timeline of the walk-forward design. The upper panel shows a burn-in block of 252 trading days, a training block of 1250 and a validation tail of 250, ending at the training cut, followed by a withheld gap of delta plus h days before the forecast origin. The lower panel shows four rows on one linear axis: the training window stopping delta plus h days before t, the target’s own data stopping delta days before t and stale thereafter, the foreign closes running right up to t, and the label resolving h days after t.">
+<text x="62" y="24" fill="#333" font-family="DejaVu Sans Mono, monospace" font-size="11" font-weight="bold">What the model is fitted on, and what is held back</text>
+<text x="62" y="40" fill="#6B7280" font-family="DejaVu Sans Mono, monospace" font-size="9">re-estimated every 21 trading days; this panel is compressed, the one below is to scale</text>
+<rect x="62.0" y="66" width="75.7" height="28" fill="#F4F6F9" stroke="#E4E8EE"/>
+<text x="99.8" y="84" fill="#333" font-family="DejaVu Sans Mono, monospace" font-size="9.5" text-anchor="middle">252d</text>
+<rect x="137.7" y="66" width="375.3" height="28" fill="#DCE6F3" stroke="#E4E8EE"/>
+<text x="325.3" y="84" fill="#333" font-family="DejaVu Sans Mono, monospace" font-size="9.5" text-anchor="middle">1250d</text>
+<rect x="512.9" y="66" width="75.1" height="28" fill="#EFE3D6" stroke="#E4E8EE"/>
+<text x="550.5" y="84" fill="#333" font-family="DejaVu Sans Mono, monospace" font-size="9.5" text-anchor="middle">250d</text>
+<rect x="588.0" y="66" width="116.0" height="28" fill="none" stroke="#9A5210" stroke-width="1.1" stroke-dasharray="3 3"/>
+<text x="646.0" y="84" fill="#9A5210" font-family="DejaVu Sans Mono, monospace" font-size="9.5" text-anchor="middle">60d</text>
+<line x1="588.0" y1="61" x2="588.0" y2="96" stroke="#9A5210" stroke-width="1.6"/>
+<text x="588.0" y="56" fill="#9A5210" font-family="DejaVu Sans Mono, monospace" font-size="8.8" text-anchor="middle">the cut</text>
+<line x1="704.0" y1="61" x2="704.0" y2="96" stroke="#1A5FA8" stroke-width="1.6"/>
+<text x="704.0" y="56" fill="#1A5FA8" font-family="DejaVu Sans Mono, monospace" font-size="8.8" text-anchor="end">t</text>
+<text x="62" y="109" fill="#6B7280" font-family="DejaVu Sans Mono, monospace" font-size="8.4">left to right: burn-in for the trailing median, training for the coefficients, validation for the ridge penalty, then &#948;+h withheld</text>
+<text x="62" y="134" fill="#333" font-family="DejaVu Sans Mono, monospace" font-size="11" font-weight="bold">What is available at one forecast origin, at &#948; = 55</text>
+<line x1="531.3" y1="148" x2="531.3" y2="276" stroke="#1A5FA8" stroke-width="1.4"/>
+<text x="531.3" y="145" fill="#1A5FA8" font-family="DejaVu Sans Mono, monospace" font-size="9.5" text-anchor="middle">t</text>
+<line x1="235.3" y1="154" x2="235.3" y2="276" stroke="#9A5210" stroke-width="1.1" stroke-dasharray="2 3"/>
+<text x="176" y="171" fill="#333" font-family="DejaVu Sans Mono, monospace" font-size="9.2" text-anchor="end">training window</text>
+<rect x="186.0" y="158" width="49.3" height="18" fill="#DCE6F3" stroke="#E4E8EE"/>
+<rect x="235.3" y="158" width="296.0" height="18" fill="none" stroke="#9A5210" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="383.3" y="171" fill="#9A5210" font-family="DejaVu Sans Mono, monospace" font-size="8.4" text-anchor="middle">held back: the last label that had resolved</text>
+<text x="176" y="199" fill="#333" font-family="DejaVu Sans Mono, monospace" font-size="9.2" text-anchor="end">the target's own data</text>
+<rect x="186.0" y="186" width="74.0" height="18" fill="#DCE6F3" stroke="#E4E8EE"/>
+<rect x="260.0" y="186" width="271.3" height="18" fill="none" stroke="#9A5210" stroke-width="1" stroke-dasharray="2 3"/>
+<text x="395.7" y="199" fill="#9A5210" font-family="DejaVu Sans Mono, monospace" font-size="8.4" text-anchor="middle">stale for &#948; = 55 days</text>
+<text x="176" y="227" fill="#333" font-family="DejaVu Sans Mono, monospace" font-size="9.2" text-anchor="end">the foreign closes</text>
+<rect x="186.0" y="214" width="345.3" height="18" fill="#DCE6F3" stroke="#E4E8EE"/>
+<text x="523.3" y="227" fill="#1A5FA8" font-family="DejaVu Sans Mono, monospace" font-size="8.4" text-anchor="end">current at t: those exchanges shut before the target’s</text>
+<text x="176" y="255" fill="#333" font-family="DejaVu Sans Mono, monospace" font-size="9.2" text-anchor="end">the label</text>
+<rect x="531.3" y="242" width="24.7" height="18" fill="#EFE3D6" stroke="#E4E8EE"/>
+<text x="564.0" y="255" fill="#333" font-family="DejaVu Sans Mono, monospace" font-size="8.4">resolves at t+h, h = 5d</text>
+<text x="523.3" y="255" fill="#6B7280" font-family="DejaVu Sans Mono, monospace" font-size="8.4" text-anchor="end">unknown at the origin, by construction</text>
+<path d="M 260.0 280 L 260.0 286 L 531.3 286 L 531.3 280" fill="none" stroke="#1A5FA8" stroke-width="1.2"/>
+<text x="395.7" y="300" fill="#1A5FA8" font-family="DejaVu Sans Mono, monospace" font-size="9.2" text-anchor="middle">&#948;, the quantity this paper sweeps from 0 to 55</text>
+</svg>
+<figcaption><b>Figure 1.</b> The design of Section 4, on two panels. Above, the window every model is fitted on, drawn on a compressed axis: a burn-in the trailing median of equation (2) needs before it exists, 1,250 days on which candidate ridge penalties are fitted, a 250-day tail on which they are scored, and then the &delta;+h days withheld because their labels had not resolved. The chosen penalty is refitted on all 1,500, so the tail is held out of the selection and not of the final model. Below, one forecast origin at the delay this paper leads with, drawn to scale. Three things are true at t and only the third is unusual: the training window stopped &delta;+h days ago, the target's own mark is &delta; days old, and the foreign closes are current, because those exchanges shut before New York does. The label resolves h days after the forecast is made and is unknown at the origin by construction. The cut at t &minus; &delta; &minus; h is a purge in the cross-validation sense and is load-bearing: Section S7 of the Internet Appendix measures what removing it inflates. Both panels are drawn from the same constants the estimator uses rather than positioned by hand, so a change to the design moves the figure.</figcaption>
+</figure>
+
+<h3>4.4 Loss functions and proxy robustness</h3>
+<p>Losses need care here. With an imperfect volatility proxy only a restricted family of losses preserves the ranking a researcher would obtain against true latent volatility (Patton 2011), and that family is defined on the VARIANCE scale. Our target is a log variance, so the two halves of the usual pairing land differently. QLIKE survives the transformation: it depends on the ratio of outcome to forecast alone, and dividing both by the same trailing median leaves that ratio untouched, so what we compute is exactly the variance-scale QLIKE. Squared error does not. Computed on log variance it is outside the family, because a monotone transform of the arguments is precisely what the robustness result fails to survive.</p>
+<p>We therefore report three, and the reconstruction back onto the variance scale needs stating precisely, because getting it wrong is how a loss comes to be called robust when it is not. The benchmark forecast needs stating before the losses that divide by it, because it is not a single number. At each test day t it is b<sub>t</sub>, the mean of the labels a forecaster had already seen, taken over the 1,500 days ending at t &minus; h, which is where labels stop resolving for someone whose own data is current. Two properties of it are load-bearing. It is not delay-matched: one benchmark serves every model at every delay, because R(&delta;) divides by S<sub>own</sub>(0) &minus; S<sub>own</sub>(&delta;), and a yardstick that moved with &delta; would mix the damage the delay does with the change in the yardstick. And it is a forecast, not a fitted constant: a mean taken over the test period would be chosen with hindsight, which is not what out-of-sample skill means. Write n for the number of test days. Realised variance is recovered from the target by undoing the normalisation at the date the target carries it, v<sub>t</sub> = exp(y<sub>t</sub>) M<sub>t+h</sub> = &sigma;&sup2;<sub>YZ,t+h</sub>. A forecaster at t does not know M<sub>t+h</sub>, so the matching forecast can only use the median they do have, w<sub>t</sub> = &gamma;<sub>t</sub> exp(f<sub>t</sub>) M<sub>t</sub>, which carries the median's h-day drift as forecast error rather than hiding it. The three losses are</p>
+
+<p class="eq">R&sup2; = 1 &minus; &sum;<sub>t</sub> ( y<sub>t</sub> &minus; f<sub>t</sub> )&sup2; &divide; &sum;<sub>t</sub> ( y<sub>t</sub> &minus; b<sub>t</sub> )&sup2;,<span class="n">(6)</span></p>
+
+<p class="eq">QLIKE = (1/n) &sum;<sub>t</sub> [ v<sub>t</sub>/w<sub>t</sub> &minus; log( v<sub>t</sub>/w<sub>t</sub> ) &minus; 1 ],<span class="n">(7)</span></p>
+
+<p class="eq">MSE<sub>var</sub> = (1/n) &sum;<sub>t</sub> ( v<sub>t</sub> &minus; w<sub>t</sub> )&sup2;,&nbsp;&nbsp;&nbsp;&nbsp; &gamma;<sub>t</sub> = (1 / |T<sub>&delta;</sub>(t)|) &sum;<sub>u &isin; T<sub>&delta;</sub>(t)</sub> exp( y<sub>u</sub> &minus; f<sub>u</sub> ),<span class="n">(8)</span></p>
+
+<p>where &gamma;<sub>t</sub> is Duan's smearing factor (1983), estimated from the same delayed training window at each refit. Skill under QLIKE and MSE<sub>var</sub> is defined as in (6), one minus the model's loss over the benchmark's, so all three columns are shares of a benchmark loss removed and are read the same way. That sentence is only true if the benchmark is carried onto each scale the way a model forecast is, and it is: exponentiate, apply its own smearing factor &gamma;<sup>b</sup><sub>t</sub> estimated on the same resolved labels, and multiply by the median the forecaster holds, so the benchmark's natural-scale forecast is &gamma;<sup>b</sup><sub>t</sub> exp(b<sub>t</sub>) M<sub>t</sub> = M<sub>t</sub> &middot; mean<sub>u</sub> exp(y<sub>u</sub>). It is worth saying precisely what that object is, because an earlier version of this paper said it wrongly. Since y is a <em>normalised</em> log variance, mean<sub>u</sub> exp(y<sub>u</sub>) is the trailing mean of variance <em>over its own median</em> and not the trailing mean of variance: on this panel the two differ by 62.8% of the mean level and correlate 0.35. The reconstructed benchmark is the one reported here, because it is the same forecaster the other two columns use and is what makes the sentence above true; a benchmark built directly from resolved natural variances would be a different forecaster, and Section S25 of the Internet Appendix scores both so the choice is visible. The rate is identical under either, to the decimal place, because the benchmark cancels from a ratio of skill differences. Leaving the benchmark unsmeared while the models are smeared would deny it a correction they receive, inflate its loss, and overstate skill on both variance-scale columns; giving it the median at t + h while the model only holds the median at t would do the reverse, and an audit found this paper doing the second. Of the three, R&sup2; in (6) is the paper's headline and is <em>not</em> proxy-robust; QLIKE in (7) is, and Part 0 of the script behind this section shows it exactly rather than by argument, computing QLIKE on a variance and on that variance over a median and getting the same number to ten decimal places; and MSE<sub>var</sub> in (8) is Patton's MSE on the variance scale and is also robust. An earlier version of this paper computed MSE<sub>var</sub> on the median-normalised scale while calling it Patton's MSE; Section S25 of the Internet Appendix reports what that cost, which reached 29 points of the rate. Every MSE<sub>var</sub> figure in this paper is the natural-scale one defined above; Section S25 of the Internet Appendix reports both columns and the gap between them. The smearing factor is there because exp() of a log forecast is median-unbiased, not mean-unbiased, and squared error on the variance scale punishes exactly that, so the reconstruction needs the correction, not the raw exponential. Where conclusions differ across losses we give weight to what both proxy-robust losses support; where one of them cannot resolve a row, we rest no claim on it and say so where that happens.</p>
+
+<h3>4.5 The substitution rate</h3>
+<p>Write S(&delta;) for skill at delay &delta; under any one of (6), (7) or (8): the share of the benchmark's loss that a model removes. S<sub>own</sub>(&delta;) is the skill of the model holding only the domestic block, &delta; days stale; S<sub>alt</sub>(&delta;) is the skill of the same model with a candidate substitute added. Delay costs S<sub>own</sub>(0) &minus; S<sub>own</sub>(&delta;); the substitute returns S<sub>alt</sub>(&delta;) &minus; S<sub>own</sub>(&delta;). The substitution rate is their ratio,</p>
+<p class="eq">R(&delta;) = [ S<sub>alt</sub>(&delta;) &minus; S<sub>own</sub>(&delta;) ] &divide; [ S<sub>own</sub>(0) &minus; S<sub>own</sub>(&delta;) ].<span class="n">(9)</span></p>
+<p>It has no units, so it can be compared across loss functions, across markets, and across candidates. One word in the title needs settling here, because R(&delta;) is a share of forecast loss and not an amount of money. When this paper says a trade can be <i>priced</i>, it means that the two things being compared can be put on one ruler and that the ruler has a zero and a natural restoration reference point at 100%: a data feed and an options subscription can be ranked against each other, a rate near zero says the purchase is worthless, and a rate above 100% says the substitute supplies information the fresh domestic-history model never had. The reference point is not a mathematical ceiling on R(&delta;), and Section 6 reports values above it. Converting that into a currency needs a decision problem the holder supplies, a value at risk or a capital buffer or a volatility target, and Section 11 names it as the obvious next study rather than guessing at one here. What the paper does offer in a practitioner's own units is the clock of Section 9: the same recovery read as the age of a mark. One caution, which Section 7 will need: the measure assumes the substitute is <em>restoring</em> something delay destroyed. A source that also carries information the domestic history never had can exceed 100%, and when it does, the ratio has stopped answering the question it was built for. The denominator can fail in the other direction too: where delay costs a forecaster little, S<sub>own</sub>(0) &minus; S<sub>own</sub>(&delta;) approaches zero and the ratio is weakly identified, so a uniformly valid confidence procedure must be free to return an unbounded set (Dufour 1997). The published intervals are a bootstrap of the whole ratio, and each is checked by inverting a HAC t-test after Fieller (1954), which is free to return a bounded interval, a union of two half-lines or the whole line according to what the data support. Section 4.6 gives a construction that stays honest there, and Section S5 of the Internet Appendix applies it to the state where the risk is greatest. On this sample the denominator never gets close enough for the pathology to bite, but it is a property of the measure itself, and anyone reusing R(&delta;) on a series where delay does little damage should check it rather than assume it.</p>
+
+<h3>4.6 Inference for a ratio whose denominator can vanish</h3>
+<p>The substitution rate is a ratio, and Section S2 of the Internet Appendix reports that inverting a HAC t-test after Fieller leaves every published interval standing. This is how that was computed, and why it was not the first answer we got. Fieller's theorem (1954) inverts a t-test on the linear combination num &minus; R&middot;den, which is zero at the true rate, and solves the resulting quadratic for the set of rates not rejected. When the denominator is well separated from zero the solution is an ordinary interval close to the delta-method one. When it is not, the quadratic's leading coefficient changes sign and the confidence set is correctly a union of two half-lines, or the whole line: an honest statement that the data do not pin the ratio down, and one a percentile bootstrap cannot make. That is not a defect of the construction: under weak identification a uniformly valid confidence procedure must permit unbounded sets (Dufour 1997), and the asymptotic Fieller-type inversion used here is one standard construction with that property rather than the only one. It is asymptotic, since it uses an estimated HAC covariance and normal critical values. We have met the symptom in this project without naming it, in an interval of [&minus;154, 50] at one point, and treated it as a nuisance when it is an identification problem. Two things about the calculation are worth recording. The variances must be HAC, with the same Bartlett kernel used in Section S2 of the Internet Appendix, because the five-day targets overlap: the first version used iid variances and returned intervals materially <em>narrower</em> than the block bootstrap at every delay, which was a warning sign given the strong positive serial dependence measured in the overlapping-target loss differentials, and was the only sign that anything was wrong. Overlap invalidates independence-based inference generally; whether iid standard errors come out smaller depends on the signs and magnitudes of the serial covariances, so the narrowing was evidence rather than proof. And &delta; = 0 is absent from the comparison throughout, because there the denominator is identically zero by construction, the one delay at which the ratio does not exist at all, rather than being merely hard to pin down.</p>
+
+<h2 class="pb">5. What breadth recovers</h2>
+<p>The test window runs from May 2007 to September 2026, 4,862 days.</p>
+<table>
+<caption><b>Table 2.</b> Out-of-sample skill against a trailing mean of already-resolved outcomes, and the substitution rate under each loss. Skill is the fraction of benchmark loss removed, so the two pairs are comparable. The benchmark is one forecaster on both scales: it forecasts that trailing mean on the log target, and on the variance scale it is exponentiated using its own smearing factor and reconstructed using the median available at the forecast origin. That is not the trailing mean of natural variance, and Section S25 gives the size of the difference. Intervals bootstrap the whole ratio, recomputing numerator and denominator on the same resampled days. R&sup2; is on the log scale and is not proxy-robust; QLIKE is. This table is computed on the target-dated definition of Section 4.2, as the equity-result tables are and so reads 72% at eleven weeks where the abstract&rsquo;s implementable figure is 71%; the two differ by at most a point at every delay.</caption>
+<thead><tr class="toprule"><th>&delta;</th><th>R&sup2; own</th><th>R&sup2; cross</th><th>R(&delta;) on R&sup2;</th><th>QLIKE skill own</th><th>QLIKE skill cross</th><th>R(&delta;) on QLIKE</th></tr></thead>
+<tbody>
+<tr><td>0</td><td>0.5191</td><td>0.5092</td><td>n/a</td><td>0.6190</td><td>0.6064</td><td>n/a</td></tr>
+<tr><td>1</td><td>0.4741</td><td>0.4735</td><td>&minus;1% [&minus;33, 29]</td><td>0.5724</td><td>0.5703</td><td>&minus;4% [&minus;47, 35]</td></tr>
+<tr><td>3</td><td>0.4098</td><td>0.4495</td><td>36% [15, 55]</td><td>0.5001</td><td>0.5478</td><td>40% [13, 64]</td></tr>
+<tr><td>5</td><td>0.3641</td><td>0.4438</td><td>51% [34, 67]</td><td>0.4426</td><td>0.5420</td><td>56% [34, 75]</td></tr>
+<tr><td>8</td><td>0.3114</td><td>0.4351</td><td>60% [44, 72]</td><td>0.3655</td><td>0.5325</td><td>66% [47, 80]</td></tr>
+<tr><td>13</td><td>0.2336</td><td>0.4155</td><td>64% [50, 74]</td><td>0.2263</td><td>0.5127</td><td>73% [55, 84]</td></tr>
+<tr><td>21</td><td>0.1482</td><td>0.3981</td><td>67% [54, 77]</td><td>0.0936</td><td>0.4977</td><td>77% [61, 87]</td></tr>
+<tr><td>34</td><td>0.0794</td><td>0.3863</td><td>70% [58, 79]</td><td>−0.0118</td><td>0.4910</td><td>80% [65, 88]</td></tr>
+<tr class="botrule"><td>55</td><td>0.0070</td><td>0.3736</td><td>72% [60, 81]</td><td>−0.0477</td><td>0.4857</td><td>80% [66, 89]</td></tr>
+</tbody>
+</table>
+
+<p>Read the table down a column and then across. The first column is what a forecaster loses to delay alone: R&sup2; on the domestic block falls from 0.5191 at zero delay to 0.0070 at eleven weeks, a loss of 99% of the skill it began with, so by then a stale mark is worth about what a trailing mean of already-resolved outcomes is worth and no more. The second column is the same forecaster with the foreign cross-section added, and it barely moves, from 0.5092 to 0.3736, because the peers are current whatever the domestic delay is. The third column is the ratio of the two gaps, which is R(&delta;) in (9): 36% of the delay's damage repaired at three days, 51% at a week, 72% at eleven weeks. The two QLIKE columns repeat the exercise on the proxy-robust loss and reach the same shape with larger numbers, 40% to 80%, so the result is not an artefact of the scale the headline is quoted on. The two losses do not agree about everything, and the disagreement is worth naming rather than leaving for a reader to find. Under R&sup2; the stale domestic model is still marginally above the benchmark at the longest delays, 0.0794 at &delta; = 34 and 0.0070 at &delta; = 55. Under QLIKE it is below it, &minus;0.0118 and &minus;0.0477. Both statements are about the same forecasts and the same benchmark; what differs is which errors the loss punishes. Squared error on logs is symmetric in the log and so forgiving of a forecast that is too low in variance terms, which is what a stale mark mostly is once volatility has moved; QLIKE punishes exactly that asymmetry, and it is the proxy-robust one. Where the two conflict we give weight to QLIKE, which here means the honest reading of the long end is the harsher one: a mark eleven weeks old is not merely worth about what a constant is worth, it is worth slightly less. The &delta; = 1 row is the one that does not fit the pattern, and it is the row that should not: at one day the domestic history is barely stale and there is almost nothing for the cross-section to put back, so the rate is indistinguishable from zero under both losses.</p>
+
+<p>One warning attaches to every figure in that third column before the paper goes further, and Section S5 of the Internet Appendix establishes it. An unconditional rate averages two states in which this mechanism behaves quite differently. In stressed markets it is 81% at eleven weeks with an interval of [74, 87], and it is 81% in each half of the sample taken separately: a well-determined, stable number. In calm markets the same quantity spans ninety points and cannot be pinned down at all, for a mechanical reason: where delay costs a forecaster almost nothing, the share of that cost repaired by anything has no stable value. Table 2's 72% is the average of a result and a non-result. We report it because it comes from the original specification, the one fixed before any alternative was run, and because the literature quotes unconditional rates, but the number a practitioner should carry is the conditional one in Table S4 of the Internet Appendix.</p>
+
+
+<figure>
+<svg viewBox="0 0 720 330" role="img" aria-label="Substitution rate rising to about 72 percent on R-squared and 81 percent on QLIKE, while the placebo stays near minus ten percent">
+<g stroke="#E4E8EE" stroke-width="1">
+<line x1="70" y1="260" x2="700" y2="260"/><line x1="70" y1="205" x2="700" y2="205"/>
+<line x1="70" y1="150" x2="700" y2="150"/><line x1="70" y1="95" x2="700" y2="95"/>
+<line x1="70" y1="40" x2="700" y2="40"/>
+</g>
+<g fill="#6B7280" font-family="DejaVu Sans Mono, monospace" font-size="10" text-anchor="end">
+<text x="60" y="264">0%</text><text x="60" y="209">25%</text><text x="60" y="154">50%</text>
+<text x="60" y="99">75%</text><text x="60" y="44">100%</text>
+</g>
+<path d="M81.3,262.9 L103.8,180.1 L126.4,146.9 L160.2,129.1 L216.5,119.9 L306.7,111.7 L453.3,106.4 L690,102.5"
+      fill="none" stroke="#1A5FA8" stroke-width="2.6" stroke-linejoin="round"/>
+<path d="M103.8,165.4 L126.4,130.2 L160.2,110.4 L216.5,97.2 L306.7,88.4 L453.3,81.8 L690,81.8"
+      fill="none" stroke="#9A5210" stroke-dasharray="7 3" stroke-width="2.2" stroke-linejoin="round"/>
+<path d="M126.4,285.5 L306.7,284.9 L690,277.6"
+      fill="none" stroke="#8C2F39" stroke-dasharray="1.5 2.5" stroke-width="2" stroke-linejoin="round"/>
+<g fill="#1A5FA8"><circle cx="126.4" cy="146.9" r="3"/><circle cx="216.5" cy="119.9" r="3"/><circle cx="306.7" cy="111.7" r="3"/><circle cx="690" cy="102.5" r="3"/></g>
+<g fill="#9A5210"><circle cx="126.4" cy="130.2" r="3"/><circle cx="216.5" cy="97.2" r="3"/><circle cx="690" cy="81.8" r="3"/></g>
+<g fill="#8C2F39"><circle cx="126.4" cy="285.5" r="3"/><circle cx="306.7" cy="284.9" r="3"/><circle cx="690" cy="277.6" r="3"/></g>
+<g font-family="DejaVu Sans Mono, monospace" font-size="10">
+<line x1="392" y1="186" x2="414" y2="186" stroke="#9A5210" stroke-dasharray="7 3" stroke-width="2.2"/>
+<text x="422" y="189" fill="#9A5210">rate under QLIKE</text>
+<line x1="392" y1="204" x2="414" y2="204" stroke="#1A5FA8" stroke-width="2.6"/>
+<text x="422" y="207" fill="#1A5FA8">rate under R&#178;</text>
+<line x1="392" y1="222" x2="414" y2="222" stroke="#8C2F39" stroke-dasharray="1.5 2.5" stroke-width="2"/>
+<text x="422" y="225" fill="#8C2F39">placebo: foreign block shifted five years</text>
+</g>
+<line x1="70" y1="260" x2="700" y2="260" stroke="#999" stroke-width="0.8" stroke-dasharray="3 3"/>
+<line x1="70" y1="300" x2="700" y2="300" stroke="#333" stroke-width="1.2"/>
+<g fill="#6B7280" font-family="DejaVu Sans Mono, monospace" font-size="10" text-anchor="middle">
+<text x="70" y="316">0</text><text x="182.7" y="316">10</text><text x="295.4" y="316">20</text>
+<text x="408.1" y="316">30</text><text x="520.8" y="316">40</text><text x="690" y="316">55</text>
+</g>
+<text x="385" y="328" fill="#4B5462" font-family="TeX Gyre Pagella, serif" font-size="11" text-anchor="middle">domestic information delay &delta;, in trading days</text>
+</svg>
+<figcaption><b>Figure 2.</b> Breadth buys back almost nothing at one day, half the loss within a week, and around three-quarters by eleven weeks. The placebo, described in Section S2 of the Internet Appendix, keeps the same foreign series but destroys their alignment with the target, and the effect disappears.</figcaption>
+</figure>
+
+<p>Three things stand out. At one day the rate is indistinguishable from zero, as it should be: the S&amp;P's own recent history is still the best available description of the S&amp;P, and the foreign block we selected produces no measurable net improvement on it. By eleven weeks the picture has inverted. The domestic model's out-of-sample R&sup2; has fallen to 0.0070, so a mark eleven weeks old is worth no more than a trailing mean of outcomes that had already resolved, while the cross-sectional model still holds 0.3736, about 73% of what was available with fully current data. And between those extremes the rate climbs steeply and then slows, which raises the obvious question of where it stops.</p>
+
+<p>Section 4 promised a third loss, and it belongs here because it is the robust one that most resembles the headline. Under squared error on the natural variance scale the substitution rate reads 74% at five days and 80% at eleven weeks, against 51% and 72% on the log scale. Both robust losses therefore put the rate above the headline, and they now agree with each other closely: QLIKE also reads 80% at eleven weeks. That agreement is worth more than either number, because it is what the log-scale headline was always being asked to survive. The variance-scale intervals remain wider at short delays, [11, 114] at five days, because the denominator there is small and squared error on raw variance is dominated by a handful of crisis days; that is why QLIKE, not MSE, is the robust loss we lean on.</p>
+
+<h2 class="pb">6. The limits of breadth</h2>
+<p>The rate flattens near three-quarters instead of approaching one, and the reason is not subtle once measured. At very large delay the domestic model retains little usable out-of-sample skill, so the cross-sectional model is working almost entirely from foreign information. Its ceiling is therefore whatever share of the S&amp;P's volatility the rest of the world can see.</p>
+<p>We measured that share directly. Regressing the S&amp;P's decision variable on the six foreign closes of the same day gives R&sup2; = 0.695. Roughly 30% of the S&amp;P's current volatility state is not linearly spanned by those six series in this sample. We resist calling that share genuinely local, because the regression does not show it: a non-linear function of the same closes, or a wider cross-section, could reach some of it. What the number does bound is how much a LINEAR model of THESE markets can see, the ceiling the fitted model is working against. Predicting five days ahead from foreign closes alone gives R&sup2; = 0.399 against 0.498 from domestic history, or 80% of it, which brackets the 72% the fitted model achieves. The gap between the in-sample bound and the fitted figure is consistent with the price of estimating parameters instead of knowing them, and Section 6 measures a cost of the right order; the design does not establish that estimation is the whole of it.</p>
+<p>The cross-section is also nearly one-dimensional. The first principal component of the six foreign volatility series accounts for 66.5% of their variation and the first two for 76.9%. Six markets are close to one global volatility factor plus idiosyncratic noise, which carries a practical implication: an eighth or a ninth correlated index may add relatively little under this linear specification, because what a linear model of these markets can see is set by how much of the S&amp;P is global; counting more global series does not move it.</p>
+<p>That leaves the other half of the sentence above: what it costs to estimate parameters instead of knowing them. We had treated this as a residual, and it is large enough to deserve a number. Breadth is not free. Seven foreign coefficients must be estimated from a finite window, and the estimation is paid for whether or not the coefficients turn out to matter.</p>
+<p>Two measurements agree on the size of the bill. The first varies the number of peers at &delta; = 0 and reads off the slope: the penalty is a straight line through the origin at &minus;0.0013 of R&sup2; per market, which accounts for 98% of the variation across peer counts and implies &minus;0.0096 for the full seven. The second replaces the foreign block with AR(1) surrogates fitted to each peer, drawing innovations from a multivariate normal with the peers' own contemporaneous covariance so the surrogate cross-section is as correlated as the real one, while carrying no information about the target at any lag. Averaged over one hundred draws this gives &minus;0.0131 at &delta; = 0, with a Monte Carlo standard error of 0.0003, an order of magnitude below the sampling interval that follows and therefore not the uncertainty that binds. The two methods differ by 0.003, which agrees on the magnitude without being a formal match, and we do not read a third decimal place from either. About one point of R&sup2; is the price of carrying the cross-section. Section 6.1 measures it a third time, with a generator that fits nothing at all, and gets the same answer.</p>
+
+<p>Two things follow. The first settles a reading we had left open. At &delta; = 0 the measured difference is &minus;0.0099 and the cost is &minus;0.0126, so the gross content of the foreign block is +0.0027. Gross is a difference of two estimated quantities, so we bootstrap it, resampling test days in moving blocks and recomputing the measured difference and the surrogate cost on the same days so that their errors stay correlated. The interval is [−0.0064, +0.0116]: indistinguishable from zero, and bounded above at about one point of R&sup2;. Foreign markets are not misleading about the current state of the S&amp;P. Whatever they know about it that fully current domestic data does not already carry is too small for this design to detect, and the negative sign was the bill, not the information.</p>
+<p>The second is that the bill grows with delay, from &minus;0.013 at &delta; = 0 to &minus;0.054 at &delta; = 21. This is a property of the fitting procedure: as domestic information goes stale the fit weakens, the validation step selects a looser penalty, and the seven regressors are given more rope. Separating the two makes the gross and net readings diverge in a way that matters for anyone deciding whether to build this.</p>
+
+<table>
+<caption><b>Table 3.</b> What the cross-section knows, and what a forecaster keeps after paying to estimate it. Cost from AR(1) surrogates, one hundred draws, innovations carrying the peers' own cross-market covariance. Gross is bootstrapped in the text: indistinguishable from zero at &delta; = 0, marginal at &delta; = 1, positive from &delta; = 2.</caption>
+<thead><tr class="toprule"><th>&delta;</th><th>0</th><th>1</th><th>2</th><th>3</th><th>5</th><th>8</th><th>13</th><th>21</th></tr></thead>
+<tbody>
+<tr><td>Net &Delta;R&sup2; (measured)</td><td>&minus;0.0099</td><td>&minus;0.0006</td><td>+0.0180</td><td>+0.0397</td><td>+0.0797</td><td>+0.1237</td><td>+0.1819</td><td>+0.2499</td></tr>
+<tr><td>Cost of breadth</td><td>&minus;0.0126</td><td>&minus;0.0149</td><td>&minus;0.0172</td><td>&minus;0.0193</td><td>&minus;0.0234</td><td>&minus;0.0294</td><td>&minus;0.0392</td><td>&minus;0.0514</td></tr>
+<tr class="botrule"><td>Gross &Delta;R&sup2;</td><td>+0.0027</td><td>+0.0143</td><td>+0.0353</td><td>+0.0590</td><td>+0.1031</td><td>+0.1530</td><td>+0.2211</td><td>+0.3013</td></tr>
+</tbody>
+</table>
+<p>Gross content clears zero at two days, [+0.0165, +0.0534], and the net figure crosses there too. At one day the gross interval is [+0.0003, +0.0279], which excludes zero by a margin of 0.0003, close enough to the boundary that we report it and decline to build on it. An earlier draft, using ten surrogate draws instead of a hundred, put that interval across zero and we withdrew the reading entirely; a better cost estimate moved it back. A band in which the foreign block holds something real that cannot yet pay for its own estimation is therefore consistent with these data at one day, and no more than that. At &delta; = 21 estimation consumes 17% of what the cross-section knows, +0.3013 gross against +0.2499 net. That gap is not a law of nature. It is the cost of a particular estimator, and a cheaper one should recover part of it: a factor representation of the foreign block instead of seven free coefficients, which the principal-component result above already suggests would lose little. Section 6.1 fits that compressed representation directly.</p>
+
+<h3>6.1 Fitting the compressed representation directly</h3>
+<p>Two facts above sit next to each other without being joined. The foreign block is nearly one-dimensional, its first principal component accounting for 66.5% of the variation and its first two for 76.9%. Carrying seven regressors costs about a point of R&sup2; at &delta; = 0 and more as the delay grows, measured by replacing the block with surrogates that carry no signal. It is natural to conclude that a cheaper parameterisation would recover part of that cost. That is an inference from a hypothetical generator, not a demonstration, and the demonstration is cheap.</p>
+
+<p>So compress the block and compare. The eigenvectors are recomputed at every refit from the covariance of the training window alone, on columns standardised with training statistics alone, with each eigenvector's sign pinned so the factor does not flip arbitrarily between refits. A basis computed once on the whole sample would leak: &ldquo;the first component of the foreign block&rdquo; is not something a forecaster in 2009 could have written down from 2026 data. An equal-weighted mean of the seven series is included as the compression that requires no estimation at all.</p>
+
+<table>
+<caption><b>Table 4.</b> Out-of-sample R&sup2; for four representations of the same seven foreign series, against the domestic-only model. PC1 and PC2 use one and two real-time global factors; FULL is the seven-coefficient model the rest of the paper uses. The last columns test PC1 against FULL, which are non-nested, by Giacomini-White.</caption>
+<thead><tr class="toprule"><th>&delta;</th><th>domestic</th><th>+ mean</th><th>+ PC1</th><th>+ PC2</th><th>+ all seven</th><th>PC1 &minus; all seven</th><th>GW z</th></tr></thead>
+<tbody>
+<tr><td>0</td><td>0.5191</td><td>0.5203</td><td>0.5204</td><td>0.5179</td><td>0.5092</td><td>+0.0112</td><td>2.66</td></tr>
+<tr><td>3</td><td>0.4098</td><td>0.4603</td><td>0.4614</td><td>0.4588</td><td>0.4495</td><td>+0.0119</td><td>1.80</td></tr>
+<tr><td>5</td><td>0.3641</td><td>0.4541</td><td>0.4556</td><td>0.4532</td><td>0.4438</td><td>+0.0118</td><td>1.72</td></tr>
+<tr><td>13</td><td>0.2336</td><td>0.4249</td><td>0.4275</td><td>0.4256</td><td>0.4155</td><td>+0.0120</td><td>1.51</td></tr>
+<tr><td>21</td><td>0.1482</td><td>0.4091</td><td>0.4122</td><td>0.4092</td><td>0.3981</td><td>+0.0141</td><td>1.56</td></tr>
+<tr><td>55</td><td>0.0070</td><td>0.3876</td><td>0.3922</td><td>0.3889</td><td>0.3736</td><td>+0.0186</td><td>1.57</td></tr>
+</tbody>
+</table>
+
+<p>One real-time factor beats all seven series at every delay, by 0.012 to 0.019 of R&sup2;, and the margin grows with delay exactly as the surrogate cost does. The gain reaches conventional significance at &delta; = 0 and &delta; = 55 and falls short of it in between, so the pattern is more convincing than any single entry. The real-time first component explains 66.6% of the block's variance averaged over refits, against 66.5% in the full-sample figure quoted above, which says the basis is stable enough to be estimated as you go.</p>
+
+<p>Reporting a new preferred specification on the log scale alone would be inconsistent with Section S2 of the Internet Appendix, which exists to establish that the scale changes the answer. Under QLIKE, the proxy-robust loss, one factor wins at every delay, exactly as it does under R&sup2;. Under squared error on the variance scale a compression wins at five of six delays; the exception is &delta; = 0, where the seven-regressor model scores lowest. That loss is dominated by a handful of crisis days, so Section S2 of the Internet Appendix reports its intervals as uninformative at short delays, so the exception is a statement about tails. Where the three losses appear to disagree elsewhere they are choosing between one factor and two, which differ by thousandths and are not a disagreement about anything.</p>
+
+<p>The compression also raises the substitution rate, so it is worth stating plainly which number the paper claims. Recomputed with the same full-ratio bootstrap as the headline, R(55) is 71.6% [60.2, 80.4] for the seven-regressor model, 74.3% [64.4, 82.7] for the equal-weighted mean and 75.2% [65.4, 83.5] for one factor. Every compressed estimate sits inside the interval the seven-regressor model already carries, so the two are not distinguishable and we do not replace the headline with the larger figure. We report 72% as the original specification's full-block estimate, note the compressed estimate beside it, and say plainly that the difference is inside the noise of both. That leaves four specifications doing four jobs, and naming them settles which number answers which question. The equal-weighted mean is the <i>practical</i> model: it needs no estimated eigenvector, it is the cheapest thing a desk can build, and it recovers 74.3%. The seven-regressor block is the <i>original benchmark</i>, kept because every conditional and robustness result in this paper is computed inside it, and it recovers 72%. The real-time factor is a <i>mechanism test</i> rather than a recommendation, because it locates the recovery in one component. And the state-space filter of Section 10 is a <i>structural alternative</i>, reported and not adopted. The paper's headline is therefore the conservative member of that set, and a practitioner following Section S30 should expect the 74% to 75% band rather than the 71% the abstract quotes. That gap is a property of the paper's own caution and is stated here rather than left for a reader to discover.</p>
+
+<p>Two qualifications, and the first is the more important. The equal-weighted mean captures nearly all of the gain: PC1 beats it, but by 0.001 to 0.005. What is being bought is the decision to compress, not the machinery of compressing, and a practitioner should take the average and skip the eigenvector. Second, this changes the &delta; = 0 row. The seven-coefficient model scores 0.5092 against the domestic model's 0.5191, the small negative this paper has declined to interpret, while PC1 scores 0.5204, above it. We do not claim the cross-section helps at &delta; = 0 on that basis: it is a difference of 0.0013 with no interval attached, and reading an uninterval-ed difference as a finding is the specific error this paper has made and corrected three times. What the row supports is narrower and sufficient, that the negative at &delta; = 0 belongs to the parameterisation and not to the information.</p>
+
+<p>Both measurements of that bill are relative to a generator we chose, and the surrogate one preserves first-order persistence and contemporaneous covariance and nothing else: not heavy tails, not volatility-of-volatility, not crisis clustering. Section S21 of the Internet Appendix measures the bill again with a generator that fits nothing at all, the real foreign block moved circularly through the sample so that every marginal and every cluster is the real one and only the alignment with the target is destroyed. The unfitted generator returns the fitted generator's number, so the objection does not survive the test, and Section S21 records the two ways we got that shift wrong before getting it right.</p>
+
+<p>The recovery lives entirely in the leading component of the foreign block, with the six orthogonal components worth less than nothing. Section S27 of the Internet Appendix gives that decomposition.</p>
+
+<h2 class="pb">7. The race against implied volatility</h2>
+<p>The objection this section answers is the one Section 2 names as unavoidable: if a forecaster whose domestic data is &delta; days stale can see today's VIX, why would they need Tokyo? Implied volatility is forward-looking, it never goes stale, and both Korkusuz (2025) and Buncic and Gisler (2016) report that much of what looks like a cross-market effect is attributable to it. So the two candidates go into the same walk-forward, on the same labels, with the same estimator, and Section S28 of the Internet Appendix gives the race in full. Three results come out of it and the paper depends on all three.</p>
+
+<p><i>Implied volatility wins, and it wins by a lot.</i> A forecaster holding VIX and VDAX-NEW loses almost nothing to delay at all: R&sup2; falls from 0.5547 at zero delay to 0.5266 at eleven weeks, against 0.5191 to 0.0070 for the domestic block alone. Where the cross-section repairs 72% of the delay's damage, implied volatility repairs essentially all of it. That is not mysterious. VIX is a risk-neutral expectation of S&amp;P variance over the coming month, priced continuously by people who are not waiting for anyone's mark, and a stale forecaster who can read it is not really stale about the quantity they care about.</p>
+
+<p><i>Given implied volatility, the foreign block adds nothing this sample can detect.</i> The increment from adding the seven foreign series on top of the options block is negative at every delay, and Section 6's estimation-cost argument explains the sign: seven coefficients cost one to five points of R&sup2; on this sample, and that bill is the whole of the negative. Replacing the foreign series with AR(1) surrogates recovers the same penalty from a block that carries no information by construction, so what looks like harm is the price of the parameters rather than a property of the peers. Section S28 makes the point sharper by adding <em>one</em> compressed regressor instead of seven, which removes the apparent harm and reveals nothing underneath it. What that licenses is a bounded statement rather than an equality, and this paper makes it in the bounded form throughout. Net of the estimation cost the block is significantly negative; gross of it the block's content is not distinguishable from zero, and the least favourable of the four intervals Section S28 reports, [&minus;0.004, +0.019] at &delta; = 21, rules out a gross gain above about 0.019 of R&sup2; while leaving anything smaller open. &ldquo;Redundant&rdquo; is used in this paper to mean exactly that and never to mean equal: a forecaster holding the options market gains nothing this sample can detect by adding seven foreign closes, and pays for them.</p>
+
+<p><i>So the scope condition is the paper's result, not its retreat.</i> Where a liquid options market exists on the asset itself, breadth is redundant and this paper's recommendation is to buy the options market. That is a conclusion about the S&amp;P, an asset chosen precisely because its truth is observable, and the property that makes it observable is the same one that brings an option chain with it. Section 8 is where that stops being a limitation and starts being testable, because the case the paper opens with is an asset with no chain at all.</p>
+
+<p>Two qualifications belong with the result and both are in Section S28. The specification here lags VIX a full day, which discards information the live index carried, because its printed close is stamped fifteen minutes after the S&amp;P's and is therefore inadmissible under Section 3's own rule; the same-day close moves the race further towards options, so the admissible choice is the conservative one. And VIX is a thirty-calendar-day index racing a five-trading-day target, which are not the same unit. Thirty calendar days is about twenty-one trading days, so the instrument is measured over a horizon about four times the length of the thing it forecasts; the factor of six an earlier draft quoted came from dividing calendar days by trading days. Cboe publishes a nearer nine-day index, near-matched rather than exactly matched since nine calendar days is about six trading days, and Section S24 runs the race again with it: the horizon matters by more than we expected, and the conclusion of this section does not.</p>
+<h2 class="pb">8. The illiquid asset</h2>
+<p>Everything to this point is measured on the S&amp;P 500, and Section 7 has just established that this is the one asset class where the paper's own answer says breadth does not matter. The case Section 1 opens with is the opposite one: a quarterly-marked private book, an appraised property portfolio, a fund reporting a lagged net asset value. Nobody writes options on those. If the substitution rate is a fact about liquid equity indices then the paper has measured something real and recommended it to the wrong reader, and that is the largest thing that could be wrong with it.</p>
+
+<p>So it is measured rather than argued. Section S31 of the Internet Appendix runs the whole design on twenty metropolitan Case-Shiller house price indices, monthly from 1987 to 2026: smoothed by construction, no intraday range, no option chain on any of them, and a genuine cross-section of twenty marks published on the same day. Delay is not the two-month publication lag every metro shares, which is common and therefore cancels; it is the same quantity as everywhere else in this paper, the amount by which one owner's mark is staler than the cross-section it sits in. An owner whose book is appraised on a cycle running behind the published index for the others is the concrete case, and three months is one quarterly appraisal cycle.</p>
+
+<p>Two coordinates are carried separately, because a monthly index has no intraday range and Yang-Zhang cannot be computed on it. One is next month's log return, which is the quantity an owner cares about and is not this paper's target. The other is the log of trailing twelve-month realised variance over its own five-year median, which is <em>backward-looking</em> where this paper's target is forward-looking: forecasting next month's value of it means forecasting something that overlaps the current window in eleven of twelve months, so an own-only R&sup2; near 0.95 is arithmetic rather than skill, and the small denominator that follows is why the rates on that coordinate are lower. The return target is the closer analogue.</p>
+
+<p>At one quarterly appraisal cycle of extra staleness the rate is <b>67.8% [45, 92]</b> on the return target, positive on all fourteen metros with a full sample, and 19.0% [6, 31] on the backward-looking variance coordinate, positive on thirteen of fourteen. Both exclude zero. The shape of Table 2 survives too: at one month the rate cannot be told from zero on either coordinate, exactly as it cannot at one day on the S&amp;P, and it climbs from there.</p>
+
+<p>Two objections are answered in Section S31 rather than deferred. The index is a three-month moving average, so consecutive monthly changes share transaction months and a smoother could manufacture a rate; read every third month on each phase of the quarterly grid, where the artefact explanation predicts zero, the pooled rate is 57% at one quarter of staleness and positive in 35 of 42 metro-phases. And these series carry a large shared seasonal, so a fresh peer could be revealing the calendar rather than the market; a placebo peer built to carry the seasonal and nothing else earns 4.2% where the real cross-section earns 73.0%. That is a test which could have convicted the design and did not.</p>
+
+<p>What this settles is narrow and sufficient. The central claim is not a fact about liquid equity indices. It holds on an asset class that is marked rather than traded, that no options market covers, and whose marks are smoothed by the same mechanism that makes appraisal-based valuation slow. What it does not settle is the case itself: nobody holds a Case-Shiller index, and an index is not a book. The argument has moved from an analogy to a measurement one step removed from the asset it is about, which is further than it was and not the whole way.</p>
+<h2 class="pb">9. Robustness and scope</h2>
+<p>The Internet Appendix examines the principal identified threats to each central claim. The
+Internet Appendix to this paper carries that work in full: eight alternative controls, a
+multiple-testing adjustment, a temporal split, a leakage check, a second estimator for
+the inference, and the two scope conditions that bound where the result holds, the option chain and coupling. This
+section states what those tests returned. It is deliberately short, because a reader who
+accepts the results does not need the working and a reader who does not should have it in
+front of them rather than summarised, which is why the working is a companion document
+rather than a paragraph.</p>
+
+<p><b>The measurement survives its own inference.</b> Giacomini-White on squared loss and
+on QLIKE, HAC-adjusted with a Bartlett kernel at the forty-lag bandwidth Section S13 measures,
+favours the cross-sectional model at every delay tested, with two-sided p below 0.01
+on squared loss throughout and between 0.010 and 0.034 on QLIKE. Clark-West, a second opinion rather than the test this paper relies on, agrees, with a caveat developed in the Internet Appendix
+that is the reason it is the second opinion and not the first. A placebo that keeps the
+foreign series but destroys their alignment with the target returns a rate of
+&minus;1% [&minus;33, 29], which is the number the design should return when there is
+nothing to find. Reality Check and SPA, admitting how many models were tried, leave the
+headline standing.</p>
+
+<p><b>It survives a stronger control than its own.</b> The domestic block this paper uses
+is not the best one available, so eight alternatives were built and priced as a set, with
+the choice made on own-only skill and stated before any rate was read. The rate at eleven
+weeks spans 60.8% to 74.4% across them and reads 67.5% against the strongest, a paired
+difference of &minus;4.1% [&minus;9.7, &minus;0.7] from the published figure. That is why
+this paper quotes 68% against the strongest control alongside its own 72%: the headline
+is not an artefact of a weak comparison, and the Internet Appendix shows what a ninth control
+would have to do to move it. It also isolates why that control is stronger, which is a result in its own right: the
+trailing-median normalisation of equation (2) is what puts eight markets on one scale
+and makes a cross-section possible at all, and it hides the level of volatility from
+every model in this paper. Restoring that level is worth more at long delays than the
+entire cross-section. The comparability the design buys is paid for in domestic
+information, and the price rises with the delay.</p>
+
+<p><b>It is a conditional result, not an average one.</b> Split by market state, the rate
+is 81% [74, 87] at eleven weeks in this sample's stressed markets, and identical in both
+halves of the sample, while in calm markets so little damage is done that neither the ratio nor the
+effective age can be pinned down. Asked in days instead of shares, on a construction with
+no denominator that can vanish, the calm cell is 7.3 times as wide relative to its own
+point as the stressed one. Table 2 is an average of the two and the conditional figures
+are the ones a reader should carry.</p>
+
+
+
+<figure>
+<svg viewBox="0 0 720 356" role="img" aria-label="Scatter of the substitution rate against coupling for eight target markets. The rate rises almost linearly with coupling, correlation +0.98, and the fitted line crosses zero near a coupling of 0.22, below which the two weakest targets both return negative rates.">
+<g stroke="#E4E8EE" stroke-width="1">
+<line x1="78" y1="268.0" x2="694" y2="268.0"/>
+<line x1="78" y1="227.7" x2="694" y2="227.7"/>
+<line x1="78" y1="187.3" x2="694" y2="187.3"/>
+<line x1="78" y1="147.0" x2="694" y2="147.0"/>
+<line x1="78" y1="106.7" x2="694" y2="106.7"/>
+<line x1="78" y1="66.3" x2="694" y2="66.3"/>
+<line x1="78" y1="26.0" x2="694" y2="26.0"/>
+</g>
+<g fill="#6B7280" font-family="DejaVu Sans Mono, monospace" font-size="10" text-anchor="end">
+<text x="70" y="271.4">-40%</text>
+<text x="70" y="231.1">-20%</text>
+<text x="70" y="190.7">0%</text>
+<text x="70" y="150.4">20%</text>
+<text x="70" y="110.1">40%</text>
+<text x="70" y="69.7">60%</text>
+<text x="70" y="29.4">80%</text>
+</g>
+<line x1="78" y1="187.3" x2="694" y2="187.3" stroke="#999" stroke-width="0.9" stroke-dasharray="3 3"/>
+<line x1="213.7" y1="26" x2="213.7" y2="268" stroke="#999" stroke-width="0.9" stroke-dasharray="3 3"/>
+<line x1="145.3" y1="268.0" x2="678.3" y2="30.4" stroke="#333" stroke-width="1.3" stroke-dasharray="6 4" opacity="0.6"/>
+<circle cx="635.5" cy="48.6" r="4.4" fill="#1A5FA8"/>
+<circle cx="595.3" cy="49.0" r="4.4" fill="#1A5FA8"/>
+<circle cx="579.7" cy="68.8" r="4.4" fill="#1A5FA8"/>
+<circle cx="558.8" cy="80.2" r="4.4" fill="#1A5FA8"/>
+<circle cx="552.0" cy="103.0" r="4.4" fill="#fff" stroke="#9A5210" stroke-width="2"/>
+<circle cx="532.7" cy="98.6" r="4.4" fill="#fff" stroke="#9A5210" stroke-width="2"/>
+<circle cx="332.8" cy="210.3" r="4.4" fill="#fff" stroke="#9A5210" stroke-width="2"/>
+<circle cx="153.7" cy="247.2" r="4.4" fill="#fff" stroke="#9A5210" stroke-width="2"/>
+<text x="644.5" y="62.6" fill="#6B7280" font-family="DejaVu Sans Mono, monospace" font-size="9.5" text-anchor="start">ASX 200</text>
+<text x="584.3" y="52.4" fill="#6B7280" font-family="DejaVu Sans Mono, monospace" font-size="9.5" text-anchor="end">Hang Seng</text>
+<text x="595.7" y="86.8" fill="#6B7280" font-family="DejaVu Sans Mono, monospace" font-size="9.5" text-anchor="start">Nikkei 225</text>
+<text x="549.8" y="72.2" fill="#6B7280" font-family="DejaVu Sans Mono, monospace" font-size="9.5" text-anchor="end">Nifty 50</text>
+<text x="532.7" y="118.6" fill="#6B7280" font-family="DejaVu Sans Mono, monospace" font-size="9.5" text-anchor="middle">FTSE Bursa KLCI</text>
+<text x="563.0" y="106.4" fill="#6B7280" font-family="DejaVu Sans Mono, monospace" font-size="9.5" text-anchor="start">IDX Composite</text>
+<text x="142.7" y="250.6" fill="#6B7280" font-family="DejaVu Sans Mono, monospace" font-size="9.5" text-anchor="end">KSE-100</text>
+<text x="343.8" y="213.7" fill="#6B7280" font-family="DejaVu Sans Mono, monospace" font-size="9.5" text-anchor="start">Colombo All-Share</text>
+<line x1="78" y1="268" x2="694" y2="268" stroke="#333" stroke-width="1.2"/>
+<line x1="78" y1="26" x2="78" y2="268" stroke="#333" stroke-width="1.2"/>
+<g fill="#6B7280" font-family="DejaVu Sans Mono, monospace" font-size="10" text-anchor="middle">
+<text x="109.3" y="284">-0.2</text>
+<text x="213.7" y="284">0.0</text>
+<text x="318.1" y="284">0.2</text>
+<text x="422.5" y="284">0.4</text>
+<text x="526.9" y="284">0.6</text>
+<text x="631.4" y="284">0.8</text>
+</g>
+<text x="386" y="302" fill="#6B7280" font-family="DejaVu Sans Mono, monospace" font-size="10" text-anchor="middle">coupling: the target's own correlation with the cross-section it is offered</text>
+<text transform="translate(22,147) rotate(-90)" fill="#6B7280" font-family="DejaVu Sans Mono, monospace" font-size="10" text-anchor="middle">R(breadth) at 55 days</text>
+<rect x="96" y="33" width="196" height="64" fill="#fff" opacity="0.94"/>
+<g font-family="DejaVu Sans Mono, monospace" font-size="10">
+<circle cx="112" cy="48" r="4.4" fill="#1A5FA8"/>
+<text x="124" y="51.4" fill="#6B7280">volatility index published</text>
+<circle cx="112" cy="65" r="4.4" fill="#fff" stroke="#9A5210" stroke-width="2"/>
+<text x="124" y="68.4" fill="#6B7280">none published</text>
+<line x1="105" y1="82" x2="119" y2="82" stroke="#333" stroke-width="1.3" stroke-dasharray="6 4" opacity="0.6"/>
+<text x="124" y="85.4" fill="#6B7280">least squares fit, r = +0.98</text>
+</g></svg>
+<figcaption><b>Figure 3.</b> The substitution rate against coupling, for the eight targets of Table S11 of the Internet Appendix. Coupling is the correlation between a target's own decision variable and the equal-weighted mean of the cross-section it is offered, measured on its own test days; the rate is at &delta; = 55. Filled markers are targets on which a volatility index is published and hollow markers those on which none is, and the relation runs through both groups, so what orders the rate is coupling rather than whether an options market exists. The fitted line crosses zero at a coupling of 0.22, but the two targets with negative rates sit at 0.23 and &minus;0.12, so the crossing locates the sign change to within one target and is not a threshold.</figcaption>
+</figure>
+<p><b>Two conditions bound where it holds, and both can be checked in advance.</b> The
+first is the option chain, which Sections 7 and 8 establish and this section does not
+repeat. The second is coupling, the target's own correlation with the cross-section it
+is offered. It is a screening statistic and not a calibration rule: it sorts targets into those breadth can help and those it cannot, and it does not return a rate.
+Across eight markets it tracks the substitution rate at +0.98, running from 0.81 down to
+&minus;0.12, and the figure above is that relation. Eight points will bear one claim here
+and not two, and Section S17 of the Internet Appendix separates them. The ordering is
+robust: the rank correlation is +0.98 as well, no single target moves the Pearson figure
+below +0.976, and deleting both weakly coupled targets to fit inside the remaining cluster
+of six still gives +0.90. The fitted line is not: the KSE-100 sits at a coupling of
+&minus;0.12 with every other target above +0.22, which gives it a leverage of 0.73 against
+a mean of 0.25, and removing it moves the slope from +1.15 to +1.46 and the zero-crossing
+from 0.22 to 0.31. So the ordering is robust and the crossing is not, which is what the figure's
+caption says and what that diagnostic licenses: the crossing locates the sign change to
+within one target rather than fixing a threshold. A
+holder whose series is weakly coupled to public markets should expect breadth to do nothing
+for them, and can find that out from data already in hand rather than after buying a feed;
+a holder near the crossing should conclude that this paper cannot tell them which side of
+it they are on.</p>
+
+<p>Three further checks are in the Internet Appendix and are named here so that their absence
+from this section is not mistaken for their absence from the work: whether the clean lag
+this paper models resembles the periodic marking a real book undergoes, whether the
+trailing median leaks the future into the target, and how the rate behaves across five
+target markets at every delay rather than at one.</p>
+
+<h2 class="pb">10. Limitations</h2>
+<p>Four limitations are argued at length in Section S33 of the Internet Appendix rather than here: the thinness of the implied-volatility block, two bounds on the tests themselves, and the estimator, which is the largest of them and the one whose direction runs in the paper&rsquo;s disfavour.</p>
+
+<p>The limitations below are individually argued, and a reader who wants the boundary in
+one place rather than assembled from nine paragraphs should read Table 5 first. It
+states, for every claim this paper makes, the strength of the evidence behind it and
+where that evidence is. The four grades are used strictly: <i>established</i> means the
+estimate excludes zero and survives the robustness set; <i>supported</i> means it is
+consistent across the tests run but rests on a sample too small to resolve alternatives;
+<i>suggestive</i> means the sign is stable and the magnitude is not; and <i>not claimed</i>
+marks a question this paper raises and leaves open. Nothing in the paper should be quoted
+at a grade stronger than its row.</p>
+
+<table>
+<caption><b>Table 5.</b> Every claim in the paper, its grade, and where its evidence is. The grades are defined in the paragraph above and are meant to be read as limits rather than as endorsements: a claim graded <i>supported</i> is one this paper would not defend against a larger sample.</caption>
+<thead><tr class="toprule"><th>claim</th><th>grade</th><th>the evidence, and its limit</th></tr></thead>
+<tbody>
+<tr><td>A current foreign cross-section returns a large share of what staleness takes, on a liquid equity target</td><td>established</td><td>71% [59, 81] at eleven weeks, 68% to 75% across four specifications, every interval excluding zero (Sections 5, 7, S4)</td></tr>
+<tr><td>The effect is larger in stressed markets</td><td>established</td><td>81% [74, 87], stable across both halves of the sample (Section S10)</td></tr>
+<tr><td>The effect in calm markets</td><td>not claimed</td><td>the interval spans most of the unit interval and does not exclude zero at three of four delays; where delay costs little, the share of it repaired has no stable value (Section S10)</td></tr>
+<tr><td>Implied volatility on the asset itself makes breadth redundant, in the bounded sense of Section 7</td><td>supported</td><td>the foreign block adds nothing detectable once implied volatility is held, at every delay, with a gross gain above 0.019 of R&sup2; ruled out and anything smaller left open; but two targets only, SPX and DAX, each on the 4,525-day window of Section 7, so the scope is the claim's limit and not its precision (Section 7)</td></tr>
+<tr><td>Where the option chain is on another asset, breadth retains incremental value</td><td>supported</td><td>using the compressed one-regressor peer block and the same pointwise criterion in both groups, the foreign block adds significantly in thirteen of twenty-four cells where only another asset's volatility index is held, and in none of eight where the index is written on the target itself; those cells are in the post-selection audit of Section S37 and few survive its correction, so the pattern is what is supported and no single cell is (Sections S13, S37)</td></tr>
+<tr><td>Coupling orders substitution rates across markets</td><td>supported</td><td>rank correlation +0.976, worst leave-one-out +0.976; eight targets (Section S17)</td></tr>
+<tr><td>The fitted coupling line, and the coupling level at which the rate crosses zero</td><td>not claimed</td><td>eight points with two at high leverage; the slope moves by a quarter and the crossing by half under deletion (Section S17)</td></tr>
+<tr><td>The measurement carries to an illiquid, appraisal-like asset</td><td>supported</td><td>57% on non-overlapping quarterly changes, all three phases of the quarterly grid excluding zero, 35 of 42 metro-phases positive (Sections 8.1, S18)</td></tr>
+<tr><td>That result is not an artefact of the index's three-month moving average</td><td>supported</td><td>on the de-smoothed panel breadth still adds at three quarters on 14 of 14 metros; levels carry the reverse filter's noise amplification and only the sign transfers (Section S18)</td></tr>
+<tr><td>A current cross-section hurts a forecaster whose own mark is fresh</td><td>suggestive</td><td>about one point of R&sup2;, negative under all three losses, but the natural-scale MSE cannot distinguish it from zero and no claim in this paper rests on it (Section S9)</td></tr>
+<tr><td>What the rate is worth in money</td><td>not claimed</td><td>R(&delta;) is a share of forecast loss; converting it needs a decision problem the holder supplies (Sections 4.5 and 11)</td></tr>
+<tr class="botrule"><td>That any of this transfers from a published index to an actual marked book</td><td>not claimed</td><td>a published index is not a book: no appraisal noise, no manager discretion, and a fixed publication calendar (Sections 1, 9.2)</td></tr>
+</tbody>
+</table>
+
+<p>The limitation that mattered most for twelve sections was the illiquid case itself, argued rather than demonstrated, and Section 8 narrows it as far as public data allows without closing it. What remains open inside it is stated there: the intervals are wide, the panel's couplings span a band only 0.35 as wide as the one that established the coupling relation so the slope cannot be tested on it, and an index is not a book. Nobody holds a Case-Shiller index, and a real appraised portfolio would differ from one in ways this panel cannot show. Sections S13 to S15 and S18 of the Internet Appendix carry the four steps by which the gap was narrowed before it was closed, and the two objections to the closing measurement that could have overturned it.</p>
+
+<p>One limitation applies to every number here and to no single section. All of them were computed with the foreign block at its freshest admissible value, and the paper did not say so because it did not occur to us to vary it. A desk whose own foreign feed is one day behind recovers 29% of the delay-induced loss at five days where Table 2 reports 51%, and one three days behind recovers none of it. The measurement is not wrong, but the claim is narrower than it reads: it describes a forecaster with a stale domestic mark and a <i>current</i> foreign feed, a more particular creature than the one Section 1 has in mind. Whether an illiquid-asset holder is that creature is a question about their data vendor, not about volatility, and we cannot answer it.</p>
+
+<p>A second qualifies the headline. The unconditional rate averages two states in which the mechanism behaves differently: well determined in stress, stable across both halves of the sample and large in absolute terms as well as in share; uninformatively imprecise in calm. Section S5 of the Internet Appendix shows that imprecision is not an artefact of the ratio, since asked in days instead, on a construction with no denominator that can vanish, the calm cell is 7.3 times as wide relative to its own point as the stressed one. Table 2 is an average of the two and the conditional figures in Table S4 of the Internet Appendix are what a reader should carry.</p>
+
+<p>What is left is short. The horizon evidence in Section S28 runs out at one month, where the rate has already fallen to 51% with an interval too wide to lean on; we do not know what happens at a quarter. Equity indices only. Close times are treated as standard, ignoring daylight saving, which moves them by an hour and never reorders the blocks. And the index data are a retail export with no point-in-time guarantee, on which one join cannot be verified by comparison: of the nine two-file exports, eight overlap by 120 to 251 days and agree exactly on every overlapping row, while the S&amp;P's two files abut without overlapping. That is the target series, so a statement of contiguity is worth less than an audit, and Cboe's own VIX history supplies one: a different vendor on a different data path measuring the same underlying, spanning the join. Section S19 of the Internet Appendix reports that audit, its three instruments, what size of fault each would have caught, and the one corruption that no instrument here could detect. It also reports something we were not looking for, which every user of retail market data should know: the retail VIX export carries fifteen rows on dates United States equities were shut. All fifteen fall outside the panel, so no model was ever shown one.</p>
+
+<h2 class="pb">11. Conclusion and further work</h2>
+<p>The universe here is eight equity indices, and the obvious way to widen it is the one this paper predicts will fail. Section S27 splits the foreign block into its leading real-time component and the six components orthogonal to it, and finds the entire recovery in the first: the remainder is negative at every delay and beats the stale domestic model at none. A ninth and a tenth equity index would supply more of the same factor and more coefficients to estimate, and Section 6 has already priced that trade. Breadth within an asset class is not the frontier. Section S14 of the Internet Appendix says what is: the eight targets there differ in coupling from 0.81 to &minus;0.12, and the substitution rate follows it almost exactly. A study that sampled markets ON that axis, rather than by whatever data was to hand, could turn eight points into a calibration, and a practitioner holding a stale series would then read their own rate off it.</p>
+
+<p>Breadth ACROSS asset classes is, and it is a sharper test than it first appears because this paper has to make a prediction about it. Sovereign bond futures, the major commodities and the G10 currencies all have observable daily ranges and therefore the same Yang-Zhang decision variable, so the design transfers with nothing changed but the panel. The stress ladder of Section S10 of the Internet Appendix suggests they load on the same global risk factor, since cross-asset correlation is what converges in the episodes on that ladder. If they do, they will be redundant for the reason the orthogonal equity components are redundant, and the mechanism claimed here will have survived a considerably harder test than another equity index.</p>
+
+<p>Foreign exchange should be run first, for a reason Section S12 of the Internet Appendix makes plain, and for no reason about currencies. FX trades continuously across the week, so it has no admissible-timestamp problem at all: there is no previous session for a currency pair, no peer that closes after the target, and none of the shift rules in Section 4. That also means it is exempt from the penalty in Table S8 of the Internet Appendix, the largest practical threat this paper has to its own recommendation. A substitute that is current by construction is precisely what a holder of a stale mark wants, and of the candidates listed here FX is the only one that is current by construction, not by luck of the clock.</p>
+
+<p>Two studies would matter more than any of those, and both are named rather than
+attempted because each is a paper. The first closes the gap Section 10 leaves open. A
+Case-Shiller index is not a book: nobody holds one, and the quarterly and de-smoothed tests
+of Section S18 of the Internet Appendix establish that the result is not an artefact of how
+that index is built without establishing anything about a real appraised portfolio. What
+would is a panel of actual marks, whether private equity net asset values, property
+appraisals or fund marks, carrying a publicly observable peer factor constructed as it
+stood at each historical marking date, on which the delay curve could be estimated
+directly. Brown, Ghysels and Gredil (2023) nowcast private equity net asset values from
+public information and so demonstrate that such a panel can be assembled; what they do not
+do is sweep the delay, which is the one thing R(&delta;) needs.</p>
+
+<p>The second turns the rate into money, and the paper is honest that it currently does
+not. R(&delta;) is a share of forecast loss; a holder wants to know what a data feed is
+worth. Embedding the forecasts in one decision problem would settle it: a volatility target,
+a value at risk, or a capital buffer, each of which converts a change in forecast error
+into a quantity with a currency attached. That would license a sentence this paper cannot
+write, of the form that a current peer feed reduces risk-measurement error by so much and
+is therefore worth at most so much a year to a book of a given size. Until someone does
+that, &ldquo;price&rdquo; in this title means a ratio on one ruler and not an amount, which
+is why Section 4.5 says so where a reader first meets the measure.</p>
+
+<p>Three other threads are open and named where they arise: the illiquid-asset target this whole exercise is about, which Section 8 now reaches on an index panel and which still wants a real appraised book rather than an index, in Section 10; whether the rate keeps rising past one month, where Section S28's evidence runs out with an interval too wide to lean on; and, in the companion note (Vellanikaran 2026), ranking forecasters against a tail target, which needs more independent volatility spikes than nine years of one index contains. The cross-asset panel proposed above would help with the last of those as a side effect, since spikes accumulate across markets as well as through time.</p>
+
+<h2>Data and code availability</h2>
+<p>This paper ships with an Internet Appendix carrying the robustness and scope work behind
+Section 9 in full, including eight alternative controls, the temporal split, the
+multiple-testing adjustment, the coupling diagnostics, the house price overlap audit and
+the two scope conditions. Every number in the paper and in that Internet Appendix is
+printed by a script, and the scripts, the reference output and the source of every
+document are at <code>github.com/SunnyAlexV/delayed-information-cross-section</code>. A further script, <code>build_registry.py</code>, builds a machine-readable registry of every figure the verifier ties to a lab, keyed on the check's label, its script and its section, and runs five gates over it: no point estimate may be quoted in prose with two different intervals, a p-value written beside a statistic must be that statistic's p-value, a contrast that names a winner must state its direction, the count of figures no check reaches may fall but not rise, and every negative figure must still carry its sign when the rendered PDF is put back through text extraction. The registry is built from the verifier's own checks rather than maintained beside them, because a second copy of the results is the thing these gates exist to catch.</p>
+
+<p>The data are not there, and the reason is worth stating rather than leaving a reader to
+discover. Every vendor behind the inputs prohibits redistributing their files:
+Investing.com's terms forbid distributing data obtained from the site without written
+permission, Cboe's permit one downloaded copy for personal non-commercial use and nothing
+further, Yahoo's forbid reproducing or distributing any portion of their services, and the
+S&amp;P Cotality Case-Shiller series carry FRED's <i>Copyrighted: Pre-approval Required</i>
+label, which without the copyright holder's permission allows non-commercial educational or
+personal use alone. Using those series to do research and publishing the results is a
+different act from republishing the files, and only the second is forbidden; of the
+thirty-five input files exactly one, the FHFA index that FRED places in the public domain,
+could be included and is.</p>
+
+<p>What ships in place of the data is a manifest recording, for every input file, its
+source, its row count, its date span, the SHA-256 of the exact bytes these numbers were
+computed from, the digest of the derived series on those dates, and that digest taken one
+calendar year at a time. A reader who obtains the same exports therefore reproduces every
+number bitwise, and a reader whose export is fresher than ours is told so per file and per
+year rather than left to guess whether a difference is a new month of rows or a different
+series. Three commands do it: <code>python verify_data.py</code> classifies each file as
+identical, the same data with a longer tail, or genuinely different and in which years;
+<code>python run_all.py --check --data</code> reruns all sixty-three scripts under a fixed
+seed and compares each line against the stored output; and
+<code>python verify_paper.py</code> reads the source of this paper and its Internet
+Appendix together and fails on any figure that disagrees with that output, so a result
+cannot be lost by moving it between them.</p>
+
+<p>The repository's README names which script produces which result. Four scripts were also
+reproduced on a second machine running a different operating system and matched digit for
+digit; the rest have been run only on the platform that generated the reference output, and
+we state that rather than the stronger claim. Nothing is reported that the scripts do not
+produce.</p>
+
+<h2>Disclosure of AI use</h2>
+<p>During preparation of this manuscript and its Internet Appendix, the author used
+Claude (Anthropic) as an assistive tool for drafting and revising text and research
+code.</p>
+
+<p>The research questions, mathematical development, empirical design, data
+construction, analysis, interpretation of results, and decisions regarding the paper's
+claims were the author's own. The author independently specified and executed all
+analyses; reviewed, tested, and validated the code and outputs; and takes sole
+responsibility for the manuscript's contents, including all methods, results,
+interpretations, and reported numbers.</p>
+
+<p>No AI system is an author of this work and no AI system held authorial responsibility
+for any part of it.</p>
+
+<h2>References</h2>
+<ul class="refs">
+<li>Brown, G. W., Ghysels, E. and Gredil, O. (2023). Nowcasting net asset values: the case of private equity. <i>Review of Financial Studies</i> 36(3), 945&ndash;986.</li>
+<li>Buncic, D. and Gisler, K. I. M. (2016). Global equity market volatility spillovers: a broader role for the United States. <i>International Journal of Forecasting</i> 32(4), 1317–1339.</li>
+<li>Clark, T. E. and West, K. D. (2007). Approximately normal tests for equal predictive accuracy in nested models. <i>Journal of Econometrics</i> 138(1), 291–311.</li>
+<li>Corsi, F. (2009). A simple approximate long-memory model of realized volatility. <i>Journal of Financial Econometrics</i> 7(2), 174–196.</li>
+<li>Croushore, D. and Stark, T. (2001). A real-time data set for macroeconomists. <i>Journal of Econometrics</i> 105(1), 111&ndash;130.</li>
+<li>Diebold, F. X. and Yilmaz, K. (2014). On the network topology of variance decompositions: measuring the connectedness of financial firms. <i>Journal of Econometrics</i> 182(1), 119–134.</li>
+<li>Diebold, F. X. (2015). Comparing predictive accuracy, twenty years later: a personal perspective on the use and abuse of Diebold-Mariano tests. <i>Journal of Business &amp; Economic Statistics</i> 33(1), 1–9.</li>
+<li>Doz, C., Giannone, D. and Reichlin, L. (2011). A two-step estimator for large approximate dynamic factor models based on Kalman filtering. <i>Journal of Econometrics</i> 164(1), 188&ndash;205.</li>
+<li>Duan, N. (1983). Smearing estimate: a nonparametric retransformation method. <i>Journal of the American Statistical Association</i> 78(383), 605&ndash;610.</li>
+<li>Dufour, J.-M. (1997). Some impossibility theorems in econometrics with applications to structural and dynamic models. <i>Econometrica</i> 65(6), 1365&ndash;1388.</li>
+<li>Engle, R. F., Ito, T. and Lin, W.-L. (1990). Meteor showers or heat waves? Heteroskedastic intra-daily volatility in the foreign exchange market. <i>Econometrica</i> 58(3), 525–542.</li>
+<li>Fieller, E. C. (1954). Some problems in interval estimation. <i>Journal of the Royal Statistical Society, Series B</i> 16(2), 175&ndash;185.</li>
+<li>Geltner, D., MacGregor, B. D. and Schwann, G. M. (2003). Appraisal smoothing and price discovery in real estate markets. <i>Urban Studies</i> 40(5–6), 1047–1064.</li>
+<li>Getmansky, M., Lo, A. W. and Makarov, I. (2004). An econometric model of serial correlation and illiquidity in hedge fund returns. <i>Journal of Financial Economics</i> 74(3), 529–609.</li>
+<li>Ghysels, E., Sinko, A. and Valkanov, R. (2007). MIDAS regressions: further results and new directions. <i>Econometric Reviews</i> 26(1), 53&ndash;90.</li>
+<li>Giacomini, R. and White, H. (2006). Tests of conditional predictive ability. <i>Econometrica</i> 74(6), 1545–1578.</li>
+<li>Giannone, D., Reichlin, L. and Small, D. (2008). Nowcasting: the real-time informational content of macroeconomic data. <i>Journal of Monetary Economics</i> 55(4), 665&ndash;676.</li>
+<li>Goetzmann, W. N., Ivković, Z. and Rouwenhorst, K. G. (2001). Day trading international mutual funds: evidence and policy solutions. <i>Journal of Financial and Quantitative Analysis</i> 36(3), 287–309.</li>
+<li>Jayawardena, N. I., Todorova, N., Li, B. and Su, J.-J. (2020). Volatility forecasting using related markets' information for the Tokyo stock exchange. <i>Economic Modelling</i> 90, 143–158.</li>
+<li>Korkusuz, B. (2025). Beyond the S&amp;P 500: examining the role of external volatilities in market forecasting. <i>Review of Economic Design</i>. DOI 10.1007/s10058-024-00373-x.</li>
+<li>Künsch, H. R. (1989). The jackknife and the bootstrap for general stationary observations. <i>Annals of Statistics</i> 17(3), 1217–1241.</li>
+<li>Lo, A. W. and MacKinlay, A. C. (1990). An econometric analysis of nonsynchronous trading. <i>Journal of Econometrics</i> 45(1&ndash;2), 181&ndash;211.</li>
+<li>Marcellino, M. and Schumacher, C. (2010). Factor MIDAS for nowcasting and forecasting with ragged-edge data: a model comparison for German GDP. <i>Oxford Bulletin of Economics and Statistics</i> 72(4), 518&ndash;550.</li>
+<li>Patton, A. J. (2011). Volatility forecast comparison using imperfect volatility proxies. <i>Journal of Econometrics</i> 160(1), 246–256.</li>
+<li>Rapach, D. E., Strauss, J. K. and Zhou, G. (2013). International stock return predictability: what is the role of the United States? <i>Journal of Finance</i> 68(4), 1633–1662.</li>
+<li>Rogers, L. C. G. and Satchell, S. E. (1991). Estimating variance from high, low and closing prices. <i>Annals of Applied Probability</i> 1(4), 504&ndash;512.</li>
+<li>Scholes, M. and Williams, J. (1977). Estimating betas from nonsynchronous data. <i>Journal of Financial Economics</i> 5(3), 309&ndash;327.</li>
+<li>Timmermann, A. (2006). Forecast combinations. In <i>Handbook of Economic Forecasting</i>, vol. 1, 135&ndash;196. Elsevier.</li>
+<li>Vellanikaran, S. A. (2026). Why a simple threshold rule is hard to beat: volatility regime prediction under information delay. Working note.</li>
+<li>Wallis, K. F. (1986). Forecasting with an econometric model: the 'ragged edge' problem. <i>Journal of Forecasting</i> 5(1), 1&ndash;13.</li>
+<li>Yang, D. and Zhang, Q. (2000). Drift-independent volatility estimation based on high, low, open, and close prices. <i>Journal of Business</i> 73(3), 477–491.</li>
+<li>Zhao, X. and Qiao, H. (2026). Forecasting global volatility with predictive spillover networks: a neuro-econometric spatio-temporal transformer for asynchronous financial markets. arXiv:2608.25369v2, 5 September 2026. The version this paper first cited, v1 of 26 August 2026, carried a different title and a third author; the non-synchronous masking we draw on is present in both.</li>
+</ul>
+
+</body>
+</html>
