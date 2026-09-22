@@ -1,0 +1,814 @@
+label	script	section	kind	value	figures
+lab07 d=0 cost	lab07		statistic	-0.0126	-0.0126
+lab07 d=0 gross	lab07		statistic	+0.0027	+0.0027
+lab07 d=1 cost	lab07		statistic	-0.0149	-0.0149
+lab07 d=1 gross	lab07		statistic	+0.0143	+0.0143
+lab07 d=2 cost	lab07		statistic	-0.0172	-0.0172
+lab07 d=2 gross	lab07		statistic	+0.0353	+0.0353
+lab07 d=3 cost	lab07		statistic	-0.0193	-0.0193
+lab07 d=3 gross	lab07		statistic	+0.0590	+0.0590
+lab07 d=5 cost	lab07		statistic	-0.0234	-0.0234
+lab07 d=5 gross	lab07		statistic	+0.1031	+0.1031
+lab07 d=8 cost	lab07		statistic	-0.0294	-0.0294
+lab07 d=8 gross	lab07		statistic	+0.1530	+0.1530
+lab07 d=13 cost	lab07		statistic	-0.0392	-0.0392
+lab07 d=13 gross	lab07		statistic	+0.2211	+0.2211
+lab07 d=21 cost	lab07		statistic	-0.0514	-0.0514
+lab07 d=21 gross	lab07		statistic	+0.3013	+0.3013
+lab07 d=0 interval	lab07		interval	[-0.0064, +0.0116]	-0.0064 +0.0116
+lab07 d=1 interval	lab07		interval	[+0.0003, +0.0279]	+0.0003 +0.0279
+lab07 d=2 interval	lab07		interval	[+0.0165, +0.0534]	+0.0165 +0.0534
+lab06 sup-t critical value	lab06		statistic	2.42	2.42
+S1 QLIKE p range		S1	p-value	from p = 0.010 at &delta; = 8	0.010 8
+lab06 GW 2.95	lab06		statistic	2.95	2.95
+lab06 GW 3.88	lab06		statistic	3.88	3.88
+lab06 GW 4.28	lab06		statistic	4.28	4.28
+lab06 GW 4.26	lab06		statistic	4.26	4.26
+lab06 GW 4.07	lab06		statistic	4.07	4.07
+lab06 GW 4.26	lab06		statistic	4.26	4.26
+lab06 GW 4.62	lab06		statistic	4.62	4.62
+S1 QLIKE range		S1	p-value	the QLIKE row runs from p = 0.010 at &delta; = 8 to p = 0.034 at &delta; = 3	0.010 8 0.034 3
+S1 worst two-sided p		S1	p-value	every statistic from &delta; = 3 onward has p &le; 0.034	3 0.034
+S1 caption QLIKE verdict		S1	sentence with figures	so it clears 5% throughout and 1% nowhere	5% 1%
+S8 delta=0 sq(log)		S8	interval	worse by 0.0099, interval [-0.0191, -0.0011]	0.0099 -0.0191 -0.0011
+S8 delta=0 QLIKE		S8	interval	worse by 0.0127, [-0.0263, -0.0010]	0.0127 -0.0263 -0.0010
+S8 delta=0 MSE(nat)		S8	interval	worse by 0.0037, [-0.0310, +0.0180]	0.0037 -0.0310 +0.0180
+S8 delta=0 normalised		S8	interval	comes out at +0.0070, [-0.0429, +0.0204]	+0.0070 -0.0429 +0.0204
+band block length in words			text	in moving blocks of forty days	
+inference vocabulary: pointwise			text	Pointwise : an individual interval excludes zero	
+inference vocabulary: simultaneous			text	Simultaneous : the effect survives a band covering the whole delay grid at once	
+inference vocabulary: equivalence			text	Equivalence : the effect lies inside a margin declared negligible in advance, which this paper tests nowhere and therefore never claims	
+non-detection is not zero			text	no incremental contribution was detected; it is not a cell where the contribution is zero	
+registry described in the availability statement			text	builds a machine-readable registry of every figure the verifier ties to a lab	
+registry gates described			text	no point estimate may be quoted in prose with two different intervals	
+registry is derived, not parallel			text	built from the verifier's own checks rather than maintained beside them	
+price is defined, not assumed			text	it means that the two things being compared can be put on one ruler	
+price in the title is defined			text	in this title means a ratio on one ruler and not an amount	
+options scope is two targets			sentence with figures	two targets only, SPX and DAX, each on the 4,525-day window	4 525
+Table 5 grade definitions			text	established means the estimate excludes zero and survives the robustness set; supported means it is consistent across the tests run but rests on a sample too small to resolve alternatives	
+scope condition count in Section 10			text	the two scope conditions that bound where the result holds	
+scope condition count in the availability statement			text	the two scope conditions.	
+scope conditions are named			text	the option chain and coupling	
+scope condition is identified, not established			text	identified in the examined markets rather than assumed	
+coupling is bounded, not the whole story			text	coupling is the part of the story this design can see	
+redistribution terms stated per vendor			text	Investing.com's terms forbid distributing data obtained from the site without written permission	
+redistribution terms stated per vendor			text	Cboe's permit one downloaded copy for personal non-commercial use	
+redistribution terms stated per vendor			text	Yahoo's forbid reproducing or distributing any portion	
+redistribution terms stated per vendor			text	Copyrighted: Pre-approval Required	
+overlap is evidence, not proof			text	whether iid standard errors come out smaller depends on the signs and magnitudes of the serial covariances	
+calm market is imprecise, not unidentified			text	the Fieller analysis does not classify it as unidentified	
+own-index redundancy is scoped to the cases examined			text	In both own-index option cases examined, the compressed cross-section adds no detectable information	
+Section 9 opens on identified threats			text	The Internet Appendix examines the principal identified threats to each central claim	
+horizon conversion stated			text	thirty calendar days is about twenty-one trading days	
+VIX9D is near-matched, not matched			text	ine calendar days is about six trading days	
+title page: corresponding author named			text	Corresponding author. Sunny Alex Vellanikaran	
+title page: address			text	Independent, United Kingdom.	
+title page: JEL codes			sentence with figures	JEL codes: C53, C58, G17, G12, C22.	53 58 17 12 22
+housing derivative claim is current, not absolute			text	no options chain on any of the twenty is currently listed and no daily own-market implied-volatility index exists for them	
+housing futures acknowledged			text	CME does list futures on the composite and on ten of the metro indices	
+4.4 benchmark is not the trailing mean of variance		4.4	text	exponentiated using its own smearing factor and reconstructed using the median available at the forecast origin	
+4.5 restoration point, not a ceiling		4.5	sentence with figures	a natural restoration reference point at 100%	100%
+4.6 Fieller is one construction, not the only one		4.6	text	the asymptotic Fieller-type inversion used here is one standard construction with that property rather than the only one	
+6 points at the subsection that does the fitting		6	text	fits that compressed representation directly	
+claim table cross-reference			text	converting it needs a decision problem the holder supplies	
+4.2 names its exception		4.2	sentence with figures	Table 1 is the labelled exception	1
+S10 caption names the specification		S10	text	Those two columns are the seven-regressor specification, not the compressed one the section's counts use	
+S10 negative-cell count		S10	text	Three of the eight own-options cells are significantly negative in this specification	
+the two counts share a specification			text	using the compressed one-regressor peer block and the same pointwise criterion in both groups	
+other-asset count			text	adds significantly in thirteen of twenty-four cells	
+Table S30 compressed foreign block given imp			sentence with figures	64 20 3.2 1 0	64 20 3.2 1 0
+Table S30 seven foreign closes given implied			sentence with figures	32 7 1.6 1 0	32 7 1.6 1 0
+Table S30 breadth given implied volatility, 			sentence with figures	64 21 3.2 2 2	64 21 3.2 2 2
+Table S30 nonlinearity given implied volatil			sentence with figures	48 31 2.4 1 0	48 31 2.4 1 0
+Table S30 VSTOXX as a third implied-volatili			sentence with figures	6 0 0.3 0 0	6 0 0.3 0 0
+Table S30 pooled row			sentence with figures	pooled 214 79 10.7 5 2	214 79 10.7 5 2
+S37 both readings		S37	sentence with figures	Seventy-nine nominally significant cells against 10.7 expected	10.7
+S37 exploratory count		S37	text	only five of those seventy-nine survive	
+S37 exploratory label		S37	text	The seventy-four that do not are exploratory	
+S37 headline excluded		S37	text	the headline comparison is excluded from the pool	
+lab14 rate 64%	lab14		statistic	64%	64%
+lab14 rate 71%	lab14		statistic	71%	71%
+lab14 rate 70%	lab14		statistic	70%	70%
+lab14 blur R2 floor	lab14		statistic	0.456	0.456
+3 admissibility leaks		3	sentence with figures	There are 0 leaks	0
+3 admissibility margin		3	sentence with figures	relies on is 2.00 hours, between N225 and HSI	2.00 225
+S35 waste total		S35	sentence with figures	6099 such days occur	6099
+S35 waste case		S35	sentence with figures	On 3345 of the 7,021 dates the table sends AXJO back a day for a N225 forecaster	3345 7 021 225
+S35 direction		S35	text	the implementation is stricter than the rule it implements: it discards information a real forecaster could lawfully have used	
+3 direction summary		3	text	the implementation is stricter than the rule it implements, which is the direction that costs information rather than validity	
+3 dates audited		3	sentence with figures	on all 7,021 dates	7 021
+8.1 variance window		8.1	text	trailing twelve-month realised variance	
+8.1 variance overlap		8.1	text	overlaps the current one in eleven of twelve months	
+8.1 variance is backward-looking		8.1	text	The housing one is backward-looking	
+8.1 closer analogue		8.1	text	The return target is the closer analogue of the paper's	
+4.4 benchmark window		4.4	sentence with figures	over the 1,500 days ending at t − h	1 500
+4.4 benchmark is a forecast		4.4	text	it is a forecast, not a fitted constant	
+4.4 benchmark not delay-matched		4.4	text	It is not delay-matched	
+4.4 benchmark smeared		4.4	text	Leaving the benchmark unsmeared while the models are smeared	
+headline interval in Table 2			point+interval	72% [60, 81]	72% 60 81
+4 loss disagreement R2 at delta=34		4	statistic	0.0794	0.0794
+4 loss disagreement QLIKE at delta=34		4	sentence with figures	−0.0118	0.0118
+4 loss disagreement R2 at delta=55		4	statistic	0.0070	0.0070
+4 loss disagreement QLIKE at delta=55		4	sentence with figures	−0.0477	0.0477
+4 loss disagreement reading		4	text	Where the two conflict we give weight to QLIKE	
+S25 delta=1 row		S25	sentence with figures	1 59.9% 31.1% 30.5% +28.8 +0.7 +29.4	1 59.9% 31.1% 30.5% +28.8 +0.7 +29.4
+S25 delta=3 row		S25	sentence with figures	3 74.6% 60.4% 60.4% +14.2 -0.0 +14.2	3 74.6% 60.4% 60.4% +14.2 -0.0 +14.2
+S25 delta=5 row		S25	sentence with figures	5 85.5% 73.5% 73.6% +12.0 -0.1 +11.9	5 85.5% 73.5% 73.6% +12.0 -0.1 +11.9
+S25 delta=8 row		S25	sentence with figures	8 87.8% 78.6% 78.8% +9.1 -0.1 +9.0	8 87.8% 78.6% 78.8% +9.1 -0.1 +9.0
+S25 delta=13 row		S25	sentence with figures	13 83.5% 75.7% 75.1% +7.8 +0.6 +8.4	13 83.5% 75.7% 75.1% +7.8 +0.6 +8.4
+S25 delta=21 row		S25	sentence with figures	21 83.5% 75.6% 74.5% +7.9 +1.1 +9.0	21 83.5% 75.6% 74.5% +7.9 +1.1 +9.0
+S25 delta=34 row		S25	sentence with figures	34 82.0% 76.3% 75.3% +5.7 +0.9 +6.6	34 82.0% 76.3% 75.3% +5.7 +0.9 +6.6
+S25 delta=55 row		S25	sentence with figures	55 90.1% 81.0% 80.0% +9.0 +1.1 +10.1	55 90.1% 81.0% 80.0% +9.0 +1.1 +10.1
+4.4 bounds the drift piece		4.4	sentence with figures	the drift worth at most 1.1 points at any delay	1.1
+S25 bounds the drift piece		S25	sentence with figures	the drift never worth more than 1.1 points at any delay	1.1
+S25 splits the one-day gap		S25	sentence with figures	28.8 of the 29.4 points at one day	28.8 29.4
+S25 splits the eleven-week gap		S25	sentence with figures	9.0 of the 10.1 at eleven weeks	9.0 10.1
+8 quotes the natural-scale rate at 55		8	sentence with figures	80% at eleven weeks	80%
+4.4 names the size of the correction		4.4	sentence with figures	by 10 points at eleven weeks	10
+S9 records the artefact		S9	text	The flip was an artefact	
+S28 gross content points		S28	sentence with figures	+0.002 at &delta; = 0, +0.007 at &delta; = 5, +0.008 at &delta; = 21 and +0.007 at &delta; = 55	+0.002 0 +0.007 5 +0.008 21 +0.007 55
+S28 gross content intervals		S28	sentence with figures	[−0.006, +0.011], [−0.003, +0.017], [−0.004, +0.019] and [−0.004, +0.018]	0.006 +0.011 0.003 +0.017 0.004 +0.019 0.004 +0.018
+S28 equivalence bound		S28	sentence with figures	rules out a gross gain larger than 0.019 of R&sup2;, at &delta; = 21	0.019 2 21
+7 equivalence bound		7	sentence with figures	[−0.004, +0.019] at &delta; = 21, rules out a gross gain above about 0.019 of R&sup2;	0.004 +0.019 21 0.019 2
+7 redundant is not equal		7	text	is used in this paper to mean exactly that and never to mean equal	
+8.5 window		8.5	sentence with figures	2,098 test days from May 2018	2 098 2018
+S24 window share		S24	sentence with figures	46% of Table S22's window	46% 22
+S24 horizon effect range		S24	sentence with figures	worth between 0.0237 and 0.0399 of R&sup2;	0.0237 0.0399 2
+S24 horizon effect statistics		S24	sentence with figures	Giacomini-White statistics of 3.13 to 3.30	3.13 3.30
+S24 foreign increment statistics		S24	sentence with figures	with statistics between −2.24 and −3.29	2.24 3.29
+8.5 window cost low		8.5	statistic	0.0190	0.0190
+8.5 window cost high		8.5	statistic	0.0269	0.0269
+8.5 slope range low		8.5	sentence with figures	−2.32	2.32
+8.5 slope range high		8.5	sentence with figures	−3.44	3.44
+5.3 span		5.3	text	same day gives R	
+5.3 first component		5.3	sentence with figures	accounts for 66.5%	66.5%
+5.3 first two		5.3	sentence with figures	the first two for 76.9%	76.9%
+5.3 span value		5.3	sentence with figures	= 0.695.	0.695
+5.3 six series		5.3	text	six foreign volatility series	
+8.5 crisis gain range		8.5	sentence with figures	0.0247 to 0.0405 of R	0.0247 0.0405
+8.5 crisis z range		8.5	sentence with figures	2.97 to 3.49	2.97 3.49
+8.5 crisis foreign range		8.5	sentence with figures	−0.0148 and −0.0198	0.0148 0.0198
+8.5 crisis foreign z		8.5	sentence with figures	−1.95 to −3.10	1.95 3.10
+8.5 crisis window 2,004 days		8.5	sentence with figures	2,004 days	2 004
+8.5 crisis window 15 February to 30 June 2020		8.5	sentence with figures	15 February to 30 June 2020	15 30 2020
+9.3 age g=0		9.3	point+interval	4.6 days old [2.5, 8.4]	4.6 2.5 8.4
+9.3 age g=1		9.3	point+interval	6.8 [4.0, 11.1]	6.8 4.0 11.1
+9.3 age g=5		9.3	point+interval	12.6 [9.5, 19.6]	12.6 9.5 19.6
+9.3 exchange rate g=1		9.3	sentence with figures	2.1 days	2.1
+9.3 exchange rate g=5		9.3	point+interval	8.0 [5.9, 12.6]	8.0 5.9 12.6
+9.3 exchange rate interval		9.3	interval	[1.4, 3.3]	1.4 3.3
+S3 Fieller illustration		S3	interval	at &delta; = 55, [59, 81] against [60, 81]	55 59 81 60 81
+11 filter delta=21		11	sentence with figures	by 0.0119	0.0119
+11 filter interval delta=21		11	interval	[+0.00021, +0.02382]	+0.00021 +0.02382
+11 filter delta=55		11	sentence with figures	by 0.0196	0.0196
+11 filter interval delta=55		11	interval	[+0.00316, +0.03530]	+0.00316 +0.03530
+11 filter delta=0		11	sentence with figures	by 0.0224	0.0224
+11 filter interval delta=0		11	interval	[-0.03319, -0.00952]	-0.03319 -0.00952
+11 filter reconstruction		11	sentence with figures	correlates 0.84 with the truth at eleven weeks	0.84
+11 filter reconstruction stale		11	sentence with figures	against 0.18 for the stale value	0.18
+10.1 projection residue		10.1	sentence with figures	1.8 &times; 10 -11	1.8 10 -11
+10.1 exponential margin delta=0		10.1	statistic	0.0018	0.0018
+10.1 exponential margin delta=21		10.1	statistic	0.0321	0.0321
+10.1 exponential margin delta=55		10.1	statistic	0.0522	0.0522
+10.1 training block		10.1	sentence with figures	first 1,500 rows	1 500
+10.1 half-lives		10.1	sentence with figures	half-lives of 5, 22 and 66 days	5 22 66
+10.1 feature counts		10.1	text	Six features against three	
+10.1 persistence		10.1	statistic	0.9265	0.9265
+10.1 half-life		10.1	sentence with figures	9.1 trading days	9.1
+10.1 state equals observation		10.1	sentence with figures	4.4 &times; 10 -8	4.4 10 -8
+10.1 inflation		10.1	sentence with figures	4.1 points	4.1
+10.1 rate against the weak arm		10.1	statistic	74.3%	74.3%
+10.1 rate against the paper's arm		10.1	statistic	71.4%	71.4%
+10.1 ruler point		10.1	sentence with figures	4.2 days rather than 4.6	4.2 4.6
+10.1 ruler width		10.1	sentence with figures	7% narrower	7%
+11 seam percentiles		11	sentence with figures	70th, 4th and 25th percentiles	70 4 25
+11 seam power		11	sentence with figures	an intraday range mis-scaled by 25% is caught	25%
+11 seam power limit		11	sentence with figures	while 10% is not	10%
+11 seam calibration		11	sentence with figures	400 pseudo-seams	400
+10.2 calm age		10.2	sentence with figures	4.5 days	4.5
+10.2 calm interval		10.2	interval	[0.3, 44.1]	0.3 44.1
+10.2 calm failures		10.2	sentence with figures	47 of 1,500 replications	47 1 500
+10.2 stressed age		10.2	point+interval	3.8 days old [1.9, 6.6]	3.8 1.9 6.6
+10.2 decile age		10.2	point+interval	3.4 [1.3, 7.2]	3.4 1.3 7.2
+10.2 top-5 age		10.2	point+interval	2.3 [0.8, 5.0]	2.3 0.8 5.0
+10.2 calm relative width		10.2	sentence with figures	7.8 times as wide	7.8
+10.1 envelope spread		10.1	sentence with figures	runs from 60.8% to 74.4%	60.8% 74.4%
+10.1 envelope strongest rate		10.1	statistic	67.5%	67.5%
+10.1 envelope paired gap		10.1	point+interval	-4.1% [-9.7%, -0.7%]	-4.1% -9.7% -0.7%
+10.1 envelope champion skill		10.1	sentence with figures	0.3022 against the paper's 0.2803	0.3022 0.2803
+10.1 envelope origin score		10.1	sentence with figures	0.5748 own-only at the origin	0.5748
+10.1 envelope delay score		10.1	sentence with figures	-0.0648 at eleven weeks	-0.0648
+10.1 envelope redundancy		10.1	sentence with figures	statistics from -1.94 to -2.86	-1.94 -2.86
+11 filtered filtered rate		11	sentence with figures	75.4% against the published 71.6%	75.4% 71.6%
+11 filtered where it wins		11	text	better model at three of six delays	
+11 filtered paired move		11	point+interval	+3.8% [+0.8%, +7.7%]	+3.8% +0.8% +7.7%
+11 filtered age		11	point+interval	3.7 days old [2.0, 6.7]	3.7 2.0 6.7
+11 filtered published age		11	sentence with figures	rather than the published 4.6	4.6
+11 filtered paired age		11	sentence with figures	−0.9 days [−2.3, −0.2]	0.9 2.3 0.2
+9.4 row AXJO		9.4	sentence with figures	0.715 72.3% 69.1% +0.0241 +1.60	0.715 72.3% 69.1% +0.0241 +1.60
+9.4 row BVSP		9.4	sentence with figures	0.659 67.8% 50.0% -0.0201 -1.81	0.659 67.8% 50.0% -0.0201 -1.81
+9.4 row DAX		9.4	sentence with figures	0.779 104.0% 74.0% -0.0113 -2.06	0.779 104.0% 74.0% -0.0113 -2.06
+9.4 row FTSE		9.4	sentence with figures	0.754 85.3% 88.0% +0.0186 +1.71	0.754 85.3% 88.0% +0.0186 +1.71
+9.4 row HSI		9.4	sentence with figures	0.665 77.6% 69.0% +0.0039 +0.28	0.665 77.6% 69.0% +0.0039 +0.28
+9.4 row N225		9.4	sentence with figures	0.589 51.9% 59.7% +0.0034 +0.21	0.589 51.9% 59.7% +0.0034 +0.21
+9.4 row NSEI		9.4	sentence with figures	0.568 53.9% 53.2% +0.0393 +1.85	0.568 53.9% 53.2% +0.0393 +1.85
+9.4 row SPX		9.4	sentence with figures	0.853 102.6% 71.6% -0.0052 -0.87	0.853 102.6% 71.6% -0.0052 -0.87
+9.4 own-options group		9.4	sentence with figures	103% of the delay	103%
+9.4 foreign group		9.4	sentence with figures	68% against 65%	68% 65%
+9.4 own redundancy		9.4	text	none of the eight cells	
+9.4 gradient		9.4	sentence with figures	seven-regressor version read -0.38	-0.38
+9.4 foreign significance		9.4	sentence with figures	significantly in 1 of 24 cells	1 24
+9.4 withdrawal stated		9.4	text	none of which clears the threshold	
+9.4 scope sentence		9.4	text	about the forecaster's information set and not about which option chains exist	
+abstract whose-options			text	three points apart rather than thirty-one	
+9.4 compressed own seven		9.4	sentence with figures	from -0.0078 to +0.0029	-0.0078 +0.0029
+9.4 compressed own compressed		9.4	sentence with figures	stays at 0 of 8	0 8
+9.4 compressed foreign seven		9.4	sentence with figures	from +0.0046 to +0.0153	+0.0046 +0.0153
+9.4 compressed foreign compressed		9.4	sentence with figures	from 1 of 24 to 13 of 24	1 24 13 24
+9.4 compressed mean statistic		9.4	sentence with figures	mean Giacomini-White statistic of 1.54	1.54
+9.4 compressed sharpened gradient		9.4	sentence with figures	correlates -0.78 across the eight	-0.78
+9.4 compressed bovespa seven		9.4	sentence with figures	-0.0144 with seven regressors	-0.0144
+9.4 compressed bovespa compressed		9.4	sentence with figures	+0.0098 with one	+0.0098
+9.4 compressed spanning null		9.4	sentence with figures	correlates -0.15 with the increment	-0.15
+9.4 clock diagnostic		9.4	text	leaves the increment negative at all three delays	
+9.5 row AXJO		9.5	sentence with figures	0.808 68.8% 73.0% +0.0268 +2.70	0.808 68.8% 73.0% +0.0268 +2.70
+9.5 row HSI		9.5	sentence with figures	0.731 68.6% 77.0% +0.0195 +2.21	0.731 68.6% 77.0% +0.0195 +2.21
+9.5 row N225		9.5	sentence with figures	0.701 58.8% 52.3% +0.0311 +2.62	0.701 58.8% 52.3% +0.0311 +2.62
+9.5 row NSEI		9.5	sentence with figures	0.661 53.1% 53.9% +0.0387 +2.49	0.661 53.1% 53.9% +0.0387 +2.49
+9.5 row JKSE		9.5	sentence with figures	0.648 41.8% 38.6% +0.0452 +2.44	0.648 41.8% 38.6% +0.0452 +2.44
+9.5 row KLCI		9.5	sentence with figures	0.611 44.0% 56.1% +0.0142 +1.61	0.611 44.0% 56.1% +0.0142 +1.61
+9.5 row CSEALL		9.5	sentence with figures	0.228 -11.4% -7.6% -0.0115 -2.11	0.228 -11.4% -7.6% -0.0115 -2.11
+9.5 row KSE100		9.5	sentence with figures	-0.115 -29.7% -25.4% -0.0167 -1.81	-0.115 -29.7% -25.4% -0.0167 -1.81
+9.5 coupling correlation		9.5	sentence with figures	coupling and R(breadth) correlate +0.98	+0.98
+9.5 indonesia rate		9.5	sentence with figures	41.8% and 44.0%	41.8% 44.0%
+9.5 dead pair		9.5	sentence with figures	-29.7% and -11.4%	-29.7% -11.4%
+9.5 pakistan coupling		9.5	sentence with figures	negative at -0.115	-0.115
+9.5 statistics		9.5	sentence with figures	+2.44 and +1.61	+2.44 +1.61
+9.5 significance hedge		9.5	text	falls short of the threshold	
+9.5 provenance		9.5	text	no published implied-volatility index	
+9.5 containment		9.5	text	no other number in this paper depends on them	
+14 coupling rule		14	sentence with figures	tracks the substitution rate at +0.98	+0.98
+fig3 crossing			sentence with figures	crosses zero at a coupling of 0.22	0.22
+fig3 not a threshold			text	is not a threshold	
+fig3 both groups			text	the relation runs through both groups	
+15 monthly delay 1 own		15	statistic	0.4846	0.4846
+15 monthly delay 1 cross		15	statistic	0.5430	0.5430
+15 monthly delay 1 rate		15	point+interval	20.5% [-18, 63]	20.5% -18 63
+15 monthly delay 2 own		15	statistic	0.2331	0.2331
+15 monthly delay 2 cross		15	statistic	0.4362	0.4362
+15 monthly delay 2 rate		15	point+interval	37.9% [12, 69]	37.9% 12 69
+15 monthly delay 3 own		15	statistic	0.0725	0.0725
+15 monthly delay 3 cross		15	statistic	0.4122	0.4122
+15 monthly delay 3 rate		15	point+interval	48.7% [34, 76]	48.7% 34 76
+15 monthly delay 6 own		15	statistic	-0.1399	-0.1399
+15 monthly delay 6 cross		15	statistic	0.3562	0.3562
+15 monthly delay 6 rate		15	point+interval	54.6% [47, 75]	54.6% 47 75
+15 appraised delay 1		15	point+interval	23.1% [-15, 71]	23.1% -15 71
+15 appraised delay 2		15	point+interval	35.2% [15, 72]	35.2% 15 72
+15 appraised delay 3		15	point+interval	43.8% [28, 75]	43.8% 28 75
+15 appraised delay 6		15	point+interval	54.0% [43, 79]	54.0% 43 79
+15 burn-in arithmetic		15	text	four hundred and thirty-eight years	
+15 test months		15	sentence with figures	109 test months	109
+15 width requirement		15	sentence with figures	121 test months	121
+15 wider requirement		15	statistic	215	215
+9.1 restated limitation		9.1	text	what was missing was a series and not a method	
+11 feasibility pointer		11	text	survives being re-specified at monthly frequency	
+16 persistence span		16	sentence with figures	from 0.601 at Cleveland to 0.939 at Phoenix with a mean of 0.804	0.601 0.939 0.804
+16 coupling span		16	sentence with figures	spans 0.662 to 0.866 with a mean of 0.763	0.662 0.866 0.763
+16 observations		16	sentence with figures	9,143	9 143
+16 slope refused		16	sentence with figures	0.35 times the width	0.35
+16 block price 13		16	statistic	13	13
+16 block price 0.7242		16	statistic	0.7242	0.7242
+16 block price 0.7489		16	statistic	0.7489	0.7489
+16 block bill -0.0246		16	sentence with figures	−0.0246	0.0246
+16 block price 1		16	statistic	1	1
+16 block price 0.7242		16	statistic	0.7242	0.7242
+16 block price 0.7404		16	statistic	0.7404	0.7404
+16 block bill -0.0161		16	sentence with figures	−0.0161	0.0161
+16 block price 2		16	statistic	2	2
+16 block price 0.7242		16	statistic	0.7242	0.7242
+16 block price 0.7458		16	statistic	0.7458	0.7458
+16 block bill -0.0216		16	sentence with figures	−0.0216	0.0216
+16 block price 13		16	statistic	13	13
+16 block price 0.9559		16	statistic	0.9559	0.9559
+16 block price 0.9162		16	statistic	0.9162	0.9162
+16 block bill +0.0397		16	statistic	+0.0397	+0.0397
+16 block price 1		16	statistic	1	1
+16 block price 0.9559		16	statistic	0.9559	0.9559
+16 block price 0.9544		16	statistic	0.9544	0.9544
+16 block bill +0.0015		16	statistic	+0.0015	+0.0015
+16 block price 2		16	statistic	2	2
+16 block price 0.9559		16	statistic	0.9559	0.9559
+16 block price 0.9557		16	statistic	0.9557	0.9557
+16 block bill +0.0002		16	statistic	+0.0002	+0.0002
+16 block rate 167.9%		16	statistic	167.9%	167.9%
+16 block rate 91.3%		16	statistic	91.3%	91.3%
+16 block rate 90.7%		16	statistic	90.7%	90.7%
+16 block rate 88.4%		16	statistic	88.4%	88.4%
+16 block rate 160.3%		16	statistic	160.3%	160.3%
+16 block rate 66.2%		16	statistic	66.2%	66.2%
+16 block rate 67.8%		16	statistic	67.8%	67.8%
+16 block rate 69.1%		16	statistic	69.1%	69.1%
+16 block rate 144.3%		16	statistic	144.3%	144.3%
+16 block rate 69.8%		16	statistic	69.8%	69.8%
+16 block rate 72.1%		16	statistic	72.1%	72.1%
+16 block rate 72.2%		16	statistic	72.2%	72.2%
+16 block rate -88.7%		16	sentence with figures	−88.7%	88.7%
+16 block rate -30.6%		16	sentence with figures	−30.6%	30.6%
+16 block rate -1.7%		16	sentence with figures	−1.7%	1.7%
+16 block rate 26.1%		16	statistic	26.1%	26.1%
+16 block rate 0.7%		16	statistic	0.7%	0.7%
+16 block rate 10.3%		16	statistic	10.3%	10.3%
+16 block rate 19.0%		16	statistic	19.0%	19.0%
+16 block rate 34.9%		16	statistic	34.9%	34.9%
+16 block rate 20.7%		16	statistic	20.7%	20.7%
+16 block rate 28.2%		16	statistic	28.2%	28.2%
+16 block rate 30.6%		16	statistic	30.6%	30.6%
+16 block rate 36.0%		16	statistic	36.0%	36.0%
+16 compression is the method		16	text	compression is part of the method and not a robustness check	
+16 bill sizes		16	sentence with figures	cost 0.0397 of	0.0397
+16 bill removed		16	sentence with figures	Compression leaves 0.0015 of it	0.0015
+16 delay 1 own		16	statistic	0.5697	0.5697
+16 delay 1 cross		16	statistic	0.6580	0.6580
+16 delay 1 rate		16	sentence with figures	160.3% [−77, 241]	160.3% 77 241
+16 delay 1 count		16	sentence with figures	14 of 14	14 14
+16 delay 2 own		16	statistic	0.3927	0.3927
+16 delay 2 cross		16	statistic	0.5964	0.5964
+16 delay 2 rate		16	point+interval	66.2% [52, 86]	66.2% 52 86
+16 delay 2 count		16	sentence with figures	14 of 14	14 14
+16 delay 3 own		16	statistic	0.3504	0.3504
+16 delay 3 cross		16	statistic	0.5952	0.5952
+16 delay 3 rate		16	point+interval	67.8% [45, 92]	67.8% 45 92
+16 delay 3 count		16	sentence with figures	14 of 14	14 14
+16 delay 6 own		16	statistic	0.2080	0.2080
+16 delay 6 cross		16	statistic	0.5730	0.5730
+16 delay 6 rate		16	point+interval	69.1% [58, 79]	69.1% 58 79
+16 delay 6 count		16	sentence with figures	14 of 14	14 14
+16 delay 1 own		16	statistic	0.8667	0.8667
+16 delay 1 cross		16	statistic	0.8694	0.8694
+16 delay 1 rate		16	sentence with figures	0.7% [−9, 9]	0.7% 9 9
+16 delay 1 count		16	sentence with figures	6 of 14	6 14
+16 delay 2 own		16	statistic	0.7522	0.7522
+16 delay 2 cross		16	statistic	0.7745	0.7745
+16 delay 2 rate		16	sentence with figures	10.3% [−2, 22]	10.3% 2 22
+16 delay 2 count		16	sentence with figures	10 of 14	10 14
+16 delay 3 own		16	statistic	0.6277	0.6277
+16 delay 3 cross		16	statistic	0.6859	0.6859
+16 delay 3 rate		16	point+interval	19.0% [6, 31]	19.0% 6 31
+16 delay 3 count		16	sentence with figures	13 of 14	13 14
+16 delay 6 own		16	statistic	0.2692	0.2692
+16 delay 6 cross		16	statistic	0.4997	0.4997
+16 delay 6 rate		16	point+interval	34.9% [19, 48]	34.9% 19 48
+16 delay 6 count		16	sentence with figures	14 of 14	14 14
+16 seasonal share		16	sentence with figures	19.9% of monthly return variance	19.9%
+16 worst metro		16	sentence with figures	41.7% at Cleveland	41.7%
+16 profile correlation		16	sentence with figures	correlate +0.894 across metros	+0.894
+16 return placebo		16	sentence with figures	placebo earns 4.2% where the real peer mean earns 73.0%	4.2% 73.0%
+16 variance placebo		16	sentence with figures	earns 18.6%	18.6%
+16 return treatments		16	sentence with figures	73.0% against the published 67.8%, with causal deseasonalisation in between at 71.0%	73.0% 67.8% 71.0%
+16 variance treatments		16	sentence with figures	19.0%, 16.0% and 18.6%	19.0% 16.0% 18.6%
+16 return breadth		16	sentence with figures	67.8% to 67.5%	67.8% 67.5%
+16 variance breadth		16	sentence with figures	19.0% to 19.9%	19.0% 19.9%
+16 placebo purpose		16	text	a test that could have convicted the design and did not	
+16 remaining limits		16	text	nobody holds a Case-Shiller index	
+12 measured pointer		12	text	the illiquid case itself, argued rather than demonstrated	
+4.3 vintage share		4.3	sentence with figures	accounts for 0.4% of the damage at a week and 2.7% at eleven weeks	0.4% 2.7%
+4.3 rate difference		4.3	sentence with figures	is 2.8 points higher at most	2.8
+S36 vintage share		S36	sentence with figures	0.4% of the delay's damage at one week and 2.7% at eleven	0.4% 2.7%
+S36 rate difference		S36	sentence with figures	differ by at most 2.8 points	2.8
+4.3 outage named		4.3	text	domestic-data outage of &delta; days	
+S36 infeasible labelled		S36	text	It is infeasible under this paper's own information set	
+4.4 benchmark gap		4.4	sentence with figures	differ by 62.8% of the mean level and correlate 0.35	62.8% 0.35
+4.4 benchmark is normalised		4.4	text	the trailing mean of variance over its own median	
+4.4 median direction disclosed		4.4	text	giving it the median at t + h while the model only holds the median at t	
+7 points at its working		7	sentence with figures	Section S28 of the Internet Appendix gives the race in full	28
+8 points at its working		8	sentence with figures	Section S31 of the Internet Appendix runs the whole design	31
+lab43 shared rows	lab43		sentence with figures	6,747 dates	6 747
+lab43 exact share	lab43		sentence with figures	99.91% of rows	99.91%
+lab43 mean difference	lab43		sentence with figures	0.000222 index points	0.000222
+lab43 rows outside tolerance	lab43		text	two rows fall outside	
+lab43 fabricated rows	lab43		text	fifteen rows on dates United States equities were shut	
+lab43 none reach the panel	lab43		text	All fifteen fall outside the panel	
+lab43 substitution is inert	lab43		text	by as much as a thousandth	
+11 shortened session 1		11	sentence with figures	28 November 2008	28 2008
+11 shortened session 2		11	sentence with figures	24 December 2012	24 2012
+11 fabricated date		11	sentence with figures	11 September 2001	11 2001
+lab12 training window	lab12		sentence with figures	fitted on the first 1,250 days	1 250
+lab12 validation tail	lab12		sentence with figures	scored on the last 250	250
+lab12 refit frequency	lab12		sentence with figures	refitted every 21 days	21
+lab12 median window	lab12		sentence with figures	trailing 252-day median	252
+lab12 HAC bandwidth	lab12		sentence with figures	run to L = 40 lags	40
+lab13 origin-dated rate	lab13		point+interval	the substitution rate is 71% [59, 81] against 72% [60, 81] at eleven weeks	71% 59 81 72% 60 81
+4.2 quotes the implementable rate in headlines		4.2	text	quotes the origin-dated rate wherever it states a headline	
+abstract leads with the implementable rate			point+interval	returns 71% [59, 81] of what eleven weeks of staleness	71% 59 81
+introduction states the implementable rate			point+interval	returns 71% [59, 81] of what the delay took	71% 59 81
+4.2 summary row states the implementable rate		4.2	point+interval	71% [59, 81] at eleven weeks	71% 59 81
+lab15 d=0 R2 IV	lab15		statistic	0.5508	0.5508
+lab15 d=0 F dR2	lab15		statistic	-0.0094	-0.0094
+lab15 d=0 F GW	lab15		statistic	-2.24	-2.24
+lab15 d=0 FAC dR2	lab15		statistic	-0.0107	-0.0107
+lab15 d=0 FAC GW	lab15		statistic	-2.39	-2.39
+lab15 d=0 RFF20 dR2	lab15		statistic	-0.0399	-0.0399
+lab15 d=0 RFF20 GW	lab15		statistic	-2.49	-2.49
+lab15 d=0 RFF60 dR2	lab15		statistic	-0.0519	-0.0519
+lab15 d=0 RFF60 GW	lab15		statistic	-3.37	-3.37
+lab15 d=3 R2 IV	lab15		statistic	0.5245	0.5245
+lab15 d=3 F dR2	lab15		statistic	-0.0050	-0.0050
+lab15 d=3 F GW	lab15		statistic	-0.92	-0.92
+lab15 d=3 FAC dR2	lab15		statistic	-0.0094	-0.0094
+lab15 d=3 FAC GW	lab15		statistic	-1.63	-1.63
+lab15 d=3 RFF20 dR2	lab15		statistic	-0.0440	-0.0440
+lab15 d=3 RFF20 GW	lab15		statistic	-2.00	-2.00
+lab15 d=3 RFF60 dR2	lab15		statistic	-0.0597	-0.0597
+lab15 d=3 RFF60 GW	lab15		statistic	-2.82	-2.82
+lab15 d=5 R2 IV	lab15		statistic	0.5231	0.5231
+lab15 d=5 F dR2	lab15		statistic	-0.0055	-0.0055
+lab15 d=5 F GW	lab15		statistic	-0.91	-0.91
+lab15 d=5 FAC dR2	lab15		statistic	-0.0073	-0.0073
+lab15 d=5 FAC GW	lab15		statistic	-1.17	-1.17
+lab15 d=5 RFF20 dR2	lab15		statistic	-0.0528	-0.0528
+lab15 d=5 RFF20 GW	lab15		statistic	-1.98	-1.98
+lab15 d=5 RFF60 dR2	lab15		statistic	-0.0683	-0.0683
+lab15 d=5 RFF60 GW	lab15		statistic	-2.92	-2.92
+lab15 d=13 R2 IV	lab15		statistic	0.5138	0.5138
+lab15 d=13 F dR2	lab15		statistic	-0.0052	-0.0052
+lab15 d=13 F GW	lab15		statistic	-0.72	-0.72
+lab15 d=13 FAC dR2	lab15		statistic	-0.0095	-0.0095
+lab15 d=13 FAC GW	lab15		statistic	-0.76	-0.76
+lab15 d=13 RFF20 dR2	lab15		statistic	-0.0628	-0.0628
+lab15 d=13 RFF20 GW	lab15		statistic	-2.12	-2.12
+lab15 d=13 RFF60 dR2	lab15		statistic	-0.0739	-0.0739
+lab15 d=13 RFF60 GW	lab15		statistic	-2.64	-2.64
+lab15 d=21 R2 IV	lab15		statistic	0.5127	0.5127
+lab15 d=21 F dR2	lab15		statistic	-0.0046	-0.0046
+lab15 d=21 F GW	lab15		statistic	-0.69	-0.69
+lab15 d=21 FAC dR2	lab15		statistic	-0.0156	-0.0156
+lab15 d=21 FAC GW	lab15		statistic	-1.06	-1.06
+lab15 d=21 RFF20 dR2	lab15		statistic	-0.0678	-0.0678
+lab15 d=21 RFF20 GW	lab15		statistic	-2.12	-2.12
+lab15 d=21 RFF60 dR2	lab15		statistic	-0.0800	-0.0800
+lab15 d=21 RFF60 GW	lab15		statistic	-2.77	-2.77
+lab15 d=55 R2 IV	lab15		statistic	0.5088	0.5088
+lab15 d=55 F dR2	lab15		statistic	-0.0046	-0.0046
+lab15 d=55 F GW	lab15		statistic	-0.72	-0.72
+lab15 d=55 FAC dR2	lab15		statistic	-0.0045	-0.0045
+lab15 d=55 FAC GW	lab15		statistic	-0.65	-0.65
+lab15 d=55 RFF20 dR2	lab15		statistic	-0.0591	-0.0591
+lab15 d=55 RFF20 GW	lab15		statistic	-2.03	-2.03
+lab15 d=55 RFF60 dR2	lab15		statistic	-0.0660	-0.0660
+lab15 d=55 RFF60 GW	lab15		statistic	-2.30	-2.30
+lab15 linear GW range	lab15		sentence with figures	-0.69 and -0.92	-0.69 -0.92
+lab16 d=0 differing refits	lab16		statistic	18%	18%
+lab16 d=3 differing refits	lab16		statistic	50%	50%
+lab16 d=5 differing refits	lab16		statistic	44%	44%
+lab16 d=13 differing refits	lab16		statistic	46%	46%
+lab16 d=21 differing refits	lab16		statistic	33%	33%
+lab16 d=55 differing refits	lab16		statistic	33%	33%
+lab16 d=0 adjustment ratio	lab16		statistic	1.10	1.10
+lab16 d=3 adjustment ratio	lab16		statistic	1.60	1.60
+lab16 d=5 adjustment ratio	lab16		statistic	1.27	1.27
+lab16 d=13 adjustment ratio	lab16		statistic	1.11	1.11
+lab16 d=21 adjustment ratio	lab16		statistic	1.03	1.03
+lab16 d=55 adjustment ratio	lab16		statistic	0.95	0.95
+lab16 d=0 CW separate	lab16		statistic	0.22	0.22
+lab16 d=0 CW common	lab16		statistic	0.26	0.26
+lab16 d=3 CW separate	lab16		statistic	6.15	6.15
+lab16 d=3 CW common	lab16		statistic	6.11	6.11
+lab16 d=5 CW separate	lab16		statistic	6.51	6.51
+lab16 d=5 CW common	lab16		statistic	6.51	6.51
+lab16 d=13 CW separate	lab16		statistic	6.15	6.15
+lab16 d=13 CW common	lab16		statistic	6.12	6.12
+lab16 d=21 CW separate	lab16		statistic	5.68	5.68
+lab16 d=21 CW common	lab16		statistic	5.69	5.69
+lab16 d=55 CW separate	lab16		statistic	6.01	6.01
+lab16 d=55 CW common	lab16		statistic	6.00	6.00
+lab16 d=0 GW common	lab16		statistic	-2.05	-2.05
+lab16 d=3 GW common	lab16		statistic	2.94	2.94
+lab16 d=5 GW common	lab16		statistic	3.86	3.86
+lab16 d=13 GW common	lab16		statistic	4.24	4.24
+lab16 d=21 GW common	lab16		statistic	4.06	4.06
+lab16 d=55 GW common	lab16		statistic	4.62	4.62
+lab16 disclosure	lab16		sentence with figures	S3. A caveat on the Clark-West column	3
+lab16 remedy is decisive	lab16		sentence with figures	imposing a common penalty moves no Clark-West statistic by more than 0.05	0.05
+lab16 ratio not sold as a threshold	lab16		text	We offer that ratio as a description, not a threshold	
+lab16 remedy is partial	lab16		text	A common penalty reduces the departure from exact nesting rather than completely removing it	
+lab16 residual named	lab16		text	the residual non-nesting of two ridge fits on designs of different width	
+S2 interval inversion conceded		S2	text	any interval can be inverted into a test of the values it excludes	
+lab17 h=1 row	lab17		point+interval	1 day 0.924 70% [62%, 76%] 83%	1 0.924 70% 62% 76% 83%
+lab17 h=5 row	lab17		point+interval	5 days 0.519 72% [60%, 81%] 81%	5 0.519 72% 60% 81% 81%
+lab17 h=10 row	lab17		point+interval	10 days 0.367 66% [49%, 78%] 73%	10 0.367 66% 49% 78% 73%
+lab17 h=21 row	lab17		point+interval	21 days 0.203 51% [23%, 70%] 65%	21 0.203 51% 23% 70% 65%
+lab17 h=1 own R2	lab17		statistic	0.924	0.924
+lab17 target autocorrelation	lab17		statistic	0.953	0.953
+lab17 target autocorrelation	lab17		statistic	0.692	0.692
+lab17 target autocorrelation	lab17		statistic	0.576	0.576
+lab17 target autocorrelation	lab17		statistic	0.417	0.417
+lab18 d=0 domestic median	lab18		statistic	1.26	1.26
+lab18 d=0 domestic outside 2x	lab18		statistic	31.1%	31.1%
+lab18 d=55 domestic median	lab18		statistic	1.90	1.90
+lab18 d=55 domestic outside 2x	lab18		statistic	59.2%	59.2%
+lab18 d=55 cross median	lab18		statistic	1.27	1.27
+lab18 d=55 cross outside 2x	lab18		statistic	37.1%	37.1%
+lab18 understating tail range	lab18		sentence with figures	8.6% and 11.4%	8.6% 11.4%
+lab19 reduced window	lab19		sentence with figures	1,240	1 240
+lab19 peak VIX full	lab19		statistic	82.7	82.7
+lab19 peak VIX reduced	lab19		statistic	41.4	41.4
+12 VSTOXX verdict		12	text	it adds nothing at any delay and is mildly negative at all six	
+lab22 d=0 row	lab22		sentence with figures	0.5191 0.5203 0.5204 0.5179 0.5092 +0.0112 2.66	0.5191 0.5203 0.5204 0.5179 0.5092 +0.0112 2.66
+lab22 d=3 row	lab22		sentence with figures	0.4098 0.4603 0.4614 0.4588 0.4495 +0.0119 1.80	0.4098 0.4603 0.4614 0.4588 0.4495 +0.0119 1.80
+lab22 d=5 row	lab22		sentence with figures	0.3641 0.4541 0.4556 0.4532 0.4438 +0.0118 1.72	0.3641 0.4541 0.4556 0.4532 0.4438 +0.0118 1.72
+lab22 d=13 row	lab22		sentence with figures	0.2336 0.4249 0.4275 0.4256 0.4155 +0.0120 1.51	0.2336 0.4249 0.4275 0.4256 0.4155 +0.0120 1.51
+lab22 d=21 row	lab22		sentence with figures	0.1482 0.4091 0.4122 0.4092 0.3981 +0.0141 1.56	0.1482 0.4091 0.4122 0.4092 0.3981 +0.0141 1.56
+lab22 d=55 row	lab22		sentence with figures	0.0070 0.3876 0.3922 0.3889 0.3736 +0.0186 1.57	0.0070 0.3876 0.3922 0.3889 0.3736 +0.0186 1.57
+no duplicate Table 6			sentence with figures	Table 7. Block-length and bootstrap-family sensitivity	7
+hard labels: usefulness, not computability			text	makes the Brier score equivalent to the error rate and makes the log score infinite after any error	
+proper scores filed correctly			text	the Brier and log scores evaluate probability forecasts of the binary event, which is what they are proper for	
+one evaluation target for all forecasters			text	CC and YZ denote alternative information variables a forecaster may hold, not alternative evaluation targets	
+lab23 d=0 redundancy row	lab23		sentence with figures	0.5547 0.5559 0.5558 0.5443 +0.0012 0.42 +0.0011 0.41	0.5547 0.5559 0.5558 0.5443 +0.0012 0.42 +0.0011 0.41
+lab23 d=3 redundancy row	lab23		sentence with figures	0.5337 0.5359 0.5362 0.5233 +0.0021 0.86 +0.0024 0.95	0.5337 0.5359 0.5362 0.5233 +0.0021 0.86 +0.0024 0.95
+lab23 d=5 redundancy row	lab23		sentence with figures	0.5327 0.5354 0.5358 0.5233 +0.0027 0.87 +0.0030 0.97	0.5327 0.5354 0.5358 0.5233 +0.0027 0.87 +0.0030 0.97
+lab23 d=13 redundancy row	lab23		sentence with figures	0.5261 0.5297 0.5301 0.5171 +0.0036 0.92 +0.0040 1.01	0.5261 0.5297 0.5301 0.5171 +0.0036 0.92 +0.0040 1.01
+lab23 d=21 redundancy row	lab23		sentence with figures	0.5247 0.5283 0.5287 0.5151 +0.0037 0.95 +0.0041 1.04	0.5247 0.5283 0.5287 0.5151 +0.0037 0.95 +0.0041 1.04
+lab23 d=55 redundancy row	lab23		sentence with figures	0.5266 0.5306 0.5307 0.5172 +0.0040 1.13 +0.0041 1.12	0.5266 0.5306 0.5307 0.5172 +0.0040 1.13 +0.0041 1.12
+lab23 FULL rate	lab23		point+interval	71.6% [60.2%, 80.4%]	71.6% 60.2% 80.4%
+lab23 MEAN rate	lab23		point+interval	74.3% [64.4%, 82.7%]	74.3% 64.4% 82.7%
+lab23 PC1 rate	lab23		point+interval	75.2% [65.4%, 83.5%]	75.2% 65.4% 83.5%
+lab23 sign flip	lab23		text	The sign flips and the conclusion does not	
+lab21 d=0 generator row	lab21		sentence with figures	-0.0099 -0.0120 -0.0117 0.0008 -0.0316 +0.0021 +0.0018	-0.0099 -0.0120 -0.0117 0.0008 -0.0316 +0.0021 +0.0018
+lab21 d=1 generator row	lab21		sentence with figures	-0.0006 -0.0142 -0.0134 0.0010 -0.0318 +0.0136 +0.0129	-0.0006 -0.0142 -0.0134 0.0010 -0.0318 +0.0136 +0.0129
+lab21 d=3 generator row	lab21		sentence with figures	+0.0397 -0.0189 -0.0169 0.0013 -0.0328 +0.0587 +0.0566	+0.0397 -0.0189 -0.0169 0.0013 -0.0328 +0.0587 +0.0566
+lab21 d=5 generator row	lab21		sentence with figures	+0.0797 -0.0232 -0.0201 0.0015 -0.0341 +0.1029 +0.0998	+0.0797 -0.0232 -0.0201 0.0015 -0.0341 +0.1029 +0.0998
+lab21 d=13 generator row	lab21		sentence with figures	+0.1819 -0.0392 -0.0335 0.0026 -0.0418 +0.2212 +0.2154	+0.1819 -0.0392 -0.0335 0.0026 -0.0418 +0.2212 +0.2154
+lab21 d=21 generator row	lab21		sentence with figures	+0.2499 -0.0523 -0.0467 0.0038 -0.0498 +0.3023 +0.2966	+0.2499 -0.0523 -0.0467 0.0038 -0.0498 +0.3023 +0.2966
+lab21 d=55 generator row	lab21		sentence with figures	+0.3666 -0.0673 -0.0666 0.0068 -0.0655 +0.4338 +0.4332	+0.3666 -0.0673 -0.0666 0.0068 -0.0655 +0.4338 +0.4332
+lab21 largest gap	lab21		sentence with figures	largest gap is 0.0058 of R&sup2; at &delta; = 13	0.0058 2 13
+lab21 closest call	lab21		sentence with figures	which is 0.60 of the tolerance there	0.60
+lab21 test days lost per naive draw	lab21		sentence with figures	about 187 test days per draw	187
+lab21 naive penalty at d=0	lab21		sentence with figures	sits 0.0199 of R&sup2; below the corrected estimate	0.0199 2
+lab21 naive penalty at d=55	lab21		sentence with figures	and 0.0011 below it at &delta; = 55	0.0011 55
+lab21 near-identity draw	lab21		sentence with figures	scored +0.1816 on its own	+0.1816
+lab21 near-identity spread	lab21		sentence with figures	standard deviation of 0.0680	0.0680
+lab21 agreement claim	lab21		text	The two generators agree at every delay	
+lab21 Fieller ordinary intervals	lab21		text	one day to eleven weeks the confidence set is an ordinary interval	
+lab21 Fieller endpoint gap	lab21		sentence with figures	1.6 percentage points	1.6
+lab21 Fieller d=55 pair	lab21		interval	[59%, 81%] against [60%, 81%]	59% 81% 60% 81%
+lab28 d=0 split row	lab28		sentence with figures	0.5191 0.5204 0.5082 0.5092 +0.0013 -0.0109 2.81	0.5191 0.5204 0.5082 0.5092 +0.0013 -0.0109 2.81
+lab28 d=3 split row	lab28		sentence with figures	0.4098 0.4614 0.3991 0.4495 +0.0516 -0.0107 4.43	0.4098 0.4614 0.3991 0.4495 +0.0516 -0.0107 4.43
+lab28 d=5 split row	lab28		sentence with figures	0.3641 0.4556 0.3550 0.4438 +0.0915 -0.0091 4.87	0.3641 0.4556 0.3550 0.4438 +0.0915 -0.0091 4.87
+lab28 d=13 split row	lab28		sentence with figures	0.2336 0.4275 0.2271 0.4155 +0.1939 -0.0065 4.72	0.2336 0.4275 0.2271 0.4155 +0.1939 -0.0065 4.72
+lab28 d=21 split row	lab28		sentence with figures	0.1482 0.4122 0.1359 0.3981 +0.2641 -0.0123 4.16	0.1482 0.4122 0.1359 0.3981 +0.2641 -0.0123 4.16
+lab28 d=55 split row	lab28		sentence with figures	0.0070 0.3922 -0.0196 0.3736 +0.3852 -0.0266 4.66	0.0070 0.3922 -0.0196 0.3736 +0.3852 -0.0266 4.66
+lab28 verdict	lab28		text	is negative at every delay	
+lab28 rotation check	lab28		sentence with figures	to within 0.0010 of R&sup2; at every delay	0.0010 2
+lab27 ladder row 1	lab27		point+interval	43.3% [+27.4%, +55.9%]	43.3% +27.4% +55.9%
+lab27 ladder row 2	lab27		point+interval	57.0% [+40.7%, +68.7%]	57.0% +40.7% +68.7%
+lab27 ladder row 3	lab27		point+interval	63.1% [+46.2%, +73.1%]	63.1% +46.2% +73.1%
+lab27 ladder row 4	lab27		point+interval	63.1% [+40.2%, +77.5%]	63.1% +40.2% +77.5%
+lab27 ladder row 5	lab27		point+interval	29.9% [+21.7%, +38.2%]	29.9% +21.7% +38.2%
+lab27 ladder row 6	lab27		point+interval	23.9% [+15.7%, +31.4%]	23.9% +15.7% +31.4%
+lab27 direction	lab27		text	it roughly doubles, and it rises monotonically	
+lab27 redundancy in stress	lab27		text	the foreign block adds significantly in none	
+lab27 severest rung size	lab27		sentence with figures	severest rung carries 324 days	324
+lab27 top-5% row	lab27		sentence with figures	VIX top 5% 367 63.1%	5% 367 63.1%
+lab27 top-33% row	lab27		sentence with figures	VIX top 33% 1,729 43.3%	33% 1 729 43.3%
+lab27 calm row	lab27		sentence with figures	VIX bottom 67% 3,074 29.9%	67% 3 074 29.9%
+Table 15 row delta=3			sentence with figures	3 36% 9% -8% -15% -14% -10%	3 36% 9% -8% -15% -14% -10%
+Table 15 row delta=5			sentence with figures	5 51% 29% 13% -0% -11% -8%	5 51% 29% 13% -0% -11% -8%
+Table 15 row delta=13			sentence with figures	13 64% 52% 42% 34% 22% -1%	13 64% 52% 42% 34% 22% -1%
+Table 15 row delta=21			sentence with figures	21 68% 57% 50% 44% 33% 16%	21 68% 57% 50% 44% 33% 16%
+Table 15 row delta=55			sentence with figures	55 71% 64% 58% 53% 46% 30%	55 71% 64% 58% 53% 46% 30%
+Table 18 row delta=3			sentence with figures	3 1.7d 2.7d 3.3d 3.7d 3.6d 3.4d	3 1.7 2.7 3.3 3.7 3.6 3.4
+Table 18 row delta=5			sentence with figures	5 1.9d 3.0d 4.0d 5.0d 5.9d 5.6d	5 1.9 3.0 4.0 5.0 5.9 5.6
+Table 18 row delta=13			sentence with figures	13 2.8d 4.2d 5.5d 6.8d 8.9d 13.2d	13 2.8 4.2 5.5 6.8 8.9 13.2
+Table 18 row delta=21			sentence with figures	21 3.5d 5.2d 6.7d 8.1d 10.5d 15.0d	21 3.5 5.2 6.7 8.1 10.5 15.0
+Table 18 row delta=55			sentence with figures	55 4.6d 6.8d 8.4d 10.0d 12.6d 19.4d	55 4.6 6.8 8.4 10.0 12.6 19.4
+8.3 exchange rate		8.3	sentence with figures	0.13, 0.35, 1.03, 1.13 and 1.44 days	0.13 0.35 1.03 1.13 1.44
+8.3 monotone exchange rate		8.3	text	rising at every step	
+8.3 staleness cell count		8.3	sentence with figures	significantly in 25 of the 30 cells	25 30
+8.3 one-day count		8.3	sentence with figures	in 5 of the 6 delays a single day is already enough	5 6
+8.3 clock correlation		8.3	sentence with figures	with a correlation of +0.93	+0.93
+8.3 clock row FTSE		8.3	sentence with figures	0.013 and 0.019 for the FTSE and the DAX	0.013 0.019
+8.3 clock row DAX		8.3	text	four and a half hours ahead of New York	
+8.3 clock row BVSP		8.3	sentence with figures	against 0.051 for Bovespa	0.051
+8.3 direction of the raw asymmetry		8.3	text	all seven peers appear to LAG the target	
+8.3 factor lag count		8.3	sentence with figures	beats every lagged version in 26 of 30 cells	26 30
+8.3 factor history delays		8.3	sentence with figures	does add to today's at &delta; = 3 and &delta; = 5, and at no longer delay	3 5
+Table S3 row delta=5			sentence with figures	5 0.3641 0.3770	5 0.3641 0.3770
+Table S3 rates and interval delta=5			sentence with figures	51% 47% −4.0% [−11.8, +1.8]	51% 47% 4.0% 11.8 +1.8
+Table S3 row delta=13			sentence with figures	13 0.2336 0.2542	13 0.2336 0.2542
+Table S3 rates and interval delta=13			sentence with figures	64% 60% −3.5% [−9.9, +0.5]	64% 60% 3.5% 9.9 +0.5
+Table S3 row delta=21			sentence with figures	21 0.1482 0.1796	21 0.1482 0.1796
+Table S3 rates and interval delta=21			sentence with figures	67% 64% −3.3% [−9.1, +0.3]	67% 64% 3.3% 9.1 +0.3
+Table S3 row delta=55			sentence with figures	55 0.0070 0.0572	55 0.0070 0.0572
+Table S3 rates and interval delta=55			sentence with figures	72% 68% −4.1% [−9.7, −0.6]	72% 68% 4.1% 9.7 0.6
+9.1 cells improved		9.1	sentence with figures	beats the paper's in 11 of 45 cells	11 45
+9.1 level does the work		9.1	text	at nine delays out of nine	
+9.1 rate moves		9.1	sentence with figures	significantly at &delta; = 34 and 55	34 55
+9.1 level split		9.1	sentence with figures	scores -0.0428, which is worse, and adding the level alone scores +0.0308	-0.0428 +0.0308
+9.1 level grows with delay		9.1	sentence with figures	+0.0011 of R&sup2; at zero delay against +0.0736 at eleven weeks	+0.0011 2 +0.0736
+9.2 halves overlap		9.2	sentence with figures	77% against 67% at eleven weeks, with overlapping intervals	77% 67%
+9.2 within-tercile null		9.2	text	not one of twelve cells differs significantly	
+9.2 path range		9.2	sentence with figures	22% in the window ending April 2019 to 91% in the window ending April 2015	22% 2019 91% 2015
+9.2 trend		9.2	sentence with figures	22 points a decade at five days and 12 at eleven weeks	22 12
+Table 20 stressed 64			point+interval	64% [49, 81]	64% 49 81
+Table 20 stressed 74			point+interval	74% [64, 84]	74% 64 84
+Table 20 stressed 77			point+interval	77% [68, 85]	77% 68 85
+Table 20 stressed 81			point+interval	81% [74, 87]	81% 74 87
+9.3 RC size		9.3	sentence with figures	rejects 5.5% and 7.0% of the time	5.5% 7.0%
+9.3 survives		9.3	sentence with figures	survives both tests at &delta; = 3, 5, 13, 21 and 55 with p below 0.0005	3 5 13 21 55 0.0005
+9.3 delta-0 absence		9.3	sentence with figures	the best margin across all nine models is +0.0014	+0.0014
+9.4 purge load-bearing		9.4	point+interval	+0.0024 [+0.00062, +0.00387] at zero delay and +0.0021 [+0.00017, +0.00382] at three days	+0.0024 +0.00062 +0.00387 +0.0021 +0.00017 +0.00382
+9.4 embargo		9.4	text	costs nothing detectable in any of eighteen cells	
+Table 21 row SPX			point+interval	51% [35, 66] 64% [51, 74] 67% [55, 78] 72% [60, 81]	51% 35 66 64% 51 74 67% 55 78 72% 60 81
+Table 21 row FTSE			point+interval	74% [53, 91] 82% [68, 93] 84% [71, 94] 88% [77, 96]	74% 53 91 82% 68 93 84% 71 94 88% 77 96
+Table 21 row DAX			point+interval	55% [37, 70] 69% [55, 79] 71% [58, 80] 74% [65, 82]	55% 37 70 69% 55 79 71% 58 80 74% 65 82
+Table 21 row HSI			point+interval	61% [32, 88] 68% [46, 90] 69% [50, 88] 69% [55, 84]	61% 32 88 68% 46 90 69% 50 88 69% 55 84
+Table 21 row N225			point+interval	44% [5, 74] 54% [23, 75] 55% [24, 75] 60% [36, 76]	44% 5 74 54% 23 75 55% 24 75 60% 36 76
+9.1 normaliser test		9.1	sentence with figures	retains between 87% and 103% of the gain	87% 103%
+9.1 normaliser numbers		9.1	sentence with figures	+0.0656 against +0.0638 at eleven weeks	+0.0656 +0.0638
+9.1 correction survives		9.1	sentence with figures	moves R(55) from 73% to 69%	55 73% 69%
+12 conditional limitation		12	text	The unconditional rate averages two states in which the mechanism behaves differently	
+13 conditional recommendation		13	sentence with figures	about 80% of the delay-induced loss recovered in stressed markets, where the estimate is stable and tight	80%
+13 names both unconditional figures		13	sentence with figures	72% against the paper's own control and 68% against the stronger control	72% 68%
+4.5 states the identification problem		4.5	sentence with figures	approaches zero and the ratio is weakly identified, so a uniformly valid confidence procedure must be free to return an unbounded set (Dufour 1997)	1997
+4.5 names the bootstrap as the source		4.5	sentence with figures	The published intervals are a bootstrap of the whole ratio, and each is checked by inverting a HAC t-test after Fieller (1954)	1954
+9.2 Fieller applied		9.2	text	Every one comes back an ordinary interval	
+9.2 VIX tension		9.2	text	can see it whether or not any option trades on the thing they own	
+14 compression is the model to run		14	sentence with figures	a single real-time factor beating all seven series at every delay and raising R(55) to 75.2%	55 75.2%
+14 seven regressors not recommended		14	text	compress the cross-section first and treat the seven-regressor figures as the conservative benchmark	
+8 horizon mismatch		8	text	measured over a horizon about four times the length of the thing it is forecasting, not six	
+8 matched instrument named		8	sentence with figures	a nine-day index, VIX9D, formerly VXST	9
+Table 20 row delta=5			sentence with figures	5 0.0284 0.1567 5.5&times; 0.0673 0.2434 3.6&times;	5 0.0284 0.1567 5.5 0.0673 0.2434 3.6
+Table 20 row delta=13			sentence with figures	13 0.0345 0.3787 11.0&times; 0.0798 0.5110 6.4&times;	13 0.0345 0.3787 11.0 0.0798 0.5110 6.4
+Table 20 row delta=21			sentence with figures	21 0.0412 0.5224 12.7&times; 0.1003 0.6755 6.7&times;	21 0.0412 0.5224 12.7 0.1003 0.6755 6.7
+Table 20 row delta=55			sentence with figures	55 0.0583 0.8043 13.8&times; 0.1234 0.9927 8.0&times;	55 0.0583 0.8043 13.8 0.1234 0.9927 8.0
+9.2 numerator moves		9.2	sentence with figures	stress multiplies N by 10.7 and D by 6.2	10.7 6.2
+9.2 absolute reading		9.2	sentence with figures	removes 0.8043 of squared error in stressed markets against 0.0583 in calm	0.8043 0.0583
+6 decay fit		6	sentence with figures	R&sup2; = 0.9980	2 0.9980
+6 decay slope		6	sentence with figures	slope -0.05419 per day	-0.05419
+6 implied persistence		6	sentence with figures	implying &phi; = 0.9733	0.9733
+6 measured persistence		6	sentence with figures	is 0.9678	0.9678
+6 predicted ceiling		6	sentence with figures	giving a ceiling of 72.0%	72.0%
+6 agreement		6	sentence with figures	The two agree to 0.0055	0.0055
+6 flatness		6	sentence with figures	it falls 27%, against 99% for the domestic model	27% 99%
+6 ceiling met		6	sentence with figures	against a measured 69.8% at &delta; = 34 and 71.6% at &delta; = 55	69.8% 34 71.6% 55
+6 ceiling is interpretation		6	text	a factor-model interpretation of the observed plateau rather than a prediction of it	
+6 ceiling identity shown		6	sentence with figures	this collapses to S cross (55) &divide; S own (0), which is equation (12)	55 0 12
+6 what it cannot do		6	text	What the model does not explain is why the mechanism is stronger in stress	
+abstract effective age			point+interval	forecasts as well as a mark 4.6 days old [2.5, 8.4]	4.6 2.5 8.4
+abstract exchange rate			point+interval	costs 2.1 days [1.4, 3.3] of domestic freshness	2.1 1.4 3.3
+abstract conditional rate			point+interval	81% [74, 87] in	81% 74 87
+10 quotes the stronger control beside its own		10	sentence with figures	68% against the strongest control alongside its own	68%
+the paper names the envelope's section			sentence with figures	against the stronger control of Section S4 of the Internet Appendix	4
+Table 1 stronger-control difference			sentence with figures	is 4.1 points below the paper's own	4.1
+Table 1 stronger-control interval			interval	[-9.7, -0.6]	-9.7 -0.6
+abstract normalisation finding			text	Restoring that level is worth more at long delays than the entire cross-section	
+compression advice			text	one real-time factor	
+12 foreign-feed condition		12	sentence with figures	36% into 9% at three days and its 51% into 29% at five	36% 9% 51% 29%
+13 prediction from 5.3		13	text	the remainder is negative at every delay and beats the stale domestic model at none	
+13 cross-asset test		13	text	Breadth ACROSS asset classes is	
+13 FX first		13	text	current by construction, not by luck of the clock	
+12 unverified seam		12	sentence with figures	eight overlap by 120 to 251 days and agree exactly on every overlapping row, while the S&P's two files abut without overlapping	120 251
+3 headline-loss defence		3	text	the headline number in this paper is the one loss of the three that is NOT proxy-robust	
+3 headline-loss reason		3	text	a ratio needs a denominator a reader can hold	
+lab57 Jan/Apr/Jul/Oct d=1 S_own	lab57		statistic	0.3092	0.3092
+lab57 Jan/Apr/Jul/Oct d=1 S_cross	lab57		statistic	0.4279	0.4279
+lab57 Jan/Apr/Jul/Oct d=1 pooled	lab57		statistic	49.1%	49.1%
+lab57 Jan/Apr/Jul/Oct d=1 pooled interval	lab57		interval	[19, 75]	19 75
+lab57 Jan/Apr/Jul/Oct d=2 S_own	lab57		statistic	0.2479	0.2479
+lab57 Jan/Apr/Jul/Oct d=2 S_cross	lab57		statistic	0.4429	0.4429
+lab57 Jan/Apr/Jul/Oct d=2 pooled	lab57		statistic	64.3%	64.3%
+lab57 Jan/Apr/Jul/Oct d=2 pooled interval	lab57		interval	[34, 86]	34 86
+lab57 Feb/May/Aug/Nov d=1 S_own	lab57		statistic	0.3206	0.3206
+lab57 Feb/May/Aug/Nov d=1 S_cross	lab57		statistic	0.4704	0.4704
+lab57 Feb/May/Aug/Nov d=1 pooled	lab57		statistic	58.3%	58.3%
+lab57 Feb/May/Aug/Nov d=1 pooled interval	lab57		interval	[35, 79]	35 79
+lab57 Feb/May/Aug/Nov d=2 S_own	lab57		statistic	0.2693	0.2693
+lab57 Feb/May/Aug/Nov d=2 S_cross	lab57		statistic	0.4657	0.4657
+lab57 Feb/May/Aug/Nov d=2 pooled	lab57		statistic	63.7%	63.7%
+lab57 Feb/May/Aug/Nov d=2 pooled interval	lab57		interval	[39, 82]	39 82
+lab57 Mar/Jun/Sep/Dec d=1 S_own	lab57		statistic	0.3115	0.3115
+lab57 Mar/Jun/Sep/Dec d=1 S_cross	lab57		statistic	0.4677	0.4677
+lab57 Mar/Jun/Sep/Dec d=1 pooled	lab57		statistic	63.5%	63.5%
+lab57 Mar/Jun/Sep/Dec d=1 pooled interval	lab57		interval	[38, 81]	38 81
+lab57 Mar/Jun/Sep/Dec d=2 S_own	lab57		statistic	0.2599	0.2599
+lab57 Mar/Jun/Sep/Dec d=2 S_cross	lab57		statistic	0.4450	0.4450
+lab57 Mar/Jun/Sep/Dec d=2 pooled	lab57		statistic	62.2%	62.2%
+lab57 Mar/Jun/Sep/Dec d=2 pooled interval	lab57		interval	[34, 83]	34 83
+9.2 quarterly rate		9.2	sentence with figures	the rate is 57% at one quarter of staleness	57%
+9.2 quarterly span		9.2	sentence with figures	spanning 49% to 63% across phases	49% 63%
+9.2 quarterly breadth		9.2	sentence with figures	positive in 35 of 42 metro-phases	35 42
+9.2 de-smoothed cost		9.2	sentence with figures	one month of staleness costs −0.0012 of R	0.0012
+9.2 de-smoothed increment		9.2	sentence with figures	still adds +0.1352 of R	+0.1352
+S18 mean rho		S18	sentence with figures	averages 0.567 across metros	0.567
+9.2 reports the gap rather than the agreement		9.2	sentence with figures	57% is visibly below 67.8%	57% 67.8%
+S17 Fisher interval		S17	interval	Fisher interval of [+0.884, +0.996]	+0.884 +0.996
+S17 Spearman		S17	sentence with figures	the Spearman rank correlation, which is what the ordering claim actually needs, is +0.976	+0.976
+S17 leave-one-out floor		S17	sentence with figures	never falls below +0.976	+0.976
+S17 single cluster		S17	sentence with figures	the correlation is +0.903 and the Spearman +0.943	+0.903 +0.943
+S17 leverage		S17	sentence with figures	leverage of 0.734 against a mean of 0.250	0.734 0.250
+S17 slope shift		S17	sentence with figures	from +1.154 to +1.455	+1.154 +1.455
+S17 crossing shift		S17	sentence with figures	from +0.216 to +0.309	+0.216 +0.309
+11 coupling caution		11	text	the ordering is robust and the crossing is not	
+3 export overlap		3	sentence with figures	overlap by 120 to 251	120 251
+12 export overlap		12	sentence with figures	overlap by 120 to 251	120 251
+3 joins counted		3	text	which leaves nine joins to be checked	
+3 joins overlapping		3	text	Eight of the nine overlap	
+4.3 points at the timeline		4.3	sentence with figures	Figure 1 draws the whole arrangement	1
+4.4 zero-delay direction		4.4	text	both point in the same negative direction but the natural-scale MSE is too imprecise to establish an effect	
+4.4 rests no claim on that row		4.4	text	no economic claim in this paper rests on that row	
+1 scopes the housing test		1	text	narrow that extrapolation as far as public data allows	
+1 states the index-is-not-a-book limit		1	text	a published index is not a book	
+4.2 states the convention once		4.2	text	the equity-result tables in this paper report the target-dated rate and every headline sentence reports the implementable origin-dated one	
+Table 2 repeats it where the gap is met			sentence with figures	reads 72% at eleven weeks where the abstract&rsquo;s implementable figure is 71%	72% 71%
+S0 states the section count		S0	sentence with figures	Thirty-seven substantive sections, S1 through S37, plus this claim map, is enough	1 37
+abstract envelope range			sentence with figures	60.8% to 74.4%	60.8% 74.4%
+S3 names the common-penalty remedy		S3	text	imposes a single ridge penalty on both arms, selected on the restricted one	
+Table 1 main sample			sentence with figures	same 4,862 test days as Section	4 862
+Table 1 stressed sample			sentence with figures	the 1,618 of those days	1 618
+Table 1 disclaims the options window			sentence with figures	No row here uses the 4,525-day window of Section	4 525
+4.3 window length		4.3	sentence with figures	the window holds 1,500 days	1 500
+4.3 window end		4.3	text	c t = t - &delta; - h	
+4.3 window set		4.3	sentence with figures	T &delta; (t) = {c t - 1499, &hellip;, c t }	1499
+4.3 two-step penalty		4.3	sentence with figures	candidate penalties are fitted on the first 1,250 days	1 250
+4.3 final refit		4.3	sentence with figures	refitted on all 1,500	1 500
+4.3 says what the tail is held out of		4.3	text	held out of the candidate fits, which is what lets it choose between them, and is not held out of the final model	
+Figure 1 caption states the refit			sentence with figures	refitted on all 1,500, so the tail is held out of the selection	1 500
+availability names the restriction			text	Every vendor behind the inputs prohibits redistributing their files	
+availability names the one exception			text	the FHFA index that FRED places in the public domain	
+availability names the three commands			text	python verify_data.py	
+availability file count			text	thirty-five input files exactly one	
+Table 3 delta=0			sentence with figures	0 0.4502 64.87 64.99 67.87 68.59 104.4	0 0.4502 64.87 64.99 67.87 68.59 104.4
+Table 3 delta=1			sentence with figures	1 0.4039 63.23 63.37 66.71 67.44 105.3	1 0.4039 63.23 63.37 66.71 67.44 105.3
+Table 3 delta=2			sentence with figures	2 0.3595 61.71 61.86 65.56 66.57 106.0	2 0.3595 61.71 61.86 65.56 66.57 106.0
+Table 3 delta=3			sentence with figures	3 0.3179 60.30 60.48 63.26 64.84 104.6	3 0.3179 60.30 60.48 63.26 64.84 104.6
+Table 3 delta=5			sentence with figures	5 0.2539 58.17 58.40 60.95 60.95 104.4	5 0.2539 58.17 58.40 60.95 60.95 104.4
+Table 3 delta=8			sentence with figures	8 0.1879 56.02 56.33 57.20 57.20 101.5	8 0.1879 56.02 56.33 57.20 57.20 101.5
+Table 3 delta=13			sentence with figures	13 0.1712 55.48 55.82 54.90 53.75 98.3	13 0.1712 55.48 55.82 54.90 53.75 98.3
+Table 3 delta=21			sentence with figures	21 0.1741 55.57 55.91 50.00 51.87 89.4	21 0.1741 55.57 55.91 50.00 51.87 89.4
+Table 3 delta=34			sentence with figures	34 −0.0418 48.67 52.38 49.86 47.84 95.2	34 0.0418 48.67 52.38 49.86 47.84 95.2
+Table 3 delta=55			sentence with figures	55 −0.1202 46.17 52.27 44.24 46.25 84.6	55 0.1202 46.17 52.27 44.24 46.25 84.6
+Table 3 caption explains the two columns			sentence with figures	where &rho; &lt; 0 it falls below one half, which means the rule is beaten by its own negation and cannot bound anything	0
+benchmark is defined by its model			text	the Bayes accuracy implied by the fitted non-centred Gaussian model, maximised over thresholds on the delayed state	
+attainable is qualified			text	attainable by the Bayes classifier under that fitted approximation	
+attainable is not a bound			text	not a bound on what any forecaster could achieve in the data-generating process	
+the column heading names the model			text	Gaussian benchmark, best cut (fitted model)	
+headroom is an estimate			text	The estimated headroom is small relative to sampling uncertainty in this sample	
+abstract benchmark range			sentence with figures	sit at 85-106% of that restricted-information Gaussian benchmark	85 -106%
+abstract exceed count			text	exceeding it at six of ten delays	
+Section 5 exceed count			text	exceeds the benchmark at six of the ten delays below	
+abstract names the negative-correlation problem			text	the correlation turns negative at the two longest delays, where a same-sign rule is beaten by its own negation	
+lab24 d=0 persist-YZ row	lab24		sentence with figures	67.87% 0.735 0.681 n/a n/a	67.87% 0.735 0.681
+lab24 d=0 har-YZ row	lab24		sentence with figures	68.59% 0.705 0.674 0.2195 0.6357	68.59% 0.705 0.674 0.2195 0.6357
+lab24 d=5 persist-YZ row	lab24		sentence with figures	60.95% 0.660 0.611 n/a n/a	60.95% 0.660 0.611
+lab24 d=5 har-YZ row	lab24		sentence with figures	60.95% 0.628 0.598 0.2470 0.6997	60.95% 0.628 0.598 0.2470 0.6997
+lab24 d=21 base rate row	lab24		sentence with figures	42.94% 0.336 0.409 0.2513 0.6958	42.94% 0.336 0.409 0.2513 0.6958
+lab24 d=21 persist-YZ row	lab24		sentence with figures	50.00% 0.535 0.501 n/a n/a	50.00% 0.535 0.501
+lab24 d=21 har-YZ row	lab24		sentence with figures	51.87% 0.508 0.507 0.2849 0.7890	51.87% 0.508 0.507 0.2849 0.7890
+lab24 AUC gap at d=0	lab24		interval	the gap is -0.0299 with a block-bootstrap interval of [-0.0590, -0.0026]	-0.0299 -0.0590 -0.0026
+lab24 discretising cost	lab24		sentence with figures	by as much as 0.055 of AUC at &delta; = 0	0.055 0
+lab24 separation count	lab24		text	they separate at five of ten delays	
+lab24 separation list	lab24		sentence with figures	&delta; = 0, 1, 2, 3 and 5	0 1 2 3 5
+Table 1 delta=0			point+interval	0 46.83 65.85 [57.3, 73.1] 67.87 [59.1, 73.6] 61.82 [53.0, 68.7] 68.59 [61.5, 73.3]	0 46.83 65.85 57.3 73.1 67.87 59.1 73.6 61.82 53.0 68.7 68.59 61.5 73.3
+Table 1 delta=1			point+interval	1 46.83 65.56 [57.8, 72.6] 66.71 [58.9, 72.2] 61.53 [52.7, 68.2] 67.44 [60.1, 72.2]	1 46.83 65.56 57.8 72.6 66.71 58.9 72.2 61.53 52.7 68.2 67.44 60.1 72.2
+Table 1 delta=2			point+interval	2 46.83 64.41 [57.1, 70.7] 65.56 [57.5, 71.2] 61.24 [52.4, 68.4] 66.57 [59.7, 72.0]	2 46.83 64.41 57.1 70.7 65.56 57.5 71.2 61.24 52.4 68.4 66.57 59.7 72.0
+Table 1 delta=3			point+interval	3 46.83 62.10 [54.3, 68.0] 63.26 [55.2, 68.7] 60.81 [52.3, 67.9] 64.84 [57.3, 70.0]	3 46.83 62.10 54.3 68.0 63.26 55.2 68.7 60.81 52.3 67.9 64.84 57.3 70.0
+Table 1 delta=5			point+interval	5 46.83 60.23 [52.6, 66.9] 60.95 [52.9, 66.6] 58.50 [49.7, 66.1] 60.95 [52.6, 67.0]	5 46.83 60.23 52.6 66.9 60.95 52.9 66.6 58.50 49.7 66.1 60.95 52.6 67.0
+Table 1 delta=8			point+interval	8 46.83 56.34 [49.3, 63.5] 57.20 [49.1, 63.8] 54.76 [45.1, 62.8] 57.20 [48.3, 64.6]	8 46.83 56.34 49.3 63.5 57.20 49.1 63.8 54.76 45.1 62.8 57.20 48.3 64.6
+Table 1 delta=13			point+interval	13 46.83 52.88 [45.7, 60.4] 54.90 [47.0, 61.7] 52.74 [43.4, 61.1] 53.75 [45.2, 60.7]	13 46.83 52.88 45.7 60.4 54.90 47.0 61.7 52.74 43.4 61.1 53.75 45.2 60.7
+Table 1 delta=21			point+interval	21 46.83 49.86 [42.1, 57.3] 50.00 [41.9, 57.6] 54.03 [44.5, 62.0] 51.87 [44.2, 58.4]	21 46.83 49.86 42.1 57.3 50.00 41.9 57.6 54.03 44.5 62.0 51.87 44.2 58.4
+Table 1 delta=34			point+interval	34 46.83 50.43 [42.7, 56.9] 49.86 [42.5, 58.4] 50.43 [41.2, 57.9] 47.84 [39.8, 55.2]	34 46.83 50.43 42.7 56.9 49.86 42.5 58.4 50.43 41.2 57.9 47.84 39.8 55.2
+Table 1 delta=55			point+interval	55 46.83 48.27 [40.3, 55.5] 44.24 [36.6, 51.4] 46.54 [36.2, 54.9] 46.25 [37.2, 53.7]	55 46.83 48.27 40.3 55.5 44.24 36.6 51.4 46.54 36.2 54.9 46.25 37.2 53.7
+abstract YZ cell			interval	(+2.0 points at zero delay, 95% CI [-5.0, +8.2])	+2.0 95% -5.0 +8.2
+abstract HAR cell			interval	(-4.0 points, [-11.5, +2.5])	-4.0 -11.5 +2.5
+4.2 equivalence bound		4.2	sentence with figures	at &delta; = 21, leaves a HAR advantage of up to 12.5 accuracy points unexcluded	21 12.5
+4.1 conservative hurdle named		4.1	text	a conservative constant-class hurdle	
+4.1 higher hurdle		4.1	sentence with figures	the conservative 53.2% hurdle	53.2%
+4.1 threshold rule both hurdles		4.1	sentence with figures	entirely above it through &delta; = 3; against the 46.8% expanding-window rule it does so through &delta; = 8	3 46.8% 8
+4.1 crossing is the all-seed one		4.1	text	stated at the last delay that clears in every bootstrap seed	
+4.1 knife-edge delays		4.1	sentence with figures	At &delta; = 5 the lower endpoint sits within a quarter of a point of the higher hurdle and clears it in 1 of 20 seeds; at &delta; = 13 it clears the lower hurdle in 18 of 20	5 1 20 13 18 20
+4.1 other forecasters		4.1	sentence with figures	persist-CC and har-YZ run through &delta; = 3 against the higher hurdle and &delta; = 8 against the lower	3 8
+4.1 har-CC never clears		4.1	sentence with figures	har-CC clears the higher one at no delay firmly, clearing even &delta; = 0 in only 5 of 20 seeds, while clearing the lower through &delta; = 5	0 5 20 5
+4.1 all four move		4.1	text	changes the answer for all four	
+Table 6 mb10			sentence with figures	mb 10 0 of 10 7 of 10 0, 1, 2, 3, 5, 8, 13 yes	10 0 10 7 10 0 1 2 3 5 8 13
+Table 6 sb10			sentence with figures	sb 10 0 of 10 6 of 10 0, 1, 2, 3, 5, 13 yes	10 0 10 6 10 0 1 2 3 5 13
+Table 6 mb20			sentence with figures	mb 20 0 of 10 5 of 10 0, 1, 2, 3, 5 yes	20 0 10 5 10 0 1 2 3 5
+Table 6 sb20			sentence with figures	sb 20 0 of 10 5 of 10 0, 1, 2, 3, 5 yes	20 0 10 5 10 0 1 2 3 5
+Table 6 mb40			sentence with figures	mb 40 0 of 10 5 of 10 0, 1, 2, 3, 5 yes	40 0 10 5 10 0 1 2 3 5
+Table 6 sb40			sentence with figures	sb 40 0 of 10 5 of 10 0, 1, 2, 3, 5 yes	40 0 10 5 10 0 1 2 3 5
+6.4 count falls with the block		6.4	sentence with figures	It stands at seven of ten delays with a block of 10	10
+6.4 reported count		6.4	text	We therefore report five, the count at the block this note uses	
+6.4 direction tally		6.4	text	there are thirty-three significant AUC cells and all thirty-three favour the threshold rule	
+3.4 block length		3.4	sentence with figures	with block length 8h = 40 and 2,000 resamples	8 40 2 000
+lab24 contrast orientation	lab24		text	the HAR classifier minus the threshold rule, so a negative number is the threshold rule ahead	
+lab24 direction	lab24		text	in the threshold rule's favour every time	
+lab24 Brier deterioration	lab24		sentence with figures	significantly so at &delta; = 34 and 55	34 55
+lab25 headline	lab25		text	the HAR classifier significantly beats the threshold rule in none, and the threshold rule significantly beats the HAR classifier in fifteen	
+lab25 power caveat	lab25		text	moves that boundary back out from zero to three days	
+lab26 q=0.50 row	lab26		sentence with figures	67.45% 67.43%	67.45% 67.43%
+lab26 q=0.65 row	lab26		sentence with figures	71.06% 65.37%	71.06% 65.37%
+lab26 q=0.75 row	lab26		sentence with figures	77.13% 62.42%	77.13% 62.42%
+lab26 q=0.90 row	lab26		sentence with figures	90.11% 55.33%	90.11% 55.33%
+lab26 tail ceiling	lab26		sentence with figures	the Bayes rule itself attains 90.11% against a majority-class 90.00%	90.11% 90.00%
+lab26 quadrature check	lab26		sentence with figures	largest absolute difference of 1.41e-07	1.41 -07
+lab26 objective clash	lab26		text	At fifteen of twenty quantile-delay cells	
