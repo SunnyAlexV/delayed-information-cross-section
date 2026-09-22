@@ -1,0 +1,62 @@
+data folder: <your data folder>
+Prints an interval for the effective-age headline of Section 9.3.
+
+target SPX, 4852 test days, 7 foreign peers, 1500 replications in moving blocks of 40
+
+================================================================================================
+A.  THE RULER, AND THE MODELS BEING MEASURED AGAINST IT
+================================================================================================
+own-only skill against the age of the mark:
+  0d:0.519  1d:0.474  2d:0.439  3d:0.410  4d:0.385  5d:0.365  6d:0.346  8d:0.311
+  10d:0.279  13d:0.234  16d:0.194  21d:0.148  26d:0.114  34d:0.079  44d:0.033  55d:0.006
+
+the combined model at delta = 55, by foreign-feed staleness:
+  g =  0:  R-squared 0.3725   effective age 4.6 days
+  g =  1:  R-squared 0.3329   effective age 6.8 days
+  g =  5:  R-squared 0.2402   effective age 12.6 days
+
+================================================================================================
+B.  THE INTERVAL
+================================================================================================
+Days are resampled in moving blocks; the curve, the combined model and the
+benchmark variance are all recomputed on the SAME resampled days, and the
+age is re-interpolated inside each replication.
+
+   g   effective age          95% interval   at 0 days  off the grid
+   0            4.6d       [2.5, 8.4] days           0             0
+   1            6.8d      [4.0, 11.1] days           0             0
+   5           12.6d      [9.5, 19.6] days           0             0
+
+  'at 0 days' counts replications where the combined model beat a fresh
+  mark outright; 'off the grid' counts those where it was worse than a
+  55-day-old one. Both are reported rather than dropped.
+
+================================================================================================
+C.  IS THE HEADLINE SAFE?
+================================================================================================
+  The headline quotes 4.6 days. The interval is [2.5, 8.4], 5.9 days wide.
+  Relative to the 55-day mark being repaired, the interval spans
+  4.6% to 15.3% of the original staleness.
+
+  What one day of foreign staleness costs, in days of domestic
+  freshness, as a paired difference inside each replication:
+
+      comparison     point          95% interval  excludes 0
+g = 1 minus g = 0      2.1d       [1.4, 3.3] days         yes
+g = 5 minus g = 0      8.0d      [5.9, 12.6] days         yes
+
+================================================================================================
+VERDICT
+================================================================================================
+  The effective age is 4.6 days with a 95% interval of [2.5, 8.4].
+  Every value in that interval is a small fraction of the 55 days of
+  staleness the cross-section is repairing, so the headline is a finding
+  and not an artefact of reading one point off a curve. It should be
+  quoted with the interval, which is what this lab exists to supply.
+
+  A single day of foreign staleness costs 2.1 days of domestic
+  freshness, interval [1.4, 3.3], which excludes zero. Section 9.3's
+  exchange rate is a measured difference and not a direction, and it is
+  now quotable in the unit the section is written in. The two marginal
+  intervals in part B overlap, which is the ordinary behaviour of
+  marginal intervals and is not evidence against a paired difference.

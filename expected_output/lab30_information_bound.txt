@@ -1,0 +1,102 @@
+data folder: <your data folder>
+EXPLORATORY - cited by neither paper.
+
+==============================================================================================
+0.  DOES THE ESTIMATOR RECOVER A KNOWN ANSWER?
+==============================================================================================
+For a bivariate normal, I = -1/2 log(1 - rho^2) exactly.  Draw samples of
+the size this project actually has and see what the binned estimator returns,
+raw and after subtracting its own permutation null.
+
+    rho    true I       raw      null   debiased     error
+   0.00   -0.0000    0.0200    0.0234     0.0000   +0.0000
+   0.20    0.0204    0.0466    0.0235     0.0231   +0.0027
+   0.40    0.0872    0.1090    0.0236     0.0854   -0.0018
+   0.60    0.2231    0.2606    0.0238     0.2368   +0.0137
+   0.80    0.5108    0.5144    0.0238     0.4907   -0.0202
+
+  largest error after debiasing: 0.0202 nats
+  The estimator recovers the closed form after debiasing, so it can be
+  used where no closed form exists.
+
+==============================================================================================
+A.  HOW FAR IS THE TARGET FROM GAUSSIAN?
+==============================================================================================
+The bracket N(Y)/Var(Y) is one for a Gaussian target and less than one
+otherwise.  Smaller means the Gaussian formula UNDERSTATES how much room
+a forecaster has.
+
+  test days                      4862
+  Var(Y)                         0.9092
+  differential entropy h(Y)      1.3129 nats
+  Gaussian entropy at same Var   1.3713 nats
+  entropy power / variance       0.8898
+
+  A target below one here: the ceiling that follows is looser than
+  the Gaussian one by exactly that factor.
+
+==============================================================================================
+B.  A CEILING THAT ASSUMES NOTHING, AGAINST WHAT THE MODELS REACH
+==============================================================================================
+X = the delayed domestic state.  'linear R2' is what a correlation of the
+same pair would allow; 'achieved' is the paper's own walk-forward domestic
+model.  Headroom is the ceiling minus what was achieved.
+
+ delta  I (debiased)  null sd   ceiling  linear R2  achieved  headroom
+     0        0.3233   0.0020     53.4%      49.7%     51.9%      1.5%
+     3        0.2397   0.0022     44.9%      38.4%     41.0%      3.9%
+     5        0.2004   0.0022     40.4%      34.0%     36.4%      4.0%
+    13        0.1343   0.0023     32.0%      21.8%     23.4%      8.6%
+    21        0.0888   0.0023     25.5%      14.0%     14.8%     10.7%
+    55        0.0350   0.0024     17.0%       2.6%      0.7%     16.3%
+
+  headroom above the fitted domestic model: 1.5% to 16.3% of variance
+  ceiling minus what LINEAR dependence alone allows, by delay:
+       0      +3.7%
+       3      +6.5%
+       5      +6.4%
+      13     +10.2%
+      21     +11.5%
+      55     +14.4%
+
+  delays where the information ceiling exceeds the linear allowance by
+  more than five points of variance: 5 of 6 [3, 5, 13, 21, 55]
+
+  There is dependence a linear model cannot use.  That is an upper bound on
+  what any non-linear method could add, and it is not zero - which makes
+  lab09's and lab15's failures to find it a statement about this sample's
+  size rather than about the world, exactly as those files claimed.
+
+==============================================================================================
+C.  THE SUBSTITUTION RATE WITHOUT A MODEL
+==============================================================================================
+The paper's rate is the ratio of what a fitted cross-sectional model
+recovers to what the delay costs a fitted domestic one.  Both numerator and
+denominator are properties of the estimator as much as of the information.
+Here the same ratio is built from mutual information instead, using the
+global factor of lab28 as the cross-sectional summary - so nothing is
+fitted and no functional form is assumed.
+
+  ceiling with a CURRENT domestic state (delta = 0): 53.4%
+
+ delta    I(own)   I(factor)   ceil own  ceil factor   info R(d)   fitted R(d)      gap
+     3    0.2403      0.2407      45.0%        45.0%        0.6%         36.3%   -35.8%
+     5    0.2007      0.2408      40.4%        45.0%       35.5%         51.4%   -16.0%
+    13    0.1354      0.2408      32.1%        45.0%       60.7%         63.7%    -3.0%
+    21    0.0889      0.2407      25.5%        45.0%       70.0%         67.4%    +2.6%
+    55    0.0349      0.2407      17.0%        45.0%       77.0%         71.6%    +5.4%
+
+  At the longest delay the two agree closely: 77.0% from
+  information alone against 71.6% from the fitted models, a gap of
+  +5.4%.  The paper's headline rate is therefore a property of
+  the information and not of the estimator, which is the thing a referee
+  cannot check from the fitted numbers alone.
+
+  At short delay they diverge sharply - [3, 5] - and the sign is the
+  informative part.  The information rate is LOWER there, which cannot mean
+  the fitted model beat the bound: both models sit well below their own
+  ceilings at short delay, so the cross-section can improve on a fitted
+  domestic model without carrying information that model did not already
+  have access to.  What the paper measures at short delay is partly the
+  domestic estimator falling short of what its own data allows, and the
+  information view separates the two for the first time.

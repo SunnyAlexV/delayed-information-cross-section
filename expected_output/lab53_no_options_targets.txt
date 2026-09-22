@@ -1,0 +1,223 @@
+data folder: <your data folder>
+Prints the no-options-market targets, Section 9.5.
+
+    VIX files: ['VIX_History.csv']
+    VDAX files: ['DAX_New_Volatility_Historical_Data.csv', 'DAX_New_Volatility_Historical_Data_1.csv']
+    seam VDAX: 251 overlapping rows, 0 mismatched  -> VERIFIED
+
+================================================================================================
+A.  FOUR TARGETS WITH NO VOLATILITY INDEX OF THEIR OWN, AND FOUR WITH ONE
+================================================================================================
+The lower four are the Asian targets of Section 9.4. Options trade on all
+of them and each has a published volatility index that this paper does
+not hold. The upper four have none to hold. All eight close between 06:00
+and 10:30 UTC, so the clock handicap is held roughly fixed across the
+comparison.
+
+  target                            market   close  same-day   days  first test day   coupling
+  KSE100                  Pakistan KSE-100    10.5         4   3569      2006-10-13     -0.115
+    JKSE           Indonesia IDX Composite     9.0         3   4872      2006-07-26      0.648
+  CSEALL       Sri Lanka Colombo All-Share     9.0         3   3429      2006-11-30      0.228
+    KLCI          Malaysia FTSE Bursa KLCI     9.0         3   4948      2006-07-07      0.611
+    N225                  Japan Nikkei 225     6.0         0   4722      2007-07-04      0.701
+    AXJO             Australia S&P/ASX 200     6.0         0   4904      2007-04-24      0.808
+     HSI               Hong Kong Hang Seng     8.0         2   4756      2007-06-18      0.731
+    NSEI                    India Nifty 50    10.0         3   4786      2007-05-16      0.661
+
+================================================================================================
+B.  THE RACE ON EACH, WITH BOTH PARAMETERISATIONS
+================================================================================================
+'seven' is the eight-index block of Section 3 minus the target itself;
+'mean' is its equal-weighted average, the block Section 5.1 recommends.
+The last four columns are what breadth still adds once implied
+volatility is held, under each parameterisation.
+
+  KSE100  (no volatility index published)
+   delta      own   +block      +IV  R breadth    R iv  seven|IV   GW z   mean|IV   GW z
+       0   0.5115   0.4951   0.5049       nan%    nan%   -0.0134  -1.48   +0.0012  +0.38
+       5   0.3552   0.3345   0.3453     -13.2%   -6.3%   -0.0219  -1.05   +0.0010  +0.15
+      21  -0.0959  -0.1899  -0.1801     -15.5%  -13.9%   -0.0483  -0.83   -0.0023  -0.14
+      55  -0.0740  -0.2477  -0.2225     -29.7%  -25.4%   -0.0570  -1.35   -0.0167  -1.81
+
+  JKSE  (no volatility index published)
+   delta      own   +block      +IV  R breadth    R iv  seven|IV   GW z   mean|IV   GW z
+       0   0.3576   0.3392   0.3615       nan%    nan%   -0.0250  -3.85   +0.0004  +0.17
+       5   0.2246   0.2516   0.2523      20.3%   20.9%   -0.0089  -0.73   +0.0192  +2.04
+      21   0.0866   0.1784   0.1594      33.9%   26.9%   +0.0104  +0.50   +0.0450  +2.27
+      55  -0.0273   0.1335   0.1211      41.8%   38.6%   +0.0110  +0.49   +0.0452  +2.44
+
+  CSEALL  (no volatility index published)
+   delta      own   +block      +IV  R breadth    R iv  seven|IV   GW z   mean|IV   GW z
+       0   0.2900   0.2727   0.2924       nan%    nan%   -0.0093  -1.28   -0.0028  -1.30
+       5   0.1526   0.1347   0.1616     -13.0%    6.5%   -0.0087  -0.77   -0.0042  -1.25
+      21   0.0207   0.0173   0.0399      -1.3%    7.1%   -0.0027  -0.13   -0.0074  -1.41
+      55  -0.0165  -0.0516  -0.0397     -11.4%   -7.6%   -0.0050  -0.17   -0.0115  -2.11
+
+  KLCI  (no volatility index published)
+   delta      own   +block      +IV  R breadth    R iv  seven|IV   GW z   mean|IV   GW z
+       0   0.3560   0.3459   0.3763       nan%    nan%   -0.0260  -4.29   -0.0029  -2.16
+       5   0.2347   0.2574   0.2895      18.7%   45.2%   -0.0303  -2.75   +0.0027  +0.72
+      21   0.0961   0.1827   0.2207      33.3%   47.9%   -0.0307  -1.59   +0.0168  +2.01
+      55   0.0169   0.1661   0.2070      44.0%   56.1%   -0.0370  -1.79   +0.0142  +1.61
+
+  N225  (has one, not held here)
+   delta      own   +block      +IV  R breadth    R iv  seven|IV   GW z   mean|IV   GW z
+       0   0.3563   0.3521   0.3689       nan%    nan%   -0.0142  -3.11   -0.0013  -0.62
+       5   0.2327   0.2866   0.2873      43.5%   44.1%   -0.0129  -1.59   +0.0083  +1.52
+      21   0.0799   0.2305   0.2073      54.5%   46.1%   +0.0042  +0.31   +0.0300  +2.72
+      55  -0.0133   0.2042   0.1801      58.8%   52.3%   +0.0022  +0.13   +0.0311  +2.62
+
+  AXJO  (has one, not held here)
+   delta      own   +block      +IV  R breadth    R iv  seven|IV   GW z   mean|IV   GW z
+       0   0.4539   0.4596   0.4817       nan%    nan%   -0.0023  -0.30   +0.0007  +0.22
+       5   0.3310   0.4087   0.4210      63.2%   73.2%   +0.0074  +0.74   +0.0119  +2.21
+      21   0.1957   0.3699   0.3687      67.5%   67.0%   +0.0219  +1.54   +0.0239  +2.52
+      55   0.0508   0.3282   0.3451      68.8%   73.0%   +0.0222  +1.49   +0.0268  +2.70
+
+  HSI  (has one, not held here)
+   delta      own   +block      +IV  R breadth    R iv  seven|IV   GW z   mean|IV   GW z
+       0   0.4569   0.4594   0.4872       nan%    nan%   -0.0136  -2.21   -0.0029  -1.06
+       5   0.3277   0.4048   0.4172      59.7%   69.3%   -0.0028  -0.32   +0.0085  +1.73
+      21   0.1809   0.3693   0.3815      68.3%   72.7%   +0.0059  +0.48   +0.0215  +2.35
+      55   0.0099   0.3164   0.3539      68.6%   77.0%   +0.0034  +0.24   +0.0195  +2.21
+
+  NSEI  (has one, not held here)
+   delta      own   +block      +IV  R breadth    R iv  seven|IV   GW z   mean|IV   GW z
+       0   0.3836   0.3877   0.3978       nan%    nan%   -0.0030  -0.44   -0.0026  -1.39
+       5   0.2590   0.3208   0.3097      49.6%   40.7%   +0.0164  +1.35   +0.0114  +1.69
+      21   0.0783   0.2345   0.2075      51.2%   42.3%   +0.0476  +2.35   +0.0383  +2.70
+      55  -0.0473   0.1816   0.1851      53.1%   53.9%   +0.0422  +1.95   +0.0387  +2.49
+
+================================================================================================
+C.  THE GROUPING IS NOT WHAT SEPARATES THESE MARKETS
+================================================================================================
+Sorted by how much the target moves with the cross-section it is being
+offered. The group boundary does not survive the sort.
+
+  target    volatility index  coupling   R breadth    R iv  mean|IV at 55d   GW z
+    AXJO    exists, not held     0.808       68.8%   73.0%         +0.0268  +2.70
+     HSI    exists, not held     0.731       68.6%   77.0%         +0.0195  +2.21
+    N225    exists, not held     0.701       58.8%   52.3%         +0.0311  +2.62
+    NSEI    exists, not held     0.661       53.1%   53.9%         +0.0387  +2.49
+    JKSE      none published     0.648       41.8%   38.6%         +0.0452  +2.44
+    KLCI      none published     0.611       44.0%   56.1%         +0.0142  +1.61
+  CSEALL      none published     0.228      -11.4%   -7.6%         -0.0115  -2.11
+  KSE100      none published    -0.115      -29.7%  -25.4%         -0.0167  -1.81
+
+  across the eight, coupling against R(breadth): +0.98
+                    coupling against R(implied volatility): +0.96
+  least squares fit: R(breadth) = -0.249 +1.154 * coupling
+  the fit crosses zero at a coupling of +0.216
+  targets below that coupling: 1 (KSE100)
+  targets with R(breadth) < 0: 2 (CSEALL at +0.228, KSE100 at -0.115)
+  Those two counts differ, so the crossing is not a threshold and is not
+  reported as one. It locates the sign change to within one target on
+  eight points: the nearest negative sits just above the fitted crossing,
+  which is what a line through eight points can and cannot tell you.
+
+  Eight points again and no interval is quoted. What the column shows is
+  that the two weakest-coupled markets are the two where neither candidate
+  repairs anything, and both sit in the group with no volatility index.
+  Grouping and coupling are confounded here and four targets cannot
+  separate them, so the group means below are reported and then set aside.
+
+================================================================================================
+C2. HOW MUCH OF THE +0.98 IS ONE POINT
+================================================================================================
+  Pearson  +0.979   Fisher 95% interval [+0.884, +0.996]  (n = 8)
+  Spearman +0.976   <- the statistic the ORDERING claim needs
+
+  Leave one target out, and the fitted line with it. 'slope' is the
+  least-squares slope of R(breadth) on coupling; 'crossing' is where
+  that line reaches zero, which is the number the paper's figure draws.
+
+  dropped   Pearson  Spearman    slope  crossing  leverage
+     AXJO    +0.976    +0.964   +1.152    +0.216     0.233
+      HSI    +0.982    +0.964   +1.123    +0.219     0.181
+     N225    +0.978    +0.964   +1.146    +0.217     0.165
+     NSEI    +0.978    +0.964   +1.150    +0.217     0.148
+     JKSE    +0.983    +1.000   +1.170    +0.210     0.144
+     KLCI    +0.979    +1.000   +1.156    +0.214     0.134
+   CSEALL    +0.987    +0.964   +1.077    +0.173     0.260
+   KSE100    +0.986    +0.964   +1.455    +0.309     0.734
+     none    +0.979    +0.976   +1.154    +0.216     0.250  <- full sample, mean leverage
+
+  Drop BOTH low-coupled targets and fit on the remaining 6, which is the
+  hardest version of the question, because what is left is one cluster:
+    Pearson +0.903, Spearman +0.943
+
+  What to take from this, and what not to:
+  The correlation is not one point. The worst leave-one-out Pearson is
+  +0.976 (dropping AXJO), the Spearman never falls below +0.964,
+  and inside the single cluster of 6 the ordering still holds at +0.943.
+
+  The fitted LINE is a different matter. KSE100 carries leverage
+  0.734 against a mean of 0.250, and removing it moves the slope from
+  +1.154 to +1.455 and the zero-crossing from +0.216 to +0.309.
+  So the ordering is robust and the crossing is not. The paper should
+  quote the correlation and treat the crossing as a location, not a
+  threshold - which is what the text already says, now with the
+  diagnostic that licenses saying it.
+
+  Eight points remain eight points. None of this makes the relationship
+  better estimated than a sample of eight can make it; it establishes
+  which of the two claims the paper makes that sample can carry.
+
+       no volatility index: breadth  11.2%, implied vol  15.4%, 4 of 16 cells
+
+    has one, not held here: breadth  62.3%, implied vol  64.1%, 9 of 16 cells
+
+================================================================================================
+D.  WHERE BREADTH DOES NOT TRANSFER AT ALL
+================================================================================================
+  worth less than nothing at eleven weeks: CSEALL, KSE100
+  repairs at least thirty per cent:        AXJO, HSI, N225, NSEI, JKSE, KLCI
+
+  CSEALL: own-only R-squared 0.2900 with no delay, -0.0165 at eleven weeks,
+        and adding the cross-section moves it to -0.0516. The delay does its
+        usual damage; the cross-section does not repair it and charges for
+        the attempt.
+
+  KSE100: own-only R-squared 0.5115 with no delay, -0.0740 at eleven weeks,
+        and adding the cross-section moves it to -0.2477. The delay does its
+        usual damage; the cross-section does not repair it and charges for
+        the attempt.
+
+  This is Section 5.3's mechanism read backwards. The recovery there is
+  entirely the leading component of the foreign block, so a market that
+  does not load on that component has nothing to recover with. Nothing
+  here is special to these markets' options, and the paper does not claim
+  it is.
+
+================================================================================================
+VERDICT
+================================================================================================
+  Two things come out of this and only one of them was the question.
+
+  The question was whether Section 9.4's split survives where no volatility
+  index exists to be held. On two of the four it does. Indonesia and
+  Malaysia repair 42% and 44% of the delay damage with breadth, and a
+  compressed cross-section still adds to implied volatility at eleven
+  weeks with statistics of +2.44 and +1.61. There is no options market
+  anywhere in that picture, so the reading of Section 9.4 does not depend
+  on which volatility series we happened to buy.
+
+  The other thing was not the question and matters more. Pakistan and Sri
+  Lanka are not a weaker version of the same result, they are a different
+  result: -30% and -11% at eleven weeks, a cross-section that makes a
+  delayed forecaster worse. They are also the two least coupled markets in
+  the set. A mean over these four would average a result with its
+  opposite, so this file does not quote one as a headline.
+
+  The paper gains a scope condition it could not have guessed: breadth
+  substitutes for a stale mark where the market is coupled to the
+  cross-section it is offered, and not otherwise. Section 14 already
+  refuses to extrapolate the rate to a private asset, on the grounds that
+  nothing in the paper bounds that asset's correlation with the public
+  cross-section. These four targets are what the refusal looks like when
+  it is measured instead of asserted.
+
+  What none of this reaches is still an illiquid asset. Every target here
+  is a liquid equity index with a daily open, high, low and close, which
+  is the property that made it usable at all. The gap Section 11 names is
+  narrower and it is not closed.

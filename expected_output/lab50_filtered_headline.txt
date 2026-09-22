@@ -1,0 +1,76 @@
+data folder: <your data folder>
+Prints the headline inside the filtered specification, Section 11.
+
+target SPX, 4862 test days, 7 foreign peers
+
+state space fitted ONCE on the first 1500 rows and frozen:
+  factor persistence phi = 0.9631, innovation variance q = 0.0733
+  loadings [0.83 0.55 0.73 0.6  0.19 0.87 0.87 0.58]
+  Nothing about the test period enters these, and the forecasting ridge
+  on top is refitted on the paper's own schedule.
+
+================================================================================================
+A.  THE SAME THREE MODELS THE RATE IS BUILT FROM, IN BOTH ESTIMATORS
+================================================================================================
+own-only is the paper's ridge in both columns, because lab46 shows there
+is no filtered own-only control to build: with no observation noise the
+filtered state is the observation itself.
+
+ delta   own only   cross, ridge  cross, filter   filter - ridge
+     0     0.5191         0.5092         0.4868          -0.0224
+     3     0.4098         0.4495         0.4494          -0.0001
+     5     0.3641         0.4438         0.4438          -0.0000
+    13     0.2336         0.4155         0.4196          +0.0040
+    21     0.1482         0.3981         0.4100          +0.0119
+    55     0.0070         0.3736         0.3932          +0.0196
+
+  the filter is the better cross-sectional model at 3 of 6 delays: [13, 21, 55]
+
+================================================================================================
+B.  THE RATE, COMPUTED INSIDE EACH ESTIMATOR
+================================================================================================
+Same control, same denominator, same days. The only thing that differs
+is which model is allowed to carry the cross-section.
+
+ delta   R, paper   R, filtered     move
+     3      36.3%         36.2%    -0.1%
+     5      51.4%         51.4%    -0.0%
+    13      63.7%         65.1%    +1.4%
+    21      67.4%         70.6%    +3.2%
+    55      71.6%         75.4%    +3.8%
+
+  at eleven weeks: 71.6% as published, 75.4% filtered
+  paired difference +3.8% [+0.8%, +7.7%], 1500 replications
+  the filtered rate's own interval: [65.2%, 83.7%]
+
+================================================================================================
+C.  AND THE HEADLINE IN DAYS
+================================================================================================
+The ruler is the paper's own-only delay curve over sixteen ages, which is
+what the sentence means by 'a mark this old'. Only the model being
+measured against it changes.
+
+  paper's cross-sectional model:    4.6 days  [2.5, 8.3]
+  filtered cross-sectional model:   3.7 days  [2.0, 6.7]
+  paired difference: -0.9 days [-2.3, -0.2], 0 replications off the grid
+
+================================================================================================
+VERDICT
+================================================================================================
+  Inside the estimator the paper declined, the headline is LARGER:
+  75.4% against 71.6% at eleven weeks, a paired +3.8% [+0.8%, +7.7%],
+  and the mark it is worth reads 3.7 days old rather than 4.6.
+
+  So the estimator limitation does not run the way a limitation
+  usually does. The filter improves the model that carries the
+  cross-section and has nothing to add to the control, so it raises
+  the numerator and leaves the denominator alone. The paper is not
+  protecting a large number with a weak estimator. It is quoting a
+  smaller number than the better estimator would give it, for the
+  transparency of a fixed feature set, and this file prices that
+  choice in the paper's own units instead of in R-squared.
+
+  What this does not do is recompute the conditionals, the regime
+  ladder, the five markets or the horse race inside the filter. That is
+  the different paper Section 11 declines to write, and it is still
+  declined. What was owed was the headline, and the headline is here.

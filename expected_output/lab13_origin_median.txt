@@ -1,0 +1,55 @@
+data folder: <your data folder>
+4862 test days
+
+==================================================================================
+A.  HOW BIG IS THE THING IN DISPUTE?
+==================================================================================
+log(M_{t+h} / M_t) is the entire difference between the two targets.
+
+  mean +0.00092   sd 0.03499   |max| 0.1768
+  sd of the target itself                0.9535
+  ratio                                  3.7%
+  correlation with the target            +0.5184
+
+A median over 252 days moves slowly, so the two targets are close. Close
+is not the same as irrelevant, and the correlation above is the reason to
+check: the drift is not independent of what is being predicted.
+
+==================================================================================
+B.  DOES THE RESULT DEPEND ON WHICH TARGET IS USED?
+==================================================================================
+Identical features, identical estimator, identical days. Only the
+normalisation date of the outcome changes.
+
+ delta    --- target-dated (paper) ---          --- origin-dated ---
+             own     cross         dR2       own     cross       dR2
+     0    0.5191    0.5092     -0.0099    0.5273    0.5172   -0.0101
+     3    0.4098    0.4495     +0.0397    0.4168    0.4559   +0.0391
+     5    0.3641    0.4438     +0.0797    0.3707    0.4500   +0.0793
+    13    0.2336    0.4155     +0.1819    0.2395    0.4217   +0.1822
+    21    0.1482    0.3981     +0.2499    0.1527    0.4038   +0.2511
+    55    0.0070    0.3736     +0.3666    0.0101    0.3789   +0.3688
+
+==================================================================================
+C.  THE SUBSTITUTION RATE UNDER BOTH, WITH INTERVALS
+==================================================================================
+Full-ratio bootstrap, as in lab10: numerator and denominator recomputed
+on the same resampled days.
+
+ delta       R(d) target-dated       R(d) origin-dated
+     3         36% [ 16%, 55%]         35% [ 15%, 54%]
+     5         51% [ 34%, 67%]         51% [ 33%, 66%]
+    13         64% [ 50%, 75%]         63% [ 50%, 74%]
+    21         67% [ 54%, 78%]         67% [ 53%, 77%]
+    55         72% [ 60%, 81%]         71% [ 59%, 81%]
+
+==================================================================================
+VERDICT
+==================================================================================
+    target-dated (paper): R(55) = 72%, dR2 = +0.3666
+            origin-dated: R(55) = 71%, dR2 = +0.3688
+
+If those two lines agree, the median's five-day drift is not doing any
+work and the paper may keep its definition, reporting this run as the
+check that says so.  If they do not, the origin-dated target is the one a
+forecaster could act on and should become the headline.

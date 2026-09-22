@@ -1,0 +1,126 @@
+data folder: <your data folder>
+
+================================================================================
+STRICT: VIX lagged one day, obeying our own admissibility rule
+================================================================================
+  implied-volatility files and seams:
+    VIX files: ['VIX_History.csv']
+    VDAX files: ['DAX_New_Volatility_Historical_Data.csv', 'DAX_New_Volatility_Historical_Data_1.csv']
+    seam VDAX: 251 overlapping rows, 0 mismatched  -> VERIFIED
+
+================================================================================
+STRICT - VIX at t-1 (it prints 21:15 UTC, after the 21:00 close)
+================================================================================
+4525 test days, 2008-09-09 to 2026-09-03; implied-volatility block: VIX(t-1), VDAX(t)
+
+ delta      own  +foreign      +iv    +both   foreign | iv     GW z       p
+     0   0.5141    0.5051   0.5547   0.5443        -0.0104    -2.29   0.022
+     1   0.4690    0.4701   0.5396   0.5288        -0.0108    -2.13   0.033
+     2   0.4335    0.4545   0.5354   0.5244        -0.0110    -2.07   0.038
+     3   0.4046    0.4478   0.5337   0.5233        -0.0105    -1.96   0.050
+     5   0.3591    0.4431   0.5327   0.5233        -0.0095    -1.68   0.094
+     8   0.3066    0.4346   0.5309   0.5215        -0.0094    -1.53   0.127
+    13   0.2281    0.4148   0.5261   0.5171        -0.0090    -1.40   0.161
+    21   0.1405    0.3978   0.5247   0.5151        -0.0096    -1.50   0.133
+    34   0.0712    0.3879   0.5260   0.5171        -0.0088    -1.37   0.169
+    55   0.0007    0.3769   0.5266   0.5172        -0.0095    -1.44   0.150
+
+'foreign | iv' is what the foreign cross-section adds ON TOP of implied
+volatility.  It is the number the objection turns on.  GW tests it;
+'+iv' is nested inside '+both', so Diebold-Mariano would be invalid.
+
+ delta  R(d) foreign   R(d) iv   R(d) both
+     1            2%      157%        133%
+     2           26%      126%        113%
+     3           39%      118%        108%
+     5           54%      112%        106%
+     8           62%      108%        104%
+    13           65%      104%        101%
+    21           69%      103%        100%
+    34           72%      103%        101%
+    55           73%      102%        101%
+Substitution rate: the share of delay-induced loss each block recovers.
+
+
+================================================================================
+GENEROUS: same-day VIX, which we are NOT entitled to see
+================================================================================
+This breaks our own timing rule, deliberately, in the objection's favour.
+  implied-volatility files and seams:
+    VIX files: ['VIX_History.csv']
+    VDAX files: ['DAX_New_Volatility_Historical_Data.csv', 'DAX_New_Volatility_Historical_Data_1.csv']
+    seam VDAX: 251 overlapping rows, 0 mismatched  -> VERIFIED
+
+================================================================================
+GENEROUS - same-day VIX, the harshest test of the paper
+================================================================================
+4525 test days, 2008-09-09 to 2026-09-03; implied-volatility block: VIX(t), VDAX(t)
+
+ delta      own  +foreign      +iv    +both   foreign | iv     GW z       p
+     0   0.5141    0.5051   0.5972   0.5881        -0.0091    -2.18   0.029
+     1   0.4690    0.4701   0.5912   0.5832        -0.0080    -1.82   0.069
+     2   0.4335    0.4545   0.5895   0.5818        -0.0078    -1.72   0.085
+     3   0.4046    0.4478   0.5888   0.5821        -0.0067    -1.48   0.139
+     5   0.3591    0.4431   0.5896   0.5834        -0.0062    -1.33   0.184
+     8   0.3066    0.4346   0.5884   0.5830        -0.0055    -1.11   0.266
+    13   0.2281    0.4148   0.5855   0.5802        -0.0053    -1.03   0.303
+    21   0.1405    0.3978   0.5840   0.5771        -0.0069    -1.38   0.168
+    34   0.0712    0.3879   0.5841   0.5783        -0.0057    -1.12   0.261
+    55   0.0007    0.3769   0.5844   0.5775        -0.0069    -1.32   0.187
+
+'foreign | iv' is what the foreign cross-section adds ON TOP of implied
+volatility.  It is the number the objection turns on.  GW tests it;
+'+iv' is nested inside '+both', so Diebold-Mariano would be invalid.
+
+ delta  R(d) foreign   R(d) iv   R(d) both
+     1            2%      271%        253%
+     2           26%      194%        184%
+     3           39%      168%        162%
+     5           54%      149%        145%
+     8           62%      136%        133%
+    13           65%      125%        123%
+    21           69%      119%        117%
+    34           72%      116%        115%
+    55           73%      114%        112%
+Substitution rate: the share of delay-induced loss each block recovers.
+
+
+================================================================================
+VERDICT
+================================================================================
+   STRICT: foreign block adds to implied volatility at 0 of 10 delays (nowhere)
+           incremental R2 at delta 21: -0.0096  (z = -1.50)
+ GENEROUS: foreign block adds to implied volatility at 0 of 10 delays (nowhere)
+           incremental R2 at delta 21: -0.0069  (z = -1.38)
+
+If the incremental column is flat and insignificant, the foreign
+cross-section is a slow proxy for the options market and the paper
+must say so.  If it is not, the objection is answered.
+
+================================================================================
+IS THE FOREIGN BLOCK HARMFUL, OR MERELY REDUNDANT?
+================================================================================
+The incremental column above is NEGATIVE.  Read literally that says
+foreign closes damage a forecast that already has implied volatility,
+which would be a strange thing for genuine information to do.  lab07
+measured the alternative: seven extra regressors cost about a point of
+R-squared whether or not they help.  Subtract that and the question
+becomes whether the foreign block's content given implied volatility is
+negative or simply zero - a difference the paper has to get right.
+
+Same instrument as lab07: replace the seven foreign series with AR(1)
+surrogates matched on persistence and variance, so they carry no
+information by construction.  What remains is the bill.
+
+Gross gets an interval before it gets a label, for the reason lab07
+gives: it is a difference of two estimated quantities.
+
+ delta  incremental      cost     gross             gross 95%   reading
+     0      -0.0091   -0.0106   +0.0016     [-0.0060,+0.0109]   redundant - nothing is not harm
+     5      -0.0062   -0.0132   +0.0070     [-0.0027,+0.0172]   redundant - nothing is not harm
+    21      -0.0069   -0.0147   +0.0078     [-0.0035,+0.0188]   redundant - nothing is not harm
+    55      -0.0069   -0.0143   +0.0074     [-0.0042,+0.0184]   redundant - nothing is not harm
+
+Gross content of the foreign block GIVEN implied volatility.  Where the
+interval covers zero the honest word is redundant, not harmful, and it
+is the paper's RECOMMENDATION rather than its MEASUREMENT that changes.

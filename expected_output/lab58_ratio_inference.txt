@@ -1,0 +1,148 @@
+========================================================================================
+0.  THE BENCHMARK CANCELS, SO R IS A RATIO OF TWO MEAN DIFFERENCES
+========================================================================================
+R = [S_alt - S_own] / [S_own(0) - S_own(d)] with a COMMON benchmark on
+the same days.  Claimed identity: R = mean(L_own,d - L_alt,d) / mean(
+L_own,d - L_own,0).  Checked on random losses rather than argued:
+
+  from skills      1.558101087292
+  from differences 1.558101087292
+  identical -> True
+
+  The benchmark contributes NO sampling error to R, and the weak-
+  denominator problem is exactly mean(d2) near zero, where d2 is the
+  per-day damage the delay does.
+
+========================================================================================
+1.  WHICH R IS THE INTERVAL SUPPOSED TO COVER?
+========================================================================================
+A referee asked what the inferential object is, and the question is not
+rhetorical: this design has two candidates and they are not close together.
+
+  CONDITIONAL   the rate this forecaster would achieve on THIS history, in
+                expectation over the noise.  It is what Giacomini-White
+                inference targets and what the paper's tests are built on.
+  POPULATION    the rate the DGP implies, averaging over histories too.
+
+The global factor is persistent, so a single history is a small effective
+sample and the two objects separate.  Measured below rather than asserted.
+
+  R on one fixed history, three noise draws: 0.462, 0.502, 0.523
+  R on three different histories:            0.402, 0.552, 0.469
+
+  Holding the history fixed, R barely moves.  Changing the history moves
+  it a great deal.  An interval built by resampling DAYS can only speak
+  to the first, so the conditional rate is the object and Part 2 tests
+  coverage of it.  Part 3 asks what that leaves unsaid.
+
+========================================================================================
+2.  COVERAGE OF THE CONDITIONAL RATE, NOMINAL 95%
+========================================================================================
+80 histories per regime; for each, the truth is the mean of 100 noise
+redraws on that same history, and one further draw is the sample the
+interval is built from.  1250 test days, ridge refitted every 25 days,
+target overlapping 5 days.
+
+method                              strong    moderate        weak   median width (moderate)
+iid bootstrap                          64%         52%         75%        0.221
+block boot 2h  (the paper's)           92%         86%         94%        0.530
+block boot 6h                          96%         91%         98%        0.590
+block boot 12h                         98%         92%         96%        0.584
+delta/HAC 2h                           94%         89%         99%        0.487
+delta/HAC 12h                          98%         91%         98%        0.543
+Fieller/HAC 2h                         95%         89%         98%        0.558
+Fieller/HAC 12h                        98%         92%         98%        0.585
+
+                                       5.0         4.1         4.0   <- median t(denominator)
+
+  Fieller returned an unbounded set in 0 of 240 fits at the 12h lag.
+
+========================================================================================
+3.  WHAT NO DAY-RESAMPLING INTERVAL CAN DO
+========================================================================================
+Every procedure here resamples days within one history, so none of them
+prices the uncertainty that comes from WHICH history was drawn.  With a
+persistent common factor that second source is not small, and it is invisible
+to all four methods equally.  The spread below is across histories.
+     strong  sd of R across histories  0.148   implied 95% spread  0.582   median interval width  0.383
+   moderate  sd of R across histories  0.133   implied 95% spread  0.521   median interval width  0.530
+       weak  sd of R across histories  0.291   implied 95% spread  1.142   median interval width  1.306
+
+  This is a statement about what the interval MEANS, not a defect in
+  it: a conditional interval is a claim about the history in hand, and
+  the paper has one history. It is the reason the paper reports a span
+  across specifications rather than leaning on a single interval.
+
+========================================================================================
+4.  VERDICT
+========================================================================================
+  iid bootstrap                 64%, 52%, 75%
+  block boot 2h  (the paper's)  92%, 86%, 94%
+  block boot 6h                 96%, 91%, 98%
+  block boot 12h                98%, 92%, 96%
+  delta/HAC 2h                  94%, 89%, 99%
+  delta/HAC 12h                 98%, 91%, 98%
+  Fieller/HAC 2h                95%, 89%, 98%
+  Fieller/HAC 12h               98%, 92%, 98%
+
+  The paper's block length is too short. The loss differences inherit
+  the persistence of the common factor as well as the h-day overlap,
+  so a block of 2h leaves dependence inside the resample and the
+  interval comes out too narrow. Lengthening the block fixes it, and
+  that is a correction the paper should adopt rather than defend.
+  Fieller at a long lag is the best-covering procedure tested, which
+  is the argument for quoting it rather than merely checking with it.
+
+========================================================================================
+5.  HOW LONG THE BLOCK HAS TO BE, MEASURED ON THE REAL LOSSES
+========================================================================================
+The simulation says a short block under-covers, but it cannot say what
+length THIS data needs: that depends on the dependence in the real loss
+differences, not on the persistence chosen for a generator. So it is measured.
+Below is the autocorrelation of d1 and d2 at two delays, computed from the
+paper's own forecasts, and the lag at which it first falls below 0.05.
+
+ delta  series   lag1   lag5  lag10  lag20  lag30  lag40  lag60  <0.05 at
+     8      d1   0.89   0.34   0.12   0.01  -0.03  -0.05   0.01        13
+     8      d2   0.89   0.35   0.13   0.03  -0.00  -0.05  -0.01        14
+    55      d1   0.94   0.67   0.48   0.22   0.11   0.02  -0.02        38
+    55      d2   0.95   0.66   0.48   0.24   0.12   0.02  -0.03        37
+
+  At the paper's headline delay the loss differences still carry
+  0.48 autocorrelation at lag 10, which is the block length an
+  earlier version of this paper used. Dependence does not die out until
+  lag 38. The block is therefore set to 40 days, which outlasts it at
+  every delay, and 121 blocks remain in a sample of 4862.
+
+============================================================================================
+6.  THE HAC BANDWIDTH, MEASURED RATHER THAN TAKEN FROM A RULE
+============================================================================================
+Part 5 set the BLOCK from the measured dependence. Every HAC standard
+error in this project answers the same question and, until this was
+measured, answered it with the automatic rule 4 (n/100)^(2/9). That is
+9 lags here, and part 5 has just shown the differential still carries
+half its autocorrelation there. A kernel truncated inside the
+dependence understates the standard error, which inflates every
+statistic built from it - always in the direction that flatters a
+result.
+
+Three estimators are compared. Two are HAC at different bandwidths and
+one is a moving-block bootstrap, which makes no kernel assumption at
+all. If the bandwidth is long enough they agree; where they disagree,
+the short one is wrong.
+
+ delta      HAC(9)     HAC(40)     HAC(80)        iid    boot SD(40)  short/long
+     0    0.004221    0.004495    0.004295   0.002110       0.004615        0.94
+     5    0.016868    0.019470    0.019021   0.007579       0.019924        0.87
+    21    0.041852    0.058185    0.059100   0.015218       0.057837        0.72
+    55    0.049456    0.075210    0.080987   0.017548       0.076382        0.66
+
+  The automatic bandwidth understates the standard error by up to
+  34% at the delays above, and it is the longest delays - the ones
+  the paper leads with - where it is worst. Doubling the bandwidth from
+  40 to 80 moves it little and the bootstrap, which assumes no kernel,
+  lands beside them both, so 40 is long enough and the choice is not
+  delicate. HAC_LAG is therefore set to the block length: both answer
+  'how far does the dependence run', and letting them answer it
+  differently is what left a simultaneous band studentised by one and
+  resampled by the other.

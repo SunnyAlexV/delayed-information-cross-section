@@ -1,0 +1,57 @@
+data folder: <your data folder>
+target SPX, 4862 test days, 7 foreign peers
+regressors: OWN 3, MEAN 4, PC1 4, PC2 5, FULL 10
+
+========================================================================================
+A.  DOES A CHEAPER REPRESENTATION OF THE FOREIGN BLOCK FORECAST BETTER?
+========================================================================================
+Every arm sees the same days, the same domestic block and the same estimator.
+The factors are recomputed at every refit from the training window alone.
+
+ delta       OWN      MEAN       PC1       PC2      FULL    best   PC1 - FULL    GW z       p
+     0    0.5191    0.5203    0.5204    0.5179    0.5092     PC1      +0.0112    2.66   0.008
+     3    0.4098    0.4603    0.4614    0.4588    0.4495     PC1      +0.0119    1.80   0.072
+     5    0.3641    0.4541    0.4556    0.4532    0.4438     PC1      +0.0118    1.72   0.086
+    13    0.2336    0.4249    0.4275    0.4256    0.4155     PC1      +0.0120    1.51   0.132
+    21    0.1482    0.4091    0.4122    0.4092    0.3981     PC1      +0.0141    1.56   0.120
+    55    0.0070    0.3876    0.3922    0.3889    0.3736     PC1      +0.0186    1.57   0.116
+
+  mean variance share of the real-time first component, by delay:
+   d=0: 66.6%  d=3: 66.6%  d=5: 66.6%  d=13: 66.6%  d=21: 66.6%  d=55: 66.5%
+
+  full-sample descriptives on the 6 same-day peers ['N225', 'AXJO', 'HSI', 'NSEI', 'FTSE', 'DAX']:
+    contemporaneous R-squared of the target on them: 0.6952  (n = 6427)
+    so 30.5% of the target's current state is not linearly spanned
+    full-sample variance shares: 66.5%  10.4%  8.2%  7.1%  5.2%  2.6%
+    first component 66.5%, first two 76.9%
+
+========================================================================================
+B.  AGAINST THE INFERRED COST
+========================================================================================
+lab07 estimates what the seven regressors cost by replacing them with
+surrogates carrying no signal.  If that cost is real and a compression avoids
+part of it, PC1 minus FULL should be positive and should grow with delay,
+because the inferred cost does.
+
+ delta      FULL       PC1   PC1 - FULL   lab07 inferred cost
+     0    0.5092    0.5204      +0.0112               -0.0131
+     3    0.4495    0.4614      +0.0119                     -
+     5    0.4438    0.4556      +0.0118                     -
+    13    0.4155    0.4275      +0.0120                     -
+    21    0.3981    0.4122      +0.0141               -0.0536
+    55    0.3736    0.3922      +0.0186                     -
+
+========================================================================================
+VERDICT
+========================================================================================
+  PC1 beats FULL at 6 of 6 delays: [0, 3, 5, 13, 21, 55]
+  and does so at z > 1.96 at 1: [0]
+  the equal-weighted MEAN beats PC1 at 0 of 6
+
+  Read the MEAN column before celebrating any of this.  If an equal-weighted
+  average of the seven series does as well as a real-time principal component,
+  then what is being bought is the decision to compress rather than the machinery
+  of compressing, and the paper should say the cheaper thing rather than the
+  cleverer one.  Either way this replaces an inference from surrogates with a
+  model a reader can fit, which is what the referee asked for and what Section 5
+  should have done in the first place.

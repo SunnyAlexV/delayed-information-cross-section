@@ -1,0 +1,295 @@
+Prints the measured illiquid study: Case-Shiller metros, Section 15.
+
+==================================================================================================
+A.  THE PANEL, AND THE PREDICTION COMMITTED TO BEFORE ANY RATE EXISTS
+==================================================================================================
+data folder: <your data folder>
+  file   CaseShiller_metro20_NSA.csv
+  sha256 2a1399193a2966aba24c0a59da22c7a8b5c75e065871125f7c96121e62952ed7
+         matches the digest computed at the FRED origin before transfer
+  474 months, 1987-01-01 to 2026-06-01, 20 metros, 9143 observations
+  balanced from 1987-01: 14 metros (this file's panel)
+  later starts:          6 metros (lab56 uses them)
+
+  Persistence of monthly returns. Section 13 imposed appraisal smoothing
+  on equity indices at rho = 0.6, a figure taken from the property
+  literature. What the real indices do:
+
+           metro     first  months   sd of return   lag-1 autocorr
+          Boston   1987-01     474          0.92%            0.747
+       Charlotte   1987-01     474          0.68%            0.714
+         Chicago   1987-01     474          1.06%            0.761
+       Cleveland   1987-01     474          0.90%            0.601
+          Denver   1987-01     474          0.83%            0.789
+       Las Vegas   1987-01     474          1.27%            0.859
+     Los Angeles   1987-01     474          1.14%            0.903
+           Miami   1987-01     474          1.05%            0.872
+        New York   1987-01     474          0.78%            0.844
+        Portland   1987-01     474          0.89%            0.768
+       San Diego   1987-01     474          1.17%            0.835
+   San Francisco   1987-01     474          1.41%            0.834
+           Tampa   1987-01     474          1.00%            0.834
+      Washington   1987-01     474          0.93%            0.843
+     Minneapolis   1989-01     450          1.14%            0.754
+         Phoenix   1989-01     450          1.24%            0.939
+         Seattle   1990-01     438          1.15%            0.811
+         Atlanta   1991-01     426          1.01%            0.817
+         Detroit   1991-01     425          1.18%            0.746
+          Dallas   2000-01     318          0.91%            0.811
+
+  autocorrelation spans 0.601 to 0.939, mean 0.804.
+  The LEAST persistent metro is Cleveland at 0.601, which still
+  exceeds the rho = 0.6 Section 13 imposed, and the mean is well above it.
+  lab54's synthetic illiquid case was therefore a conservative stand-in
+  and not a flattering one: the real asset is more smoothed than the
+  model of it. The margin at Cleveland is thin, +0.001, and is
+  reported at three decimals rather than rounded, because rounded to two
+  it would read as equality.
+
+  Coupling, measured BEFORE any rate is estimated, on the balanced panel:
+
+           metro   coupling
+      Washington      0.866
+     Los Angeles      0.838
+   San Francisco      0.821
+       San Diego      0.816
+           Tampa      0.807
+           Miami      0.769
+          Boston      0.762
+         Chicago      0.748
+        Portland      0.738
+        New York      0.736
+       Las Vegas      0.710
+          Denver      0.704
+       Charlotte      0.699
+       Cleveland      0.662
+
+  range 0.662 to 0.866, width 0.203, mean 0.763
+  lab53's equity panel spanned 0.228 to 0.808, a width of 0.580.
+  This panel's width is 0.35 times that.
+
+  So, committed to here and not revisited:
+    LEVEL  every metro sits at or near the top of the equity coupling range,
+           so the mechanism predicts a high rate on ALL of them and no
+           target on which substitution fails. A low rate anywhere is
+           evidence against the mechanism.
+    SLOPE  the coupling range is too narrow to estimate a gradient with any
+           power. Part E prints the correlation with the range beside it
+           and concludes nothing from its size in either direction.
+
+==================================================================================================
+B.  THE PEER BLOCK, PRICED AS A SET AND CHOSEN BEFORE ANY RATE IS READ
+==================================================================================================
+  The selection statistic is S_cross(0), the cross arm's skill at ZERO
+  delay, where the own mark is fresh and there is no substitution to
+  detect. It cannot favour a high rate. Differences below
+  0.01 are not material and ties break toward the SMALLER block,
+  which is the direction that lowers the rate.
+
+  S_own(0) does not depend on the peer block, so the bill each block pays
+  is visible directly: a POSITIVE bill means the peer columns cost more
+  than they earn even with nothing to substitute for. That is lab52's
+  confound, and it contaminates every rate computed against that block.
+
+  The three candidate blocks:
+             every peer separately  each admissible peer enters as its own regressor
+         peer mean (lab52's block)  one column: the equal-weighted mean of the peers, exactly the block lab52 defined
+      peer mean + its 3-month mean  that mean and a three-month mean of it, two columns
+
+  RETURN TARGET
+
+                    peer block  cols   S_own(0)  S_cross(0)     bill
+         every peer separately    13     0.7242      0.7489  -0.0246
+     peer mean (lab52's block)     1     0.7242      0.7404  -0.0161
+  peer mean + its 3-month mean     2     0.7242      0.7458  -0.0216
+
+    highest S_cross(0): all (0.7489)
+    within 0.01 of it: all, mean, mean+3m
+    tie broken toward the smallest -> SELECTED: mean (1 column)
+
+    What the rates would have been under each block, for the record:
+
+                    peer block      R(1)      R(2)      R(3)      R(6)
+         every peer separately    167.9%     91.3%     90.7%     88.4%
+     peer mean (lab52's block)    160.3%     66.2%     67.8%     69.1%   <- selected
+  peer mean + its 3-month mean    144.3%     69.8%     72.1%     72.2%
+
+  VOLATILITY TARGET
+
+                    peer block  cols   S_own(0)  S_cross(0)     bill
+         every peer separately    13     0.9559      0.9162  +0.0397
+     peer mean (lab52's block)     1     0.9559      0.9544  +0.0015
+  peer mean + its 3-month mean     2     0.9559      0.9557  +0.0002
+
+    highest S_cross(0): mean+3m (0.9557)
+    within 0.01 of it: mean, mean+3m
+    tie broken toward the smallest -> SELECTED: mean (1 column)
+
+    What the rates would have been under each block, for the record:
+
+                    peer block      R(1)      R(2)      R(3)      R(6)
+         every peer separately    -88.7%    -30.6%     -1.7%     26.1%
+     peer mean (lab52's block)      0.7%     10.3%     19.0%     34.9%   <- selected
+  peer mean + its 3-month mean     20.7%     28.2%     30.6%     36.0%
+
+  Both targets select lab52's own one-column block. The rule was not
+  built to produce that; it is what a rate-blind statistic with a
+  conservative tie-break happens to pick, and it costs the return target
+  real points relative to the widest block. The headline below is
+  therefore the LOW end of the menu, not a search over it.
+
+==================================================================================================
+C.  THE HEADLINE: NEXT MONTH'S RETURN, FOURTEEN BALANCED METROS
+==================================================================================================
+  Target: next month's log return of the metro index.
+  Own block: the metro's own return, its three-month mean and its
+  twelve-month mean, all lagged by delta. The cross arm adds the peer block.
+  Eleven month-of-year dummies enter BOTH arms, so the shared seasonal in
+  these unadjusted series cannot appear as a cross-sectional advantage.
+
+  peer block: peer mean (lab52's block)  (selected in Part B)
+  310 test months per metro, 13 peers compressed to 1 column, 2000-08-01 to 2026-05-01
+  delays in MONTHS: [0, 1, 2, 3, 6]; delta = 3 is one quarterly appraisal cycle
+
+  delay   mean own  mean +cross    mean R        95% interval   metros with R>0
+      0     0.7242       0.7404       n/a                 n/a               n/a
+      1     0.5697       0.6580    160.3%        [-77%, 241%]          14 of 14
+      2     0.3927       0.5964     66.2%          [52%, 86%]          14 of 14
+      3     0.3504       0.5952     67.8%          [45%, 92%]          14 of 14
+      6     0.2080       0.5730     69.1%          [58%, 79%]          14 of 14
+
+  Per metro at one quarterly appraisal cycle, delta = 3 months:
+
+           metro       own    +cross         R
+         Chicago    0.2875    0.7315     98.0%
+           Tampa    0.2788    0.6451     91.2%
+       Cleveland    0.4100    0.4816     90.1%
+           Miami    0.3922    0.7050     76.6%
+        New York    0.3748    0.6543     75.5%
+     Los Angeles    0.4827    0.7395     70.3%
+       Charlotte    0.2745    0.5183     67.4%
+      Washington    0.4240    0.6651     65.8%
+        Portland    0.3949    0.6025     64.0%
+   San Francisco    0.2622    0.5810     63.1%
+          Boston    0.4351    0.5781     62.1%
+       San Diego    0.4066    0.6440     61.2%
+          Denver    0.3966    0.5248     36.5%
+       Las Vegas    0.0854    0.2623     28.1%
+
+  No metro goes against the Part A prediction: R > 0 on all 14.
+
+  R exceeds 100% at delta = 1. That is Section 8's point, not an
+  error: the fresh cross-section can beat the target's OWN fresh mark,
+  so the zero-delay own-only figure is not a ceiling.
+
+==================================================================================================
+D.  THE SECOND COORDINATE: THE PAPER'S OWN TARGET TYPE, AT THIS CLOCK
+==================================================================================================
+  Target: log of the trailing 12-month realised variance over its own
+  60-month median, one month ahead. This is Section 3's decision variable
+  with the windows scaled to a monthly clock, so only the ASSET CLASS differs
+  from the paper here, not the quantity being forecast.
+
+  peer block: peer mean (lab52's block)  (selected in Part B)
+  250 test months per metro, 13 peers compressed to 1 column, 2005-08-01 to 2026-05-01
+  delays in MONTHS: [0, 1, 2, 3, 6]; delta = 3 is one quarterly appraisal cycle
+
+  delay   mean own  mean +cross    mean R        95% interval   metros with R>0
+      0     0.9559       0.9544       n/a                 n/a               n/a
+      1     0.8667       0.8694      0.7%           [-9%, 9%]           6 of 14
+      2     0.7522       0.7745     10.3%          [-2%, 22%]          10 of 14
+      3     0.6277       0.6859     19.0%           [6%, 31%]          13 of 14
+      6     0.2692       0.4997     34.9%          [19%, 48%]          14 of 14
+
+  Per metro at one quarterly appraisal cycle, delta = 3 months:
+
+           metro       own    +cross         R
+          Boston    0.6005    0.7555     47.9%
+       Charlotte    0.6137    0.7629     45.1%
+     Los Angeles    0.4795    0.6273     31.8%
+        Portland    0.5942    0.7043     30.7%
+         Chicago    0.8371    0.8796     29.8%
+        New York    0.7149    0.7818     26.4%
+           Miami    0.7049    0.7454     15.8%
+       San Diego    0.4991    0.5503     11.4%
+       Cleveland    0.7638    0.7833      9.7%
+           Tampa    0.7134    0.7371      9.6%
+   San Francisco    0.5761    0.6052      7.5%
+      Washington    0.5521    0.5768      6.3%
+          Denver    0.7166    0.7287      4.6%
+       Las Vegas    0.4224    0.3643    -11.0%
+
+  Against the Part A prediction on 1 of 14 metros: Las Vegas.
+    Las Vegas: numerator -0.0581, denominator +0.5292.
+    The denominator is not small, so this is not an unstable ratio:
+    the peer block actively HURTS, taking 0.4224 down to 0.3643.
+    Its coupling is 0.710, the 4th lowest of 14 on this panel, so the
+    mechanism of Part A accounts for its own exception in the
+    direction it predicts, which is the only defence of it worth
+    making: no separate story is offered here.
+  Named rather than absorbed into the mean, because Part A predicted no
+  target on which substitution fails and this is the exception to it.
+
+==================================================================================================
+E.  COUPLING AGAINST THE RATE, WITH THE RANGE PRINTED BESIDE IT
+==================================================================================================
+  coupling range on this panel: 0.662 to 0.866, width 0.203
+  coupling range in lab53:      0.228 to 0.808, width 0.580
+
+  return target, delta = 3: correlation of coupling with R is +0.11 across 14 metros
+    lowest  coupling 0.662 -> R   90.1%
+    highest coupling 0.866 -> R   65.8%
+
+  volatility target, delta = 3: correlation of coupling with R is -0.06 across 14 metros
+    lowest  coupling 0.662 -> R    9.7%
+    highest coupling 0.866 -> R    6.3%
+
+  Reported, not interpreted. A gradient estimated over a band 0.35 times
+  the width of the one that produced +0.98 has no power, and reading
+  either a confirmation or a failure out of its size would be the same
+  mistake in opposite directions. The LEVEL prediction of Part A is the
+  one this panel can actually test.
+
+==================================================================================================
+VERDICT
+==================================================================================================
+  On fourteen metropolitan house price indices, monthly, 1987 to 2026,
+  with no intraday range, no option chain, and a mark that is a
+  three-month moving average before anyone touches it, the substitution
+  rate at one quarterly appraisal cycle of staleness is 68%, interval
+  [45%, 92%], positive on 14 of 14 metros.
+  On the paper's OWN target type at this clock, 19% [6%, 31%], positive on 13 of 14.
+
+  Both coordinates exclude zero, under the peer block a rate-blind rule
+  selected and a conservative tie-break shrank. The paper's central
+  claim is therefore not a fact about equity indices. It holds on an
+  asset class with none of the machinery the equity results lean on,
+  and it holds whether the target is the return an owner cares about or
+  the variance the paper was written about.
+
+  Part A's LEVEL prediction, checked in the form it was made rather than
+  a looser one: coupling runs 0.662 to 0.866 here, at or near the top of
+  the equity range, and the rate is positive on 14 of 14 metros on the
+  return target and 13 of 14 on the volatility target, so it is
+  confirmed on the return coordinate and holds with 1 exception on the
+  volatility coordinate, named in Part D. The prediction was for no
+  failures, so that exception is a partial miss and is recorded as one.
+  All of this was stated before any rate existed.
+
+  Three things the paper should stop saying. That the illiquid case is
+  unreachable: it was reached. That the obstruction is the absence of
+  data: the data was free and public throughout. That the frequency
+  binds: lab54 showed it does not, and this file measures the rate at
+  one twenty-first of the paper's sampling rate on marks an appraised
+  asset could actually produce.
+
+  Two things it should start saying. First, the measured persistence in
+  Part A averages 0.804 and its minimum is 0.601, so every metro is more
+  smoothed than the rho = 0.6 Section 13 imposed, and substitution works
+  anyway. Second, and this is the load-bearing one: Part B shows the
+  volatility rate is NEGATIVE at short delays under the widest peer
+  block and positive under the compressed one. The estimation bill is
+  not a footnote at this sample size, it is the difference between the
+  paper's claim holding and appearing to fail, and lab52 found the same
+  thing on equities. The paper should present compression as part of the
+  method rather than as a robustness check.

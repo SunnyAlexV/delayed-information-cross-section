@@ -1,0 +1,186 @@
+panel: <your data folder>/illiquid/CaseShiller_metro20_NSA.csv
+sha256: 2a1399193a2966aba24c0a59da22c7a8b5c75e065871125f7c96121e62952ed7
+months 1987-01-01 to 2026-06-01 (474 rows), quarters 158
+Prints the overlap audit behind Section 9.2.
+
+==================================================================================================
+A.  THE INDUCED PERSISTENCE, MEASURED RATHER THAN ASSERTED
+==================================================================================================
+  A three-month moving average of independent monthly innovations has a
+  first-order autocorrelation of 2/3 by construction, and zero at lag 3.
+  If the panel's monthly persistence were ENTIRELY the smoother, the
+  monthly column below would sit near 0.667 and the quarterly column,
+  which shares no transaction month between consecutive observations,
+  would sit near zero. Neither is what the panel does.
+
+           metro   monthly AR(1)   quarterly AR(1)   monthly AR(3)
+          Boston           0.747             0.332           0.154
+       Charlotte           0.714             0.396           0.243
+         Chicago           0.761             0.222           0.108
+       Cleveland           0.601             0.047          -0.069
+          Denver           0.789             0.356           0.235
+       Las Vegas           0.859             0.770           0.658
+     Los Angeles           0.903             0.726           0.643
+           Miami           0.872             0.792           0.666
+        New York           0.844             0.555           0.420
+        Portland           0.768             0.431           0.289
+       San Diego           0.835             0.653           0.544
+   San Francisco           0.834             0.507           0.368
+           Tampa           0.834             0.704           0.569
+      Washington           0.843             0.523           0.433
+
+            mean           0.800             0.501           0.376
+
+  Read the three columns together. Monthly persistence averages 0.800, which is
+  above the 0.667 a pure three-month average would produce, so the smoother
+  cannot be the whole of it. Lag 3 is where a three-month average has
+  nothing left, and the panel still shows 0.376 there. And the
+  quarterly column, built from disjoint windows, averages 0.501:
+  persistence survives removing every shared transaction month.
+  None of this is the substitution rate. It sizes the objection; Part B
+  answers it.
+
+==================================================================================================
+B.  THE ANSWER: THE WHOLE DESIGN ON NON-OVERLAPPING QUARTERLY CHANGES
+==================================================================================================
+  Index read on one phase of the quarterly grid at a time. Consecutive
+  changes share no transaction month, the stale own mark and the fresh
+  peer block share none either, and the label shares none with the peer
+  block. Every channel the objection names is closed by construction.
+  All three phases are run, because picking one would leave 'why that
+  phase?' unanswered and the three are not the same sample.
+
+  prediction committed before this ran: positive, inside [45%, 92%], on at least 10 of 14 metros
+
+  clock: train 40 quarters, validate 8, refit every 4, horizon 1
+  delays in QUARTERS: [0, 1, 2]; delta = 1 is one quarterly appraisal
+  cycle, the same object Section 9.2 reads at delta = 3 months
+
+  Two readings of the same quantity are shown. 'mean R' is Section
+  9.2's estimator, R per metro then averaged, and is the comparable
+  one. 'pooled R' divides the average increment by the average delay
+  cost, and is there because on a sample this size a single metro
+  whose own delay cost is near zero can dominate a mean of ratios.
+
+             phase delta    S_own  S_cross   mean R              95% CI  pooled R            95% CI     R>0
+   Jan/Apr/Jul/Oct     1   0.3092   0.4279    18.4%       [-349%, 331%]     49.1%        [19%, 75%]   11/14
+   Jan/Apr/Jul/Oct     2   0.2479   0.4429    98.7%       [-258%, 342%]     64.3%        [34%, 86%]   13/14
+   Feb/May/Aug/Nov     1   0.3206   0.4704    52.1%           [2%, 90%]     58.3%        [35%, 79%]   12/14
+   Feb/May/Aug/Nov     2   0.2693   0.4657    64.0%         [-7%, 134%]     63.7%        [39%, 82%]   13/14
+   Mar/Jun/Sep/Dec     1   0.3115   0.4677    60.4%         [-5%, 139%]     63.5%        [38%, 81%]   12/14
+   Mar/Jun/Sep/Dec     2   0.2599   0.4450    57.6%        [-42%, 131%]     62.2%        [34%, 83%]   13/14
+
+  delta = 1 quarter : phase mean of 'mean R'  43.6%; of 'pooled R'  56.9%, phases spanning [49.1%, 63.5%];
+                    positive in 35 of 42 metro-phases
+  delta = 2 quarters: phase mean of 'mean R'  73.4%; of 'pooled R'  63.4%, phases spanning [62.2%, 64.3%];
+                    positive in 39 of 42 metro-phases
+
+  Per metro at one quarter of relative staleness, averaged over the
+  three phases (a metro whose delay cost vanishes in a phase is
+  averaged over the phases where it does not):
+            Chicago   149.3%           Tampa    95.6%
+           New York    89.3%        Portland    80.8%
+      San Francisco    68.5%           Miami    64.6%
+         Washington    49.8%       Las Vegas    44.4%
+        Los Angeles    42.8%       San Diego    30.7%
+          Charlotte    28.8%          Denver    17.0%
+          Cleveland   -29.0%          Boston  -117.3%
+
+  12 of 14 metros positive on the phase average. Under independent metros
+  that is p = 0.0129 by an exact sign test, and the metros are NOT
+  independent: they share one national housing cycle, which is why the
+  intervals above resample blocks common to all fourteen. Read the sign
+  test as the most favourable reading available, not as the evidence.
+
+==================================================================================================
+C.  SENSITIVITY: THE SAME MONTHLY DESIGN ON A DE-SMOOTHED PANEL
+==================================================================================================
+  Geltner's reverse filter r* = (r - rho r[-1]) / (1 - rho), with rho
+  estimated on each metro's first 120 months and frozen, so no
+  observation is filtered using its own future. Everything else is
+  Section 9.2 unchanged: same estimator, same peer block, same delays.
+
+  rho by metro, estimated once on the initial training block:
+        Los Angeles   0.91        New York   0.84   San Francisco   0.82
+         Washington   0.82          Boston   0.73          Denver   0.66
+          San Diego   0.63         Chicago   0.51       Cleveland   0.50
+           Portland   0.48       Charlotte   0.37       Las Vegas   0.28
+              Tampa   0.22           Miami   0.17
+
+  rho averages 0.567 across the fourteen.
+  noise amplification 1/(1-rho): mean 3.5x, worst 10.9x (Los Angeles).
+  That is the cost of the inversion and the reason this is a
+  sensitivity rather than a second headline: a rate that falls here
+  may be telling us about the housing market or about the amplifier.
+
+  delta     S_own   S_cross  delay cost  breadth adds  metros +
+      0    0.3212    0.4150           -             -         -
+      1    0.3224    0.4117     -0.0012       +0.0893  13 of 14
+      2    0.2420    0.3796      0.0792       +0.1376  14 of 14
+      3    0.2220    0.3571      0.0992       +0.1352  14 of 14
+      6    0.1487    0.3068      0.1725       +0.1581  14 of 14
+
+  This part reports increments in R-squared and NOT a substitution
+  rate, and the table says why. R(delta) divides what breadth adds by
+  what delay cost, and de-smoothing has removed most of what delay
+  cost: one month of staleness now costs -0.0012 of R-squared against
+  the smoothed panel's much larger figure, so the denominator is at or
+  near zero and the ratio is the pathology the paper's own Appendix
+  describes rather than a measurement. Quoting a percentage here would
+  be quoting the reciprocal of a rounding error.
+
+  What the increment column does say is worth having on its own terms:
+  at delta = 3 the peer block still adds +0.1352 of R-squared on a
+  panel with the moving average inverted out of it, positive on 14 of 14
+  metros. Breadth is not paid for by the smoother.
+
+  And the denominator's collapse is itself the finding a reader should
+  take from this part: smoothing is most of what makes a stale mark
+  expensive. Remove it and the forecaster loses little by being late,
+  which is the same statement as 'there is less for breadth to repair'.
+
+==================================================================================================
+VERDICT
+==================================================================================================
+  Non-overlapping quarterly, one quarter of relative staleness, the
+  three phases averaged: 56.9% pooled (43.6% as a mean of
+  per-metro ratios), phases spanning [49.1%, 63.5%], positive in
+  35 of 42 metro-phases and on 12 of 14 metros by phase average.
+  The widest per-phase bootstrap interval on the pooled figure is [19%, 81%].
+  Section 9.2's monthly figure at the same economic delay is 67.8%
+  [45%, 92%], positive on 14 of 14.
+
+  The prediction was: positive, inside [45%, 92%], on at least 10 of 14.
+  Outcome: MET (point inside the band, 12 of 14 metros positive).
+
+  What that does and does not establish, stated carefully, and counted
+  rather than asserted:
+
+  Of the 3 phases, 1 of them exclude zero on the mean-of-ratios
+  interval and 3 exclude zero on the pooled one. So the two
+  estimators do not agree about what has been established. Under the
+  estimator Section 9.2 uses, a quarter of the observations buys roughly
+  double the interval and the quarterly sample cannot carry the claim on
+  its own; under the pooled one it can. Neither quarterly figure is
+  offered as a second headline, and the paper does not quote one.
+
+  It DOES dispose of the objection it was built for. The moving-average
+  explanation is not a claim that the rate is smaller than 67.8%; it is
+  a claim that the rate is MANUFACTURED, and a manufactured rate must go
+  to zero when no two quantities in the design share a transaction
+  month. Instead the point estimate lands at 56.9%, inside the monthly
+  interval, in all three phases, with the sign holding on 12 of 14 metros.
+  The artefact hypothesis makes a sharp prediction and the data do not
+  match it. That is what this file was built to test, and it is all it
+  is offered as.
+
+  The de-smoothed panel agrees from the other direction: with the
+  moving average inverted out, breadth still adds +0.1352 of R-squared
+  at delta = 3 on 14 of 14 metros, while the delay cost that R(delta)
+  divides by has collapsed, which is why Part C reports increments and
+  refuses to quote a rate.
+
+  What none of this addresses is the second, larger caveat Section 9.2
+  already carries: an index is not a book. Nobody holds a Case-Shiller
+  index, and the overlap question is about construction, not about
+  whether a real appraised portfolio behaves like a published average.

@@ -1,0 +1,86 @@
+data folder: <your data folder>
+Prints the admissibility audit behind Section 3 and Section 10.
+
+8 indices, 7021 dates, 2000-01-04 to 2026-09-11
+
+============================================================================================
+A.  WHAT THE TABLE SAYS AND WHAT THE CLOCK SAYS
+============================================================================================
+The fixed table is standard time. The clock column is the median true
+close across the sample, and the two extremes are what daylight saving
+does to it. A blank spread means the exchange keeps no summer time.
+
+ index    table                  zone    local   true min   true max   spread
+  N225      6.0            Asia/Tokyo    15:00       6.00       6.00        -
+  AXJO      6.0      Australia/Sydney    16:00       5.00       6.00     1.00
+   HSI      8.0        Asia/Hong_Kong    16:00       8.00       8.00        -
+  NSEI     10.0          Asia/Kolkata    15:30      10.00      10.00        -
+  FTSE     16.5         Europe/London    16:30      15.50      16.50     1.00
+   DAX     16.5         Europe/Berlin    17:30      15.50      16.50     1.00
+  BVSP     21.0     America/Sao_Paulo    17:00      19.00      20.00     1.00
+   SPX     21.0      America/New_York    16:00      20.00      21.00     1.00
+
+============================================================================================
+B.  DOES ANY DAY DISAGREE WITH THE RULE THE PANEL IMPLEMENTS?
+============================================================================================
+For every target, every peer and every date: the lag the fixed table
+assigns against the lag the true closes imply. A LEAK is a day the table
+calls same-day and the clock says the peer closed later or at the same
+moment - the panel would carry a value the forecaster could not have had.
+A waste is the reverse, and costs information rather than validity.
+
+ target  peers   days   leaks  wasted  tightest margin      which peer is wasted
+    SPX      7   7021       0    2754           3.50 h                 BVSP 2754
+   FTSE      7   7021       0       0           5.50 h                         -
+    DAX      7   7021       0       0           5.50 h                         -
+   N225      7   7021       0    3345                -                 AXJO 3345
+    HSI      7   7021       0       0           2.00 h                         -
+
+  leaks across every target, peer and day: 0
+  wasted same-day observations:            6099
+  the narrowest margin the rule relies on:  2.00 hours (N225 before HSI)
+
+  The waste is not symmetric and it is not noise. On 3345 of the
+  7021 dates the fixed table sends AXJO back a day for a N225
+  forecaster when the true clocks say it had already closed, because the
+  table records both at the same standard-time hour and equality is
+  resolved against admissibility. So the rule as implemented is STRICTER
+  than the rule as stated: it discards information a real forecaster
+  could lawfully have used. That direction matters for how the paper's
+  numbers should be read. Every rate in this paper is what a forecaster
+  achieves with less than the admissible cross-section, so the measured
+  substitution rate is a lower bound on the rule's own terms.
+
+  The rule survives real session clocks. Every peer the panel treats
+  as same-day admissible did close before the target on every date in
+  the sample, daylight saving included, and the margin it relies on is
+  hours rather than minutes. Section 3's fixed table is a simplification
+  of the clock and not an approximation of the rule.
+
+============================================================================================
+C.  HOLIDAYS: HOW OFTEN IS A PEER CARRIED FORWARD, AND HOW STALE?
+============================================================================================
+The panel is built on the target's calendar and peers are forward-filled
+with a five-day limit, so a peer shut on day t carries its last close.
+That is strictly older than t and cannot leak. What it can do is weaken
+the instrument, so the frequency and the staleness are reported.
+
+ target   peer   carried    share   mean age   worst
+    SPX   N225       391     5.8%       2.49      10
+    SPX   AXJO       135     2.0%       2.79       5
+    SPX    HSI       279     4.2%       2.20       5
+    SPX   NSEI       303     4.5%       1.40       5
+    SPX   FTSE       119     1.8%       3.18       4
+    SPX    DAX       100     1.5%       2.47       5
+    SPX   BVSP       266     4.0%       1.71       4
+
+  the peer carried forward most often is N225 on 5.8% of the target's days
+  A carried close is stale, never early, so this is a statement about
+  the strength of the foreign block and not about its admissibility.
+
+============================================================================================
+VERDICT
+============================================================================================
+  Section 3's admissibility rule holds on real session timestamps at
+  every target, peer and date in the sample. The paper may state it as
+  established rather than assumed, and this file is the establishment.

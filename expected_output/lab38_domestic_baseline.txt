@@ -1,0 +1,140 @@
+data folder: <your data folder>
+Prints Table 18 and the normalisation result of Section 9.1.
+
+target SPX, 4862 test days, 2007-05-09 to 2026-09-03, 7 foreign peers
+     arm  features
+    HAR3         3
+   +LAGS         7
+   +LONG         5
+    +LEV         6
+   +MEAS         5
+     ALL        14
+
+==================================================================================================
+A.  DOES A STRONGER DOMESTIC MODEL FORECAST BETTER AT ALL?
+==================================================================================================
+Out-of-sample R-squared of the domestic block alone, delta days stale.
+If no arm beats HAR3, the control was never weak and the objection fails
+at the first step.
+
+ delta       HAR3      +LAGS      +LONG       +LEV      +MEAS        ALL
+     0     0.5191     0.5242     0.5138     0.5553     0.5252     0.5748
+     1     0.4741     0.4782     0.4678     0.5043     0.4811     0.5223
+     3     0.4098     0.4133     0.4018     0.4306     0.4199     0.4468
+     5     0.3641     0.3669     0.3536     0.3789     0.3770     0.3930
+     8     0.3114     0.3124     0.2972     0.3179     0.3272     0.3265
+    13     0.2336     0.2334     0.2125     0.2314     0.2542     0.2296
+    21     0.1482     0.1478     0.1180     0.1392     0.1796     0.1274
+    34     0.0794     0.0792     0.0393     0.0683     0.1212     0.0333
+    55     0.0070     0.0068    -0.0521    -0.0071     0.0572    -0.0648
+
+Against HAR3, with Giacomini-White on the paired loss differential:
+
+ delta                 +LAGS                 +LONG                  +LEV                 +MEAS                   ALL
+     0      +0.0051 *             -0.0053               +0.0362 *             +0.0061               +0.0557 *       
+     1      +0.0041 *             -0.0063               +0.0301 *             +0.0070               +0.0482 *       
+     3      +0.0035 *             -0.0080               +0.0208 *             +0.0101               +0.0370 *       
+     5      +0.0028 *             -0.0105               +0.0148               +0.0129               +0.0290 *       
+     8      +0.0010               -0.0142               +0.0065               +0.0158               +0.0151         
+    13      -0.0002               -0.0211               -0.0022               +0.0206               -0.0040         
+    21      -0.0004               -0.0302 -             -0.0090               +0.0314               -0.0207         
+    34      -0.0002               -0.0401 -             -0.0111               +0.0418               -0.0462         
+    55      -0.0002               -0.0591               -0.0141               +0.0502               -0.0718         
+
+  * = significantly better than HAR3   - = significantly worse
+  cells where a richer domestic block significantly beats the paper's: 11 of 45
+
+  mean own-only R-squared across delays: HAR3 0.2830, +LAGS 0.2847, +LONG 0.2613, +LEV 0.2910, +MEAS 0.3047, ALL 0.2877
+  strongest domestic block by that measure: +MEAS
+  (chosen on own-only skill, never on the substitution rate, so the
+   control is not selected by the quantity it is about to be used to test)
+
+==================================================================================================
+B.  THE SUBSTITUTION RATE, MEASURED AGAINST EACH CONTROL
+==================================================================================================
+R(delta) recomputed inside every arm: same foreign block, different
+domestic baseline in all three places the rate uses it.
+
+ delta       HAR3      +LAGS      +LONG       +LEV      +MEAS        ALL
+     1        -1%        -2%       -12%       -12%       -10%       -27%
+     3        36%        33%        31%        19%        31%         7%
+     5        51%        49%        48%        36%        47%        25%
+     8        60%        58%        57%        49%        56%        40%
+    13        64%        62%        62%        56%        60%        49%
+    21        67%        66%        66%        61%        64%        55%
+    34        70%        69%        68%        65%        65%        58%
+    55        72%        71%        71%        67%        68%        61%
+
+==================================================================================================
+C.  DOES THE HEADLINE MOVE?
+==================================================================================================
+The paper's rate against the strongest control (+MEAS), with a paired
+bootstrap: both ratios recomputed on the SAME resampled days, numerator
+and denominator together, so the interval is on the DIFFERENCE.
+
+ delta   R(d) HAR3    R(d) +MEAS   difference                  95% CI
+     1         -1%          -10%        -8.3%   [   -26.1%,    +6.0%]
+     3         36%           31%        -5.7%   [   -15.6%,    +2.3%]
+     5         51%           47%        -4.0%   [   -11.8%,    +1.8%]
+     8         60%           56%        -3.5%   [   -10.4%,    +1.2%]
+    13         64%           60%        -3.5%   [    -9.9%,    +0.5%]
+    21         67%           64%        -3.3%   [    -9.1%,    +0.3%]
+    34         70%           65%        -4.4%   [   -10.5%,    -0.7%]
+    55         72%           68%        -4.1%   [    -9.7%,    -0.6%]
+
+  delays where the rate moves significantly with the control: 2 of 8 [34, 55]
+
+==================================================================================================
+D.  WHICH OF THE TWO DOES IT, AND IS THE GAIN LEGITIMATE?
+==================================================================================================
++MEAS carries two features and they are not the same kind of thing. One is a
+second realised measure, a 22-day Yang-Zhang, which is simply less noisy than
+the 5-day one. The other is log M, the LEVEL of the trailing median, which
+every model in the paper is blind to because the normalisation divides it out.
+The distinction matters: the target is log(variance / M at t+5), so a model
+that sees log M at t-delta can partly reconstruct the target's own denominator,
+M being slow. That is admissible - every feature is dated t-delta - but it is
+a fact about how the target is built as much as about volatility, and it would
+be wrong to report it as though the two features were interchangeable.
+
+ delta      HAR3    +VAR22    +LEVEL     +MEAS    level - var22
+     0    0.5191    0.5224    0.5235    0.5252          +0.0011
+     1    0.4741    0.4768    0.4799    0.4811          +0.0032
+     3    0.4098    0.4129    0.4185    0.4199          +0.0056
+     5    0.3641    0.3672    0.3753    0.3770          +0.0081
+     8    0.3114    0.3132    0.3269    0.3272          +0.0138
+    13    0.2336    0.2340    0.2554    0.2542          +0.0214
+    21    0.1482    0.1516    0.1790    0.1796          +0.0274
+    34    0.0794    0.0725    0.1292    0.1212          +0.0568
+    55    0.0070   -0.0004    0.0702    0.0572          +0.0706
+
+  delays where the LEVEL contributes more than the second measure: 9 of 9 [0, 1, 3, 5, 8, 13, 21, 34, 55]
+
+ delta   R(d) HAR3   R(d) +VAR22   R(d) +LEVEL
+     1         -1%           -1%           -9%
+     3         36%           35%           32%
+     5         51%           50%           48%
+     8         60%           59%           56%
+    13         64%           63%           61%
+    21         67%           67%           64%
+    34         70%           69%           66%
+    55         72%           71%           68%
+
+  The level does the work almost everywhere. So the stronger control is
+  strong mainly because it can see something the paper's normalisation
+  removed, and the honest reading is narrower than 'the baseline was weak':
+  a forecaster told how volatile the world has lately been, in absolute
+  terms, needs less help from abroad. The paper should quote the rate
+  against this control AND say where its strength comes from.
+
+==================================================================================================
+VERDICT
+==================================================================================================
+  A richer domestic block beats the paper's in 11 cells, so
+  the control CAN be improved and +MEAS improves it.
+  The rate moves significantly at [34, 55]. The headline is partly a
+  statement about the baseline, and the paper must quote it against the
+  stronger control rather than the three-feature one.
+  Arms that forecast WORSE than the paper's on average: ['+LONG']. That is
+  lab07's estimation cost again, on the domestic side: the extra domestic
+  features cost more to estimate than they return.

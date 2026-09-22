@@ -1,0 +1,59 @@
+Prints the post-selection audit behind Section S33 and the
+'exploratory' label the secondary tables now carry.
+
+================================================================================================
+A.  THE SECONDARY FAMILIES, ONE AT A TIME
+================================================================================================
+Each family is a grid the paper reports AFTER the headline
+specification was fixed, and inside which individual cells are
+marked significant at the ordinary 5% level. 'expected' is 0.05n,
+the number of significant cells a grid of pure noise would show.
+
+                                                        family  cells  sig 5%  expected   ratio
+compressed foreign block given implied volatility, seven marke     64      20       3.2     6.2
+seven foreign closes given implied volatility, five optioned m     32       7       1.6     4.4
+     breadth given implied volatility, four unoptioned targets     64      21       3.2     6.6
+              nonlinearity given implied volatility, four arms     48      31       2.4    12.9
+                   VSTOXX as a third implied-volatility series      6       0       0.3     0.0
+
+================================================================================================
+B.  THE POOLED CORRECTION
+================================================================================================
+Every secondary cell above, pooled, because the papers read these
+grids together. The headline comparison is deliberately excluded:
+lab34 prices its own search, and pooling it here would let these
+grids dilute a test that was never part of them.
+
+  secondary cells pooled                    214
+  significant at 5% uncorrected             79
+  expected by chance if all were noise      10.7
+  Bonferroni threshold (5% family-wise)     0.000234
+  surviving Bonferroni                      2
+  Benjamini-Hochberg cutoff (5% FDR)        0.001168
+  surviving Benjamini-Hochberg              5
+  significant uncorrected but not under BH  74
+
+================================================================================================
+C.  WHICH CELLS SURVIVE, AND BY WHICH FAMILY
+================================================================================================
+A cell that survives Benjamini-Hochberg may carry a claim. One
+significant only uncorrected is exploratory: worth reporting,
+not worth leaning on.
+
+                                                        family  sig 5%   BH  Bonf
+compressed foreign block given implied volatility, seven marke      20    1     0
+seven foreign closes given implied volatility, five optioned m       7    1     0
+     breadth given implied volatility, four unoptioned targets      21    2     2
+              nonlinearity given implied volatility, four arms      31    1     0
+                   VSTOXX as a third implied-volatility series       0    0     0
+
+================================================================================================
+VERDICT
+================================================================================================
+  5 of 79 nominally significant secondary cells survive
+  a 5% false-discovery correction across the whole secondary set.
+  Those may carry a claim; the remaining
+  74 are exploratory and the papers must label them so.
+
+  In no case does this touch the headline, which is one pre-specified
+  comparison with its own Reality Check and SPA test in lab34.

@@ -1,0 +1,92 @@
+data folder: <your data folder>
+
+====================================================================================
+0.  RECONCILIATION AT h = 5
+====================================================================================
+walk() below is lab05's fitrun() with the horizon lifted out of a module
+constant and into an argument.  That rewrite is where a silent difference
+would hide, so lab05's own function is called at h = 5 and compared -
+nothing pasted.  If these disagree, none of the other horizons mean anything.
+
+ delta   own here   own lab05   cross here  cross lab05
+     0     0.5191      0.5191       0.5092       0.5092   ok
+    21     0.1482      0.1482       0.3981       0.3981   ok
+    55     0.0070      0.0070       0.3736       0.3736   ok
+
+  the rewrite matches lab05 exactly
+
+====================================================================================
+A.  DOES THE TARGET OVERLAP THE FEATURES, AND BY HOW MUCH?
+====================================================================================
+The Yang-Zhang proxy spans five days, so for h < 5 the outcome window and
+the domestic feature's own window share days.  Nothing is leaked - the
+outcome is still in the future - but a forecaster at h = 1 is predicting an
+object they can largely already see, which inflates every arm at once.
+
+   h  days shared with sigma^2_t    corr(a_t, a_t+h)
+   1                           4              0.9532
+   5                           0              0.6917
+  10                           0              0.5764
+  21                           0              0.4172
+
+====================================================================================
+B.  THE SUBSTITUTION RATE AT EACH HORIZON
+====================================================================================
+Identical features, identical estimator, identical delay grid.  Only the
+horizon changes, and with it the admissibility cut and the benchmark's own
+cut at t - h.  The bootstrap block is lab05's measured one at every
+horizon, so the intervals below are comparable across the table.
+
+  --- h = 1 (4870 test days, bootstrap block 40) ---------------------------------
+ delta    own R2   cross R2       dR2    R(d)            95% CI   R(d) QLIKE
+     0    0.9240     0.9238   -0.0001       -                 -            -
+     3    0.6089     0.7162   +0.1073     34%       [ 27%, 40%]          43%
+     5    0.4713     0.6899   +0.2185     48%       [ 41%, 55%]          60%
+    13    0.2919     0.6721   +0.3802     60%       [ 52%, 67%]          74%
+    21    0.1795     0.6619   +0.4824     65%       [ 57%, 72%]          80%
+    55    0.0086     0.6461   +0.6375     70%       [ 62%, 76%]          83%
+
+  --- h = 5 (4862 test days, bootstrap block 40) ---------------------------------
+ delta    own R2   cross R2       dR2    R(d)            95% CI   R(d) QLIKE
+     0    0.5191     0.5092   -0.0099       -                 -            -
+     3    0.4098     0.4495   +0.0397     36%       [ 17%, 55%]          43%
+     5    0.3641     0.4438   +0.0797     51%       [ 35%, 66%]          59%
+    13    0.2336     0.4155   +0.1819     64%       [ 51%, 75%]          74%
+    21    0.1482     0.3981   +0.2499     67%       [ 55%, 78%]          78%
+    55    0.0070     0.3736   +0.3666     72%       [ 60%, 81%]          81%
+
+  --- h = 10 (4852 test days, bootstrap block 40) --------------------------------
+ delta    own R2   cross R2       dR2    R(d)            95% CI   R(d) QLIKE
+     0    0.3671     0.3506   -0.0164       -                 -            -
+     3    0.3138     0.3189   +0.0052     10%       [-39%, 45%]          15%
+     5    0.2817     0.3115   +0.0298     35%       [ -0%, 60%]          42%
+    13    0.1738     0.2797   +0.1059     55%       [ 31%, 70%]          65%
+    21    0.1174     0.2656   +0.1482     59%       [ 37%, 73%]          68%
+    55    0.0001     0.2427   +0.2426     66%       [ 49%, 78%]          73%
+
+  --- h = 21 (4830 test days, bootstrap block 40) --------------------------------
+ delta    own R2   cross R2       dR2    R(d)            95% CI   R(d) QLIKE
+     0    0.2026     0.1813   -0.0213       -                 -            -
+     3    0.1708     0.1641   -0.0067    -21%      [-152%, 49%]          15%
+     5    0.1567     0.1623   +0.0055     12%       [-84%, 63%]          35%
+    13    0.1080     0.1459   +0.0379     40%       [-12%, 69%]          55%
+    21    0.0734     0.1296   +0.0562     43%       [ -1%, 67%]          58%
+    55   -0.0202     0.0927   +0.1129     51%       [ 23%, 70%]          65%
+
+====================================================================================
+C.  IS THE HEADLINE A PROPERTY OF THE INFORMATION OR OF THE SETTING?
+====================================================================================
+   h    R(55) under R2            95% CI   R(55) under QLIKE
+   1               70%       [ 62%, 76%]                 83%
+   5               72%       [ 60%, 81%]                 81%
+  10               66%       [ 49%, 78%]                 73%
+  21               51%       [ 23%, 70%]                 65%
+
+  horizons whose point estimate falls outside the h = 5 interval [60%, 81%]: [21]
+
+  Read h = 1 against part A before reading it against the others.  Four of its
+  five target days are already inside the domestic feature, so both arms score
+  high and the denominator of the rate - how much a delay costs a domestic-only
+  forecaster - is small.  A rate computed against a small denominator is the
+  unstable object this project has flagged twice before, and it is the reason
+  h = 1 is reported here rather than folded into the headline.

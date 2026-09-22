@@ -1,0 +1,53 @@
+data folder: <your data folder>
+Prints the outage decomposition behind Section 4.3 and Section S36.
+
+target SPX, 4862 test days, 7 foreign peers, 2007-05-09 to 2026-09-03
+
+============================================================================================
+A.  THE TWO PIECES OF WHAT DELTA COSTS
+============================================================================================
+Every arm shares the features, the estimator, the refit schedule and the
+test days. The FEATURE-ONLY arm is infeasible under this paper's own
+information set - training to t - h needs the stretch of the target's own
+series the delay withholds - and exists to price one effect, never as a
+forecast this paper reports.
+
+ delta   S_own(0)  feature only    outage     total   feature   vintage  vintage share
+     5     0.5191        0.3646    0.3641    0.1550    0.1544    0.0005          0.4%
+    13     0.5191        0.2347    0.2336    0.2855    0.2844    0.0011          0.4%
+    21     0.5191        0.1516    0.1482    0.3709    0.3675    0.0034          0.9%
+    55     0.5191        0.0207    0.0070    0.5121    0.4984    0.0137          2.7%
+
+  the estimation vintage accounts for 0.4% to 2.7% of what the delay costs
+  So the outage is mostly a stale INPUT. Freezing the coefficients,
+  the penalty and the training window costs a minor share of the
+  damage at every delay, and R(delta) divides by a denominator that
+  is predominantly information rather than estimation. The naming
+  matters and the measurement does not change much.
+
+============================================================================================
+B.  DOES THE SUBSTITUTION RATE CARE WHICH ONE IT IS?
+============================================================================================
+R(delta) recomputed inside the feature-only arm, with the cross-sectional
+model given the same cut as the domestic one so the comparison stays
+internal. If the two rates agree, the headline is a statement about
+stale information and not about frozen estimation.
+
+ delta   R outage  R feature-only   difference
+     5      51.4%           52.1%        -0.7%
+    13      63.7%           64.8%        -1.1%
+    21      67.4%           69.1%        -1.7%
+    55      71.6%           74.4%        -2.8%
+
+  largest difference between the two rates: 2.8%
+  The rate does not distinguish the two designs. Whatever delta is
+  called, the share of the damage that breadth repairs is the same,
+  so the naming is a matter of accuracy rather than of result.
+
+============================================================================================
+VERDICT
+============================================================================================
+  The design freezes the domestic information system for delta days and
+  the paper now names it that way. This file prices the part of that
+  freeze which is not the input, so a reader can see how much of
+  R(delta)'s denominator is information and how much is estimation.

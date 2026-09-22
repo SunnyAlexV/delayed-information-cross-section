@@ -1,0 +1,204 @@
+loaded 2262 rows, 2017-09-12 to 2026-09-11
+test window: 694 days, 2023-11-27 to 2026-09-02;  realised base rate 0.468
+
+====================================================================================
+A.  IS THE SIGN RULE OPTIMAL, AND OVER WHICH INFORMATION SET?
+====================================================================================
+SIGN(a)      the threshold rule: the sign of the current delayed state
+LOGIT(a)     a logistic in a alone - may use the MAGNITUDE of a, nothing else
+LOGIT(a,w,m) the note's HAR classifier: a plus its 5- and 22-day means
+
+If the Gaussian argument holds, the first two are equal.  If the
+sufficiency condition holds, the third adds nothing to the second.
+
+ delta  ceiling A*   SIGN(a)   LOGIT(a)  LOGIT(a,w,m)  HAR - LOGIT(a)      z
+     0      64.87%    67.87%     67.58%        68.59%          +1.01   1.40
+     1      63.23%    66.71%     67.29%        67.44%          +0.14   0.20
+     2      61.71%    65.56%     66.14%        66.57%          +0.43   0.58
+     3      60.30%    63.26%     64.12%        64.84%          +0.72   1.00
+     5      58.17%    60.95%     61.10%        60.95%          -0.14  -0.21
+     8      56.02%    57.20%     56.92%        57.20%          +0.29   0.45
+    13      55.48%    54.90%     53.89%        53.75%          -0.14  -0.21
+    21      55.57%    50.00%     52.02%        51.87%          -0.14  -0.20
+    34      48.67%    49.86%     48.41%        47.84%          -0.58  -0.85
+    55      46.17%    44.24%     45.39%        46.25%          +0.86   1.23
+
+  delays where a measured rule EXCEEDS the stated ceiling: 8 of 10 [0, 1, 2, 3, 5, 8, 34, 55]
+  delays where HAR beats a logistic in a alone at z > 1.96: 0 of 10 
+
+====================================================================================
+B.  DOES P(b>0 | a) CROSS ONE HALF AT a = 0?
+====================================================================================
+The Bayes argument needs the crossing to be AT the threshold the rule uses.
+Estimated non-parametrically on deciles of a, at delta = 0, so it rests on
+no distributional assumption at all.
+
+  decile of a    mean a    P(b>0)      n
+            1   -1.2379     0.214     70
+            2   -0.8024     0.319     69
+            3   -0.5627     0.290     69
+            4   -0.3194     0.243     70
+            5   -0.0894     0.348     69
+            6    0.1342     0.391     69
+            7    0.3640     0.571     70
+            8    0.5948     0.739     69
+            9    0.8432     0.812     69
+           10    1.6092     0.757     70
+
+  monotone across deciles: no
+  linear-interpolated crossing of 0.5 at a = +0.2729   (the rule assumes a = 0)
+  P(b>0) at the two deciles straddling a = 0: 0.351 below, 0.392 above
+
+====================================================================================
+C.  THE BENCHMARK A FORECASTER COULD ACTUALLY RUN
+====================================================================================
+The note's 53.2% is 1 minus the REALISED test-window base rate: it picks the
+winning constant with hindsight.  The recursive version chooses the constant
+from the training window alone, refitted on lab02's schedule.
+
+  realised test-window base rate                0.4683
+  ex-post constant 'no' (chosen with hindsight) 53.17%
+  recursive, rolling 1250-day window           53.17%   (predicts 'yes' on 0% of days)
+  lab02's majority, expanding window            46.83%   (predicts 'yes' throughout)
+
+  The referee's objection is correct in principle and does not bite here: over a
+  rolling window the training majority is always 'no', so the recursive choice
+  happens to coincide with the hindsight one at 53.17%.
+
+  What the comparison exposes instead is that the constant benchmark is not one
+  number.  lab02 computes its majority over an EXPANDING window covering
+  everything before the test start, where the majority was the other class, and
+  scores 46.83%.  A rolling window gives 53.17%.  Both are honest and
+  they differ by 6.3 points, which is larger than several of the model
+  differences the note discusses.  The note must say which constant it means and
+  why, rather than quoting whichever is convenient - and it currently quotes the
+  hindsight figure in prose while tabulating the expanding-window one.
+
+====================================================================================
+C2.  DOES THE CHOICE OF CONSTANT CHANGE AN ANSWER?
+====================================================================================
+For each forecaster, the largest delay whose 95% accuracy interval lies
+entirely ABOVE each hurdle in ALL 20 bootstrap seeds, and the largest
+that clears it in at least one.  Where those differ the crossing is not
+resolved by this sample and both are printed.  Same walk-forward, same
+days, same block as the note's Table 1; only the hurdle and seed change.
+
+   forecaster              above 53.17%              above 46.83%
+   persist-CC         through delta = 3         through delta = 8
+   persist-YZ      3 firm, 5 knife-edge     8 firm, 13 knife-edge
+       har-CC  never firm, 0 knife-edge         through delta = 5
+       har-YZ         through delta = 3         through delta = 8
+
+  bootstrap seeds per cell: 20;  knife-edge cells (clear in some seeds, not all): 3
+    persist-YZ at 53.17%: delta = 5 clears in 1 of 20 seeds, so the firm crossing is 3
+    persist-YZ at 46.83%: delta = 13 clears in 18 of 20 seeds, so the firm crossing is 8
+    har-CC at 53.17%: delta = 0 clears in 5 of 20 seeds, so the firm crossing is never
+
+  forecasters whose FIRM answer depends on which constant is used: 4 of 4  ['persist-CC', 'persist-YZ', 'har-CC', 'har-YZ']
+  For persist-YZ, the note's threshold rule, the last delay firmly above
+  the rolling-window hurdle is 3 and above the expanding-window one
+  is 8.  The higher hurdle is the harder test of the note's POSITIVE
+  claim that the rule beats a constant at short delays, and the easier
+  test of its NEGATIVE claim that it stops doing so.  The note must
+  report both and say which claim each serves, rather than describing
+  one of them as the constant-forecast level.
+
+====================================================================================
+D.  PROBABILITY QUALITY, NOT JUST ACCURACY
+====================================================================================
+The logistic outputs probabilities and the note throws them away at 0.5.
+Lower Brier and log score are better; AUC is ranking, 0.5 is chance.
+'base' is the recursive base-rate probability, the honest null.
+
+  recursive base-rate probability averages 0.456 against a realised 0.468
+
+ delta         model      acc    Brier      log     AUC
+     0     base rate   53.17%   0.2495   0.6922   0.495
+             SIGN(a)   67.87%      n/a      n/a   0.707
+            LOGIT(a)   67.58%   0.2183   0.6334   0.713
+        LOGIT(a,w,m)   68.59%   0.2195   0.6357   0.705
+
+     1     base rate   53.17%   0.2495   0.6922   0.495
+             SIGN(a)   66.71%      n/a      n/a   0.697
+            LOGIT(a)   67.29%   0.2225   0.6441   0.698
+        LOGIT(a,w,m)   67.44%   0.2240   0.6469   0.690
+
+     2     base rate   53.17%   0.2495   0.6922   0.495
+             SIGN(a)   65.56%      n/a      n/a   0.677
+            LOGIT(a)   66.14%   0.2278   0.6560   0.680
+        LOGIT(a,w,m)   66.57%   0.2295   0.6594   0.673
+
+     3     base rate   53.17%   0.2495   0.6922   0.495
+             SIGN(a)   63.26%      n/a      n/a   0.651
+            LOGIT(a)   64.12%   0.2349   0.6723   0.658
+        LOGIT(a,w,m)   64.84%   0.2366   0.6757   0.653
+
+     5     base rate   53.17%   0.2495   0.6922   0.495
+             SIGN(a)   60.95%      n/a      n/a   0.626
+            LOGIT(a)   61.10%   0.2446   0.6941   0.635
+        LOGIT(a,w,m)   60.95%   0.2470   0.6997   0.628
+
+     8     base rate   53.17%   0.2495   0.6922   0.495
+             SIGN(a)   57.20%      n/a      n/a   0.556
+            LOGIT(a)   56.92%   0.2639   0.7427   0.584
+        LOGIT(a,w,m)   57.20%   0.2647   0.7449   0.581
+
+    13     base rate   53.17%   0.2495   0.6922   0.495
+             SIGN(a)   54.90%      n/a      n/a   0.531
+            LOGIT(a)   53.89%   0.2719   0.7613   0.553
+        LOGIT(a,w,m)   53.75%   0.2723   0.7613   0.550
+
+    21     base rate   53.17%   0.2495   0.6922   0.495
+             SIGN(a)   50.00%      n/a      n/a   0.492
+            LOGIT(a)   52.02%   0.2858   0.7914   0.505
+        LOGIT(a,w,m)   51.87%   0.2849   0.7890   0.508
+
+    34     base rate   53.17%   0.2495   0.6922   0.495
+             SIGN(a)   49.86%      n/a      n/a   0.482
+            LOGIT(a)   48.41%   0.3035   0.8382   0.478
+        LOGIT(a,w,m)   47.84%   0.3045   0.8407   0.475
+
+    55     base rate   53.17%   0.2495   0.6922   0.495
+             SIGN(a)   44.24%      n/a      n/a   0.453
+            LOGIT(a)   45.39%   0.3245   0.8913   0.411
+        LOGIT(a,w,m)   46.25%   0.3238   0.8905   0.412
+
+====================================================================================
+VERDICT
+====================================================================================
+
+  A* is not a ceiling: a measured rule exceeds it at 8 of 10 delays.  That much
+  the referee had right.  The MECHANISM they proposed is not the one that bites,
+  and the difference matters for how the note should be repaired.
+
+  Their argument was that the sign rule cannot be Bayes-optimal over the HAR
+  information set without a sufficiency condition the note never states.  The
+  condition is testable and part A tests it: the full HAR classifier beats a
+  logistic in a alone at 0 of 10 delays at z > 1.96.  The extra lags are not
+  where the excess comes from, so on this sample the sufficiency condition is not
+  rejected and the note's substantive claim survives that challenge.
+
+  What fails is the distributional half of the argument, and it fails harder than
+  the note's 'heavy tails' concession admits.  Part B estimates P(b>0 | a)
+  non-parametrically and finds it is NOT monotone across deciles, and that it
+  crosses one half at a = +0.27 rather than at zero.  The Bayes argument needs
+  the crossing to sit at the threshold the rule actually uses.  It does not.  So
+  the sign rule with a zero threshold is not optimal even among functions of a -
+  which is why LOGIT(a), free to place its own threshold, beats SIGN(a) at
+  several short delays - and A*, derived under centring, is misspecified as a
+  bound rather than merely approximate.
+
+  The repair is therefore larger than a rename.  The note should call the object
+  a restricted-information Gaussian benchmark, drop the claim that no regression
+  can improve on the sign, and state that the centring assumption underlying the
+  formula is rejected by its own data.
+
+  On the benchmark, the referee is right in principle and it does not change any
+  number here: see part C, where the honest recursive choice coincides with the
+  hindsight one.  The real problem uncovered there is that the note quotes a
+  hindsight constant in prose and tabulates a different, expanding-window one.
+
+  None of this touches the note's conclusion - a median-split target leaves
+  little headroom, and the negative result is about target construction.  What
+  changes is how much of that conclusion the Gaussian argument is entitled to
+  carry, which is less than the note currently claims.

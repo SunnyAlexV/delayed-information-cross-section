@@ -1,0 +1,77 @@
+data folder: <your data folder>
+Prints the effective age by market state, Sections 9.1 and 10.2.
+
+target SPX, 4852 test days, 2007-05-23 to 2026-09-03
+    VIX files: ['VIX_History.csv']
+VIX at t-1, terciles at 15.4 and 20.7; the two rungs are
+percentiles of the series against its own trailing year, as in Table 13.
+
+================================================================================================
+A.  THE RATE AND THE AGE, IN EVERY STATE, ON THE SAME DAYS
+================================================================================================
+The rate divides by the damage delay does. The age does not divide by
+anything: it asks how old a plain mark would have to be to forecast as
+badly, by matching mean squared error on the same days.
+
+                   state   days    R(55)      age   own MSE at 0d   at 55d
+               every day   4852    71.4%      4.6          0.4567   0.9432
+   calm (bottom tercile)   1622    48.5%      4.5          0.4439   0.5679
+          middle tercile   1615    52.3%      8.6          0.4517   0.7956
+  stressed (top tercile)   1615    81.0%      3.8          0.4747   1.4677
+             VIX top 10%    543    80.7%      3.4          0.7345   2.9783
+              VIX top 5%    310    85.9%      2.3          0.7730   3.6926
+
+  The rate and the age are computed from the same three quantities, so
+  they are not independent readings. What differs is that one of them
+  puts the delay damage in a denominator and the other does not.
+
+  One row of that table was not what this file was built to find. Along
+  the stress ladder the age falls monotonically: 3.8 days in the top
+  tercile, 3.4 in the top decile, 2.3 in the top 5% of VIX days. On the days
+  when a stale mark is most dangerous, a mark eleven weeks old plus
+  today's foreign closes is worth a mark two days old.
+
+================================================================================================
+B.  WHICH OF THE TWO SURVIVES BEING RESAMPLED
+================================================================================================
+Moving blocks of ten days, drawn inside each state's own time-ordered
+subsequence, with the curve, the combined model and the rate all
+recomputed on the same resampled days. 'at 0d' and 'off grid' count the
+replications where the age question had no answer on the grid.
+
+                   state   R(55)        95% interval    age      95% interval  at 0d   off
+               every day     71%  [  59%,  81%]       4.6  [ 2.5,  8.5]      0     0
+   calm (bottom tercile)     49%  [ -14%,  89%]       4.5  [ 0.3, 44.1]     17    30
+          middle tercile     52%  [  31%,  69%]       8.6  [ 2.8, 14.9]      0     0
+  stressed (top tercile)     81%  [  72%,  90%]       3.8  [ 1.9,  6.6]      0     0
+             VIX top 10%     81%  [  68%,  92%]       3.4  [ 1.3,  7.2]      0     0
+              VIX top 5%     86%  [  74%,  96%]       2.3  [ 0.8,  5.0]      2     0
+
+================================================================================================
+C.  IS THE CALM CELL UNDETERMINED, OR WAS IT THE RATIO?
+================================================================================================
+  calm     rate spans 104% of the unit interval; age spans 43.8 days
+  stressed rate spans 18% of the unit interval; age spans 4.8 days
+
+  relative width, calm against stressed: 5.7x on the rate, 7.8x on the age
+  calm replications with no answer on the grid: 47 of 1500 (3.1%)
+
+  A cell is read as determinate here when two things hold: fewer than
+  10% of its replications fail to place the age on the grid, and its
+  width relative to its own point is within 3x the stressed cell's.
+  Calm: 3.1% fail to place, and 7.8x the stressed width.
+
+================================================================================================
+VERDICT
+================================================================================================
+  In calm markets the age is 4.5 days [0.3, 44.1], with 47 of 1500
+  replications unable to place it on the grid at all. Changing
+  coordinate does not rescue the calm cell.
+
+  That is worth more than a number would have been. The calm-market
+  non-result is not an artefact of putting the delay damage in a
+  denominator: where delay costs a forecaster almost nothing, there is
+  almost nothing for the cross-section to repair, and no coordinate
+  makes a share of nothing precise. Section 11 can say that the
+  limitation survives a change of instrument rather than resting on
+  the one instrument that fails.

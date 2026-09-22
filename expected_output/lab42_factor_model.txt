@@ -1,0 +1,85 @@
+data folder: <your data folder>
+Prints the factor model's parameters and its three predictions.
+
+target SPX, 4862 test days, 7 foreign peers
+
+============================================================================================
+0.  THE FACTOR, AND ITS PERSISTENCE
+============================================================================================
+first component explains 64.2% of the foreign block's variance
+AR(1) persistence of the factor g:            phi = 0.9678
+AR(1) persistence of the target's own series: phi = 0.9532
+implied half-life of the factor: 21.2 trading days
+
+The factor is estimated on the whole sample here because it is being
+DESCRIBED, not used to forecast; every forecast below uses the real-time
+basis of Section 5.1.
+
+============================================================================================
+1.  PREDICTION: log S_own(delta) IS LINEAR IN delta, SLOPE 2 log phi
+============================================================================================
+ delta     S_own   log S_own   S_cross
+     0    0.5191     -0.6557    0.5092
+     1    0.4741     -0.7463    0.4735
+     2    0.4389     -0.8234    0.4569
+     3    0.4098     -0.8921    0.4495
+     5    0.3641     -1.0103    0.4438
+     8    0.3114     -1.1667    0.4351
+    13    0.2336     -1.4542    0.4155
+    21    0.1482     -1.9093    0.3981
+    34    0.0794     -2.5332    0.3863
+    55    0.0070     -4.9630    0.3736
+
+  least squares on delays [1, 2, 3, 5, 8, 13, 21, 34]:
+    slope = -0.05419 per day, fit R-squared = 0.9980
+    implied persistence phi = exp(slope/2) = 0.9733
+    measured persistence of the factor       = 0.9678
+    difference = +0.0054
+
+  linear to within R-squared 0.97? yes
+  implied persistence within 0.02 of the factor's? yes
+
+============================================================================================
+2.  PREDICTION: S_cross(delta) IS FLAT IN delta
+============================================================================================
+  S_cross falls from 0.5092 to 0.3736 across 55 days, a loss of 27%
+  S_own   falls from 0.5191 to 0.0070, a loss of 99%
+  cross-sectional skill loses less than 40% of itself? yes
+  The model does not predict perfect flatness: the domestic block is still
+  in the model and still decays, so some slope is expected.
+
+============================================================================================
+3.  PREDICTION: R(delta) RISES TOWARDS S_cross / S_own(0)
+============================================================================================
+The asymptote is computed from two numbers measured elsewhere - the
+cross-sectional model's skill at long delay and the fresh domestic model's
+skill - and is then compared with the rate the curve actually reaches.
+
+  S_cross(55) = 0.3736, S_own(0) = 0.5191
+  predicted asymptote R(infinity) = 72.0%
+
+ delta   R(delta) measured   predicted ceiling      gap
+     1               -1.3%               72.0%   -73.2%
+     2               22.5%               72.0%   -49.5%
+     3               36.3%               72.0%   -35.6%
+     5               51.4%               72.0%   -20.6%
+     8               59.5%               72.0%   -12.4%
+    13               63.7%               72.0%    -8.2%
+    21               67.4%               72.0%    -4.6%
+    34               69.8%               72.0%    -2.2%
+    55               71.6%               72.0%    -0.4%
+
+  at the longest delay the curve reaches 71.6% against a predicted 72.0%
+  within five points of the prediction? yes
+
+============================================================================================
+VERDICT
+============================================================================================
+  4 of 4 predictions hold.
+  The decay of a stale forecaster's skill is geometric, and the rate of
+  decay implies a persistence that matches the factor's own. The delay
+  curve is the factor's memory, measured through a forecast.
+  The ceiling the model predicts from two independently measured
+  quantities is where the curve actually goes. R(delta) is not an
+  arbitrary rising curve; it is a factor-share, and the paper can say
+  what it converges to and why.

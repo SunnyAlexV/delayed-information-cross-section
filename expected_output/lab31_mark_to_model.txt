@@ -1,0 +1,89 @@
+data folder: <your data folder>
+EXPLORATORY - cited by neither paper.
+
+target SPX, 4862 test days, 7 foreign peers
+block bootstrap, block 40, 2000 draws
+
+================================================================================================
+A.  THE HORSE RACE
+================================================================================================
+STALE  domestic model on delta-day-old data
+PAPER  domestic model plus seven foreign closes as regressors
+MARK   roll the stale level forward on ONE factor exposure, then forecast
+MARK7  the same with seven exposures, to price the extra parameters
+MARK+  the reconstruction alongside the domestic history
+
+ delta     STALE     PAPER      MARK     MARK7     MARK+
+     0    0.5191    0.5092    0.5189    0.5189    0.5190
+     3    0.4098    0.4495    0.4576    0.4603    0.4669
+     5    0.3641    0.4438    0.4418    0.4471    0.4483
+    13    0.2336    0.4155    0.3864    0.3972    0.3914
+    21    0.1482    0.3981    0.3457    0.3523    0.3560
+    55    0.0070    0.3736    0.2593    0.2655    0.2764
+
+================================================================================================
+B.  DOES THE PRACTITIONER METHOD BEAT THE PAPER'S?
+================================================================================================
+Positive favours MARK.  Both arms see identical data; they differ only in
+whether the structure is imposed or estimated.
+
+ delta   MARK - PAPER                  95% CI    GW z    winner
+     0        +0.0098   [ +0.00065, +0.01830]    2.06      MARK
+     3        +0.0080   [ -0.01178, +0.02847]    0.76   neither
+     5        -0.0019   [ -0.02417, +0.02024]   -0.16   neither
+    13        -0.0291   [ -0.05612, -0.00035]   -1.95     PAPER
+    21        -0.0524   [ -0.08389, -0.01343]   -2.71     PAPER
+    55        -0.1143   [ -0.15208, -0.06770]   -4.91     PAPER
+
+  delays where mark-to-model significantly beats the paper's model: 1 of 6 [0]
+  delays where the paper's model significantly beats mark-to-model: 3 of 6 [13, 21, 55]
+
+  Each wins somewhere. The delay at which they change places is the
+  finding, and neither method should be recommended without naming it.
+
+================================================================================================
+C.  WHAT DO THE EXTRA EXPOSURES COST?
+================================================================================================
+MARK uses one factor exposure, MARK7 uses seven. Section 5 says parameters
+are expensive here; this prices them inside the reconstruction itself.
+
+ delta      MARK     MARK7   difference                  95% CI
+     0    0.5189    0.5189      +0.0000   [ +0.00000, +0.00000]
+     3    0.4576    0.4603      -0.0027   [ -0.00539, +0.00054]
+     5    0.4418    0.4471      -0.0053   [ -0.00955, -0.00033]
+    13    0.3864    0.3972      -0.0108   [ -0.01905, -0.00137]
+    21    0.3457    0.3523      -0.0066   [ -0.01630, +0.00448]
+    55    0.2593    0.2655      -0.0062   [ -0.02032, +0.00767]
+
+  delays where ONE exposure significantly beats seven: 0 of 6 
+  delays where SEVEN significantly beat one: 2 of 6 [5, 13]
+  (delta = 0 is identically zero in both arms: with no delay there is no
+   shift to compute, so the reconstruction is the stale level unchanged.)
+
+  This is the OPPOSITE of Section 5.1, and the difference is instructive.
+  There, seven free coefficients were expensive because they sat inside the
+  forecasting regression and had to be paid for out of forecast accuracy.
+  Here they sit in a separate, much easier regression of changes on changes,
+  are estimated from the whole training window, and are then used only to
+  compute a shift.  Cheap parameters in the right place beat compression;
+  expensive ones in the wrong place do not.  The lesson is about WHERE a
+  parameter is estimated, not how many there are.
+
+================================================================================================
+D.  DOES KEEPING THE DOMESTIC HISTORY HELP THE RECONSTRUCTION?
+================================================================================================
+MARK replaces the stale level with the reconstructed one and keeps the
+weekly and monthly averages. MARK+ keeps the stale level too, so the model
+can weigh the reconstruction against what it replaced.
+
+ delta      MARK     MARK+   difference                  95% CI
+     0    0.5189    0.5190      +0.0000   [ -0.00048, +0.00053]
+     3    0.4576    0.4669      +0.0094   [ +0.00475, +0.01391]
+     5    0.4418    0.4483      +0.0064   [ +0.00191, +0.01135]
+    13    0.3864    0.3914      +0.0050   [ +0.00071, +0.00936]
+    21    0.3457    0.3560      +0.0103   [ +0.00208, +0.01810]
+    55    0.2593    0.2764      +0.0171   [ +0.00800, +0.02438]
+
+  delays where keeping the stale level alongside helps: 5 of 6 [3, 5, 13, 21, 55]
+  The reconstruction is not a sufficient statistic for the stale level:
+  a forecaster should carry both rather than overwrite one with the other.

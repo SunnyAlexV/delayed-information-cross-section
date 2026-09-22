@@ -1,0 +1,93 @@
+data folder: <your data folder>
+Prints the state-space comparison of Section 11.
+
+target SPX, 4862 test days, 7 foreign peers
+
+================================================================================================
+0.  DOES THE FILTER RECOVER A STATE IT IS GIVEN?
+================================================================================================
+Simulate the model the filter assumes, hide the first series for the last
+`delta` days, and see how well the filtered state tracks the truth.  With
+nothing hidden it should be near-perfect; the fall-off as days are hidden
+is the quantity the whole exercise turns on.
+
+  true phi 0.970 -> estimated 0.912
+  days hidden    corr(filtered, true)
+  (measured on one FIXED 400-day window for every row.  A first version
+   averaged over the whole block, where hiding one of eight series at the
+   end moved nothing; a second used a window that grew with the number of
+   days hidden, so the rows were not comparable with each other.)
+
+            0                  0.9855
+            1                  0.9848
+            5                  0.9846
+           21                  0.9846
+           55                  0.9846
+
+  hiding the target for 55 days costs 0.0009 of correlation.
+  That is not a null result, it is the mechanism.  Seven other series
+  load on the same factor, so removing one of eight measurements barely
+  moves the state estimate however long it is hidden.  Whether the real
+  cross-section behaves like that is what part A tests - here it is only
+  established that the filter behaves as its own assumptions imply.
+
+================================================================================================
+A.  THE RAGGED-EDGE FILTER AGAINST THE PAPER'S REGRESSION
+================================================================================================
+STALE   domestic model on delta-day-old data
+PAPER   domestic model plus seven foreign closes, fitted per delay
+FILTER  Kalman state under a ragged edge, in place of the stale level
+FILTER+ the state estimate alongside the domestic history
+
+  state space estimated once on the first 1500 rows: phi = 0.963, q = 0.0733
+  loading on the target series: 0.825; peer loadings 0.193 to 0.872
+
+ delta     STALE     PAPER    FILTER   FILTER+
+     0    0.5191    0.5092    0.4868    0.5187
+     3    0.4098    0.4495    0.4494    0.4506
+     5    0.3641    0.4438    0.4438    0.4445
+    13    0.2336    0.4155    0.4196    0.4224
+    21    0.1482    0.3981    0.4100    0.4091
+    55    0.0070    0.3736    0.3932    0.3933
+
+================================================================================================
+B.  IS THE STRUCTURE WORTH IMPOSING?
+================================================================================================
+Positive favours the filter. Both arms see the same data; the filter
+assumes one common factor observed with noise, the regression assumes
+nothing and estimates ten coefficients.
+
+ delta   FILTER - PAPER                  95% CI     winner
+     0          -0.0224   [ -0.03319, -0.00952]      PAPER
+     3          -0.0001   [ -0.00910, +0.00947]    neither
+     5          -0.0000   [ -0.00947, +0.00969]    neither
+    13          +0.0040   [ -0.00626, +0.01519]    neither
+    21          +0.0119   [ +0.00021, +0.02382]     FILTER
+    55          +0.0196   [ +0.00316, +0.03530]     FILTER
+
+  delays where the filter significantly wins: 2 of 6 [21, 55]
+  delays where the regression significantly wins: 1 of 6 [0]
+
+  Each wins somewhere, and the crossover delay is the finding.
+
+================================================================================================
+C.  WHAT THE FILTER IS ACTUALLY DOING
+================================================================================================
+Correlation between the filtered state and the TRUE current domestic state
+that the forecaster is not allowed to see. This is the reconstruction
+quality itself, separate from whether it helps the forecast.
+
+ delta    corr(state, truth)    corr(stale, truth)     gain
+     0                0.9042                1.0000  -0.0958
+     3                0.8462                0.8365  +0.0097
+     5                0.8429                0.7044  +0.1385
+    13                0.8424                0.5378  +0.3046
+    21                0.8424                0.4242  +0.4182
+    55                0.8424                0.1802  +0.6622
+
+  delays where the filtered state tracks the unobservable truth better
+  than the stale value does: 5 of 6 [3, 5, 13, 21, 55]
+
+  This is reconstruction quality, separate from whether it helps the
+  forecast.  A method can reconstruct well and still lose the forecasting
+  comparison, and separating the two is the reason this part exists.

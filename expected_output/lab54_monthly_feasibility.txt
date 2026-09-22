@@ -1,0 +1,99 @@
+data folder: <your data folder>
+Prints the monthly feasibility study, Section 15.
+
+================================================================================================
+A.  WHY THE DAILY DESIGN CANNOT SIMPLY BE POINTED AT AN APPRAISED ASSET
+================================================================================================
+  the walk-forward needs 252 + 1250 + 250 = 1752 observations before its
+  first forecast, and the proxy needs an open, high, low and close for
+  every one of them.
+
+     reporting frequency   observations per year   years to first forecast
+                   daily                     252                         7
+                  weekly                      52                        34
+                 monthly                      12                       146
+               quarterly                       4                       438
+
+  A quarterly mark would need four centuries of history before this
+  design made its first forecast, and would still have no intraday range
+  to compute a proxy from. The design has to be re-specified at the
+  frequency the asset reports. Whether that survives is the question.
+
+================================================================================================
+B.  THE SAME EXPERIMENT ON MONTHLY MARKS, WHERE THE TRUTH IS STILL VISIBLE
+================================================================================================
+month-end marks: 321 months, 2000-01-31 to 2026-09-30
+proxy: variance of the last 6 monthly returns, over a 60-month median
+windows: 120 months training, 24 validation, refit every 12
+delays in MONTHS: [0, 1, 2, 3, 6]; three months is one quarterly marking cycle
+
+  clean monthly marks: 109 test months, 7 peers, first forecast 2017-08-31
+  delay, months      own   +cross        R          95% interval
+              0   0.7694   0.7277      n/a                   n/a
+              1   0.4846   0.5430    20.5%           [-18%, 63%]
+              2   0.2331   0.4362    37.9%            [12%, 69%]
+              3   0.0725   0.4122    48.7%            [34%, 76%]
+              6  -0.1399   0.3562    54.6%            [47%, 75%]
+
+================================================================================================
+C.  AND WITH THE MARK SMOOTHED THE WAY AN APPRAISAL IS
+================================================================================================
+Partial adjustment at rho = 0.6, the model of Section 13: each mark moves
+only part of the way to the current value, which is how the property
+literature has described appraisal indices for thirty years.
+
+  appraised monthly marks: 109 test months, 7 peers, first forecast 2017-08-31
+  delay, months      own   +cross        R          95% interval
+              0   0.7092   0.6939      n/a                   n/a
+              1   0.4056   0.4757    23.1%           [-15%, 71%]
+              2   0.1685   0.3589    35.2%            [15%, 72%]
+              3   0.0146   0.3189    43.8%            [28%, 75%]
+              6  -0.1892   0.2961    54.0%            [43%, 79%]
+
+================================================================================================
+D.  WHAT A REAL STUDY WOULD NEED
+================================================================================================
+  At 109 test months the interval on R at a one-quarter delay is
+  34% to 76%, a width of 42%.
+
+  A bootstrap interval narrows roughly with the square root of the test
+  window, so the months needed to reach a target width scale as the
+  square of the ratio. On that arithmetic:
+
+    target width    test months needed    years of marks
+             60%                    54                21
+             40%                   121                27
+             30%                   215                35
+             20%                   484                57
+
+  That arithmetic assumes the interval narrows as it would on
+  independent draws, which overstates how fast it really narrows on a
+  series this persistent. The years column is therefore a floor and
+  not an estimate.
+
+================================================================================================
+VERDICT
+================================================================================================
+  The experiment runs on monthly marks. At a one-quarter delay the rate
+  is 49% with an interval of [34%, 76%].
+  With the mark smoothed the way an appraisal is, 44% [28%, 75%].
+
+  The frequency was not the obstruction. With no daily bars at all and
+  109 test months, the rate at one quarter's delay excludes zero, and it
+  still excludes zero when the mark is smoothed the way an appraisal is.
+  The shape survives too: at one month the rate is indistinguishable
+  from zero, exactly as it is at one day in Table 1, and it climbs from
+  there. That is the daily result reproduced at a frequency twenty-one
+  times coarser, on marks an appraised asset could actually produce.
+
+  What the intervals will not do is price it. Thirty to forty points of
+  width establishes that the effect is there and cannot say what it is
+  worth, which is the right claim for a first study of an asset class
+  nobody has measured. Part D says what history would narrow it.
+
+  So the paper's own limitation should be restated. The illiquid case
+  is not unreachable and it is not blocked by the absence of data. It
+  needs a series with two decades of monthly marks and a public
+  cross-section, run at the asset's own frequency rather than at this
+  paper's, and this file is the rehearsal that shows the design holds
+  when it gets there.

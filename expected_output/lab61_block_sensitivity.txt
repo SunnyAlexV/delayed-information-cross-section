@@ -1,0 +1,78 @@
+test window: 694 days;  realised base rate 0.468
+the note's block: 40;  lengths tried: 10, 20, 40
+2000 draws for accuracy, 800 for AUC
+
+====================================================================================================
+A.  PARITY ON ACCURACY, ACROSS BLOCK LENGTHS AND BOTH BOOTSTRAPS
+====================================================================================================
+har-YZ minus persist-YZ, in percentage points.  The note's claim is
+that no interval excludes zero.  'mb' is the moving block, 'sb' the
+stationary bootstrap at the same EXPECTED block length.
+
+ delta     diff              mb 10              sb 10              mb 20              sb 20              mb 40              sb 40
+     0   +0.72   [ -4.76, +6.77]    [ -4.61, +6.63]    [ -5.33, +7.06]    [ -5.04, +6.48]    [ -4.90, +6.05]    [ -4.47, +6.48] 
+     1   +0.72   [ -5.33, +7.06]    [ -5.19, +6.63]    [ -5.62, +7.35]    [ -4.90, +6.77]    [ -4.61, +6.20]    [ -4.32, +6.48] 
+     2   +1.01   [ -4.61, +6.92]    [ -4.18, +6.34]    [ -4.90, +7.49]    [ -4.18, +6.48]    [ -3.89, +6.20]    [ -3.61, +5.91] 
+     3   +1.59   [ -4.03, +7.64]    [ -3.75, +7.06]    [ -4.32, +7.78]    [ -3.46, +6.77]    [ -3.17, +6.63]    [ -2.74, +6.05] 
+     5   +0.00   [ -5.34, +5.33]    [ -4.76, +5.34]    [ -4.90, +5.62]    [ -4.76, +4.90]    [ -4.90, +5.04]    [ -4.76, +4.76] 
+     8   +0.00   [ -4.90, +5.19]    [ -5.04, +5.19]    [ -5.33, +5.76]    [ -5.62, +5.48]    [ -5.33, +5.34]    [ -5.04, +5.34] 
+    13   -1.15   [ -6.92, +4.03]    [ -7.06, +4.47]    [ -7.49, +4.76]    [ -7.64, +4.47]    [ -7.78, +4.61]    [ -7.35, +4.76] 
+    21   +1.87   [ -4.32, +7.64]    [ -3.75, +7.21]    [ -5.04, +7.93]    [ -3.60, +7.49]    [ -4.03, +6.20]    [ -3.31, +6.92] 
+    34   -2.02   [ -8.79, +3.60]    [ -9.23, +4.47]    [-10.66, +4.18]    [ -9.51, +4.47]    [-10.66, +4.32]    [ -8.79, +4.47] 
+    55   +2.02   [ -3.46, +7.78]    [ -3.75, +8.07]    [ -3.89, +8.07]    [ -3.60, +8.36]    [ -4.61, +7.93]    [ -3.75, +7.78] 
+
+  mb block 10: accuracy differences excluding zero: 0 of 10
+  sb block 10: accuracy differences excluding zero: 0 of 10
+  mb block 20: accuracy differences excluding zero: 0 of 10
+  sb block 20: accuracy differences excluding zero: 0 of 10
+  mb block 40: accuracy differences excluding zero: 0 of 10
+  sb block 40: accuracy differences excluding zero: 0 of 10
+
+  Parity holds under every block length and both bootstraps. The
+  note's accuracy claim does not depend on the resampling choice.
+
+====================================================================================================
+B.  THE AUC SEPARATION, ACROSS BLOCK LENGTHS AND BOTH BOOTSTRAPS
+====================================================================================================
+Same pair, same days, AUC recomputed inside every draw. The note
+claims five of ten delays separate, all favouring the threshold rule.
+A count that shrinks as the block grows is a count that was borrowing
+from a block too short to hold the dependence.
+
+ delta     diff              mb 10              sb 10              mb 20              sb 20              mb 40              sb 40
+     0  -0.0299 [-0.0542,-0.0034]* [-0.0554,-0.0064]* [-0.0571,-0.0039]* [-0.0597,-0.0052]* [-0.0559,-0.0031]* [-0.0590,-0.0066]*
+     1  -0.0311 [-0.0548,-0.0080]* [-0.0545,-0.0087]* [-0.0573,-0.0059]* [-0.0593,-0.0073]* [-0.0596,-0.0047]* [-0.0591,-0.0109]*
+     2  -0.0322 [-0.0578,-0.0088]* [-0.0591,-0.0077]* [-0.0571,-0.0053]* [-0.0617,-0.0077]* [-0.0592,-0.0057]* [-0.0587,-0.0064]*
+     3  -0.0312 [-0.0564,-0.0052]* [-0.0602,-0.0040]* [-0.0588,-0.0051]* [-0.0604,-0.0067]* [-0.0579,-0.0031]* [-0.0575,-0.0068]*
+     5  -0.0323 [-0.0614,-0.0059]* [-0.0580,-0.0057]* [-0.0622,-0.0017]* [-0.0571,-0.0054]* [-0.0601,-0.0016]* [-0.0597,-0.0081]*
+     8  -0.0272 [-0.0535,-0.0006]* [-0.0566,+0.0007]  [-0.0585,+0.0041]  [-0.0552,+0.0007]  [-0.0577,+0.0078]  [-0.0554,+0.0013] 
+    13  -0.0287 [-0.0565,-0.0026]* [-0.0589,-0.0016]* [-0.0603,+0.0051]  [-0.0590,+0.0034]  [-0.0658,+0.0068]  [-0.0614,+0.0026] 
+    21  -0.0261 [-0.0532,+0.0025]  [-0.0568,+0.0027]  [-0.0569,+0.0066]  [-0.0585,+0.0051]  [-0.0620,+0.0110]  [-0.0561,+0.0045] 
+    34  -0.0256 [-0.0518,+0.0059]  [-0.0561,+0.0038]  [-0.0547,+0.0097]  [-0.0576,+0.0081]  [-0.0553,+0.0143]  [-0.0612,+0.0072] 
+    55  -0.0158 [-0.0413,+0.0120]  [-0.0461,+0.0147]  [-0.0461,+0.0182]  [-0.0521,+0.0166]  [-0.0494,+0.0199]  [-0.0479,+0.0238] 
+
+  mb block 10: AUC differences excluding zero: 7 of 10  [0, 1, 2, 3, 5, 8, 13]  all favour the threshold rule
+  sb block 10: AUC differences excluding zero: 6 of 10  [0, 1, 2, 3, 5, 13]  all favour the threshold rule
+  mb block 20: AUC differences excluding zero: 5 of 10  [0, 1, 2, 3, 5]  all favour the threshold rule
+  sb block 20: AUC differences excluding zero: 5 of 10  [0, 1, 2, 3, 5]  all favour the threshold rule
+  mb block 40: AUC differences excluding zero: 5 of 10  [0, 1, 2, 3, 5]  all favour the threshold rule
+  sb block 40: AUC differences excluding zero: 5 of 10  [0, 1, 2, 3, 5]  all favour the threshold rule
+
+  separating delays at block 10: 7;  at block 40: 5
+  The separation is weaker at the longer block, which is the expected
+  direction: a short block understates the dependence and so overstates
+  significance. The note must quote the count at the block it uses, and
+  should say that the shorter block would have given more.
+
+  of 33 significant AUC cells across all six schemes, 33 favour the threshold rule
+  The direction is unanimous across every block length and both
+  bootstrap families, which is the part of the note's claim that
+  does not depend on the resampling at all.
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  The block length is a choice and this file prices it. The note now
+  reports the block it actually used, quotes its counts at that block,
+  and points here for what a shorter or a random-length block would
+  have given instead.

@@ -1,0 +1,49 @@
+data folder: <your data folder>
+target SPX, 4862 test days, 7 foreign peers
+features: LIN 10, SQ 20, FACTOR 13
+
+==================================================================================
+DOES A NON-LINEAR MAP FIND MORE THAN THE LINEAR ONE?
+==================================================================================
+dR2 is against LIN on the same days.  'cost' is what the extra regressors
+take whether or not they help, measured with AR(1) surrogates as in lab07.
+'net of cost' is therefore the honest gain from the added flexibility.
+
+ delta   R2 LIN    R2 SQ      dR2    GW z     cost  net of cost
+     0   0.5092   0.4966  -0.0126   -1.46  -0.0057      -0.0069
+     3   0.4495   0.4077  -0.0418   -1.88  -0.0148      -0.0270
+     5   0.4438   0.3997  -0.0441   -1.95  -0.0217      -0.0223
+    13   0.4155   0.3577  -0.0578   -1.71  -0.0477      -0.0102
+    21   0.3981   0.3444  -0.0538   -1.91  -0.0504      -0.0034
+    55   0.3736   0.3286  -0.0449   -2.95  -0.0648      +0.0198
+
+ delta   R2 LIN   R2 FAC      dR2    GW z     cost  net of cost
+     0   0.5092   0.5151  +0.0059    1.16  -0.0052      +0.0110
+     3   0.4495   0.4445  -0.0050   -0.91  -0.0067      +0.0017
+     5   0.4438   0.4361  -0.0077   -0.96  -0.0071      -0.0005
+    13   0.4155   0.3672  -0.0484   -1.12  -0.0097      -0.0387
+    21   0.3981   0.3800  -0.0182   -0.83  -0.0122      -0.0059
+    55   0.3736   0.3729  -0.0007   -0.17  -0.0129      +0.0121
+
+==================================================================================
+VERDICT
+==================================================================================
+     SQ: beats LIN at 0 of 6 delays; LIN beats IT at 1 (delta 55)
+ FACTOR: beats LIN at 0 of 6 delays; LIN beats IT at 0
+
+The 'net of cost' column is NOT read as a gain anywhere above, and the
+reason is the one lab07 had to learn: it is a difference of two estimated
+quantities and carries no interval here, so a positive entry sitting beside
+a dR2 of -0.047 and a GW statistic of -3.92 is noise in the cost estimate,
+not a finding.  What the GW column supports is all that is claimed:
+
+  SQ is actively worse.  Squaring every input doubles the parameter count
+  and buys nothing, which is the ordinary overfitting story.
+  FACTOR is indistinguishable from LIN - no statistic reaches 1.96 in
+  either direction.  Letting the global state enter quadratically and
+  interact with the domestic state changes nothing measurable.
+
+A non-linear map that cannot clear its own estimation cost is not evidence
+that the world is linear.  It is evidence that this sample cannot pay for
+the extra parameters.  That is the claim the paper makes, and it is weaker
+than 'linearity is sufficient' on purpose.

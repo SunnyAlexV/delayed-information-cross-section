@@ -1,0 +1,113 @@
+data folder: <your data folder>
+Prints the independent-vendor seam audit, Section 11.
+
+================================================================================================
+0.  THE NINE JOINS, AND WHICH ONE CANNOT BE CHECKED BY COMPARISON
+================================================================================================
+   AXJO  second file opens 2019-04-04  overlap  128 rows  VERIFIED
+   BVSP  second file opens 2019-09-12  overlap  124 rows  VERIFIED
+    DAX  second file opens 2020-03-04  overlap  128 rows  VERIFIED
+   FTSE  second file opens 2020-04-15  overlap  129 rows  VERIFIED
+    HSI  second file opens 2019-09-02  overlap  125 rows  VERIFIED
+   N225  second file opens 2019-11-28  overlap  120 rows  VERIFIED
+   NSEI  second file opens 2019-08-06  overlap  124 rows  VERIFIED
+    SPX  second file opens 2018-03-12  overlap    0 rows  UNVERIFIABLE
+   VDAX  second file opens 2018-01-02  overlap  251 rows  VERIFIED
+
+  9 joins audited; 8 of them overlap, by 120 to 251 trading days,
+  and every overlapping row agrees. Exactly one join has no overlapping
+  row, and it is the target series. Any statement elsewhere in the paper
+  about the range of these overlaps must read 120 to 251.
+
+  auditor: VIX_History.csv, Cboe's own publication, 9272 rows
+  paired rows: 6692   S&P join: 2018-03-12
+
+  The only series in this panel with an independent auditor is the only
+  one that needs it, because it is the only one whose two files cannot
+  be compared with each other.
+
+================================================================================================
+A.  THREE INSTRUMENTS, ONE PER FAILURE MODE, AT THE JOIN
+================================================================================================
+Fitted over 250 trading days either side, 21 days cut out where an
+estimator window would span both files.
+
+  LEVEL      realised variance on implied, before and after
+             alpha -17.6090 -> -20.0257   beta +2.7029 -> +3.6562   Wald 10.52
+  ALIGNMENT  same-day return against the change in the exchange's index
+             correlation -0.8042 -> -0.8074   shift 0.0032
+  RANGE      log(Yang-Zhang / close-to-close variance) over 21 days,
+             a purely internal check with no auditor in it at all
+             mean -0.0466 -> -0.0858   t 0.57
+
+================================================================================================
+B.  WHAT EACH INSTRUMENT DOES WHERE THE DATA IS KNOWN TO BE SOUND
+================================================================================================
+Eight dates where the S&P file has no join at all - the dates the OTHER
+indices' files happen to meet - and pseudo-seams drawn from the S&P's
+own history. Both are known-clean by construction.
+
+   AXJO  2019-04-04   level   22.75   alignment 0.1316   range  1.01
+   BVSP  2019-09-12   level   52.51   alignment 0.1019   range  1.03
+    DAX  2020-03-04   level   74.90   alignment 0.1441   range  0.84
+   FTSE  2020-04-15   level   38.85   alignment 0.0558   range  0.09
+    HSI  2019-09-02   level   46.00   alignment 0.0872   range  1.09
+   N225  2019-11-28   level   54.56   alignment 0.1058   range  0.51
+   NSEI  2019-08-06   level   44.05   alignment 0.0851   range  0.94
+   VDAX  2018-01-02   level    5.30   alignment 0.0851   range  1.18
+
+  400 pseudo-seams:
+                 median     95th     99th       at the S&P join  percentile
+  level           4.178   38.950   60.663                10.525         70th
+  alignment       0.057    0.140    0.177                 0.003          4th
+  range           1.350    3.818    4.414                 0.566         25th
+
+  Several of the eight clean dates carry a large LEVEL statistic, and
+  they should: they sit beside COVID, where the relationship between
+  realised and implied volatility genuinely moved. So a large statistic
+  is not proof of corruption. A small one, at the date the files meet,
+  is evidence that nothing happened to the data there, which is the
+  direction this audit needs.
+
+================================================================================================
+C.  HOW LARGE WOULD A FAULT HAVE HAD TO BE?
+================================================================================================
+Damage the post-seam block, recompute everything from the damaged OHLC,
+re-run all three. A mark means the statistic clears the 95th percentile
+of its own null above.
+
+corruption                                  level    align    range                 caught by
+none (the file as downloaded)               10.52   0.0032     0.57                   nothing
+every post-seam row one session late         7.88   0.8355     0.56                 alignment
+intraday range scaled by 1.02               11.69   0.0032     0.01                   nothing
+intraday range scaled by 1.05               14.25   0.0032     0.86                   nothing
+intraday range scaled by 1.10               20.46   0.0032     2.24                   nothing
+intraday range scaled by 1.25               50.92   0.0032     6.15              level, range
+intraday range scaled by 1.50              127.14   0.0032    11.91              level, range
+intraday range scaled by 0.80               22.09   0.0032     5.69                     range
+post-seam block spliced from the DAX        66.57   0.3024     0.61          level, alignment
+
+  smallest range corruption caught: 125% of the true range
+  one-session misalignment caught:  yes, by alignment
+  spliced block caught:             yes, by level, alignment
+
+  One corruption is invisible to all three and it is worth naming:
+  multiply every post-seam PRICE by a constant and nothing moves at all,
+  because all of this reads log ratios. That is also the corruption that
+  cannot change a single number in the paper, for the same reason.
+
+================================================================================================
+VERDICT
+================================================================================================
+  At the S&P's unverifiable join all three instruments sit inside their
+  own null distributions: level 70th percentile, alignment 4th,
+  range 25th. The relationship between the S&P's own OHLC and an
+  exchange's index of the same underlying does not break across that
+  date; the same-day return correlation does not move; and the two
+  volatility estimators inside the file keep their ratio.
+
+  The limitation does not vanish, it acquires a size. A one-session
+  misalignment and a spliced block are both caught, and so is an
+  intraday range mis-scaled by 25%. Section 11 can now say what
+  was checked and how large a fault would have had to be, instead of
+  saying that comparison was impossible.

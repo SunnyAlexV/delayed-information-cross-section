@@ -1,0 +1,64 @@
+data folder: <your data folder>
+target SPX, 4862 test days, horizon 5
+
+======================================================================================
+HOW FAR WRONG IS THE VARIANCE FORECAST, AS A MULTIPLE OF THE TRUTH?
+======================================================================================
+'outside 2x' is the share of days on which the forecast is more than double
+or less than half the realised variance.  'under by 2x' is the half of that
+which understates - the side a risk manager is exposed to.  Smearing-
+corrected as in lab10, which makes the forecast mean-unbiased; realised
+variance is right-skewed, so a centred forecast sits ABOVE the median.
+
+ delta    model   median  outside 2x  under by 2x   5th pct  95th pct
+     0 domestic     1.26      31.1%         8.6%      0.40      3.58
+     0    cross     1.24      31.4%         9.1%      0.39      3.62
+
+     5 domestic     1.42      40.3%         9.6%      0.35      4.49
+     5    cross     1.29      35.0%         9.8%      0.37      3.99
+
+    21 domestic     1.72      53.3%        10.0%      0.30      6.20
+    21    cross     1.30      36.5%        10.2%      0.34      4.19
+
+    55 domestic     1.90      59.2%        11.4%      0.26      7.50
+    55    cross     1.27      37.1%        10.8%      0.33      4.21
+
+======================================================================================
+WHAT THE CROSS-SECTION BUYS, IN THOSE TERMS
+======================================================================================
+ delta  outside 2x: domestic    cross   change     under by 2x: dom    cross   change
+     0                31.1%    31.4%    +0.3%                8.6%     9.1%    +0.5%
+     5                40.3%    35.0%    -5.3%                9.6%     9.8%    +0.2%
+    21                53.3%    36.5%   -16.8%               10.0%    10.2%    +0.2%
+    55                59.2%    37.1%   -22.1%               11.4%    10.8%    -0.7%
+
+Read these as a translation of the paper's R-squared column, not as a new result:
+they are the same forecasts, transformed.  Three things follow, and the third was
+not what we expected to find.
+
+The floor is high.  Even at delta = 0 roughly three days in ten sit outside a
+factor of two, because five-day realised variance is a noisy object and no model
+in this paper claims otherwise.  A reader expecting a volatility forecast to be
+reliable within a factor of two on most days should revise that expectation
+downward regardless of which model they use.
+
+The size of the gain is real and large.  At eleven weeks the stale domestic model
+is outside a factor of two on 59% of days and the cross-sectional model on 37%.
+That is the same fact as the R-squared column, in units a risk manager can act
+on, and it buys nothing at delta = 0 - the answer Section 5 gives on every loss.
+
+But the gain is on the WRONG SIDE for risk management, and this is the part the
+paper has to say plainly.  Splitting the tail shows the stale model does not fail
+by under-forecasting; it fails by OVER-forecasting, with a median ratio drifting
+from 1.26 at delta = 0 to 1.90 at eleven weeks.  Almost the entire 22-point
+improvement is the cross-section pulling that overstatement back.  The
+understating tail - the forecast less than half the truth, which is the one that
+leaves a position too large - sits between 8.6% and 11.4% of days and is
+essentially unmoved by breadth at every delay, changing by less than a point and
+in the wrong direction at three of the four.  A practitioner who adopts the
+cross-section to avoid being caught short by a volatility spike is adopting it
+for something it does not do.  What it does is stop a stale forecaster from
+systematically over-estimating risk, which is a real cost and a different one.
+
+None of this is a trading result: there is no strategy here, no transaction cost,
+and no claim that any of it survives contact with an execution desk.

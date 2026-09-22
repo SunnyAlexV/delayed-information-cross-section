@@ -1,0 +1,90 @@
+data folder: <your data folder>
+EXPLORATORY - cited by neither paper.
+
+target SPX, 4862 test days, 7 foreign peers
+masked model trains on delays [0, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+block bootstrap, block 40, 2000 draws
+
+================================================================================================
+A.  ONE MASKED MODEL AGAINST SIX SEPARATELY-FITTED ONES
+================================================================================================
+Positive favours the masked model.  It is handicapped twice: one delay
+drawn per row, and every training window cut at the longest delay.
+
+ delta   per-delay    masked   difference                  95% CI        
+     0      0.5092    0.4599      -0.0493   [ -0.07061, -0.02521]  per-delay
+     3      0.4495    0.4329      -0.0166   [ -0.03217, -0.00152]  per-delay
+     5      0.4438    0.4298      -0.0140   [ -0.02696, -0.00228]  per-delay
+    13      0.4155    0.4025      -0.0130   [ -0.02403, -0.00237]  per-delay
+    21      0.3981    0.3868      -0.0114   [ -0.02523, +0.00113]    neither
+    55      0.3736    0.3445      -0.0291   [ -0.06139, -0.00123]  per-delay
+
+  delays where ONE masked model significantly beats its own per-delay
+  counterpart: 0 of 6 
+  delays where the per-delay model significantly wins: 5 of 6 [0, 3, 5, 13, 55]
+
+  Pooling costs accuracy at every delay where the two separate.  The
+  convenience of one model is real but it is not free, and the price is
+  in the table.
+
+================================================================================================
+B.  DELAYS NOBODY FITTED
+================================================================================================
+[7, 17, 30, 44] were never drawn in training.  The per-delay approach has no
+model for them at all without refitting; the masked model simply answers.
+The comparison is therefore against a model fitted specially for each,
+which is the strongest possible opponent.
+
+ delta  fitted for it    masked   difference                  95% CI
+     7         0.4381    0.4246      -0.0135   [ -0.02427, -0.00275]
+    17         0.4042    0.3923      -0.0119   [ -0.02388, -0.00051]
+    30         0.3889    0.3760      -0.0129   [ -0.03177, +0.00509]
+    44         0.3739    0.3537      -0.0202   [ -0.04739, +0.00477]
+
+  unseen delays where the masked model is significantly worse than one
+  fitted specially for that delay: 2 of 4 [7, 17]
+  Interpolation costs something at those delays, and a practitioner who
+  cares about them should refit rather than rely on the pooled model.
+
+================================================================================================
+C.  THE HARD VERSION: TRAIN SHORT, TEST LONG
+================================================================================================
+Train on [0, 1, 2, 3, 5, 8, 13, 21] only, then test at [34, 55] - delays longer than anything
+the model has ever been fitted on. Interpolation is easy; this is not.
+
+ delta  fitted for it  extrapolated   difference                  95% CI
+    34         0.3863        0.3650      -0.0213   [ -0.05420, +0.00893]
+    55         0.3736        0.3376      -0.0360   [ -0.08211, +0.00858]
+
+  extrapolated delays not significantly worse than a purpose-fitted
+  model: 2 of 2 [34, 55]
+
+  The model learned how staleness behaves rather than memorising each
+  case: trained on nothing beyond three weeks, it answers at eleven weeks
+  as well as a model fitted there. That is the claim worth making for
+  masked training, and it is the one this part was built to test.
+
+================================================================================================
+D.  HOW MUCH OF THAT LOSS IS THE PROTOCOL RATHER THAN THE METHOD?
+================================================================================================
+Part A cuts every training window at the LONGEST delay, so the pooled model
+gives up 55 days of recent data that the per-delay model at delta = 0 keeps.
+That is the right choice for one shared model and it is not free.  Rerunning
+with each row cut at its own delay is NOT a legitimate protocol - short-delay
+rows then see data a long-delay forecaster never had - but it brackets how
+much of the gap is the cut and how much is pooling itself.
+
+ delta   per-delay  conservative  optimistic   cut costs  pooling costs
+     0      0.5092        0.4599      0.4650     +0.0051        +0.0441
+     3      0.4495        0.4329      0.4395     +0.0066        +0.0100
+     5      0.4438        0.4298      0.4366     +0.0068        +0.0072
+    13      0.4155        0.4025      0.4127     +0.0102        +0.0029
+    21      0.3981        0.3868      0.3946     +0.0079        +0.0035
+    55      0.3736        0.3445      0.3504     +0.0059        +0.0232
+
+  cost of the conservative cut: +0.0051 to +0.0102 of R2
+  cost of pooling itself:       +0.0029 to +0.0441 of R2
+
+  Pooling itself, not the cut, is what costs.  Sharing one set of
+  coefficients across delays is the binding constraint, and no change of
+  protocol recovers it.
