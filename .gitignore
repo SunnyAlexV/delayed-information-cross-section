@@ -1,0 +1,13 @@
+output/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Not published: correspondence, contact details, and generated submissions.
+# papers/variants/ is rebuilt by build_variants.py, and on the author's machine
+# it carries the telephone number that contact.txt supplies, so committing it
+# would republish the number the source keeps out.
+submission/
+contact.txt
+papers/variants/
+papers/ssrn/
