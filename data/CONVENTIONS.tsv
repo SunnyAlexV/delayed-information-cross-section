@@ -1,0 +1,15 @@
+series	close_utc	role	contributes	rule
+# daylight saving is ignored: it moves a close by an hour and never reorders the blocks
+# a day any series is missing is dropped from that model's rows rather than imputed
+AXJO	06:00	foreign peer	same session	closes before the target, so today's close is admissible
+N225	06:00	foreign peer	same session	closes before the target, so today's close is admissible
+HSI	08:00	foreign peer	same session	closes before the target, so today's close is admissible
+NSEI	10:00	foreign peer	same session	closes before the target, so today's close is admissible
+DAX	16:30	foreign peer	same session	closes before the target, so today's close is admissible
+FTSE	16:30	foreign peer	same session	closes before the target, so today's close is admissible
+BVSP	21:00	foreign peer	previous session	closes at or after the target, so the previous session is used
+SPX	21:00	target	n/a	the target itself
+VDAX	16:30	implied volatility	same session	Frankfurt closes before New York, so admissible outright
+VIX	21:15	implied volatility	previous session	printed close is stamped 15 minutes AFTER the target's, so the lagged value leads and the same-day value is a sensitivity
+VIX9D	21:15	implied volatility	previous session	as VIX; used only in the matched-horizon race
+Case-Shiller metros	n/a	monthly panel	same month	all twenty publish on the same day with the same two-month lag, so delta is RELATIVE staleness and not that lag
