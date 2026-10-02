@@ -11,3 +11,16 @@ submission/
 contact.txt
 papers/variants/
 papers/ssrn/
+# papers/submission/ holds the assembled journal packages, including a title
+# page carrying the postal address and telephone contact.txt supplies.  Same
+# reason as papers/variants/: it is rebuilt by build_jfec_submission.py and
+# committing it would republish what the source deliberately keeps out.
+papers/submission/
+
+# Work in progress: labs that are not yet wired into run_all.py and so have no
+# stored output to be diffed against.  Shipping one would put a script in the
+# repository that the reproducibility claim does not cover, and a copy of a
+# wired lab sat here identical to its live twin until it was noticed, which is
+# how a duplicate starts to drift.  Nothing here is published; a lab joins the
+# repository by moving into labs/ with its output stored.
+pending-labs/
