@@ -1,0 +1,70 @@
+data folder: /home/claude/data_local
+The coupling relation of Section 6, with all eight targets cut at a
+common end date so that no rate is averaged over a different era.
+
+    VIX files: ['VIX_History.csv']
+    VDAX files: ['DAX_New_Volatility_Historical_Data.csv', 'DAX_New_Volatility_Historical_Data_1.csv']
+    seam VDAX: 251 overlapping rows, 0 mismatched  -> VERIFIED
+last scorable day, per target
+    KSE100  2021-08-30   <- binding
+    CSEALL  2021-08-30   <- binding
+      AXJO  2026-09-04
+       HSI  2026-09-04
+      NSEI  2026-09-04
+      N225  2026-09-06
+      KLCI  2026-09-09
+      JKSE  2026-09-10
+
+  common end date: 2021-08-30  (set by KSE100, CSEALL)
+
+================================================================================================
+A.  WHAT EACH TARGET LOSES, AND WHAT ITS COUPLING BECOMES
+================================================================================================
+  target  days full  days common   lost  coupling full  coupling common
+  KSE100       3569         3569      0         -0.115           -0.115
+    JKSE       4872         3665   1207          0.648            0.667
+  CSEALL       3429         3429      0          0.228            0.228
+    KLCI       4948         3717   1231          0.611            0.619
+    N225       4722         3459   1263          0.701            0.731
+    AXJO       4904         3635   1269          0.808            0.826
+     HSI       4756         3523   1233          0.731            0.770
+    NSEI       4786         3541   1245          0.661            0.670
+
+================================================================================================
+B.  R(55) ON THE COMMON WINDOW
+================================================================================================
+Scored exactly as lab53 scores it: same benchmark, same walk-forward,
+same seven-index block; only the evaluation days differ.
+
+  target   R(55) full   R(55) common     move   coupling common
+  KSE100       -29.7%         -29.7%    +0.0            -0.115
+    JKSE        41.8%          47.1%    +5.3             0.667
+  CSEALL       -11.4%         -11.4%    +0.0             0.228
+    KLCI        44.0%          45.4%    +1.4             0.619
+    N225        58.8%          66.3%    +7.4             0.731
+    AXJO        68.8%          70.3%    +1.5             0.826
+     HSI        68.6%          72.1%    +3.5             0.770
+    NSEI        53.1%          59.3%    +6.2             0.670
+
+================================================================================================
+C.  DOES THE ORDERING SURVIVE HOLDING THE PERIOD FIXED?
+================================================================================================
+  full window    Pearson +0.982   Spearman +0.976
+  common window  Pearson +0.981   Spearman +0.976
+
+  leave one out, common window
+   dropped   Pearson   Spearman
+    KSE100    +0.986     +0.964
+      JKSE    +0.983     +0.964
+    CSEALL    +0.990     +0.964
+      KLCI    +0.981     +0.964
+      N225    +0.981     +0.964
+      AXJO    +0.979     +1.000
+       HSI    +0.981     +1.000
+      NSEI    +0.981     +0.964
+
+  worst leave-one-out on the common window: Pearson +0.979, Spearman +0.964
+
+  If these are close to the full-window values the ordering claim is
+  about coupling.  If they are not, part of it was about WHEN each
+  target happened to be measured, and Section 6 has to say so.

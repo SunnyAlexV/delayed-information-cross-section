@@ -1,0 +1,43 @@
+indices found: ['N225', 'AXJO', 'HSI', 'NSEI', 'FTSE', 'DAX', 'BVSP', 'SPX']
+  merging and auditing seams:
+    seam N225: 120 overlapping rows, 0 mismatched (max abs diff 0.0000)  -> VERIFIED
+    seam AXJO: 128 overlapping rows, 0 mismatched (max abs diff 0.0000)  -> VERIFIED
+    seam HSI: 125 overlapping rows, 0 mismatched (max abs diff 0.0000)  -> VERIFIED
+    seam NSEI: 124 overlapping rows, 0 mismatched (max abs diff 0.0000)  -> VERIFIED
+    seam FTSE: 129 overlapping rows, 0 mismatched (max abs diff 0.0000)  -> VERIFIED
+    seam DAX: 128 overlapping rows, 0 mismatched (max abs diff 0.0000)  -> VERIFIED
+    seam BVSP: 124 overlapping rows, 0 mismatched (max abs diff 0.0000)  -> VERIFIED
+    seam SPX: only 0 overlapping rows -> UNVERIFIABLE by cross-check; falling back to:
+      contiguity : 2018-03-09 -> 2018-03-12, 1 business day -> no missing session
+      level shift: return across the seam -0.00129 = 0.11 sd of this series' daily returns -> no discontinuity
+
+panel: 6987 dates, 2000-02-21 to 2026-09-11
+missing per index (holidays etc.):
+     N225    6.4%
+     AXJO    3.8%
+      HSI    5.9%
+     NSEI    5.5%
+     FTSE    7.6%
+      DAX    7.0%
+     BVSP    5.8%
+      SPX    4.4%
+
+target SPX (close 21.0 UTC)
+  usable as LIVE (close earlier same day): ['N225', 'AXJO', 'HSI', 'NSEI', 'FTSE', 'DAX']
+  excluded, closes at or after target:     ['BVSP']
+
+CEILING ACCURACY = 1/2 + arcsin(rho)/pi   (h = 5)
+ delta            own only      own + live peers        gain       n
+     0    0.710 ->   75.1%      0.721 ->   75.6%       +0.5 pts    6155
+     1    0.672 ->   73.4%      0.693 ->   74.4%       +0.9 pts    6157
+     2    0.645 ->   72.3%      0.682 ->   73.9%       +1.6 pts    6134
+     3    0.622 ->   71.4%      0.677 ->   73.7%       +2.3 pts    6126
+     5    0.588 ->   70.0%      0.679 ->   73.8%       +3.7 pts    6138
+     8    0.549 ->   68.5%      0.677 ->   73.7%       +5.2 pts    6135
+    13    0.472 ->   65.7%      0.664 ->   73.1%       +7.5 pts    6152
+    21    0.374 ->   62.2%      0.658 ->   72.9%      +10.7 pts    6141
+    34    0.309 ->   60.0%      0.653 ->   72.6%      +12.6 pts    6145
+    55    0.179 ->   55.7%      0.644 ->   72.3%      +16.5 pts    6146
+
+Multiple correlation is an in-sample upper bound: if the gain column is
+flat, no model of any kind can exploit the cross-section, and we stop.

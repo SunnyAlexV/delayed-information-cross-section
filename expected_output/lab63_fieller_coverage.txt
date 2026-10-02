@@ -1,0 +1,124 @@
+lab63: Fieller and block-bootstrap coverage for a ratio of loss differentials
+  n = 4862, dependence truncated-MA(phi=0.9265, K=45) matched to the
+  loss-differential ACF lab58 measures, Bartlett bandwidth = 80, block = 80,
+  R* = 0.72, 1200 replications per row, nominal 95%
+
+  generator ACF vs measured (lab58, delta=55): lag1 0.93/0.94  lag10 0.46/0.48  lag20 0.21/0.22
+                                               lag30 0.09/0.11  lag40 0.03/0.02  lag60 0.00/-0.02
+
+  the Bartlett kernel at bandwidth 80 captures 86.5% of the
+  true long-run variance at this persistence, so standard errors are
+  too small by a factor of 0.930 and a nominal 95% interval would
+  be about 93.2% if that were the only error.
+  READ THAT AS AN ILLUSTRATION AND NOT AS A COVERAGE RESULT.  It is
+  2*Phi(1.96*sqrt(retained)) - 1, which treats the only problem as a
+  deterministic rescaling of a known standard error.  It ignores the
+  sampling variability of the long-run variance estimate, the
+  nonlinearity of the Fieller inversion and the ratio structure that
+  motivates Fieller in the first place.  The Fieller column beside it
+  is simulated and is the coverage figure; an earlier version of this
+  file told the reader to compare the two as though they measured one
+  thing, and they do not.
+  Note also what 'captures' means here, because lab65 measures the
+  same-looking quantity on real data and finds it unstable.  This one
+  is exact: the generator's long-run variance is known in closed form,
+  so the denominator is not estimated.  And it cannot reach 100% at any
+  finite bandwidth, because the dependence here stops at lag 45
+  and a bandwidth past that truncates nothing: what is left is the
+  Bartlett taper, which down-weights every lag it keeps.  A rule that
+  chased this fraction up to one was chasing a property of the kernel.
+
+   tau   Fieller cov   boot cov   unbounded   Fieller med width   boot med width
+  10.0         93.2%      92.0%        0.0%               0.329            0.322
+   5.0         92.8%      91.0%        0.0%               0.699            0.693
+   3.0         92.3%      92.7%       11.2%               1.354            1.366
+   2.0         91.8%      95.0%       40.5%               1.952            2.667
+   1.5         92.7%      96.3%       61.2%               2.388            8.071
+   1.0         91.4%      96.7%       79.0%               2.969           14.527
+   0.5         93.0%      99.3%       89.8%               3.274           16.975
+
+  tau is the HAC t-statistic of the DENOMINATOR: how far the delay's
+  own damage sits from zero.  The paper's stressed tercile is a large
+  tau; the calm tercile is a small one.
+  Boot coverage is over 300 replications, Fieller over 1200, so
+  the two columns do not carry the same Monte Carlo error: 1.26 points
+  against 0.63.  A gap between them under about 3.8 points says nothing.
+  Monte Carlo standard error on a coverage figure near 95% at 1200 replications: 0.63 points; on a DIFFERENCE between two of them, 0.89.
+  Part B below draws fresh samples from the same stream rather than
+  reusing these, so a cell the two parts share is two independent
+  estimates of one quantity and they are not expected to agree to the
+  digit.  The reconciliation is printed after Part B, because two
+  numbers for one quantity is a thing a reader will otherwise have to
+  discover and wonder about.
+
+==============================================================================
+B.  THE TRUNCATION LENGTH, PRICED AGAINST THE ALTERNATIVES
+==============================================================================
+A longer Bartlett bandwidth removes truncation bias and a longer block
+removes it from the resample, so the naive reading is that longer is always
+safer.  It is not.  The two lengths are tied together on purpose - a
+moving-block bootstrap at block b destroys dependence past lag b exactly as a
+Bartlett(b) kernel does - and a block of b leaves only n/b distinct blocks, so
+past some length the variance of the variance estimate costs more than the
+bias it removes.  That optimum is a number, not a matter of taste, so it is
+measured here rather than argued.
+
+  n = 4862, so the three lengths leave 40 -> 121 blocks, 80 -> 60 blocks, 160 -> 30 blocks.
+
+   tau  length  retained LRV  Fieller cov  boot cov  boot width  blocks
+  10.0      40         73.3%        89.4%     89.0%       0.285     121
+  10.0      80         86.5%        92.6%     92.3%       0.319      60
+  10.0     160         93.2%        92.6%     92.0%       0.330      30
+
+   3.0      40         73.3%        90.4%     89.0%       1.271     121
+   3.0      80         86.5%        91.7%     92.0%       1.447      60
+   3.0     160         93.2%        93.4%     92.7%       1.460      30
+
+   1.5      40         73.3%        91.7%     95.7%       6.706     121
+   1.5      80         86.5%        91.8%     96.7%       6.835      60
+   1.5     160         93.2%        93.7%     97.7%       8.172      30
+
+  Coverage against length, read off the Fieller column:
+    tau = 10.0:  40:89.4%  80:92.6%  160:92.6%
+    tau =  3.0:  40:90.4%  80:91.7%  160:93.4%
+    tau =  1.5:  40:91.7%  80:91.8%  160:93.7%
+
+  THE SAME CELL, MEASURED TWICE
+  Part A and Part B both cover bandwidth 80 under normal critical values, on independent draws.
+   tau    Part A    Part B     gap  gap / SE
+  10.0     93.2%     92.6%     0.7      0.75
+   3.0     92.3%     91.7%     0.7      0.75
+   1.5     92.7%     91.8%     0.8      0.94
+  largest gap is 0.94 standard errors of the difference (0.89 points), so the two
+  agree within Monte Carlo error
+  A reader comparing this file with lab66 is doing the same comparison
+  across two files, and the same tolerance applies: lab66 runs its own
+  draws, so its normal-at-80 row is a third estimate of
+  this cell and not a contradiction of either.
+
+  Best or tied-best at: 40 at 0 of 3, 80 at 1 of 3, 160 at 3 of 3
+
+  This does NOT identify 80 as an interior optimum, and an earlier version of
+  this file asserted that it did.  Coverage is still improving at 160 here:
+  the retained long-run variance rises monotonically across the sweep, and the
+  variance cost of dropping to 30 distinct blocks has not yet overtaken it at
+  this sample size.  A shorter run of this same experiment suggested an
+  interior optimum at 80 and was simply too noisy to support it; the verdict
+  above is computed from the table rather than written underneath it, so it
+  cannot drift from what the table says again.
+
+  So the cap the labs use is not justified by this file alone, and saying so is
+  the point of printing both.  What settles it is lab65, which measures the
+  retained variance on the REAL differentials instead of on a generator
+  matched to them: there the denominator at the headline delay retains 87.9%
+  at 80 and 86.5% at 160, so the real series has no more long-run variance to
+  recover past 80 and the plateau is in the data rather than in the kernel.
+  Against that, 160 costs a fifth of the interval's width and leaves 30
+  distinct blocks.  80 is therefore a compromise between a simulation that
+  wants more and a measurement that says there is no more to have, and the
+  residual under-coverage it leaves - about a point and a half at the headline
+  delay - is disclosed rather than closed.
+
+  A delay-proportional rule without a cap would set 95 at the headline
+  delay, between the two lengths above, which is why the rule caps instead of
+  running on.

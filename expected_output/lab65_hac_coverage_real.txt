@@ -1,0 +1,64 @@
+lab65: what the Bartlett kernel actually keeps, at every bandwidth
+  and at the one the labs use
+
+  d1 = L_own(d) - L_alt(d)   the numerator of R
+  d2 = L_own(d) - L_own(0)   the denominator, what delay costs
+  reference long-run variance summed to lag 600
+
+ delta  series     ret@9    ret@40    ret@80   ret@160   ret@320  rule  ret@rule  95% at 40 is  95% at rule is
+     0      d1     91.3%    103.6%     94.6%     91.8%     96.5%    40    103.6%         95.4%           95.4%
+     3      d1    157.3%    183.1%    170.7%    144.0%    135.5%    43    182.1%         99.2%           99.2%
+     3      d2     62.4%     90.5%     93.5%     91.8%     90.8%    43     91.3%         93.8%           93.9%
+     5      d1    108.2%    144.1%    137.5%    123.6%    122.5%    45    144.0%         98.1%           98.1%
+     5      d2     65.4%     95.9%     97.6%     94.0%     93.0%    45     96.9%         94.5%           94.6%
+     8      d1     92.1%    129.6%    121.7%    109.3%    108.5%    48    128.8%         97.4%           97.4%
+     8      d2     65.6%     96.5%     95.5%     89.1%     87.7%    48     97.0%         94.6%           94.6%
+    13      d1     72.7%    114.1%    108.2%     97.4%     96.7%    53    113.3%         96.4%           96.3%
+    13      d2     56.4%     93.6%     93.1%     85.2%     83.2%    53     95.1%         94.2%           94.4%
+    21      d1     55.6%    107.5%    111.0%    104.6%    100.8%    61    111.6%         95.8%           96.2%
+    21      d2     45.9%     94.0%     99.2%     93.7%     88.3%    61     99.1%         94.3%           94.9%
+    34      d1     49.0%    104.5%    113.3%    109.6%    104.9%    74    113.1%         95.5%           96.3%
+    34      d2     42.9%     95.2%    104.3%    100.2%     93.6%    74    104.1%         94.4%           95.4%
+    55      d1     34.4%     79.6%     92.2%     93.2%     96.5%    80     92.2%         92.0%           94.0%
+    55      d2     32.0%     75.7%     87.9%     86.5%     86.6%    80     87.9%         91.2%           93.4%
+
+==============================================================================
+HOW MUCH OF THIS SURVIVES THE REFERENCE TRUNCATION
+==============================================================================
+The table above divides by a reference long-run variance summed to
+REF_LAG.  If the retained fractions are properties of the data they should
+barely move when that choice moves.  They move a great deal.
+
+  REF_LAG   d=55 d1 ret@40   d=55 d2 ret@40   d=3 d1 ret@40   reference LRV(d2)
+       60            89.7%            89.3%           105.1%               38.79
+      120            84.7%            85.5%           118.4%               40.53
+      200            84.7%            88.3%           129.5%               39.23
+      300            83.1%            88.3%           134.0%               39.25
+      400            79.7%            83.3%           142.7%               41.61
+      600            79.6%            75.7%           183.1%               45.78
+      900            77.5%            67.9%           277.7%               50.99
+     1200            83.3%            68.7%           563.1%                50.4
+
+  Read the last column first: the reference has not converged, so neither has
+  anything divided by it.  The delta = 3 column diverges outright, passing
+  100% and climbing - a kernel cannot retain more than all of a variance, and
+  a figure that does is telling you the denominator is broken rather than that
+  the numerator is fine.
+
+
+  worst nominal-95% interval in the table above: 93.4%
+
+  'ret@b' is the share of the reference long-run variance a Bartlett
+  kernel at bandwidth b retains.  'rule' is block_for(delta), the
+  bandwidth the labs use at that delay.  If ret@rule is well under
+  100% the standard errors are too small by its square root, every
+  interval studentised by them is too narrow, and the Fieller sets
+  inherit the same shortfall.  Note that ret@rule and a moving-block
+  bootstrap at the same block share this limitation, so their agreement
+  lab58 part 6 is not evidence that either is long enough: the two
+  truncate the same dependence at the same lag.  Coverage is lab63's
+  question, not this file's.
+
+  The 40 column is kept because a flat 40 is what this project used
+  before this measurement, so the table shows what the change was
+  worth rather than merely asserting that it helped.
