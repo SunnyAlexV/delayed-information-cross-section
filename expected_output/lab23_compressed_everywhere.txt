@@ -1,0 +1,119 @@
+data folder: /home/claude/data_local
+target SPX, 4862 test days, 7 foreign peers
+
+============================================================================================
+A.  EVERY COMPRESSION, UNDER EVERY LOSS
+============================================================================================
+R2 is on the log target and is NOT proxy-robust; QLIKE is on the variance
+scale and is; MSE(var) is Patton's squared error on the variance scale, with
+Duan smearing, and is also robust.  Lower QLIKE and MSE are better.
+
+ delta    arm        R2     QLIKE     MSE(var)   best by R2  best by QLIKE  best by MSE
+     0    own    0.5188    0.3034    17.193198          PC1            PC1        all 7
+         mean    0.5199    0.3019    17.167719                                         
+          PC1    0.5200    0.3016    17.141991                                         
+          PC2    0.5176    0.3050    17.164870                                         
+        all 7    0.5089    0.3149    17.017224                                         
+
+     3    own    0.4094    0.4125    20.378859          PC1            PC1          PC2
+         mean    0.4597    0.3534    17.877738                                         
+          PC1    0.4609    0.3517    17.813528                                         
+          PC2    0.4584    0.3548    17.806662                                         
+        all 7    0.4492    0.3655    17.999431                                         
+
+     5    own    0.3637    0.4665    21.400979          PC1            PC1          PC1
+         mean    0.4536    0.3589    17.627151                                         
+          PC1    0.4551    0.3569    17.552600                                         
+          PC2    0.4529    0.3600    17.559030                                         
+        all 7    0.4434    0.3704    17.800149                                         
+
+    13    own    0.2332    0.6656    23.797724          PC1            PC1          PC2
+         mean    0.4244    0.3870    18.034646                                         
+          PC1    0.4269    0.3839    17.943628                                         
+          PC2    0.4252    0.3865    17.927271                                         
+        all 7    0.4150    0.3962    18.275776                                         
+
+    21    own    0.1478    0.7832    24.713393          PC1            PC1          PC1
+         mean    0.4086    0.3956    17.979582                                         
+          PC1    0.4117    0.3920    17.938943                                         
+          PC2    0.4089    0.3960    17.946848                                         
+        all 7    0.3973    0.4095    18.430932                                         
+
+    55    own    0.0072    0.9047    25.455577          PC1            PC1          PC2
+         mean    0.3873    0.4001    17.406639                                         
+          PC1    0.3918    0.3954    17.271358                                         
+          PC2    0.3889    0.4002    17.236606                                         
+        all 7    0.3729    0.4202    18.013663                                         
+
+  delays where R2 and QLIKE pick the same winner: 6 of 6 [0, 3, 5, 13, 21, 55]
+  delays where all three losses agree:            2 of 6 [5, 21]
+    delta 0: R2 picks PC1, QLIKE picks PC1, MSE(var) picks all 7
+    delta 3: R2 picks PC1, QLIKE picks PC1, MSE(var) picks PC2
+    delta 13: R2 picks PC1, QLIKE picks PC1, MSE(var) picks PC2
+    delta 55: R2 picks PC1, QLIKE picks PC1, MSE(var) picks PC2
+
+         R2 prefers a compression to all seven at 6 of 6 delays [0, 3, 5, 13, 21, 55]
+      QLIKE prefers a compression to all seven at 6 of 6 delays [0, 3, 5, 13, 21, 55]
+   MSE(var) prefers a compression to all seven at 5 of 6 delays [3, 5, 13, 21, 55]
+
+  Read the compression-versus-full column, not the PC1-versus-PC2 one: those two
+  differ by thousandths and the choice between them is noise.  On that reading
+  the three losses agree almost completely - every one of them prefers a
+  compressed foreign block at five of six delays.  The single exception is
+  MSE(var) at delta = 0, where squared error on the variance scale prefers the
+  seven-regressor model.  That loss is dominated by a handful of crisis days,
+  which is why Section 6 already reports its intervals as uninformative at short
+  delays, so the exception is a statement about tails rather than about
+  information.  Where the losses appear to disagree elsewhere they are choosing
+  between PC1 and PC2, which is not a disagreement about anything.
+
+============================================================================================
+B.  REDUNDANCY GIVEN IMPLIED VOLATILITY, ONE REGRESSOR AT A TIME
+============================================================================================
+Section 7 tests redundancy by adding SEVEN regressors to the implied-
+volatility model, which cannot separate 'no information' from 'estimation
+cost'.  These arms add ONE: the equal-weighted mean, which needs no
+estimation at all, or the real-time first component.
+
+  implied-volatility files and seams:
+    VIX files: ['VIX_History.csv']
+    VDAX files: ['DAX_New_Volatility_Historical_Data.csv', 'DAX_New_Volatility_Historical_Data_1.csv']
+    seam VDAX: 251 overlapping rows, 0 mismatched  -> VERIFIED
+  4525 test days, VIX at t-1 (STRICT)
+
+ delta   +IV only    + mean     + PC1   + all 7   mean|IV    GW z    PC1|IV    GW z
+     0     0.5545    0.5557    0.5556    0.5442   +0.0012    0.43   +0.0012    0.42
+     3     0.5334    0.5356    0.5358    0.5229   +0.0021    0.84   +0.0024    0.94
+     5     0.5324    0.5351    0.5354    0.5229   +0.0027    0.85   +0.0030    0.94
+    13     0.5258    0.5292    0.5297    0.5167   +0.0035    0.86   +0.0040    0.97
+    21     0.5243    0.5279    0.5282    0.5146   +0.0036    0.87   +0.0040    0.95
+    55     0.5261    0.5300    0.5301    0.5166   +0.0039    1.04   +0.0040    1.03
+
+  a single compressed foreign regressor beats the implied-volatility
+  model at 0 of 12 (arm, delay) pairs at z > 1.96
+
+============================================================================================
+C.  THE SUBSTITUTION RATE OF THE COMPRESSED MODEL
+============================================================================================
+The paper's headline specification is the seven-regressor model, and this
+part is on the target-dated convention Table 2 uses, so the FULL row below
+is that headline carried to one decimal.  On the paper's own definition the
+compressed model gives a higher number.  The question is whether the
+difference is real, so both get the full-ratio
+bootstrap the headline uses: numerator and denominator on the same days.
+
+     model    R(55)              95% CI    R2(55)    tau       fixed-b 95% set
+      FULL    71.5%     [ 60.0%, 80.3%]    0.3729    5.4       [ 54.3%, 83.4%]
+      MEAN    74.3%     [ 64.3%, 82.7%]    0.3873    5.4       [ 59.1%, 84.1%]
+       PC1    75.2%     [ 65.3%, 83.5%]    0.3918    5.4       [ 60.1%, 84.9%]
+       PC2    74.6%     [ 64.7%, 83.1%]    0.3889    5.4       [ 59.0%, 85.0%]
+
+  compressed rates falling inside the seven-regressor interval [60.0%, 80.3%]: ['MEAN', 'PC1', 'PC2']
+
+  The compressed rate is higher, and it is not distinguishable from the headline:
+  every compressed point estimate sits inside the interval the seven-regressor
+  model already carries.  So the paper should not replace 72% with 75%, and
+  should not pretend the two are the same number either.  The honest presentation
+  is to report the headline as the prespecified full-block estimate, report the
+  compressed estimate beside it, and say that the difference is within the noise
+  of both.

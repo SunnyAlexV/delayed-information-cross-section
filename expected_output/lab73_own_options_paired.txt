@@ -1,0 +1,142 @@
+data folder: /home/claude/data_local
+Prints the paired own-options test, Section S41.
+
+    AVIX files: ['AVIX_yahoo.csv']
+    INDIAVIX files: ['India_VIX_Historical_Data.csv']
+    NKVI files: ['Nikkei_Volatility_Historical_Data.csv']
+    VDAX files: ['DAX_New_Volatility_Historical_Data.csv', 'DAX_New_Volatility_Historical_Data_1.csv']
+    seam VDAX: 251 overlapping rows, 0 mismatched  -> VERIFIED
+    VHSI files: ['HSI_Volatility_Historical_Data.csv']
+    VIX files: ['VIX_History.csv']
+
+==================================================================================================
+A.  THE FOUR OWN-INDEX SERIES, AND WHETHER ANY OF IT IS BACK-CAST
+==================================================================================================
+  A value published before the index existed was never on a screen.
+  Each export must begin at or after its index's live date.
+
+  target  series         rows        first         last    live from  back-cast
+  N225    NKVI          3,891   2010-11-19   2026-10-05   2010-11-19          0
+  NSEI    INDIAVIX      4,574   2008-04-08   2026-10-05   2008-04-08          0
+  HSI     VHSI          3,860   2011-02-21   2026-10-05   2011-02-21          0
+  AXJO    AVIX          4,744   2008-01-02   2026-10-05   2008-01-02          0
+
+  Any non-zero count in the last column invalidates that target's
+  arms and the paper may not use them.
+
+==================================================================================================
+A2. WEEKEND ROWS IN THE IV SERIES, AND WHETHER ANY IS REACHABLE
+==================================================================================================
+  The IV series are not gated against the calendar; the panel is.
+  A weekend IV row can only be used on a date the panel contains,
+  because the reindex happens before the trailing median.
+
+  target  series       weekend rows  reachable   status
+  N225    NKVI                   10          0   unreachable; the panel has no weekend dates
+  NSEI    INDIAVIX               15         15   reachable and CORRECT: NSEI trades those sessions
+  HSI     VHSI                   13          0   unreachable; the panel has no weekend dates
+  AXJO    AVIX                    0          0   unreachable; the panel has no weekend dates
+
+  The NSEI row is a second, independent witness for the exemption
+  lab72 makes: a volatility index computed from OPTIONS prints on the
+  same Saturdays the cash index does, so those sessions are real.
+
+==================================================================================================
+B.  THE PAIRED CONTRAST, TARGET BY TARGET
+==================================================================================================
+  A = what the cross-section adds given FOREIGN implied volatility
+  B = what it adds given the target's OWN implied volatility
+  Same target, same rows, same peers, same estimator. Only the
+  options feed differs, so coupling is held fixed by construction.
+
+
+  ---- own index enters at t   (SAME-DAY) ----
+
+  N225  (own index NKVI; 2,052 test days, 7 peers)
+    delta  A: +IV_F  A: +both   A gain   GW z     B: +IV_O  B: +both   B gain   GW z
+        0    0.2676    0.2477  -0.0199  -2.77       0.3456    0.3283  -0.0173  -2.06
+        5    0.1755    0.1547  -0.0208  -1.81       0.3288    0.3094  -0.0194  -2.18
+       21    0.0934    0.0870  -0.0064  -0.37       0.3222    0.2990  -0.0232  -2.37
+       55    0.0749    0.0623  -0.0126  -0.69       0.3191    0.2764  -0.0427  -2.86
+
+  NSEI  (own index INDIAVIX; 2,746 test days, 7 peers)
+    delta  A: +IV_F  A: +both   A gain   GW z     B: +IV_O  B: +both   B gain   GW z
+        0    0.4017    0.4014  -0.0003  -0.03       0.4640    0.4571  -0.0069  -0.67
+        5    0.3206    0.3335  +0.0129  +0.81       0.4368    0.4404  +0.0036  +0.20
+       21    0.2396    0.2643  +0.0247  +0.96       0.4263    0.4356  +0.0093  +0.37
+       55    0.2583    0.2650  +0.0067  +0.31       0.4576    0.4609  +0.0033  +0.14
+
+  HSI  (own index VHSI; 2,014 test days, 7 peers)
+    delta  A: +IV_F  A: +both   A gain   GW z     B: +IV_O  B: +both   B gain   GW z
+        0    0.3599    0.3443  -0.0156  -1.57       0.4701    0.4574  -0.0127  -1.28
+        5    0.2214    0.2101  -0.0112  -0.79       0.4569    0.4456  -0.0113  -1.02
+       21    0.1797    0.1683  -0.0114  -0.62       0.4664    0.4502  -0.0162  -1.57
+       55    0.1766    0.1623  -0.0143  -0.59       0.4748    0.4575  -0.0173  -1.58
+
+  AXJO  (own index AVIX; 2,915 test days, 7 peers)
+    delta  A: +IV_F  A: +both   A gain   GW z     B: +IV_O  B: +both   B gain   GW z
+        0    0.4337    0.4355  +0.0018  +0.15       0.4538    0.4586  +0.0048  +0.41
+        5    0.3819    0.3848  +0.0028  +0.19       0.4296    0.4357  +0.0060  +0.42
+       21    0.3431    0.3463  +0.0032  +0.18       0.4247    0.4252  +0.0005  +0.03
+       55    0.3199    0.3308  +0.0108  +0.54       0.4220    0.4288  +0.0068  +0.41
+
+  ---- own index enters at t-1   (STRICT) ----
+
+  N225  (own index NKVI; 2,052 test days, 7 peers)
+    delta  A: +IV_F  A: +both   A gain   GW z     B: +IV_O  B: +both   B gain   GW z
+        0    0.2676    0.2477  -0.0199  -2.77       0.3082    0.2910  -0.0172  -1.99
+        5    0.1755    0.1547  -0.0208  -1.81       0.2785    0.2584  -0.0200  -1.94
+       21    0.0934    0.0870  -0.0064  -0.37       0.2699    0.2468  -0.0231  -2.10
+       55    0.0749    0.0623  -0.0126  -0.69       0.2673    0.2268  -0.0405  -2.98
+
+  NSEI  (own index INDIAVIX; 2,746 test days, 7 peers)
+    delta  A: +IV_F  A: +both   A gain   GW z     B: +IV_O  B: +both   B gain   GW z
+        0    0.4017    0.4014  -0.0003  -0.03       0.4403    0.4350  -0.0053  -0.46
+        5    0.3206    0.3335  +0.0129  +0.81       0.4056    0.4129  +0.0073  +0.35
+       21    0.2396    0.2643  +0.0247  +0.96       0.3912    0.4046  +0.0134  +0.45
+       55    0.2583    0.2650  +0.0067  +0.31       0.4241    0.4303  +0.0062  +0.23
+
+  HSI  (own index VHSI; 2,014 test days, 7 peers)
+    delta  A: +IV_F  A: +both   A gain   GW z     B: +IV_O  B: +both   B gain   GW z
+        0    0.3599    0.3443  -0.0156  -1.57       0.4373    0.4219  -0.0154  -1.51
+        5    0.2214    0.2101  -0.0112  -0.79       0.4128    0.3993  -0.0135  -1.06
+       21    0.1797    0.1683  -0.0114  -0.62       0.4239    0.4053  -0.0185  -1.53
+       55    0.1766    0.1623  -0.0143  -0.59       0.4320    0.4131  -0.0189  -1.47
+
+  AXJO  (own index AVIX; 2,915 test days, 7 peers)
+    delta  A: +IV_F  A: +both   A gain   GW z     B: +IV_O  B: +both   B gain   GW z
+        0    0.4337    0.4355  +0.0018  +0.15       0.4293    0.4313  +0.0020  +0.17
+        5    0.3819    0.3848  +0.0028  +0.19       0.3906    0.3980  +0.0074  +0.45
+       21    0.3431    0.3463  +0.0032  +0.18       0.3834    0.3850  +0.0016  +0.09
+       55    0.3199    0.3308  +0.0108  +0.54       0.3791    0.3885  +0.0094  +0.48
+
+==================================================================================================
+C.  WHAT HAPPENS TO BREADTH WHEN THE OPTIONS BECOME YOUR OWN
+==================================================================================================
+  The paired difference at eleven weeks, per target and per arm.
+  A negative change is breadth losing value once the forecaster
+  holds options on the thing they are forecasting.
+
+  arm       target      A gain    B gain    change   A sig   B sig
+  SAME-DAY  N225       -0.0126   -0.0427   -0.0301      no     yes
+  SAME-DAY  NSEI       +0.0067   +0.0033   -0.0034      no      no
+  SAME-DAY  HSI        -0.0143   -0.0173   -0.0030      no      no
+  SAME-DAY  AXJO       +0.0108   +0.0068   -0.0040      no      no
+  STRICT    N225       -0.0126   -0.0405   -0.0279      no     yes
+  STRICT    NSEI       +0.0067   +0.0062   -0.0005      no      no
+  STRICT    HSI        -0.0143   -0.0189   -0.0046      no      no
+  STRICT    AXJO       +0.0108   +0.0094   -0.0014      no      no
+
+==================================================================================================
+VERDICT
+==================================================================================================
+  SAME-DAY: breadth is worth less given own options on 4 of 4 targets.
+            it still adds significantly given FOREIGN options in 0 of 4,
+            and given OWN options in 1 of 4.
+  STRICT: breadth is worth less given own options on 4 of 4 targets.
+            it still adds significantly given FOREIGN options in 0 of 4,
+            and given OWN options in 1 of 4.
+
+  Read this against lab51, where the same question was asked across
+  targets and could not separate options from coupling.  Here coupling
+  cannot move, because the target does not change.

@@ -1,0 +1,93 @@
+data folder: /home/claude/data_local
+
+====================================================================================
+0.  RECONCILIATION AT h = 5
+====================================================================================
+walk() below is lab05's fitrun() with the horizon lifted out of a module
+constant and into an argument.  That rewrite is where a silent difference
+would hide, so lab05's own function is called at h = 5 and compared -
+nothing pasted.  If these disagree, none of the other horizons mean anything.
+
+ delta   own here   own lab05   cross here  cross lab05
+     0     0.5188      0.5188       0.5089       0.5089   ok
+    21     0.1478      0.1478       0.3973       0.3973   ok
+    55     0.0072      0.0072       0.3729       0.3729   ok
+
+  the rewrite matches lab05 exactly
+
+====================================================================================
+A.  DOES THE TARGET OVERLAP THE FEATURES, AND BY HOW MUCH?
+====================================================================================
+The Yang-Zhang proxy spans five days, so for h < 5 the outcome window and
+the domestic feature's own window share days.  Nothing is leaked - the
+outcome is still in the future - but a forecaster at h = 1 is predicting an
+object they can largely already see, which inflates every arm at once.
+
+   h  days shared with sigma^2_t    corr(a_t, a_t+h)
+   1                           4              0.9532
+   5                           0              0.6915
+  10                           0              0.5762
+  21                           0              0.4167
+
+====================================================================================
+B.  THE SUBSTITUTION RATE AT EACH HORIZON
+====================================================================================
+Identical features, identical estimator, identical delay grid.  Only the
+horizon changes, and with it the admissibility cut and the benchmark's own
+cut at t - h.  The bootstrap block is lab05's measured one at every
+horizon, so the intervals below are comparable across the table.
+
+  --- h = 1 (4870 test days, bootstrap block 40) ---------------------------------
+ delta    own R2   cross R2       dR2    R(d)            95% CI   R(d) QLIKE    tau       fixed-b 95%
+     0    0.9239     0.9238   -0.0001       -                 -            -
+     3    0.6087     0.7160   +0.1073     34%       [ 27%, 40%]          43%   12.1       [ 26%, 41%]
+     5    0.4710     0.6897   +0.2187     48%       [ 41%, 55%]          60%   10.9       [ 40%, 55%]
+    13    0.2915     0.6718   +0.3803     60%       [ 52%, 67%]          74%    9.4       [ 51%, 67%]
+    21    0.1791     0.6616   +0.4824     65%       [ 57%, 72%]          80%    8.5       [ 55%, 73%]
+    55    0.0087     0.6456   +0.6369     70%       [ 62%, 76%]          83%    7.9       [ 59%, 77%]
+
+  --- h = 5 (4862 test days, bootstrap block 40) ---------------------------------
+ delta    own R2   cross R2       dR2    R(d)            95% CI   R(d) QLIKE    tau       fixed-b 95%
+     0    0.5188     0.5089   -0.0099       -                 -            -
+     3    0.4094     0.4492   +0.0398     36%       [ 17%, 55%]          43%    6.1       [ 16%, 56%]
+     5    0.3637     0.4434   +0.0797     51%       [ 35%, 66%]          59%    5.9       [ 33%, 68%]
+    13    0.2332     0.4150   +0.1818     64%       [ 51%, 75%]          74%    5.9       [ 48%, 77%]
+    21    0.1478     0.3973   +0.2495     67%       [ 55%, 77%]          78%    5.3       [ 50%, 79%]
+    55    0.0072     0.3729   +0.3657     71%       [ 60%, 81%]          81%    5.4       [ 54%, 83%]
+
+  --- h = 10 (4852 test days, bootstrap block 40) --------------------------------
+ delta    own R2   cross R2       dR2    R(d)            95% CI   R(d) QLIKE    tau       fixed-b 95%
+     0    0.3667     0.3505   -0.0162       -                 -            -
+     3    0.3134     0.3189   +0.0055     10%       [-38%, 46%]          15%    5.2       [-45%, 54%]
+     5    0.2813     0.3114   +0.0302     35%       [  0%, 61%]          42%    5.0       [ -7%, 68%]
+    13    0.1734     0.2792   +0.1058     55%       [ 30%, 70%]          65%    4.6       [ 22%, 75%]
+    21    0.1172     0.2652   +0.1480     59%       [ 37%, 73%]          68%    4.4       [ 29%, 78%]
+    55    0.0003     0.2417   +0.2414     66%       [ 48%, 78%]          73%    4.7       [ 38%, 83%]
+
+  --- h = 21 (4830 test days, bootstrap block 40) --------------------------------
+ delta    own R2   cross R2       dR2    R(d)            95% CI   R(d) QLIKE    tau       fixed-b 95%
+     0    0.2023     0.1812   -0.0211       -                 -            -
+     3    0.1705     0.1640   -0.0065    -20%      [-152%, 52%]          13%    3.2      [-206%, 51%]
+     5    0.1564     0.1622   +0.0058     13%       [-85%, 66%]          33%    3.2      [-125%, 64%]
+    13    0.1078     0.1460   +0.0382     40%       [-10%, 70%]          54%    3.7       [-25%, 73%]
+    21    0.0733     0.1296   +0.0563     44%       [ -3%, 68%]          57%    3.6       [-17%, 72%]
+    55   -0.0200     0.0922   +0.1121     50%       [ 22%, 70%]          65%    4.2       [  8%, 78%]
+
+====================================================================================
+C.  IS THE HEADLINE A PROPERTY OF THE INFORMATION OR OF THE SETTING?
+====================================================================================
+   h    R(55) under R2            95% CI   R(55) under QLIKE       fixed-b 95%
+   1               70%       [ 62%, 76%]                 83%       [ 59%, 77%]
+   5               71%       [ 60%, 81%]                 81%       [ 54%, 83%]
+  10               66%       [ 48%, 78%]                 73%       [ 38%, 83%]
+  21               50%       [ 22%, 70%]                 65%       [  8%, 78%]
+
+  horizons whose point estimate falls outside the h = 5 fixed-b interval [54%, 83%]: [21]
+  (on the bootstrap interval [60%, 81%] the same comparison gives [21])
+
+  Read h = 1 against part A before reading it against the others.  Four of its
+  five target days are already inside the domestic feature, so both arms score
+  high and the denominator of the rate - how much a delay costs a domestic-only
+  forecaster - is small.  A rate computed against a small denominator is the
+  unstable object this project has flagged twice before, and it is the reason
+  h = 1 is reported here rather than folded into the headline.

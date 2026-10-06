@@ -1,0 +1,105 @@
+data folder: /home/claude/data_local
+target SPX, 4862 test days, 7 foreign peers, 6 delays
+ridge grid [0.3, 1.0, 3.0, 10.0, 30.0], selected on the last 250 training rows
+
+====================================================================================
+0.  RECONCILIATION WITH lab05's OWN WALK-FORWARD
+====================================================================================
+both_arms() runs the two models on one shared refit schedule so that a
+common penalty can be imposed.  That is a rewrite of lab05's fitrun(), and
+a rewrite is exactly where a silent difference hides.  lab05's own function
+is therefore called here and the statistics compared - nothing pasted.
+
+ delta     CW here    CW lab05     GW here    GW lab05
+     0      0.2081      0.2081     -2.0795     -2.0795   ok
+     5      6.4468      6.4468      3.8794      3.8794   ok
+    55      5.5448      5.5448      4.2833      4.2833   ok
+
+  the rewrite matches lab05 exactly
+
+====================================================================================
+A.  IS THE PRECONDITION PRESENT?  PENALTY SELECTION, PER ARM
+====================================================================================
+The bias is proportional to the DIFFERENCE between the two arms'
+two arms' shrinkage.  If both arms landed on the same penalty at every
+refit, there would be nothing to discuss.
+
+ delta  mean lam own  mean lam cross  refits differing  cross shrunk harder
+     0         11.94           13.28              18%                  10%
+     3         13.79           23.94              49%                  43%
+     5         15.87           24.13              44%                  37%
+    13         14.67           23.20              45%                  38%
+    21         18.48           25.40              33%                  29%
+    55         21.73           22.13              34%                  18%
+
+The arms agree at 51% to 82% of refits, and the cross arm is
+penalised harder at 10% to 43% of them - a minority at every
+delay. What holds at all 6 delays is that its MEAN penalty is the
+higher of the two (6 of 6), which is the configuration that would
+bias the statistic upward - the direction our column runs.
+
+====================================================================================
+B.  THE COMPANION PAPER'S DIAGNOSTIC:  mean adjustment / |mean differential|
+====================================================================================
+Near one, the adjustment matches the estimation penalty it removes.
+Materially above one, it exceeds that penalty and the surplus is what
+inflates the statistic.  We report it as a description, not a threshold:
+there is no calibration here for how large it must be to matter.
+
+ delta      mean d      mean a     ratio       CW       GW
+     0    -0.00936     0.01029      1.10     0.21    -2.08
+     3    +0.03767     0.06011      1.60     6.13     2.96
+     5    +0.07546     0.09579      1.27     6.45     3.88
+    13    +0.17218     0.19085      1.11     6.07     4.28
+    21    +0.23635     0.24231      1.03     5.52     3.99
+    55    +0.34641     0.33013      0.95     5.54     4.28
+
+====================================================================================
+C.  THE REMEDY:  ONE PENALTY, CHOSEN ON THE RESTRICTED ARM, APPLIED TO BOTH
+====================================================================================
+Setting the two shrinkage factors equal sets the bias described above
+term to zero identically.  If the mechanism is biting here, this column
+moves.
+
+ delta  CW separate   CW common   change  ratio sep  ratio common
+     0         0.21        0.25    +0.04       1.10          1.12
+     3         6.13        6.09    -0.04       1.60          1.62
+     5         6.45        6.45    +0.00       1.27          1.28
+    13         6.07        6.03    -0.03       1.11          1.12
+    21         5.52        5.52    +0.01       1.03          1.03
+    55         5.54        5.53    -0.01       0.95          0.95
+
+====================================================================================
+D.  DOES THE PRIMARY TEST MOVE?
+====================================================================================
+Giacomini-White compares METHODS under a fixed rolling window, and the
+validation slice sits inside that window, so tuning is part of the method
+being tested rather than a contaminant of a correction - there is no
+correction here to throw off.  The prediction is that this column barely
+moves.  Sign changes would falsify that.
+
+ delta  GW separate   GW common   change   p separate   p common
+     0        -2.08       -2.04    +0.04        0.038      0.041
+     3         2.96        2.95    -0.02        0.003      0.003
+     5         3.88        3.86    -0.02        0.000      0.000
+    13         4.28        4.25    -0.02        0.000      0.000
+    21         3.99        3.99    -0.01        0.000      0.000
+    55         4.28        4.29    +0.00        0.000      0.000
+
+  delays whose GW verdict changes at 1.96: 0 of 6
+
+====================================================================================
+VERDICT
+====================================================================================
+  diagnostic above 1.5 at 1 of 6 delays: 3
+
+  What this licenses depends on the diagnostic above, and the paper should say
+  only what it shows.  Where the ratio sits near one the Clark-West adjustment
+  is matching the penalty it removes and the statistic is doing its job.  Where
+  it is well above one the statistic is carrying a surplus, and the honest move
+  is to report the Clark-West column with that ratio beside it rather than to
+  quote a p-value that this mechanism can inflate.
+
+  Either way the primary test is Giacomini-White, for the reason in part D, and
+  nothing here touches the substitution rates, the intervals or the bootstraps -
+  none of which involve a nested-model correction.

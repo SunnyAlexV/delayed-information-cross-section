@@ -1,0 +1,64 @@
+================================================================================================
+lab69  -  THE SUBSTITUTION RATE UNDER FOUR VOLATILITY PROXIES
+================================================================================================
+  The paper measures volatility one way and never varies it.  2 of
+  these arms remove the overnight term entirely, which is the term
+  that spans the foreign trading sessions the substitute block is
+  built from, and so the term through which the published design
+  cannot separate information from measurement.
+
+  YZ done  (the published estimator; 4,862 test days)
+  CC done  (close-to-close; no open, high or low; 4,862 test days)
+  RS done  (Rogers-Satchell; intraday only, no overnight; 4,862 test days)
+  PK done  (Parkinson; intraday only, no overnight; 4,862 test days)
+
+================================================================================================
+A.  THE BENCHMARK ITSELF, BEFORE ANY RATE IS READ
+================================================================================================
+  S_own(0) is how well the domestic model forecasts its own target
+  with nothing withheld.  It is the denominator's anchor, and if it
+  moves a lot between proxies the rates are not comparable.
+
+  proxy     S_own(0)   what it is built from
+  YZ          0.4988   the published estimator
+  CC          0.2833   close-to-close; no open, high or low
+  RS          0.4467   Rogers-Satchell; intraday only, no overnight
+  PK          0.5258   Parkinson; intraday only, no overnight
+
+================================================================================================
+B.  R(delta) UNDER EACH PROXY, SAME TEST DAYS, SAME CONTROL
+================================================================================================
+   delta          YZ          CC          RS          PK
+       5       51.4%       92.2%       49.0%       49.4%
+      13       63.6%       82.7%       59.3%       62.5%
+      21       67.3%       77.9%       63.7%       65.8%
+      55       71.5%       73.4%       69.4%       70.1%
+
+================================================================================================
+C.  THE HEADLINE DELAY, WITH ITS FIELLER SET AND IDENTIFICATION
+================================================================================================
+  proxy     R(55)         fixed-b 95% set     tau   identified
+  YZ        71.5%    [   54.3%,    83.4%]    5.40          yes
+  CC        73.4%    [   47.5%,    89.4%]    4.32          yes
+  RS        69.4%    [   50.5%,    82.9%]    5.33          yes
+  PK        70.1%    [   51.5%,    84.8%]    5.56          yes
+
+================================================================================================
+VERDICT
+================================================================================================
+  Published estimator at eleven weeks:            71.5%
+  Without the overnight term (RS, PK):           69.4%, 70.1%
+  Close-to-close only, no OHLC at all:           73.4%
+  Largest fall from the published figure:        +2.0 points
+
+  The rate does not depend on the overnight term.  The two arms
+  that remove it entirely return a rate within ten points of the
+  published one, so the foreign cross-section is not merely
+  predicting a measurement of the foreign sessions themselves.
+  The explanation this file was written to test is ruled out at
+  the size the test can resolve.
+
+  Either way this is one measurement varied, not a proof that the
+  target is well measured.  No intraday data is used anywhere in
+  this repository, and a realised-variance target built from
+  five-minute returns would be a better object than any of the four.

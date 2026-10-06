@@ -1,0 +1,145 @@
+==================================================================================================
+lab72  -  IS EVERY INPUT DATED ON A DAY ITS MARKET WAS OPEN?
+==================================================================================================
+  data folder: /home/claude/data_local
+  exchanges this project treats as holding weekend sessions: ['NSEI']
+
+==================================================================================================
+A.  ROWS DATED ON A SATURDAY OR A SUNDAY
+==================================================================================================
+  series                     rows  weekend        first         last
+  SPX (index)               6,713        0            -            -
+  DAX (index)               6,534        0            -            -
+  FTSE (index)              6,489        0            -            -
+  N225 (index)              6,574       30   2026-01-25   2026-09-06
+  HSI (index)               6,608        1   2008-11-30   2008-11-30
+  NSEI (index)              6,638       29   2003-03-22   2026-02-01
+  AXJO (index)              6,756        0            -            -
+  BVSP (index)              6,619        0            -            -
+    VIX files: ['VIX_History.csv']
+  VIX (implied vol)         9,272        0            -            -
+    VIX9D files: ['VIX9D_History.csv']
+  VIX9D (implied vol)       3,946        0            -            -
+    VDAX files: ['DAX_New_Volatility_Historical_Data.csv', 'DAX_New_Volatility_Historical_Data_1.csv']
+    seam VDAX: 251 overlapping rows, 0 mismatched  -> VERIFIED
+  VDAX (implied vol)        6,435        0            -            -
+    VSTOXX files: ['STOXX_50_Volatility_VSTOXX_EUR_Historical_Data_1.csv', 'STOXX_50_Volatility_VSTOXX_EUR_Historical_Data_2.csv']
+    seam VSTOXX: 253 overlapping rows, 0 mismatched  -> VERIFIED
+  VSTOXX (implied vol)      3,117        0            -            -
+
+  Every implied-volatility series is clean on this check.  The three
+  index series with weekend rows are the subject of Part B.
+
+==================================================================================================
+B.  THE SIGNATURE TEST: CASH SESSION, OR ANOTHER INSTRUMENT?
+==================================================================================================
+  A cash close carries cents and a full day's range.  A futures print
+  is round and thin.  Each series is compared with ITSELF, so nothing
+  depends on knowing what the other instrument is.
+
+  series  rows            n   whole-number close   mean (high-low)/close
+  N225    weekend        30               66.7%                 0.239%
+          weekday     6,544                1.0%                 1.099%
+          -> another instrument
+
+  HSI     weekend         1              100.0%                 0.236%
+          weekday     6,607                0.9%                 1.432%
+          -> another instrument
+
+  NSEI    weekend        29                3.4%                 1.022%
+          weekday     6,609                5.4%                 1.596%
+          -> ordinary cash session
+
+==================================================================================================
+C.  HOW FAR ONE BAD ROW REACHES
+==================================================================================================
+  Yang-Zhang's overnight term is log(O_t / C_{t-1}), so a spurious row
+  corrupts its own proxy value and the FOLLOWING day's.  The decision
+  variable then divides by a trailing 252-day median, which carries the
+  damage forward for a year of trading days.  The counts below are on
+  dates the two versions SHARE - legitimate days whose values were wrong.
+
+  series    dropped   proxy wrong   decision-var wrong   % of panel
+  N225           30           148                  162       2.48%
+  HSI             1             5                  144       2.18%
+
+  A single wrong print is not a single wrong number.
+
+==================================================================================================
+D.  WHAT THE GATE REMOVES, AND WHAT IT KEEPS
+==================================================================================================
+  series        raw   after gate  removed   rule
+  SPX         6,713        6,713        0   weekend rows are inadmissible for this exchange
+  DAX         6,534        6,534        0   weekend rows are inadmissible for this exchange
+  FTSE        6,489        6,489        0   weekend rows are inadmissible for this exchange
+  N225        6,574        6,544       30   weekend rows are inadmissible for this exchange
+  HSI         6,608        6,607        1   weekend rows are inadmissible for this exchange
+  NSEI        6,638        6,638        0   kept: this exchange holds weekend sessions
+  AXJO        6,756        6,756        0   weekend rows are inadmissible for this exchange
+  BVSP        6,619        6,619        0   weekend rows are inadmissible for this exchange
+
+==================================================================================================
+E.  THE BAD PRINTS, AGAINST THE SESSIONS EITHER SIDE
+==================================================================================================
+  A weekend row is only evidence of an error when the cash index was
+  somewhere else entirely.  These are the rows the gate removes.
+
+  series  date           previous close    this row   next close  error vs neighbours
+  HSI     2008-11-30          13,888.24   17,572.00    14,108.84                 26%
+
+  A row within ten per cent of its neighbours is misdated rather than
+  invented, and is removed for being inadmissible, not for being wrong.
+
+==================================================================================================
+F.  A-VIX: THE SERIES THIS PAPER USES, AGAINST THE OTHER VENDOR'S COPY
+==================================================================================================
+  The S&P/ASX 200 VIX is taken from Yahoo and not from the vendor
+  behind the other three own-index series.  That is a choice, so it is
+  audited rather than asserted: the rejected copy stays in the data
+  folder for this comparison, exactly as the retail VIX export stays
+  for lab43's.
+
+    AVIX files: ['AVIX_yahoo.csv']
+  copy                rows        first         last  weekend rows      max
+  used (Yahoo)       4,744   2008-01-02   2026-10-05             0    66.72
+  rejected           4,829   2008-01-03   2026-10-05            75   101.00
+
+  weekday dates both cover            4,743
+  agreeing within 0.5%                4,739  (99.92%)
+  median absolute difference          0.0020
+  the rejected copy's largest print   101.00 on 2010-05-23 (Sun), between 33.22 and 30.88
+
+  Two independent vendors agreeing on the overwhelming majority of
+  shared dates is a cross-validation of the SERIES; the disagreement
+  is confined to rows one of them misdated. Rejecting that copy is
+  not a change of series.
+
+==================================================================================================
+VERDICT
+==================================================================================================
+  Weekend-dated rows survive in 29 places after the gate, all of
+  them in ['NSEI'], which is 29 rows and is intended.
+
+  Identified as another instrument and removed: N225, HSI
+  Identified as genuine weekend sessions and kept: NSEI
+
+  The distinction matters in both directions.  Dropping every weekend
+  row would have discarded 29 real NSE sessions - budget days, Muhurat
+  trading and disaster-recovery drills - and keeping every weekend row
+  left 30 Nikkei futures prints and one 26%-wrong Hang Seng print inside
+  the estimator, where they corrupted a year of the decision variable
+  each through the trailing median.
+
+  What this changed in the paper: nothing it claims, and the last
+  decimal of nearly everything.  The headline rate moves from 71.6% to
+  71.5% and its interval from [54.4, 83.5] to [54.3, 83.4]; the
+  identification statistic is unmoved at 5.40.  The multi-target tables
+  of Sections S13 and S14 move by up to 1.3 points on Hong Kong, whose
+  own series carried the bad print, and the counts those sections turn
+  on (0 of 8, 1 of 24, 3 of 16, 8 of 16, read from lab51 and lab53) are all
+  unchanged.
+
+  The honest summary is that this defect cost the paper no conclusion
+  and should still never have survived two years of checking.  It did so
+  because every check here compared a timestamp with another timestamp,
+  and a calendar is a different kind of fact.

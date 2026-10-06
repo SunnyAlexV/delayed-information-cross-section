@@ -1,0 +1,44 @@
+============================================================================================
+lab70  -  WHAT A TABLE S4 CELL'S 95% SET ACTUALLY COVERS
+============================================================================================
+  Fixed-b Fieller, b = M/n = 0.05, against lab63's generator matched
+  to the measured loss-differential autocorrelation.  Each row is
+  simulated at that cell's OWN length and OWN identification
+  strength, 1500 replications; Monte Carlo error near 90% is about
+  0.8 points.
+
+  state        delta      n    tau  fixed-b cv   covers  unbounded
+  calm             5  1,620    3.4       2.097    93.5%       6.5%
+  calm            13  1,620    2.9       2.059    92.8%      14.8%
+  calm            21  1,620    3.5       2.050    92.4%       5.9%
+  calm            55  1,620    3.0       2.094    93.7%      12.1%
+  middle           5  1,624    5.6       2.114    93.3%       0.0%
+  middle          13  1,624    5.8       2.128    94.1%       0.1%
+  middle          21  1,624    5.5       2.107    92.7%       0.0%
+  middle          55  1,624    4.4       2.116    94.3%       0.7%
+  stressed         5  1,618    3.5       2.121    93.5%       5.2%
+  stressed        13  1,618    3.7       2.044    92.8%       3.6%
+  stressed        21  1,618    3.6       2.091    93.0%       4.7%
+  stressed        55  1,618    4.2       2.083    93.1%       1.1%
+
+  full window     55  4,862    5.4       2.105    94.3%       0.1%
+  (the unconditional cell, for comparison: same procedure, whole sample)
+
+============================================================================================
+VERDICT
+============================================================================================
+  Across the twelve conditional cells the nominal 95% set covers
+  between 92.4% and 94.3%.  The cell the paper tells a
+  practitioner to carry, stressed at eleven weeks, covers 93.1%.
+  The same procedure on the whole sample covers 94.3%.
+
+  So a conditional set is worth about 1.2 points less than the
+  unconditional one, and that is a property of its LENGTH rather than
+  of its identification: tau is comparable across the two, and the
+  third of the sample is not.  Section 4.6 prints tau beside every
+  set so a reader can see which are bounded; tau does not say what a
+  bounded set covers, and this is the column that does.
+
+  Reported so that a reader meeting a conditional interval is told
+  what it is worth where they meet it, rather than being left to
+  carry the full-window figure to a third of the sample.

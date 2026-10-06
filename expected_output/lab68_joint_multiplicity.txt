@@ -1,0 +1,257 @@
+==============================================================================
+lab68_joint_multiplicity  -  the omnibus test Table S30 never had
+==============================================================================
+  calendars merged: daily-PAPER, daily-WIDE share an index (1813 to 5381, n = 4525) and are one calendar, 48 cells, resampled on one draw
+
+THE FAMILY, AS RECORDED
+  cells 214   calendar groups 14
+      64  breadth given implied volatility, four unoptioned targets
+      64  compressed foreign block given implied volatility, seven markets
+      48  nonlinearity given implied volatility, four arms
+      32  seven foreign closes given implied volatility, five optioned markets
+       6  VSTOXX as a third implied-volatility series
+
+  calendar groups, and the length every cell in each one shares:
+    daily-AXJO        20 cells   n = 4904
+    daily-BVSP        12 cells   n = 4767
+    daily-CSEALL       8 cells   n = 3429
+    daily-DAX         12 cells   n = 4682
+    daily-FTSE        12 cells   n = 4637
+    daily-HSI         20 cells   n = 4755
+    daily-JKSE         8 cells   n = 4872
+    daily-KLCI         8 cells   n = 4948
+    daily-KSE100       8 cells   n = 3569
+    daily-N225        20 cells   n = 4692
+    daily-NSEI        20 cells   n = 4786
+    daily-PAPER+daily-WIDE  48 cells   n = 4525
+    daily-SPX         12 cells   n = 4861
+    daily-SPX3         6 cells   n = 1240
+
+THE INSTRUMENTS, CHECKED AGAINST THE SLOW FORMS THEY REPLACE
+  batched HAC against the loop form, worst relative difference over all 214 cells: 5.91e-16  (lab51:AXJO:d55)
+  fast fixed-b against the loop form, on identical draws:
+    n=  240  M= 20  b=0.083  300 draws   worst |t| difference 8.88e-16
+    n=  400  M= 20  b=0.050  300 draws   worst |t| difference 1.33e-15
+    n=  400  M= 40  b=0.100  300 draws   worst |t| difference 1.33e-15
+    n=  600  M= 30  b=0.050  200 draws   worst |t| difference 1.78e-15
+    n= 1240  M= 80  b=0.065  120 draws   worst |t| difference 1.33e-15
+    worst over all of them 1.78e-15: the same statistic, not merely a similar one
+
+RULE A - the paper's own marginal rule
+  Bandwidth block_for(delta), which is what the five labs pass, and
+  a normal critical value of 1.96.  This is the rule that produced
+  the count Table S30 tabulates, so it is the rule the count is
+  judged against here.
+
+RULE B - the same bandwidth against its own reference distribution
+  A Bartlett t-statistic at a bandwidth that is a non-vanishing
+  fraction of the sample is not standard normal.  Below, the fixed-b
+  95% point simulated at each distinct (n, M) in the pool, which is
+  what 1.96 is standing in for.
+
+  40,000 draws per pair, in ten batches, the spread of whose
+  own 95% points gives the standard error beside each value.
+
+       n     M   b = M/n  fixed-b cv      se   cells
+    1240    40    0.0323       2.032   0.014       1
+    1240    43    0.0347       2.052   0.012       1
+    1240    45    0.0363       2.061   0.011       1
+    1240    53    0.0427       2.073   0.011       1
+    1240    61    0.0492       2.084   0.008       1
+    1240    80    0.0645       2.129   0.012       1
+    3429    40    0.0117       2.004   0.008       2
+    3429    45    0.0131       2.003   0.008       2
+    3429    61    0.0178       2.020   0.011       2
+    3429    80    0.0233       2.012   0.010       2
+    3569    40    0.0112       1.994   0.006       2
+    3569    45    0.0126       2.015   0.010       2
+    3569    61    0.0171       2.001   0.009       2
+    3569    80    0.0224       2.022   0.010       2
+    4525    40    0.0088       1.973   0.010       8
+    4525    43    0.0095       1.970   0.009       8
+    4525    45    0.0099       1.979   0.006       8
+    4525    53    0.0117       1.989   0.010       8
+    4525    61    0.0135       1.989   0.010       8
+    4525    80    0.0177       2.028   0.007       8
+    4637    40    0.0086       1.993   0.010       3
+    4637    45    0.0097       1.977   0.013       3
+    4637    61    0.0132       2.002   0.012       3
+    4637    80    0.0173       1.997   0.012       3
+    4682    40    0.0085       1.978   0.011       3
+    4682    45    0.0096       1.977   0.012       3
+    4682    61    0.0130       2.005   0.005       3
+    4682    80    0.0171       2.006   0.008       3
+    4692    40    0.0085       1.980   0.012       5
+    4692    45    0.0096       1.984   0.008       5
+    4692    61    0.0130       2.003   0.010       5
+    4692    80    0.0171       2.013   0.006       5
+    4755    40    0.0084       1.996   0.009       5
+    4755    45    0.0095       1.983   0.010       5
+    4755    61    0.0128       1.984   0.011       5
+    4755    80    0.0168       2.000   0.011       5
+    4767    40    0.0084       1.972   0.008       3
+    4767    45    0.0094       1.985   0.011       3
+    4767    61    0.0128       2.009   0.013       3
+    4767    80    0.0168       2.010   0.010       3
+    4786    40    0.0084       1.959   0.008       5
+    4786    45    0.0094       1.985   0.007       5
+    4786    61    0.0127       2.001   0.007       5
+    4786    80    0.0167       1.994   0.010       5
+    4861    40    0.0082       1.985   0.010       3
+    4861    45    0.0093       1.989   0.008       3
+    4861    61    0.0125       1.988   0.009       3
+    4861    80    0.0165       2.008   0.010       3
+    4872    40    0.0082       1.986   0.013       2
+    4872    45    0.0092       1.982   0.011       2
+    4872    61    0.0125       1.991   0.009       2
+    4872    80    0.0164       2.003   0.006       2
+    4904    40    0.0082       1.997   0.009       5
+    4904    45    0.0092       1.981   0.007       5
+    4904    61    0.0124       1.987   0.008       5
+    4904    80    0.0163       2.012   0.007       5
+    4948    40    0.0081       1.969   0.006       2
+    4948    45    0.0091       1.980   0.007       2
+    4948    61    0.0123       2.002   0.008       2
+    4948    80    0.0162       2.022   0.004       2
+
+  range of the fixed-b 95% point over the pool: 1.959 to 2.129, against 1.96
+  largest standard error among them: 0.014
+  The smallest, 1.959 at b = 0.0084, is BELOW 1.96, which the fixed-b
+  point cannot be at b > 0.  It sits 0.1 standard errors under, so this is
+  simulation noise and not a result - and it is also the finding: at b of a
+  hundredth the correction is inside its own Monte Carlo error.  It is only at the
+  short end that it bites, where b reaches 0.065 and the point reaches 2.129.  A long sample
+  does not need this correction; a short one does, which is the same lesson
+  lab67 part A draws about Table S7's subsamples.
+  cells sitting closer to their own threshold than twice THEIR OWN standard error
+  from the column above, and so liable to fall either side of rule B on the draws alone: 2
+
+  cells significant under rule A and not under rule B: 5
+    lab15:WIDE:IV+F+RFF20:d55          n= 4525  M= 80  |t|=1.990  against 1.96 and 2.028
+    lab51:DAX:d55                      n= 4682  M= 80  |t|=1.970  against 1.96 and 2.006
+    lab52:DAX:d55:sev                  n= 4682  M= 80  |t|=1.970  against 1.96 and 2.006
+    lab15:PAPER:IV+F:d3                n= 4525  M= 43  |t|=1.963  against 1.96 and 1.970
+    lab19:foreign_given_IV3:d3         n= 1240  M= 43  |t|=1.963  against 1.96 and 2.052
+    their lengths: 1,240, 4,525, 4,682 - so the rule does not fall only on the
+    short series.  Which cells it falls on is not a property of length: it is whichever
+    statistics happen to sit between 1.96 and their own fixed-b point, and the three above
+    are listed rather than characterised for that reason.
+
+RULE C - each cell against its own resampled distribution
+  Rules A and B take a critical value from a reference distribution
+  the statistic does not have on this pool.  Rule C takes each
+  cell's own 95% point of |t| under the same resampling null, on
+  INDEPENDENT draws, which is the ordinary bootstrap answer and the
+  only one of the three that is correctly sized by construction.
+
+  calibrated critical values: 1.75 to 5.42, median 2.09, against 1.96
+  cells needing a critical value above 2.5: 31 of 214
+
+RESULT, RULE A
+  marginal rule                        Bartlett block_for(delta), cv = 1.96
+  observed significant cells           78
+  0.05K, the expectation Table S30 uses   10.7
+  empirical null mean                  19.94
+  empirical null sd                    12.33   (binomial would be 3.19)
+  variance inflation over binomial     15.0x
+  the rule's own size under its own null, per cell: mean 0.093, median 0.071, max 0.327
+  sum of those per-cell sizes          19.94   <- the null mean, with NO dependence
+  independent-cell sd at those sizes   4.14   <- the right benchmark for the spread
+  so of the 3.9x spread over binomial, 1.3x is size and heterogeneity and 3.0x is dependence
+  null percentiles  90th 37   95th 42   99th 52
+  null maximum over 2000 replications      68
+  replications reaching 78                0
+  p_joint = (1 + 0) / (2000+1)  =  0.0005
+  0.0005 is the smallest value 2000 replications can return, so it is a FLOOR on the
+  estimate and not a ceiling on the truth: what was measured is that the null never
+  reached 78 in 2000 draws, its largest count being 68.  Zero exceedances in
+  2000 draws is consistent with a true p as large as 0.0015, which is the exact
+  one-sided 95% bound, and that is the number to quote - 'p <= 0.0005' points the
+  inequality the wrong way round.
+
+RESULT, RULE B
+  marginal rule                        Bartlett block_for(delta), fixed-b cv at each (n, M)
+  observed significant cells           73
+  0.05K, the expectation Table S30 uses   10.7
+  empirical null mean                  18.94
+  empirical null sd                    12.11   (binomial would be 3.19)
+  variance inflation over binomial     14.4x
+  the rule's own size under its own null, per cell: mean 0.089, median 0.067, max 0.325
+  sum of those per-cell sizes          18.94   <- the null mean, with NO dependence
+  independent-cell sd at those sizes   4.04   <- the right benchmark for the spread
+  so of the 3.8x spread over binomial, 1.3x is size and heterogeneity and 3.0x is dependence
+  null percentiles  90th 36   95th 41   99th 50
+  null maximum over 2000 replications      67
+  replications reaching 73                0
+  p_joint = (1 + 0) / (2000+1)  =  0.0005
+  0.0005 is the smallest value 2000 replications can return, so it is a FLOOR on the
+  estimate and not a ceiling on the truth: what was measured is that the null never
+  reached 73 in 2000 draws, its largest count being 67.  Zero exceedances in
+  2000 draws is consistent with a true p as large as 0.0015, which is the exact
+  one-sided 95% bound, and that is the number to quote - 'p <= 0.0005' points the
+  inequality the wrong way round.
+
+RESULT, RULE C
+  marginal rule                        Bartlett block_for(delta), each cell's own resampled 95% point
+  observed significant cells           41
+  0.05K, the expectation Table S30 uses   10.7
+  empirical null mean                  11.17
+  empirical null sd                    8.15   (binomial would be 3.19)
+  variance inflation over binomial     6.5x
+  the rule's own size under its own null, per cell: mean 0.052, median 0.053, max 0.071
+  sum of those per-cell sizes          11.17   <- the null mean, with NO dependence
+  independent-cell sd at those sizes   3.25   <- the right benchmark for the spread
+  so of the 2.6x spread over binomial, 1.0x is size and heterogeneity and 2.5x is dependence
+  null percentiles  90th 22   95th 26   99th 36
+  null maximum over 2000 replications      58
+  replications reaching 41                12
+  p_joint = (1 + 12) / (2000+1)  =  0.0065
+
+==============================================================================
+THE POOL ITSELF: DUPLICATES, AND WHICH WAY THE SIGNIFICANT CELLS POINT
+==============================================================================
+  cells whose series is byte-identical to another cell's: 32 of 214
+    lab52:AXJO:d0:sev                        is lab51:AXJO:d0
+    lab52:AXJO:d21:sev                       is lab51:AXJO:d21
+    lab52:AXJO:d55:sev                       is lab51:AXJO:d55
+    lab52:AXJO:d5:sev                        is lab51:AXJO:d5
+    ... and 28 more of the same shape
+  distinct cells                       182
+  rule A, distinct cells only: 71 observed against a null of mean 17.8, sd 11.6, 95th 39, p <= 0.0005
+  rule B, distinct cells only: 67 observed against a null of mean 17.0, sd 11.4, 95th 38, p <= 0.0005
+  rule C, distinct cells only: 35 observed against a null of mean 9.5, sd 7.2, 95th 23, p = 0.0075
+
+  of the 78 cells significant under rule A, 51 have a NEGATIVE statistic and 27 a positive one.
+  The count is two-sided and the test is direction-agnostic, which
+  is deliberate: the question is whether the pool holds more
+  structure than chance, not whether the structure helps.  But a
+  reader told that a count of significant cells exceeds chance will
+  assume the cells point the paper's way, and most of them do not:
+  on these grids the added block more often significantly HURTS.
+  under rule C: 41 significant, 25 negative, 16 positive.
+
+==============================================================================
+WHAT THIS REPLACES, IN NUMBERS
+==============================================================================
+  the shape of Table S30's argument:  a count far above 10.7 expected, with no variance attached
+  this file's own count, rule A:  78 observed
+  what the null actually is, rule A:  mean 19.9, sd 12.3, 95th percentile 42
+  so a count of 42 is ordinary noise, and the null mean is 1.9x the tabulated expectation
+  the observed 78 is still outside it:  p_joint = 0.0005, bounded above by 0.0015, the null's largest count in 2000 draws being 68
+  on the conservative rule B:  73 observed, null 95th percentile 41, p_joint = 0.0005, bounded above by 0.0015
+  on rule C, the only correctly sized one:  41 observed, null mean 11.2, 95th percentile 26, p_joint = 0.0065
+
+  VERDICT: the secondary grids collectively carry signal on all three rules.
+  What Table S30 cannot claim any more is the SIZE of the margin it implied, and
+  neither can rule A.  The null rule A is judged against sits 1.9 times above
+  0.05K because the rule itself rejects at 0.093 rather than 0.05 under its own null, not because
+  the cells are correlated; correcting that, rule C gives 41 observed against a null
+  mean of 11.2 and p_joint = 0.0065, against rule A's 0.0005.  The direction of the
+  conclusion survives on all rules that reject; the MARGIN is a property of the rule,
+  and the margin to quote is rule C's.
+
+  Not tested here, deliberately: the headline, which stays outside both pools,
+  and the market-state ladder, which lab67 tests with a statistic matched to
+  its own claim rather than by counting significant cells.
+
+runtime 1218.7s

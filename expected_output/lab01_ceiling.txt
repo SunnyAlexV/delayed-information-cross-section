@@ -1,0 +1,57 @@
+======================================================================
+PART 1  -  closed forms
+======================================================================
+  phi                      0.98
+  latent half-life            34.31 days
+  R^2 half-life               17.15 days   (half, because R^2 is a variance ratio)
+  Var(x)  stationary          2.27273
+  A       predicted var       0.18208
+  P       posterior var       0.09587
+  K       Kalman gain         0.47345
+  Var(xhat) = Var(x) - P      2.17685   (95.8% of the state is recoverable)
+  w_k     averaging weight    0.94158
+  Var(y)                      2.24158
+
+======================================================================
+PART 2  -  does the filter behave as the algebra says?
+======================================================================
+  Var(x)                   closed    2.27273   simulated    2.24750   rel.err  0.0111  ok
+  P  (filter error var)    closed    0.09587   simulated    0.09592   rel.err  0.0005  ok
+  Var(xhat)                closed    2.17685   simulated    2.15167   rel.err  0.0116  ok
+  Var(y)                   closed    2.24158   simulated    2.21518   rel.err  0.0118  ok
+
+======================================================================
+PART 3  -  the ceiling, and the phi^(2 delta) delay law
+======================================================================
+   delta   closed form    simulated   rel.err  ratio to d=0   phi^(2d)
+       0      0.860965     0.861148    0.0002       1.00000    1.00000  ok
+       1      0.826871     0.827048    0.0002       0.96040    0.96040  ok
+       2      0.794127     0.794297    0.0002       0.92237    0.92237  ok
+       3      0.762680     0.762845    0.0002       0.88584    0.88584  ok
+       5      0.703471     0.703627    0.0002       0.81707    0.81707  ok
+       8      0.623165     0.623309    0.0002       0.72380    0.72380  ok
+      13      0.509171     0.509302    0.0003       0.59140    0.59140  ok
+      21      0.368537     0.368657    0.0003       0.42805    0.42805  ok
+      34      0.217951     0.218050    0.0005       0.25315    0.25315  ok
+      55      0.093294     0.093341    0.0005       0.10836    0.10836  ok
+
+  The last two columns are the point: the ceiling falls EXACTLY as
+  phi^(2 delta).  One parameter governs the entire cost of being late.
+
+======================================================================
+PART 4  -  the k axis:  delay decay is the SAME for every k
+======================================================================
+     k   ceiling at d=0     at d=21     ratio    phi^42
+     1         0.844630    0.361544   0.42805   0.42805
+     5         0.860965    0.368537   0.42805   0.42805
+    21         0.710857    0.304283   0.42805   0.42805
+    63         0.439059    0.187939   0.42805   0.42805
+
+  Changing k changes HOW MUCH signal there is, never how fast delay
+  destroys it.  If real data shows a k-dependent decay RATE, then a
+  single-persistence model is wrong - which is a testable prediction,
+  not an assumption.
+
+======================================================================
+GATE: 14/14 checks within 2%  ->  PASS - the apparatus can be trusted
+======================================================================

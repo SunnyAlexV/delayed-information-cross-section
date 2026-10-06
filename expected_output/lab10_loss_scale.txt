@@ -1,0 +1,194 @@
+data folder: /home/claude/data_local
+4862 test days
+
+====================================================================================
+0.  IS OUR QLIKE THE VARIANCE-SCALE QLIKE?
+====================================================================================
+QLIKE(variance)            1.7946513593
+QLIKE(variance / median)   1.7946513593
+identical -> True.  QLIKE depends on the
+ratio alone, so the median normalisation cancels and Patton's result applies.
+Squared error on LOG variance has no such property and is not in the family.
+
+====================================================================================
+1.  THE SUBSTITUTION RATE UNDER FOUR LOSSES
+====================================================================================
+R(d) = [S_cross(d) - S_own(d)] / [S_own(0) - S_own(d)].  Intervals bootstrap
+the WHOLE ratio: numerator and denominator are recomputed on the same
+resampled days, which the paper previously did not do.
+
+  sq(log)  squared error on log variance        - NOT in Patton's family
+  QLIKE    variance scale; the median cancels   - robust, proved in Part 0
+  MSE(nrm) squared error on NORMALISED variance - Patton's MSE weighted
+           by 1/M^2, which his result does not cover
+  MSE(nat) squared error on NATURAL variance    - Patton's MSE itself
+
+ delta            R(d) sq(log)            R(d) QLIKE         R(d) MSE(nrm)         R(d) MSE(nat)
+     1         -1% [-33%, 29%]       -4% [-46%, 35%]      60% [-131%, 94%]       31% [-63%, 97%]
+     3         36% [ 15%, 55%]       40% [ 13%, 64%]       75% [-91%,104%]       60% [ -5%,102%]
+     5         51% [ 34%, 66%]       56% [ 35%, 75%]       86% [-51%,113%]       74% [ 23%,109%]
+     8         59% [ 44%, 72%]       66% [ 47%, 80%]       88% [-17%,110%]       79% [ 40%,107%]
+    13         64% [ 50%, 74%]       73% [ 55%, 84%]       84% [ 12%, 99%]       75% [ 49%, 98%]
+    21         67% [ 54%, 77%]       77% [ 60%, 87%]       84% [ 34%, 97%]       74% [ 54%, 95%]
+    34         70% [ 58%, 79%]       80% [ 65%, 88%]       82% [ 42%, 94%]       75% [ 58%, 94%]
+    55         71% [ 60%, 81%]       80% [ 66%, 89%]       90% [ 41%,105%]       80% [ 61%,101%]
+
+====================================================================================
+1a. THE SAME RATES, INVERTED RATHER THAN RESAMPLED
+====================================================================================
+Fixed-b Fieller sets on the same differentials, at the bandwidth and
+critical value lab66 fixes.  tau is the denominator's HAC t-statistic,
+the axis lab63 and lab66 index coverage by, printed so a reader can
+find the coverage figure that applies to each row.
+
+The delta = 55 sq(log) cell is an independent recomputation of lab21's
+own Fieller set at that delay and must agree with it.
+
+ delta    tau            R(d) sq(log)            R(d) QLIKE         R(d) MSE(nrm)         R(d) MSE(nat)
+     1    6.4         -1% [-28%, 30%]       -4% [-48%, 47%]    60% outside [90%,157%]    31% the whole line
+     3    6.1         36% [ 16%, 56%]       40% [  8%, 69%]    75% outside [96%,135%]    60% the whole line
+     5    5.9         51% [ 33%, 68%]       56% [ 28%, 79%]    86% outside [105%,139%]    74% the whole line
+     8    6.0         59% [ 43%, 74%]       66% [ 40%, 84%]    88% outside [104%,138%]    79% the whole line
+    13    5.9         64% [ 48%, 77%]       73% [ 42%, 87%]    84% outside [97%,133%]    75% the whole line
+    21    5.3         67% [ 50%, 79%]       77% [ 45%, 90%]    84% outside [98%,140%]    74% the whole line
+    34    5.3         70% [ 53%, 81%]       80% [ 51%, 91%]    82% outside [96%,144%]       75% [ 39%,258%]
+    55    5.4         71% [ 54%, 83%]       80% [ 52%, 93%]    90% outside [108%,182%]       80% [ 34%,204%]
+
+  sets that are NOT an ordinary interval: 14 of 32 [(1, 'mse'), (1, 'msen'), (3, 'mse'), (3, 'msen'), (5, 'mse'), (5, 'msen'), (8, 'mse'), (8, 'msen'), (13, 'mse'), (13, 'msen'), (21, 'mse'), (21, 'msen'), (34, 'mse'), (55, 'mse')]
+  Every bootstrap interval above has a counterpart here on the same
+  differentials; where the two differ the inverted one is the wider,
+  which is the direction lab63 measures.
+  bounded inverted sets: 18 of 32
+
+====================================================================================
+1b. SKILL UNDER EACH LOSS, WHICH IS WHAT THE PAPER'S TABLE 2 REPORTS
+====================================================================================
+Skill = 1 - loss(model) / loss(training-mean benchmark), so all of them are
+on a comparable 'fraction of benchmark loss removed' footing.
+
+MSE below is the NATURAL-scale one, which is the loss the paper claims.
+
+ delta    R2 own   R2 cross   QLIKE own  QLIKE cross  MSEnat own  MSEnat cross
+     0    0.5188     0.5089      0.6186       0.6060      0.4456        0.4422
+     1    0.4738     0.4732      0.5719       0.5699      0.3979        0.4127
+     3    0.4094     0.4492      0.4995       0.5475      0.3320        0.4007
+     5    0.3637     0.4434      0.4421       0.5416      0.2886        0.4043
+     8    0.3110     0.4346      0.3651       0.5322      0.2425        0.4027
+    13    0.2332     0.4150      0.2258       0.5123      0.1657        0.3759
+    21    0.1478     0.3973      0.0932       0.4972      0.0835        0.3526
+    34    0.0792     0.3857     -0.0121       0.4904      0.0115        0.3377
+    55    0.0072     0.3729     -0.0475       0.4854     -0.0218        0.3508
+
+====================================================================================
+2.  DOES THE CHOICE OF SCALE CHANGE THE VERDICT?
+====================================================================================
+ delta  S own sq(log)  S cross sq(log)  S own MSE(nat)  S cross MSE(nat)
+     0         0.5188           0.5089          0.4456            0.4422
+     1         0.4738           0.4732          0.3979            0.4127
+     3         0.4094           0.4492          0.3320            0.4007
+     5         0.3637           0.4434          0.2886            0.4043
+     8         0.3110           0.4346          0.2425            0.4027
+    13         0.2332           0.4150          0.1657            0.3759
+    21         0.1478           0.3973          0.0835            0.3526
+    34         0.0792           0.3857          0.0115            0.3377
+    55         0.0072           0.3729         -0.0218            0.3508
+
+====================================================================================
+3.  THE delta = 0 ROW, WHICH CHANGES SIGN
+====================================================================================
+On log-scale squared error the cross-section is slightly WORSE at zero delay,
+and the paper leans on that row when discussing Korkusuz and Jayawardena.
+On the robust variance-scale loss the sign flips.  Either way the question is
+whether the difference is distinguishable from zero, so test it.
+
+      loss     S own   S cross   difference          95% interval
+   sq(log)    0.5188    0.5089      -0.0099     [-0.0190,-0.0011]  <- excludes zero
+     QLIKE    0.6186    0.6060      -0.0126     [-0.0262,-0.0009]  <- excludes zero
+  MSE(nat)    0.4456    0.4422      -0.0035     [-0.0307,+0.0181]
+  MSE(nrm)    0.3156    0.3226      +0.0070     [-0.0427,+0.0204]
+
+A claim that rests on a row whose SIGN depends on the scale is a claim the
+paper should not make.  Whatever survives here is what it may say.
+
+====================================================================================
+4.  WHAT THE NORMALISATION WAS DOING TO PATTON'S MSE
+====================================================================================
+This part exists because the paper described its MSE column as Patton's
+MSE on the variance scale and computed it on the MEDIAN-NORMALISED
+variance scale.  Two things separate those two columns, not one, and
+reporting a single gap would credit the whole of it to the weight:
+
+  MSE(nrm)   (exp y - g exp f)^2                 no median on either side
+  MSE(inf)   (exp y * Mh - g exp f * Mh)^2       BOTH sides at t+h.  Per
+             day this is exactly Mh^2 * MSE(nrm), so what separates it
+             from the column above is the 1/M^2 weight ALONE.  It is
+             infeasible: M_{t+h} is not known at t.
+  MSE(nat)   (exp y * Mh - g exp f * M0)^2       the implementable one,
+             which the paper reports.  What separates it from MSE(inf)
+             is the median's h-day drift ALONE.
+
+So gap 1 prices the weighting and gap 2 prices the drift, and the sum of
+the two is the whole of the earlier mislabelling.
+
+  identity check at delta = 55: max |MSE(inf) - M^2 MSE(nrm)| / M^2 MSE(nrm) = 1.50e-12
+  -> the middle column IS the normalised loss reweighted: True
+
+ delta   MSE(nrm)   MSE(inf)   MSE(nat)    weight     drift     total
+     1      60.1%      31.7%      31.1%    +28.4%     +0.6%    +29.0%
+     3      74.7%      60.5%      60.5%    +14.2%     +0.0%    +14.2%
+     5      85.6%      73.6%      73.7%    +12.0%     -0.1%    +11.9%
+     8      87.9%      78.7%      78.8%     +9.2%     -0.1%     +9.0%
+    13      83.6%      75.7%      75.1%     +7.9%     +0.6%     +8.5%
+    21      83.5%      75.4%      74.3%     +8.1%     +1.1%     +9.2%
+    34      82.0%      76.1%      75.1%     +6.0%     +0.9%     +6.9%
+    55      90.1%      80.8%      79.7%     +9.3%     +1.1%    +10.3%
+
+  largest total gap: 29.0% of the rate; largest weighting piece 28.4%, largest drift piece 1.1%.
+  The paper reports MSE(nat), which is the one Patton's result covers and
+  the only one of the three a forecaster could have computed.  The other
+  two are kept so the size of the earlier mislabelling is on the record
+  as two named effects rather than as one undifferentiated number.
+
+====================================================================================
+5.  WHICH BENCHMARK BELONGS ON THE VARIANCE SCALE
+====================================================================================
+The benchmark forecasts the NORMALISED log target, y = log(var / M),
+and is carried onto the variance scale exactly as the models are:
+exponentiate, apply Duan's smearing factor, multiply by the median the
+forecaster holds.  For a constant log forecast the smeared value is
+mean_u exp(y_u), and an earlier version of this project called that
+'the trailing mean of the variance'.  It is not.  It is the trailing
+mean of the variance OVER ITS OWN MEDIAN, and the two are different
+objects.  This part measures how different, and what turns on it.
+
+  mean |M_t mean_u exp(y_u)  -  mean_u sigma^2_{u+h}| as a share of the
+  mean natural variance: 62.8%; correlation between them: 0.35
+  So the collapse an earlier draft claimed does not hold, and the
+  reconstructed benchmark has to be described as what it is.
+
+  Both constructions are scored below on the implementable natural loss.
+  The reconstructed one is what this file reports, because it is the
+  same forecaster the log and QLIKE columns use and keeps Section 4's
+  claim that the three columns share one benchmark.  The direct one is
+  a different forecaster and is shown so the choice is visible.
+
+ delta  S_own recon  S_own direct  S_cross recon  S_cross direct   R recon  R direct
+     1       0.3979        0.3536         0.4127          0.3695     31.1%     31.1%
+     3       0.3320        0.2828         0.4007          0.3566     60.5%     60.5%
+     5       0.2886        0.2362         0.4043          0.3604     73.7%     73.7%
+     8       0.2425        0.1867         0.4027          0.3587     78.8%     78.8%
+    13       0.1657        0.1043         0.3759          0.3299     75.1%     75.1%
+    21       0.0835        0.0160         0.3526          0.3049     74.3%     74.3%
+    34       0.0115       -0.0613         0.3377          0.2889     75.1%     75.1%
+    55      -0.0218       -0.0971         0.3508          0.3030     79.7%     79.7%
+
+  largest difference the choice makes to R(delta): 0.00%
+  The levels move and the rate does not, for the reason part 1 of
+  lab58 proves: the benchmark cancels from a ratio of skill
+  differences. So the correction is a correction to how this paper
+  describes and reports SKILL, and not to anything it concludes.
+
+The robust loss is the one to believe if they disagree.  If the rates in
+part 1 sit on top of each other, the headline survives the correction and
+the paper owes the reader a sentence naming which loss is robust, not a
+new set of numbers.

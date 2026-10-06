@@ -1,0 +1,110 @@
+data folder: /home/claude/data_local
+Prints the control envelope, Section S4.
+
+target SPX, 4862 test days, 7 foreign peers
+the frozen AR(1) control: phi = 0.9265, fitted on the first 1500 rows
+
+================================================================================================
+A.  OWN-ONLY SKILL, EVERY CONTROL, EVERY DELAY
+================================================================================================
+Same walk-forward, same refit schedule, same days. Selection below is on
+THIS table and never on the rate, which is the quantity under test.
+
+ delta     HAR3    +LAGS    +LONG     +LEV    +MEAS      ALL    +EWMA    STATE
+     0   0.5188   0.5239   0.5135   0.5551   0.5251   0.5749   0.5164   0.5025
+     3   0.4094   0.4129   0.4015   0.4303   0.4198   0.4469   0.4047   0.3888
+     5   0.3637   0.3665   0.3533   0.3785   0.3768   0.3931   0.3564   0.3442
+    13   0.2332   0.2330   0.2123   0.2311   0.2542   0.2298   0.2114   0.2194
+    21   0.1478   0.1475   0.1179   0.1389   0.1797   0.1275   0.1152   0.1332
+    55   0.0072   0.0070  -0.0516  -0.0071   0.0573  -0.0644  -0.0445   0.0151
+
+  strongest control at each delay: 0d ALL, 3d ALL, 5d ALL, 13d +MEAS, 21d +MEAS, 55d +MEAS
+  strongest averaged across delays: +MEAS (0.3021 against 0.2800 for the paper's)
+
+================================================================================================
+B.  THE RATE AGAINST EVERY ONE OF THEM
+================================================================================================
+The rate is recomputed INSIDE each arm, as Table S3 does: the control
+and the cross-sectional model carry the same domestic block, so the
+only difference between numerator and denominator is the seven peers.
+Holding the cross-sectional model at the paper's block while the
+control improves would compare two different models and report the
+mismatch as a rate.
+
+ delta     HAR3    +LAGS    +LONG     +LEV    +MEAS      ALL    +EWMA    STATE  envelope   lowest
+     3    36.4%    32.9%    30.9%    19.2%    30.5%     6.7%    29.5%    41.2%      6.7%     6.7%
+     5    51.4%    48.8%    47.8%    36.4%    47.3%    25.4%    46.1%    58.2%     25.4%    25.4%
+    13    63.6%    62.3%    61.6%    55.6%    60.1%    48.6%    61.0%    69.5%     60.1%    48.6%
+    21    67.3%    66.2%    65.9%    60.9%    63.8%    55.0%    65.4%    71.8%     63.8%    55.0%
+    55    71.5%    70.7%    70.9%    66.5%    67.4%    60.7%    70.8%    74.3%     67.4%    60.7%
+
+  at eleven weeks: 71.5% against the paper's own control,
+  67.4% against the strongest one by own-only skill (+MEAS),
+  60.7% at the lowest any of the eight produces (ALL)
+
+  paper minus +MEAS at eleven weeks: -4.1% [-10.6%, -0.3%], 1500 replications
+  Numerator and denominator are recomputed on the same resampled days
+  for both arms, so the difference is paired and the intervals of the
+  two rates are not being compared with each other.
+
+================================================================================================
+C.  AND DOES SECTION 8 SURVIVE THE STRONGER CONTROL?
+================================================================================================
+Section 8 raced the foreign block against implied volatility with the
+PAPER'S domestic block underneath both. If the stronger block is the
+right one, the race has to be re-run inside it: a better domestic model
+could leave less room for the options market too.
+
+  implied-volatility files and seams:
+    VIX files: ['VIX_History.csv']
+    VDAX files: ['DAX_New_Volatility_Historical_Data.csv', 'DAX_New_Volatility_Historical_Data_1.csv']
+    seam VDAX: 251 overlapping rows, 0 mismatched  -> VERIFIED
+  Section 8's window: 4525 test days, 7 peers, implied-volatility block 2 wide
+
+ delta   control      +IV  +IV+foreign   foreign given IV    GW z
+     0     paper   0.5545       0.5442            -0.0103   -2.27
+     0     +MEAS   0.5573       0.5447            -0.0127   -2.57
+     3     paper   0.5334       0.5229            -0.0105   -1.96
+     3     +MEAS   0.5340       0.5213            -0.0127   -2.16
+     5     paper   0.5324       0.5229            -0.0095   -1.67
+     5     +MEAS   0.5330       0.5210            -0.0120   -1.97
+    13     paper   0.5258       0.5167            -0.0090   -1.35
+    13     +MEAS   0.5247       0.5129            -0.0119   -1.70
+    21     paper   0.5243       0.5146            -0.0097   -1.42
+    21     +MEAS   0.5229       0.5119            -0.0110   -1.49
+    55     paper   0.5261       0.5166            -0.0095   -1.30
+    55     +MEAS   0.5210       0.5104            -0.0106   -1.44
+
+  delays where the foreign block adds significantly given implied
+  volatility AND the stronger domestic control: 0 of 6
+
+================================================================================================
+VERDICT
+================================================================================================
+  Across eight domestic controls the substitution rate at eleven weeks
+  runs from 60.7% to 74.3%, a spread of 14% points. The paper's control
+  gives 71.5% and the strongest control by own-only skill, +MEAS, gives
+  67.4%, a paired difference of -4.1% [-10.6%, -0.3%]. That reproduces Section S4
+  from a second direction, on a different feature set and a different
+  script, which is worth more than the agreement of a number with itself.
+
+  The lowest figure in the table is 60.7%, from ALL, and it should not
+  be quoted as the conservative rate. Look at what produces it: that arm
+  scores 0.5749 own-only at the origin and -0.0644 at eleven weeks, so it is the
+  strongest control in the set where the denominator is set and one of the
+  weakest where the numerator is. R(delta) reads the curve at two points,
+  and an arm that is strong at one and weak at the other moves the rate
+  without being a better control anywhere. Reporting it as the headline
+  would be the mirror of the error two referees warned about, made in the
+  paper's own favour instead of against it.
+
+  What the envelope does retire is the open-ended version of the
+  objection. The control is no longer one choice a reader has to take on
+  trust: eight are priced, the selection rule is stated before the
+  numbers, and a ninth moves the headline only by beating all eight on
+  own-only skill, under the same rule.
+
+  Section 8 is unaffected. Under the stronger control the foreign block
+  still adds nothing detectable given implied volatility at any delay,
+  so the redundancy result was not resting on a weak domestic model
+  either.

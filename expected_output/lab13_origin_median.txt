@@ -1,0 +1,69 @@
+data folder: /home/claude/data_local
+4862 test days
+
+==================================================================================
+A.  HOW BIG IS THE THING IN DISPUTE?
+==================================================================================
+log(M_{t+h} / M_t) is the entire difference between the two targets.
+
+  mean +0.00089   sd 0.03485   |max| 0.1768
+  sd of the target itself                0.9531
+  ratio                                  3.7%
+  correlation with the target            +0.5210
+
+A median over 252 days moves slowly, so the two targets are close. Close
+is not the same as irrelevant, and the correlation above is the reason to
+check: the drift is not independent of what is being predicted.
+
+==================================================================================
+B.  DOES THE RESULT DEPEND ON WHICH TARGET IS USED?
+==================================================================================
+Identical features, identical estimator, identical days. Only the
+normalisation date of the outcome changes.
+
+ delta    --- target-dated (paper) ---          --- origin-dated ---
+             own     cross         dR2       own     cross       dR2
+     0    0.5188    0.5089     -0.0099    0.5271    0.5170   -0.0101
+     3    0.4094    0.4492     +0.0398    0.4164    0.4554   +0.0391
+     5    0.3637    0.4434     +0.0797    0.3703    0.4495   +0.0792
+    13    0.2332    0.4150     +0.1818    0.2391    0.4210   +0.1819
+    21    0.1478    0.3973     +0.2495    0.1522    0.4028   +0.2506
+    55    0.0072    0.3729     +0.3657    0.0102    0.3779   +0.3677
+
+==================================================================================
+C.  THE SUBSTITUTION RATE UNDER BOTH, WITH INTERVALS
+==================================================================================
+Full-ratio bootstrap, as in lab10: numerator and denominator recomputed
+on the same resampled days.
+
+ delta       R(d) target-dated       R(d) origin-dated
+     3         36% [ 16%, 55%]         35% [ 15%, 54%]
+     5         51% [ 34%, 67%]         50% [ 34%, 66%]
+    13         64% [ 50%, 75%]         63% [ 50%, 74%]
+    21         67% [ 53%, 78%]         67% [ 53%, 77%]
+    55         71% [ 60%, 81%]         71% [ 59%, 81%]
+
+==================================================================================
+C2.  THE SAME RATES, INVERTED WITH FIXED-b CRITICAL VALUES
+==================================================================================
+The covering procedure.  Point estimates are identical to part C by
+construction - a critical value cannot move an estimate - so any
+difference in this table is the interval and nothing else.
+
+ delta         R(d) target-dated         R(d) origin-dated
+     3           36% [ 16%, 56%]           35% [ 16%, 55%]
+     5           51% [ 33%, 68%]           50% [ 33%, 67%]
+    13           64% [ 48%, 77%]           63% [ 48%, 76%]
+    21           67% [ 50%, 79%]           67% [ 50%, 79%]
+    55           71% [ 54%, 83%]           71% [ 54%, 83%]
+
+==================================================================================
+VERDICT
+==================================================================================
+    target-dated (paper): R(55) = 71%, dR2 = +0.3657
+            origin-dated: R(55) = 71%, dR2 = +0.3677
+
+If those two lines agree, the median's five-day drift is not doing any
+work and the paper may keep its definition, reporting this run as the
+check that says so.  If they do not, the origin-dated target is the one a
+forecaster could act on and should become the headline.

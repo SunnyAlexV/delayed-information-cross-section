@@ -1,0 +1,80 @@
+data folder: /home/claude/data_local
+
+==============================================================================
+PARTS A and B - binary target, five target markets, general timing rule
+==============================================================================
+A peer close counts only if its timestamp precedes the target's close;
+markets closing at or after the target contribute the PREVIOUS day.
+
+--- target SPX (21.0 UTC), 4862 test days, base rate 0.483
+    same-day peers ['N225', 'AXJO', 'HSI', 'NSEI', 'FTSE', 'DAX']; previous-day peers ['BVSP']
+     delta   persist     cross                  gain  vs current-own
+         0     73.84     72.50      -1.34 [ -2.8, +0.2]            -1.34
+         5     67.42     70.59      +3.17 [ +1.3, +5.0]*           -3.25
+        13     63.51     69.95      +6.44 [ +3.8, +8.9]*           -3.89
+        21     60.70     68.63      +7.94 [ +4.5,+11.2]*           -5.20
+        55     55.33     68.33     +13.00 [ +8.5,+17.5]*           -5.51
+
+--- target FTSE (16.5 UTC), 4638 test days, base rate 0.475
+    same-day peers ['N225', 'AXJO', 'HSI', 'NSEI']; previous-day peers ['DAX', 'BVSP', 'SPX']
+     delta   persist     cross                  gain  vs current-own
+         0     71.65     71.63      -0.02 [ -1.7, +1.6]            -0.02
+         5     67.21     70.38      +3.17 [ +1.0, +5.2]*           -1.27
+        13     62.83     69.38      +6.55 [ +3.7, +9.5]*           -2.26
+        21     60.59     68.80      +8.21 [ +4.4,+11.4]*           -2.85
+        55     54.96     68.24     +13.28 [ +9.4,+16.9]*           -3.41
+
+--- target DAX (16.5 UTC), 4683 test days, base rate 0.476
+    same-day peers ['N225', 'AXJO', 'HSI', 'NSEI']; previous-day peers ['FTSE', 'BVSP', 'SPX']
+     delta   persist     cross                  gain  vs current-own
+         0     73.37     73.16      -0.21 [ -2.1, +1.6]            -0.21
+         5     67.88     70.96      +3.07 [ +0.9, +5.2]*           -2.41
+        13     63.70     70.23      +6.53 [ +4.2, +9.1]*           -3.14
+        21     60.75     70.34      +9.59 [ +6.7,+12.4]*           -3.03
+        55     58.96     69.83     +10.87 [ +7.2,+14.4]*           -3.54
+
+--- target N225 (6.0 UTC), 4693 test days, base rate 0.509
+    same-day peers []; previous-day peers ['AXJO', 'HSI', 'NSEI', 'FTSE', 'DAX', 'BVSP', 'SPX']
+     delta   persist     cross                  gain  vs current-own
+         0     70.06     69.64      -0.43 [ -2.1, +1.5]            -0.43
+         5     66.14     66.97      +0.83 [ -1.7, +3.2]            -3.09
+        13     62.28     65.40      +3.11 [ +0.2, +6.0]*           -4.67
+        21     59.41     65.03      +5.63 [ +2.2, +8.5]*           -5.03
+        55     54.31     63.41      +9.10 [ +5.1,+12.8]*           -6.65
+
+--- target HSI (8.0 UTC), 4756 test days, base rate 0.494
+    same-day peers ['N225', 'AXJO']; previous-day peers ['NSEI', 'FTSE', 'DAX', 'BVSP', 'SPX']
+     delta   persist     cross                  gain  vs current-own
+         0     71.11     72.33      +1.22 [ -0.4, +3.0]            +1.22
+         5     66.65     70.98      +4.33 [ +2.3, +6.7]*           -0.13
+        13     64.34     69.97      +5.63 [ +3.3, +8.3]*           -1.14
+        21     62.62     68.73      +6.12 [ +3.5, +8.9]*           -2.38
+        55     55.34     66.17     +10.83 [ +7.3,+14.3]*           -4.94
+
+==============================================================================
+PART C - continuous target: log realised variance, h=5, SPX
+==============================================================================
+The companion paper argued a median split discards magnitude. This drops
+the split entirely: out-of-sample R-squared against a trailing mean of
+resolved labels, common to every delay, and
+QLIKE, which is robust to a noisy volatility proxy.
+
+ delta    R2 own   R2 cross                 dR2   QLIKE own  QLIKE cross
+     0    0.5188     0.5089    -0.0099 [-0.020,-0.001]*      0.3034       0.3149
+     1    0.4738     0.4732    -0.0005 [-0.015,+0.013]       0.3456       0.3466
+     2    0.4386     0.4565    +0.0179 [-0.000,+0.038]       0.3811       0.3603
+     3    0.4094     0.4492    +0.0398 [+0.017,+0.068]*      0.4125       0.3655
+     5    0.3637     0.4434    +0.0797 [+0.045,+0.126]*      0.4665       0.3704
+     8    0.3110     0.4346    +0.1237 [+0.076,+0.188]*      0.5385       0.3789
+    13    0.2332     0.4150    +0.1818 [+0.112,+0.278]*      0.6656       0.3962
+    21    0.1478     0.3973    +0.2495 [+0.144,+0.391]*      0.7832       0.4095
+    34    0.0792     0.3857    +0.3064 [+0.182,+0.473]*      0.8738       0.4146
+    55    0.0072     0.3729    +0.3657 [+0.217,+0.549]*      0.9047       0.4202
+
+  seed stability of the stars above, 20 further draw sequences per cell:
+    every cell returns the same verdict in all 20.
+
+* = 95% block-bootstrap interval on the paired difference excludes zero, and does so
+    in all 20 further draw sequences.  ? = the verdict depends on the draw sequence and
+    is reported as undetermined.
+QLIKE is a loss: lower is better.

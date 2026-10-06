@@ -1,0 +1,80 @@
+data folder: /home/claude/data_local
+Prints the anatomy of the conditional rate, Section S5.
+
+target SPX, 4862 test days, 7 foreign peers
+    VIX files: ['VIX_History.csv']
+VIX terciles at t-1: calm <= 15.4, stressed > 20.7
+
+================================================================================================
+A.  THE RATIO, TAKEN APART
+================================================================================================
+N is the mean squared error the cross-section REMOVES at that delay.
+D is the mean squared error the delay ADDS. R = N / D. Both are in the
+target's own units, so they can be compared across states directly.
+
+     state  delta   N (removed)  D (delay cost)   R = N/D   days
+      calm      5        0.0279          0.0669       42%   1620
+      calm     13        0.0336          0.0790       43%   1620
+      calm     21        0.0402          0.0994       40%   1620
+      calm     55        0.0570          0.1222       47%   1620
+
+    middle      5        0.0416          0.1304       32%   1624
+    middle     13        0.1045          0.2222       47%   1624
+    middle     21        0.1476          0.2803       53%   1624
+    middle     55        0.1811          0.3414       53%   1624
+
+  stressed      5        0.1571          0.2435       65%   1618
+  stressed     13        0.3789          0.5108       74%   1618
+  stressed     21        0.5218          0.6750       77%   1618
+  stressed     55        0.8021          0.9914       81%   1618
+
+The question is whether N moves with state, or only D.
+
+ delta    N calm   N stressed   N ratio    D calm   D stressed   D ratio
+     5    0.0279       0.1571       5.6x    0.0669       0.2435       3.6x
+    13    0.0336       0.3789      11.3x    0.0790       0.5108       6.5x
+    21    0.0402       0.5218      13.0x    0.0994       0.6750       6.8x
+    55    0.0570       0.8021      14.1x    0.1222       0.9914       8.1x
+
+  averaged over delays, stress multiplies N by 11.0 and D by 6.3
+
+================================================================================================
+B.  A CONFIDENCE SET THAT CAN SAY 'NOT IDENTIFIED'
+================================================================================================
+Fieller's construction on the same N and D, HAC-adjusted, from Appendix C.
+'interval' is an ordinary two-sided set; 'exclusion' is the complement of
+one, two half-lines; 'unbounded' excludes nothing at all. The last two are
+answers a percentile bootstrap cannot give, and are the honest ones when a
+denominator can approach zero.
+
+     state  delta       R     tau                         Fieller 95% set
+      calm      5     42%     3.4                            [-2%, +121%]
+      calm     13     43%     2.9                           [-30%, +109%]
+      calm     21     40%     3.5                            [-21%, +92%]
+      calm     55     47%     3.0                            [-22%, +94%]
+
+    middle      5     32%     5.7                             [+1%, +58%]
+    middle     13     47%     5.9                            [+26%, +70%]
+    middle     21     53%     5.5                            [+32%, +77%]
+    middle     55     53%     4.4                            [+28%, +76%]
+
+  stressed      5     65%     3.5                            [+43%, +82%]
+  stressed     13     74%     3.6                            [+59%, +85%]
+  stressed     21     77%     3.6                            [+59%, +87%]
+  stressed     55     81%     4.1                            [+67%, +90%]
+
+        calm: 0 of 4 sets are not ordinary intervals
+      middle: 0 of 4 sets are not ordinary intervals
+    stressed: 0 of 4 sets are not ordinary intervals
+
+================================================================================================
+VERDICT
+================================================================================================
+  Stress multiplies the error the cross-section removes by 11.0, against
+  6.3 for the error the delay adds. The numerator moves with the state,
+  so the conditional result is a fact about markets and not an artefact of
+  dividing by a larger denominator. Breadth does more work when markets
+  are frightened, in absolute error and not merely as a share.
+
+  Every calm-market set is an ordinary interval, so the percentile
+  bootstrap was not misleading after all and the text's caveat can go.

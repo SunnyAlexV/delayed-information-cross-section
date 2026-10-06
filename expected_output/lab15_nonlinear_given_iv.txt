@@ -1,0 +1,117 @@
+data folder: /home/claude/data_local
+  implied-volatility files and seams:
+    VIX files: ['VIX_History.csv']
+    VDAX files: ['DAX_New_Volatility_Historical_Data.csv', 'DAX_New_Volatility_Historical_Data_1.csv']
+    seam VDAX: 251 overlapping rows, 0 mismatched  -> VERIFIED
+
+target SPX, 4525 test days, 7 foreign peers, VIX at t-1 (STRICT)
+burn-in for the random layer: rows 0 to 1812, all strictly before the first forecast origin
+features: IV 5,  IV+F 12,  IV+F+FAC 16,  IV+F+RFF20 32,  IV+F+RFF60 72
+ridge grid PAPER: [0.3, 1.0, 3.0, 10.0, 30.0]
+ridge grid  WIDE: [0.3, 1.0, 3.0, 10.0, 30.0, 100.0, 300.0, 1000.0]
+
+======================================================================================
+0.  RECONCILIATION WITH lab08
+======================================================================================
+Under the paper's own grid the two linear arms here are lab08's '+iv' and
+'+both' columns.  The reference is not pasted in: lab08's own walk() is
+called on the same panel and its output compared.  This file builds its
+design matrix a different way - one design() call per arm rather than a
+list of blocks - so agreement is a real check on both, and if it fails
+nothing below is about Section 7.
+
+ delta   IV here   lab08 +iv   IV+F here  lab08 +both
+     0    0.5545      0.5545      0.5442       0.5442   ok
+     3    0.5334      0.5334      0.5229       0.5229   ok
+     5    0.5324      0.5324      0.5229       0.5229   ok
+    13    0.5258      0.5258      0.5167       0.5167   ok
+    21    0.5243      0.5243      0.5146       0.5146   ok
+    55    0.5261      0.5261      0.5166       0.5166   ok
+
+  both arms reconcile with lab08 to within 5e-9
+
+======================================================================================
+A.  DOES ANY NON-LINEAR FOREIGN MAP ADD TO A FORECASTER WHO HAS VIX?
+======================================================================================
+Every arm is compared against IV - own stale domestic data plus implied
+volatility.  dR2 and the GW statistic ARE the redundancy claim; lab08 made
+them for IV+F alone, under ridge and under the paper's grid.
+A positive GW statistic above 1.96 would overturn Section 7.
+
+  --- ridge grid: PAPER ----------------------------------------------------------
+ delta    R2 IV                     F                 F+FAC               F+RFF20               F+RFF60
+                    dR2   GW z      p     dR2   GW z      p     dR2   GW z      p     dR2   GW z      p
+     0   0.5545  -0.0103  -2.27 0.023  -0.0125  -2.60 0.009  -0.0552  -2.73 0.006  -0.0857  -2.45 0.014
+     3   0.5334  -0.0105  -1.96 0.050  -0.0143  -2.62 0.009  -0.0597  -2.68 0.007  -0.0820  -2.77 0.006
+     5   0.5324  -0.0095  -1.67 0.094  -0.0120  -2.14 0.033  -0.0660  -2.44 0.015  -0.0851  -2.79 0.005
+    13   0.5258  -0.0090  -1.35 0.176  -0.0217  -1.85 0.064  -0.0734  -2.37 0.018  -0.1037  -2.32 0.020
+    21   0.5243  -0.0097  -1.42 0.156  -0.0254  -1.70 0.089  -0.0813  -2.37 0.018  -0.1047  -2.42 0.015
+    55   0.5261  -0.0095  -1.30 0.194  -0.0080  -1.13 0.261  -0.0711  -2.42 0.016  -0.1022  -2.47 0.014
+
+  --- ridge grid: WIDE -----------------------------------------------------------
+ delta    R2 IV                     F                 F+FAC               F+RFF20               F+RFF60
+                    dR2   GW z      p     dR2   GW z      p     dR2   GW z      p     dR2   GW z      p
+     0   0.5507  -0.0093  -2.24 0.025  -0.0107  -2.40 0.017  -0.0400  -2.49 0.013  -0.0525  -3.40 0.001
+     3   0.5243  -0.0049  -0.91 0.365  -0.0095  -1.65 0.100  -0.0445  -2.01 0.044  -0.0595  -2.81 0.005
+     5   0.5229  -0.0055  -0.90 0.368  -0.0074  -1.18 0.237  -0.0527  -1.95 0.051  -0.0632  -2.80 0.005
+    13   0.5134  -0.0048  -0.65 0.517  -0.0093  -0.72 0.469  -0.0629  -2.05 0.041  -0.0720  -2.52 0.012
+    21   0.5124  -0.0049  -0.69 0.493  -0.0154  -1.03 0.304  -0.0679  -2.05 0.040  -0.0738  -2.58 0.010
+    55   0.5082  -0.0046  -0.70 0.485  -0.0047  -0.69 0.492  -0.0587  -1.99 0.047  -0.0657  -2.32 0.020
+
+======================================================================================
+B.  WHAT THE ADDED FLEXIBILITY COSTS
+======================================================================================
+As in lab07 and lab09: the foreign block is replaced by AR(1) surrogates
+with the same persistence and the same cross-market innovation covariance
+but no predictive content, so any R2 difference between arms is what the
+extra regressors take whether or not they help.  Measured against IV+F,
+because the question is the cost of BENDING the foreign block rather than
+the cost of carrying it, and under the WIDE grid, because that is the grid
+the verdict is read from.
+
+ delta             F+FAC           F+RFF20           F+RFF60
+            cost     net      cost     net      cost     net
+     0   -0.0048 +0.0035   -0.0163 -0.0143   -0.0355 -0.0076
+     3   -0.0055 +0.0009   -0.0188 -0.0207   -0.0421 -0.0124
+     5   -0.0056 +0.0037   -0.0211 -0.0261   -0.0449 -0.0128
+    13   -0.0075 +0.0030   -0.0223 -0.0358   -0.0517 -0.0155
+    21   -0.0080 -0.0025   -0.0240 -0.0391   -0.0540 -0.0148
+    55   -0.0077 +0.0076   -0.0224 -0.0317   -0.0538 -0.0073
+
+======================================================================================
+C.  DOES MORE FLEXIBILITY FIND MORE?
+======================================================================================
+If the objection were right, the wider random layer would beat the
+narrower one.  Positive means RFF60 is better.  WIDE grid.
+
+ delta   R2 RFF20   R2 RFF60   difference
+     0     0.5107     0.4982      -0.0125
+     3     0.4799     0.4649      -0.0150
+     5     0.4702     0.4597      -0.0105
+    13     0.4505     0.4414      -0.0091
+    21     0.4445     0.4387      -0.0058
+    55     0.4495     0.4425      -0.0070
+
+======================================================================================
+VERDICT   (read from the WIDE grid)
+======================================================================================
+         IV+F: adds to IV at 0 of 6 delays;  IV beats it at 1 (delta 0)
+     IV+F+FAC: adds to IV at 0 of 6 delays;  IV beats it at 1 (delta 0)
+   IV+F+RFF20: adds to IV at 0 of 6 delays;  IV beats it at 5 (delta 0, 3, 13, 21, 55)
+   IV+F+RFF60: adds to IV at 0 of 6 delays;  IV beats it at 6 (delta 0, 3, 5, 13, 21, 55)
+
+Read the GW column, not dR2 and not 'net'.  'net' is a difference of two
+estimated quantities carrying no interval, which is the trap lab07
+documented; it is printed because the cost of flexibility is the mechanism,
+but no claim rests on its sign.
+
+What this supports, if the GW column holds: the redundancy of the foreign
+block given implied volatility is not an artefact of the linear estimator.
+It survives a quadratic global factor, an interaction between that factor
+and implied volatility, and a random-feature approximation to an RBF kernel
+at two capacities and under a penalty grid wide enough to regularise it.
+
+What it cannot support: that no non-linear model could ever find anything.
+A learned first layer was not tested, and this sample could not pay for
+one.  That is the same weaker claim lab09 draws, now covering the case
+Section 7 actually rests on.

@@ -1,0 +1,147 @@
+lab66: does the ratio's confidence set cover at 95%, and does it need a bandwidth?
+
+  n = 4862, R* = 0.72, corr(d1,d2) = 0.5, nominal 95%
+  dependence: lab63's generator, matched to the measured loss-differential ACF
+  3000 iid draws per critical value, 4000 replications per coverage cell
+
+==============================================================================
+A.  CRITICAL VALUES, SIMULATED RATHER THAN QUOTED
+==============================================================================
+Kiefer and Vogelsang publish a polynomial for the fixed-b Bartlett values.
+It is deliberately not used: a coefficient recalled from memory cannot be
+audited against anything in this repository, and the limits are pivotal, so
+simulating them from iid draws is both exact enough and checkable.  The two
+checks are printed beneath the table - the value must approach the normal
+1.96 as b approaches zero, and must rise with b.  A quoted constant would
+satisfy neither test because neither test could be run on it.
+
+                 procedure      M   b = M/n   95% two-sided cv
+          fixed-b Bartlett     40    0.0082              1.985
+          fixed-b Bartlett     80    0.0165              2.007
+          fixed-b Bartlett    160    0.0329              2.074
+          fixed-b Bartlett    243    0.0500              2.114
+          fixed-b Bartlett    486    0.1000              2.248
+    self-normalised (Shao)      -         -              48.99   (on the SQUARED statistic)
+                    normal      -         -              1.960
+
+  THE VALUE USED: b = 0.05, M = 243 at n = 4862, cv = 2.11 (12000 draws)
+
+  check 1, cv -> 1.96 as b -> 0: at b = 0.0082 the value is 1.985, as it should be
+  check 2, cv rises with b: yes
+  Both checks are on the simulation, not on the paper.  They are here because
+  a critical value that is wrong makes every coverage figure below wrong in the
+  same direction, and nothing else in this file would reveal it.
+
+==============================================================================
+B.  COVERAGE OF THE RATIO'S CONFIDENCE SET
+==============================================================================
+Every procedure inverts the same test of E[d1 - r d2] = 0 over r, so they
+differ only in how the statistic is studentised and which critical value is
+used.  'normal' at the paper's own bandwidth is the procedure the paper
+currently runs.  Width is the median over bounded sets; sets that are a whole
+line or two half-lines are counted separately, because a procedure can buy
+coverage by declining to identify anything.
+
+  every coverage figure below carries a Monte Carlo standard error of 0.34 points
+  at 4000 replications; a gap smaller than about 1.0 points between two cells is not a difference.
+
+  tau = 10.0
+                 procedure      M       b   coverage  bounded only  median width  unbounded
+                   fixed-b     40   0.008      91.0%         91.0%         0.309       0.0%
+      normal (the paper's)     80   0.016      92.5%         92.5%         0.330       0.0%
+                   fixed-b     80   0.016      93.2%         93.2%         0.338       0.0%
+                   fixed-b    160   0.033      94.8%         94.8%         0.360       0.0%
+                   fixed-b    243   0.050      94.7%         94.7%         0.367       0.0%
+                   fixed-b    486   0.100      94.8%         94.8%         0.382       0.0%
+           self-normalised   none       -      95.5%         95.5%         0.469       0.0%
+           block bootstrap     80       -      90.9%         90.9%         0.325       0.0%
+                                              +-0.77                             800 draws of the 4000 above
+
+  tau = 3.0
+                 procedure      M       b   coverage  bounded only  median width  unbounded
+                   fixed-b     40   0.008      91.1%         91.4%         1.225      10.0%
+      normal (the paper's)     80   0.016      93.0%         93.3%         1.347      11.8%
+                   fixed-b     80   0.016      93.6%         94.0%         1.388      12.8%
+                   fixed-b    160   0.033      94.7%         95.0%         1.481      16.2%
+                   fixed-b    243   0.050      94.6%         94.8%         1.512      17.6%
+                   fixed-b    486   0.100      94.7%         94.9%         1.602      20.1%
+           self-normalised   none       -      96.2%         96.4%         2.033      37.8%
+           block bootstrap     80       -      94.1%         94.1%         1.428       0.0%
+                                              +-0.77                             800 draws of the 4000 above
+
+  tau = 1.5
+                 procedure      M       b   coverage  bounded only  median width  unbounded
+                   fixed-b     40   0.008      91.0%         90.9%         2.130      56.7%
+      normal (the paper's)     80   0.016      92.5%         92.4%         2.297      60.7%
+                   fixed-b     80   0.016      93.2%         92.9%         2.360      62.2%
+                   fixed-b    160   0.033      94.3%         94.2%         2.551      66.1%
+                   fixed-b    243   0.050      94.6%         94.5%         2.614      66.8%
+                   fixed-b    486   0.100      94.9%         94.8%         2.694      69.2%
+           self-normalised   none       -      95.3%         95.6%         3.317      77.2%
+           block bootstrap     80       -      95.6%         95.6%         7.127       0.0%
+                                              +-0.77                             800 draws of the 4000 above
+
+==============================================================================
+C.  WHAT THIS SETTLES
+==============================================================================
+  closest to nominal 95% at each identification strength:
+    tau = 10.0: fixed-b at M = 160  -  94.8% coverage (94.8% among bounded sets), median width 0.360
+    tau =  3.0: fixed-b at M = 160  -  94.7% coverage (95.0% among bounded sets), median width 1.481
+    tau =  1.5: fixed-b at M = 486  -  94.9% coverage (94.8% among bounded sets), median width 2.694
+
+  normal critical values at that bandwidth cover 92.5%, 93.0%, 92.5% at tau = 10.0, 3.0, 1.5.
+  the fixed-b set at the bandwidth Section 4.6 uses, M = 243, covers 94.7%, 94.6%, 94.6%, each +-0.34.
+  the moving-block bootstrap, on the same draws, covers 90.9%, 94.1%, 95.6%, each +-0.77.
+  So the fixed-b set averages 94.6% over these three cells against a nominal 95%.
+  That is close to nominal and it is not nominal, and the difference is not noise:
+  the standard error of the mean of three cells is 0.20.  The residual shortfall is the taper,
+  not the critical value - this generator's dependence stops inside the bandwidth,
+  so what the kernel discards here is small; lab65 measures what it discards on
+  the real loss differentials, where it is not.
+  The bootstrap is not uniformly short: it runs below the fixed-b set on average here,
+  and the tau column shows which way at each strength.  A single blanket correction
+  of the bootstrap's coverage, applied at every identification strength, is wrong in
+  one direction at strong tau and in the other at weak tau, where its intervals are
+  also much the wider of the two.
+
+==============================================================================
+D.  THE CORRELATION THE GENERATOR ASSUMES, PRICED
+==============================================================================
+The two differentials share test days, so they are correlated, and the
+generator sets that correlation to 0.50.  lab21 measures it on the real
+differentials and finds 0.89 at delta = 55 and 0.71 averaged over the delay
+grid.  A coverage figure computed at 0.50 is therefore a figure at a
+correlation the data do not have.  Below is the procedure the paper uses,
+b = 0.05, at each of the three.
+
+  corr(d1,d2)    tau=10.0     tau=3.0     tau=1.5
+         0.50       94.0%       94.8%       94.7%
+         0.71       94.8%       94.6%       93.8%
+         0.89       94.3%       94.2%       94.3%
+
+  largest move in coverage between the assumed 0.50 and the measured values: 0.9 points,
+  against a Monte Carlo standard error of 0.49 on a difference.
+  So the assumption is not load-bearing
+
+  THE SAME CELL, MEASURED TWICE
+  This block's corr = 0.50 row and Part B's fixed-b M = 243 row estimate one
+  quantity on independent draws.
+   tau    Part B    Part D     gap  gap / SE
+  10.0     94.7%     94.0%     0.7      1.33
+   3.0     94.6%     94.8%     0.2      0.41
+   1.5     94.6%     94.7%     0.0      0.05
+  largest gap is 1.33 standard errors of the difference (0.49 points), so the two
+  agree within Monte Carlo error
+
+  Read the width column beside the coverage column.  A procedure that covers
+  95% with an interval twice as wide has not solved the problem, it has
+  restated it as a wider claim - which for this paper may still be the right
+  trade, because the paper's contribution IS an interval and an interval that
+  does not cover is worth nothing.  The choice between them is a judgement
+  about how much width the reading can carry, and that judgement belongs in
+  the paper rather than here.
+
+  What this file cannot do is rescue a procedure that under-covers at every
+  setting.  If that is what the table shows, the shortfall is a property of
+  inverting a ratio under weak identification and not of any bandwidth or
+  critical value, and Section 4.6 should say so in those terms.

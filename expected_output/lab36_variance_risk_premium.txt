@@ -1,0 +1,184 @@
+data folder: /home/claude/data_local
+EXPLORATORY - cited by neither paper.
+
+  implied-volatility files and seams:
+    VIX files: ['VIX_History.csv']
+    VDAX files: ['DAX_New_Volatility_Historical_Data.csv', 'DAX_New_Volatility_Historical_Data_1.csv']
+    seam VDAX: 251 overlapping rows, 0 mismatched  -> VERIFIED
+
+target SPX, 4554 test days, 2008-07-29 to 2026-09-03, 7 foreign peers
+realised leg: 22-day Yang-Zhang, annualised, matched to VIX's thirty calendar days
+implied leg: VIX at t-1 (it prints after the close), VDAX-NEW at t
+
+   premium      mean    median   share > 0
+        US     0.573     0.486       95.6%
+   Germany     0.136     0.269       83.4%
+Scaled by each market's trailing median implied variance, so 0.50 means
+the options market charged half as much again as variance delivered.
+
+====================================================================================================
+A.  THE RACE, WITH THE DOMESTIC BLOCK HELD delta DAYS STALE
+====================================================================================================
+ delta          OWN         +FOR          +IV    +IV+VRPus    +IV+VRPde      +IV+VRP          ALL
+     0       0.5118       0.5021       0.5529       0.5493       0.5324       0.5378       0.5193
+     3       0.4020       0.4448       0.5311       0.5224       0.5098       0.5136       0.4893
+     5       0.3573       0.4405       0.5297       0.5206       0.5079       0.5073       0.4842
+    13       0.2271       0.4135       0.5243       0.5175       0.4913       0.4883       0.4649
+    21       0.1392       0.3955       0.5235       0.5059       0.5028       0.4830       0.4642
+    55      -0.0008       0.3753       0.5251       0.5238       0.5059       0.5100       0.4943
+
+OWN and +FOR and +IV reproduce Section 6's table on this sample; they are
+here as scale, not as news.  Every column that adds a premium sits BELOW
++IV, which on its own says nothing: lab07 showed that extra regressors cost
+R-squared whether or not they inform.  That is what part B is for.
+
+====================================================================================================
+B.  ONE EXTRA COLUMN, FOUR WAYS - THE COMPARISON THE COST CANCELS OUT OF
+====================================================================================================
+Every arm here adds exactly ONE column to +IV, so lab07's estimation cost
+is the same in all of them and vanishes from any difference between them.
+NOISE is the mean over 6 AR(1) surrogate draws matched to the VRPus
+column's persistence and residual scale: the cost with the content removed.
+
+ delta      NOISE      VRPus     ORACLE      VRPde   AR(1) phi
+     0     0.5529     0.5493     0.5493     0.5324       0.827
+     3     0.5312     0.5224     0.5252     0.5098       0.875
+     5     0.5302     0.5206     0.5260     0.5079       0.896
+    13     0.5235     0.5175     0.5236     0.4913       0.933
+    21     0.5232     0.5059     0.5215     0.5028       0.945
+    55     0.5238     0.5238     0.5245     0.5059       0.957
+
+  check: at delta = 0 the stale leg IS today's leg, so VRPus and ORACLE
+  must coincide.  |difference| = 0.00e+00  -> PASS
+
+Each premium against the uninformative column of the same width.
+Positive means the premium carries something an AR(1) with its persistence
+does not.  NEGATIVE means the real column scores WORSE than a column with
+no content at all, which is a different claim and is counted separately.
+
+ delta   VRPus - NOISE                    95% CI   VRPde - NOISE                    95% CI
+     0         -0.0036   [  -0.00969,  +0.00051]         -0.0205   [  -0.04951,  +0.00105]
+     3         -0.0088   [  -0.02067,  +0.00103]         -0.0214   [  -0.05019,  +0.00144]
+     5         -0.0096   [  -0.02435,  +0.00218]         -0.0222   [  -0.05497,  +0.00191]
+    13         -0.0060   [  -0.01765,  +0.00347]         -0.0322   [  -0.09344,  +0.00210]
+    21         -0.0173   [  -0.04925,  +0.00259]         -0.0204   [  -0.05742,  +0.00145]
+    55         -0.0001   [  -0.00614,  +0.00443]         -0.0179   [  -0.05197,  +0.00344]
+
+  domestic premium: beats noise at 0 of 6 delays, LOSES to noise at 0 
+  Germany's premium: beats noise at 0 of 6 delays, LOSES to noise at 0 
+  Neither premium carries anything the level was not already carrying,
+  and neither does damage.  Section 6 raced the level and would have
+  reached the same verdict against the premium.
+
+====================================================================================================
+B3.  WHY A REAL COLUMN CAN LOSE TO AN EMPTY ONE
+====================================================================================================
+The ridge standardises each column on the training window and then applies
+those statistics to a test day that may lie far outside it.  A Gaussian
+AR(1) never produces such a day; a variance premium in a crisis does.  The
+table is the largest standardised value each column actually presents to the
+model, computed by replaying the refit schedule.
+
+ delta   max |z| VRPus   max |z| NOISE   max |z| VRPde   days |z|>6
+     0            26.4             3.8            36.9          100
+     3            32.4             3.7            37.1          105
+     5            32.4             3.6            37.1          110
+    13            33.5             3.9            41.6          126
+    21            33.0             4.3            43.8          137
+    55            28.1             4.3            43.8          167
+
+So clip the tails - at the 1st and 99th percentile of the TRAILING
+1250 days only, so nothing leaks forward - and run the same race.
+If the deficit disappears, the premium's problem was its tails in a ridge,
+not its content.  If it survives, the tails were never the explanation.
+
+ delta   WINus - NOISE                    95% CI   WINde - NOISE                    95% CI
+     0         -0.0026   [  -0.00536,  +0.00012]         -0.0087   [  -0.02077,  +0.00184]
+     3         -0.0033   [  -0.01072,  +0.00344]         -0.0095   [  -0.02308,  +0.00268]
+     5         -0.0030   [  -0.01536,  +0.00672]         -0.0116   [  -0.02963,  +0.00326]
+    13         -0.0023   [  -0.01093,  +0.00583]         -0.0091   [  -0.02425,  +0.00312]
+    21         -0.0045   [  -0.01358,  +0.00325]         -0.0065   [  -0.01781,  +0.00331]
+    55         -0.0030   [  -0.01928,  +0.00636]         -0.0026   [  -0.01354,  +0.00715]
+
+  clipped domestic premium: beats noise at 0 of 6, loses at 0 (was 0 unclipped)
+  clipped German premium:   beats noise at 0 of 6, loses at 0 (was 0 unclipped)
+  The deficit survives clipping, so the tails were not the explanation and
+  the AR(1) surrogate is flattering itself as a benchmark - most likely by
+  being smoother than any real column of this persistence.
+
+====================================================================================================
+C.  WHAT THE DELAY DOES TO THE PREMIUM, AND WHETHER GERMANY STANDS IN
+====================================================================================================
+ORACLE minus VRPus is the damage: same model, same width, same everything,
+except that ORACLE is handed a realised leg it has no right to see.  VRPde
+minus VRPus asks whether the premium you do not own replaces the one you
+cannot compute.  Neither difference needs a cost subtraction.
+
+ delta   ORACLE - VRPus                    95% CI   VRPde - VRPus                    95% CI
+     0          +0.0000   [  +0.00000,  +0.00000]         -0.0169   [  -0.04158,  +0.00113]
+     3          +0.0028   [  -0.00449,  +0.01253]         -0.0126   [  -0.03233,  +0.00178]
+     5          +0.0054   [  -0.00301,  +0.01760]         -0.0126   [  -0.03343,  +0.00189]
+    13          +0.0060   [  -0.00288,  +0.01618]         -0.0262   [  -0.08057,  +0.00326]
+    21          +0.0156   [  -0.00138,  +0.04183]         -0.0031   [  -0.01839,  +0.01290]
+    55          +0.0007   [  -0.00337,  +0.00586]         -0.0178   [  -0.04765,  +0.00255]
+
+  delays where the stale leg significantly costs something: 0 of 6 
+  damage does not fall as the delay grows at 4 of 5 steps
+  delays where Germany's premium significantly beats the domestic one: 0 of 6 
+  delays where it significantly LOSES to the domestic one: 0 of 6 
+  Holding the realised leg stale costs nothing measurable, so within this
+  model the premium is carried by its implied leg.  The delayed desk loses
+  nothing here because there was nothing in the realised leg to lose.
+
+====================================================================================================
+D.  IS THE DIFFERENCE THE RIGHT FORM, AND DOES THE WINDOW DECIDE IT?
+====================================================================================================
+The premium restricts the two legs to equal and opposite coefficients.  LEGS
+frees them.  LEGS is two columns, so it is raced against VRPus PLUS one
+uninformative column - equal width again, cost cancelled again.
+
+ delta   LEGS - (VRPus+NOISE)                    95% CI
+     0                -0.0134   [  -0.03242,  +0.00058]
+     3                -0.0157   [  -0.03683,  +0.00139]
+     5                -0.0496   [  -0.11816,  +0.00069]
+    13                -0.1427   [  -0.32267,  +0.00005]
+    21                -0.1935   [  -0.46227,  +0.00463]
+    55                -0.0349   [  -0.07819,  +0.00008]
+
+  delays where freeing the legs significantly beats the premium: 0 of 6 
+  delays where freeing them significantly LOSES: 0 of 6 
+  Freeing the legs buys nothing over an uninformative column, so the
+  restriction is not what is holding the premium back.
+
+The realised leg's window - 22 days, matched to VIX, against the project's 5:
+A sign that flips between two estimates which both straddle zero is noise,
+not disagreement, so a flip is only counted as MATERIAL when at least one of
+the two intervals excludes zero.
+
+ delta     VRPus-NOISE (22d)      VRPus-NOISE (5d)    sign   material?
+     0               -0.0036               -0.0027    same           -
+     3               -0.0088               -0.0025    same           -
+     5               -0.0096               -0.0036    same           -
+    13               -0.0060               -0.0040    same           -
+    21               -0.0173               -0.0213    same           -
+    55               -0.0001               +0.0006    FLIP          no
+
+  sign disagreements: 1 of 6, of which 0 material
+  The only flips are between two estimates that both straddle zero, which
+  is two ways of measuring nothing rather than a contradiction.  The
+  window does not decide the answer here because there is no answer for
+  it to decide.
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  beats an uninformative column of the same width: domestic premium at 0/6 delays, Germany's at 0/6; after clipping, 0/6 and 0/6.
+  the stale realised leg costs something at 0/6; Germany's premium beats the domestic one at 0/6.
+  Section 6's choice of the LEVEL over the PREMIUM cost it nothing.  The
+  premium is not a stronger competitor on this sample, clipped or raw, so
+  the objection that Section 6 raced the wrong horse does not survive.
+  That is a defence of a section this project had already conceded, and
+  it is the useful result here.
+  The realised leg carries nothing this model can use, so the delay has
+  nothing to take from it.  The premium's information, such as it is,
+  lives in the implied leg - which Section 6 already had.

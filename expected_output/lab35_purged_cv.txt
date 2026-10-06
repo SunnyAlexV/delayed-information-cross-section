@@ -1,0 +1,60 @@
+data folder: /home/claude/data_local
+Prints the purge and embargo results of Section S7.
+
+target SPX, 4862 test days, 7 foreign peers
+target horizon H = 5 days, so consecutive targets share 4
+
+================================================================================================
+A.  OUT-OF-SAMPLE SKILL AS THE GAP GROWS
+================================================================================================
+Cross-sectional model. 'no purge' puts the leak back deliberately; every
+other column adds distance between training and the forecast date.
+
+ delta            no purge   current (purge H)          +5 embargo         +10 embargo         +21 embargo
+     0              0.5112              0.5089              0.5081              0.5078              0.5076
+     3              0.4511              0.4492              0.4488              0.4483              0.4473
+     5              0.4447              0.4434              0.4432              0.4423              0.4413
+    13              0.4166              0.4150              0.4151              0.4149              0.4141
+    21              0.3978              0.3973              0.3960              0.3972              0.3936
+    55              0.3730              0.3729              0.3721              0.3721              0.3728
+
+================================================================================================
+B.  IS THE PURGE DOING ANYTHING?
+================================================================================================
+no purge minus current. Positive means removing the purge FLATTERS the
+result, which is the definition of a leak.
+
+ delta   no purge - current                  95% CI   leak?
+     0              +0.0023   [ +0.00068, +0.00379]     yes
+     3              +0.0019   [ +0.00011, +0.00387]     yes
+     5              +0.0013   [ -0.00060, +0.00358]      no
+    13              +0.0016   [ -0.00061, +0.00425]      no
+    21              +0.0005   [ -0.00191, +0.00279]      no
+    55              +0.0001   [ -0.00131, +0.00162]      no
+
+  delays where dropping the purge significantly flatters the result: 2 of 6 [0, 3]
+  The purge is load-bearing. Any study of a five-day-ahead target that
+  splits without one is reporting numbers inflated by this much.
+
+================================================================================================
+C.  IS THE CURRENT GAP BIG ENOUGH?
+================================================================================================
+Each embargo against the current protocol. A DECLINE that keeps going as
+the embargo grows would mean residual leakage the purge does not catch,
+and every number in both papers would be optimistic by that much.
+
+ delta            +5 embargo           +10 embargo           +21 embargo
+     0    -0.0009               -0.0011               -0.0013           
+     3    -0.0004               -0.0009               -0.0019           
+     5    -0.0002               -0.0011               -0.0021           
+    13    +0.0001               -0.0001               -0.0009           
+    21    -0.0013               -0.0001               -0.0037           
+    55    -0.0007               -0.0008               -0.0001           
+
+  * = the embargo significantly REDUCES skill at that delay
+  cells where a larger embargo significantly reduces skill: 0 of 18
+  delays where skill falls monotonically with the embargo: 3 of 6
+
+  Adding an embargo on top of the purge costs nothing detectable at any
+  delay. The gap this project already leaves is sufficient, and the
+  walk-forward design was purged correctly before anyone called it that.
