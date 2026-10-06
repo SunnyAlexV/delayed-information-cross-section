@@ -1,0 +1,54 @@
+MIT License
+
+Copyright (c) 2026 Sunny Alex Vellanikaran
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+----------------------------------------------------------------------------
+SCOPE
+
+This licence covers the code, the papers and the documentation in this
+repository -- everything the author wrote.
+
+It does NOT cover the project's input data, and that data is deliberately not
+in this repository.
+
+Every vendor behind those inputs prohibits redistributing their files.
+Investing.com's terms forbid distributing data obtained from the site without
+written permission.  Cboe's permit one downloaded copy for personal
+non-commercial use and forbid distribution of the materials in whole or in
+part without prior written consent.  Yahoo's forbid reproducing or
+distributing any portion of their services.  The S&P Cotality Case-Shiller
+series carry FRED's "Copyrighted: Pre-approval Required" label, which without
+the copyright holder's written permission allows non-commercial educational or
+personal use alone.  None of those files are the author's to license, and an
+earlier version of this repository should not have carried them.
+
+One input file is redistributable and is included: data/illiquid/USSTHPI_fred.csv,
+the Federal Housing Finance Agency house price index, which FRED labels
+"Public Domain: Citation Requested".  It is cited in the paper accordingly.
+
+In place of the data the repository ships data/MANIFEST.tsv, which records for
+every input file its source, its row count, its date span, the SHA-256 of the
+exact bytes the published numbers were computed from, a digest of the derived
+series on those dates, and that digest taken one calendar year at a time.  That
+record is the author's work and is covered by the licence above.  It contains
+no vendor data: a digest is not the series, and the per-year digests publish
+neither a value nor a date.  data/README.md says where to obtain each file, and
+verify_data.py checks a reader's own copy against the manifest.
