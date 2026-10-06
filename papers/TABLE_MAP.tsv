@@ -1,0 +1,1088 @@
+paper	table	row	cell	lab	block	key	tokens	template
+what-substitutes-for-a-stale-mark.html	1	1	0	lab10_loss_scale.txt	8	0#0	0	{0}
+what-substitutes-for-a-stale-mark.html	1	1	1	lab10_loss_scale.txt	8	0#0	1	{0}
+what-substitutes-for-a-stale-mark.html	1	1	2	lab10_loss_scale.txt	8	0#0	2	{0}
+what-substitutes-for-a-stale-mark.html	1	1	4	lab10_loss_scale.txt	8	0#0	3	{0}
+what-substitutes-for-a-stale-mark.html	1	1	5	lab10_loss_scale.txt	8	0#0	4	{0}
+what-substitutes-for-a-stale-mark.html	1	2	0	lab10_loss_scale.txt	6	1#0	0	{0}
+what-substitutes-for-a-stale-mark.html	1	2	1	lab10_loss_scale.txt	8	1#0	1	{0}
+what-substitutes-for-a-stale-mark.html	1	2	2	lab10_loss_scale.txt	8	1#0	2	{0}
+what-substitutes-for-a-stale-mark.html	1	2	3	lab10_loss_scale.txt	6	1#0	2,3,4	{0}% [{1}, {2}]
+what-substitutes-for-a-stale-mark.html	1	2	4	lab10_loss_scale.txt	8	1#0	3	{0}
+what-substitutes-for-a-stale-mark.html	1	2	5	lab10_loss_scale.txt	8	1#0	4	{0}
+what-substitutes-for-a-stale-mark.html	1	2	6	lab10_loss_scale.txt	6	1#0	5,6,7	{0}% [{1}, {2}]
+what-substitutes-for-a-stale-mark.html	1	3	0	lab10_loss_scale.txt	6	3#0	0	{0}
+what-substitutes-for-a-stale-mark.html	1	3	1	lab10_loss_scale.txt	8	3#0	1	{0}
+what-substitutes-for-a-stale-mark.html	1	3	2	lab10_loss_scale.txt	8	3#0	2	{0}
+what-substitutes-for-a-stale-mark.html	1	3	3	lab10_loss_scale.txt	6	3#0	2,4,5	{0}% [{1}, {2}]
+what-substitutes-for-a-stale-mark.html	1	3	4	lab10_loss_scale.txt	8	3#0	3	{0}
+what-substitutes-for-a-stale-mark.html	1	3	5	lab10_loss_scale.txt	8	3#0	4	{0}
+what-substitutes-for-a-stale-mark.html	1	3	6	lab10_loss_scale.txt	6	3#0	6,8,9	{0}% [{1}, {2}]
+what-substitutes-for-a-stale-mark.html	1	4	0	lab10_loss_scale.txt	6	5#0	0	{0}
+what-substitutes-for-a-stale-mark.html	1	4	1	lab10_loss_scale.txt	8	5#0	1	{0}
+what-substitutes-for-a-stale-mark.html	1	4	2	lab10_loss_scale.txt	8	5#0	2	{0}
+what-substitutes-for-a-stale-mark.html	1	4	3	lab10_loss_scale.txt	6	5#0	2,4,5	{0}% [{1}, {2}]
+what-substitutes-for-a-stale-mark.html	1	4	4	lab10_loss_scale.txt	8	5#0	3	{0}
+what-substitutes-for-a-stale-mark.html	1	4	5	lab10_loss_scale.txt	8	5#0	4	{0}
+what-substitutes-for-a-stale-mark.html	1	4	6	lab10_loss_scale.txt	6	5#0	6,8,9	{0}% [{1}, {2}]
+what-substitutes-for-a-stale-mark.html	1	5	0	lab10_loss_scale.txt	6	8#0	0	{0}
+what-substitutes-for-a-stale-mark.html	1	5	1	lab10_loss_scale.txt	8	8#0	1	{0}
+what-substitutes-for-a-stale-mark.html	1	5	2	lab10_loss_scale.txt	8	8#0	2	{0}
+what-substitutes-for-a-stale-mark.html	1	5	3	lab10_loss_scale.txt	6	8#0	2,4,5	{0}% [{1}, {2}]
+what-substitutes-for-a-stale-mark.html	1	5	4	lab10_loss_scale.txt	8	8#0	3	{0}
+what-substitutes-for-a-stale-mark.html	1	5	5	lab10_loss_scale.txt	8	8#0	4	{0}
+what-substitutes-for-a-stale-mark.html	1	5	6	lab10_loss_scale.txt	6	8#0	6,8,9	{0}% [{1}, {2}]
+what-substitutes-for-a-stale-mark.html	1	6	0	lab10_loss_scale.txt	6	13#0	0	{0}
+what-substitutes-for-a-stale-mark.html	1	6	1	lab10_loss_scale.txt	8	13#0	1	{0}
+what-substitutes-for-a-stale-mark.html	1	6	2	lab10_loss_scale.txt	8	13#0	2	{0}
+what-substitutes-for-a-stale-mark.html	1	6	3	lab10_loss_scale.txt	6	13#0	2,4,5	{0}% [{1}, {2}]
+what-substitutes-for-a-stale-mark.html	1	6	4	lab10_loss_scale.txt	8	13#0	3	{0}
+what-substitutes-for-a-stale-mark.html	1	6	5	lab10_loss_scale.txt	8	13#0	4	{0}
+what-substitutes-for-a-stale-mark.html	1	6	6	lab10_loss_scale.txt	6	13#0	6,8,9	{0}% [{1}, {2}]
+what-substitutes-for-a-stale-mark.html	1	7	0	lab10_loss_scale.txt	6	21#0	0	{0}
+what-substitutes-for-a-stale-mark.html	1	7	1	lab10_loss_scale.txt	8	21#0	1	{0}
+what-substitutes-for-a-stale-mark.html	1	7	2	lab10_loss_scale.txt	8	21#0	2	{0}
+what-substitutes-for-a-stale-mark.html	1	7	3	lab10_loss_scale.txt	6	21#0	2,4,5	{0}% [{1}, {2}]
+what-substitutes-for-a-stale-mark.html	1	7	4	lab10_loss_scale.txt	8	21#0	3	{0}
+what-substitutes-for-a-stale-mark.html	1	7	5	lab10_loss_scale.txt	8	21#0	4	{0}
+what-substitutes-for-a-stale-mark.html	1	7	6	lab10_loss_scale.txt	6	21#0	6,8,9	{0}% [{1}, {2}]
+what-substitutes-for-a-stale-mark.html	1	8	0	lab10_loss_scale.txt	6	34#0	0	{0}
+what-substitutes-for-a-stale-mark.html	1	8	1	lab10_loss_scale.txt	8	34#0	1	{0}
+what-substitutes-for-a-stale-mark.html	1	8	2	lab10_loss_scale.txt	8	34#0	2	{0}
+what-substitutes-for-a-stale-mark.html	1	8	3	lab10_loss_scale.txt	6	34#0	2,4,5	{0}% [{1}, {2}]
+what-substitutes-for-a-stale-mark.html	1	8	4	lab10_loss_scale.txt	8	34#0	3	{0}
+what-substitutes-for-a-stale-mark.html	1	8	5	lab10_loss_scale.txt	8	34#0	4	{0}
+what-substitutes-for-a-stale-mark.html	1	8	6	lab10_loss_scale.txt	6	34#0	6,8,9	{0}% [{1}, {2}]
+what-substitutes-for-a-stale-mark.html	1	9	0	lab10_loss_scale.txt	6	55#0	0	{0}
+what-substitutes-for-a-stale-mark.html	1	9	1	lab10_loss_scale.txt	8	55#0	1	{0}
+what-substitutes-for-a-stale-mark.html	1	9	2	lab10_loss_scale.txt	8	55#0	2	{0}
+what-substitutes-for-a-stale-mark.html	1	9	3	lab10_loss_scale.txt	6	55#0	2,4,5	{0}% [{1}, {2}]
+what-substitutes-for-a-stale-mark.html	1	9	4	lab10_loss_scale.txt	8	55#0	3	{0}
+what-substitutes-for-a-stale-mark.html	1	9	5	lab10_loss_scale.txt	8	55#0	4	{0}
+what-substitutes-for-a-stale-mark.html	1	9	6	lab10_loss_scale.txt	6	55#0	6,8,9	{0}% [{1}, {2}]
+what-substitutes-for-a-stale-mark.html	3	1	0	lab22_factor_benchmark.txt	2	0#0	0	{0}
+what-substitutes-for-a-stale-mark.html	3	1	1	lab22_factor_benchmark.txt	2	0#0	1	{0}
+what-substitutes-for-a-stale-mark.html	3	1	2	lab22_factor_benchmark.txt	2	0#0	2	{0}
+what-substitutes-for-a-stale-mark.html	3	1	3	lab22_factor_benchmark.txt	2	0#0	3	{0}
+what-substitutes-for-a-stale-mark.html	3	1	4	lab22_factor_benchmark.txt	2	0#0	4	{0}
+what-substitutes-for-a-stale-mark.html	3	1	5	lab22_factor_benchmark.txt	2	0#0	5	{0}
+what-substitutes-for-a-stale-mark.html	3	1	6	lab22_factor_benchmark.txt	2	0#0	7	{0}
+what-substitutes-for-a-stale-mark.html	3	1	7	lab22_factor_benchmark.txt	2	0#0	8	{0}
+what-substitutes-for-a-stale-mark.html	3	2	0	lab22_factor_benchmark.txt	2	3#0	0	{0}
+what-substitutes-for-a-stale-mark.html	3	2	1	lab22_factor_benchmark.txt	2	3#0	1	{0}
+what-substitutes-for-a-stale-mark.html	3	2	2	lab22_factor_benchmark.txt	2	3#0	2	{0}
+what-substitutes-for-a-stale-mark.html	3	2	3	lab22_factor_benchmark.txt	2	3#0	3	{0}
+what-substitutes-for-a-stale-mark.html	3	2	4	lab22_factor_benchmark.txt	2	3#0	4	{0}
+what-substitutes-for-a-stale-mark.html	3	2	5	lab22_factor_benchmark.txt	2	3#0	5	{0}
+what-substitutes-for-a-stale-mark.html	3	2	6	lab22_factor_benchmark.txt	2	3#0	7	{0}
+what-substitutes-for-a-stale-mark.html	3	2	7	lab22_factor_benchmark.txt	2	3#0	8	{0}
+what-substitutes-for-a-stale-mark.html	3	3	0	lab22_factor_benchmark.txt	2	5#0	0	{0}
+what-substitutes-for-a-stale-mark.html	3	3	1	lab22_factor_benchmark.txt	2	5#0	1	{0}
+what-substitutes-for-a-stale-mark.html	3	3	2	lab22_factor_benchmark.txt	2	5#0	2	{0}
+what-substitutes-for-a-stale-mark.html	3	3	3	lab22_factor_benchmark.txt	2	5#0	3	{0}
+what-substitutes-for-a-stale-mark.html	3	3	4	lab22_factor_benchmark.txt	2	5#0	4	{0}
+what-substitutes-for-a-stale-mark.html	3	3	5	lab22_factor_benchmark.txt	2	5#0	5	{0}
+what-substitutes-for-a-stale-mark.html	3	3	6	lab22_factor_benchmark.txt	2	5#0	7	{0}
+what-substitutes-for-a-stale-mark.html	3	3	7	lab22_factor_benchmark.txt	2	5#0	8	{0}
+what-substitutes-for-a-stale-mark.html	3	4	0	lab22_factor_benchmark.txt	2	13#0	0	{0}
+what-substitutes-for-a-stale-mark.html	3	4	1	lab22_factor_benchmark.txt	2	13#0	1	{0}
+what-substitutes-for-a-stale-mark.html	3	4	2	lab22_factor_benchmark.txt	2	13#0	2	{0}
+what-substitutes-for-a-stale-mark.html	3	4	3	lab22_factor_benchmark.txt	2	13#0	3	{0}
+what-substitutes-for-a-stale-mark.html	3	4	4	lab22_factor_benchmark.txt	2	13#0	4	{0}
+what-substitutes-for-a-stale-mark.html	3	4	5	lab22_factor_benchmark.txt	2	13#0	5	{0}
+what-substitutes-for-a-stale-mark.html	3	4	6	lab22_factor_benchmark.txt	2	13#0	7	{0}
+what-substitutes-for-a-stale-mark.html	3	4	7	lab22_factor_benchmark.txt	2	13#0	8	{0}
+what-substitutes-for-a-stale-mark.html	3	5	0	lab22_factor_benchmark.txt	2	21#0	0	{0}
+what-substitutes-for-a-stale-mark.html	3	5	1	lab22_factor_benchmark.txt	2	21#0	1	{0}
+what-substitutes-for-a-stale-mark.html	3	5	2	lab22_factor_benchmark.txt	2	21#0	2	{0}
+what-substitutes-for-a-stale-mark.html	3	5	3	lab22_factor_benchmark.txt	2	21#0	3	{0}
+what-substitutes-for-a-stale-mark.html	3	5	4	lab22_factor_benchmark.txt	2	21#0	4	{0}
+what-substitutes-for-a-stale-mark.html	3	5	5	lab22_factor_benchmark.txt	2	21#0	5	{0}
+what-substitutes-for-a-stale-mark.html	3	5	6	lab22_factor_benchmark.txt	2	21#0	7	{0}
+what-substitutes-for-a-stale-mark.html	3	5	7	lab22_factor_benchmark.txt	2	21#0	8	{0}
+what-substitutes-for-a-stale-mark.html	3	6	0	lab22_factor_benchmark.txt	2	55#0	0	{0}
+what-substitutes-for-a-stale-mark.html	3	6	1	lab22_factor_benchmark.txt	2	55#0	1	{0}
+what-substitutes-for-a-stale-mark.html	3	6	2	lab22_factor_benchmark.txt	2	55#0	2	{0}
+what-substitutes-for-a-stale-mark.html	3	6	3	lab22_factor_benchmark.txt	2	55#0	3	{0}
+what-substitutes-for-a-stale-mark.html	3	6	4	lab22_factor_benchmark.txt	2	55#0	4	{0}
+what-substitutes-for-a-stale-mark.html	3	6	5	lab22_factor_benchmark.txt	2	55#0	5	{0}
+what-substitutes-for-a-stale-mark.html	3	6	6	lab22_factor_benchmark.txt	2	55#0	7	{0}
+what-substitutes-for-a-stale-mark.html	3	6	7	lab22_factor_benchmark.txt	2	55#0	8	{0}
+stale-mark-internet-appendix.html	2	1	0	lab16_clark_west_shrinkage.txt	6	0#0	0	{0}
+stale-mark-internet-appendix.html	2	1	2	lab16_clark_west_shrinkage.txt	6	0#0	3	{0}
+stale-mark-internet-appendix.html	2	1	3	lab16_clark_west_shrinkage.txt	6	0#0	4	{0}
+stale-mark-internet-appendix.html	2	1	5	lab16_clark_west_shrinkage.txt	6	0#0	5	{0}
+stale-mark-internet-appendix.html	2	2	0	lab16_clark_west_shrinkage.txt	6	3#0	0	{0}
+stale-mark-internet-appendix.html	2	2	2	lab16_clark_west_shrinkage.txt	6	3#0	3	{0}
+stale-mark-internet-appendix.html	2	2	3	lab16_clark_west_shrinkage.txt	6	3#0	4	{0}
+stale-mark-internet-appendix.html	2	2	5	lab16_clark_west_shrinkage.txt	6	3#0	5	{0}
+stale-mark-internet-appendix.html	2	4	0	lab16_clark_west_shrinkage.txt	6	13#0	0	{0}
+stale-mark-internet-appendix.html	2	4	2	lab16_clark_west_shrinkage.txt	6	13#0	3	{0}
+stale-mark-internet-appendix.html	2	4	3	lab16_clark_west_shrinkage.txt	6	13#0	4	{0}
+stale-mark-internet-appendix.html	2	4	5	lab16_clark_west_shrinkage.txt	6	13#0	5	{0}
+stale-mark-internet-appendix.html	2	5	0	lab16_clark_west_shrinkage.txt	6	21#0	0	{0}
+stale-mark-internet-appendix.html	2	5	2	lab16_clark_west_shrinkage.txt	6	21#0	3	{0}
+stale-mark-internet-appendix.html	2	5	3	lab16_clark_west_shrinkage.txt	6	21#0	4	{0}
+stale-mark-internet-appendix.html	2	5	5	lab16_clark_west_shrinkage.txt	6	21#0	5	{0}
+stale-mark-internet-appendix.html	2	6	0	lab16_clark_west_shrinkage.txt	6	55#0	0	{0}
+stale-mark-internet-appendix.html	2	6	2	lab16_clark_west_shrinkage.txt	6	55#0	3	{0}
+stale-mark-internet-appendix.html	2	6	3	lab16_clark_west_shrinkage.txt	6	55#0	4	{0}
+stale-mark-internet-appendix.html	2	6	5	lab16_clark_west_shrinkage.txt	6	55#0	5	{0}
+stale-mark-internet-appendix.html	3	2	0	lab38_domestic_baseline.txt	6	5#0	0	{0}
+stale-mark-internet-appendix.html	3	2	3	lab38_domestic_baseline.txt	6	5#0	1	{0}%
+stale-mark-internet-appendix.html	3	2	4	lab38_domestic_baseline.txt	6	5#0	2	{0}%
+stale-mark-internet-appendix.html	3	2	5	lab38_domestic_baseline.txt	6	5#0	3	{0}%
+stale-mark-internet-appendix.html	3	2	6	lab38_domestic_baseline.txt	6	5#0	5,6	[{0}, {1}]
+stale-mark-internet-appendix.html	3	3	0	lab38_domestic_baseline.txt	6	13#0	0	{0}
+stale-mark-internet-appendix.html	3	3	3	lab38_domestic_baseline.txt	6	13#0	1	{0}%
+stale-mark-internet-appendix.html	3	3	4	lab38_domestic_baseline.txt	6	13#0	2	{0}%
+stale-mark-internet-appendix.html	3	3	5	lab38_domestic_baseline.txt	6	13#0	3	{0}%
+stale-mark-internet-appendix.html	3	3	6	lab38_domestic_baseline.txt	6	13#0	5,6	[{0}, {1}]
+stale-mark-internet-appendix.html	3	4	0	lab38_domestic_baseline.txt	6	21#0	0	{0}
+stale-mark-internet-appendix.html	3	4	3	lab38_domestic_baseline.txt	6	21#0	1	{0}%
+stale-mark-internet-appendix.html	3	4	4	lab38_domestic_baseline.txt	6	21#0	2	{0}%
+stale-mark-internet-appendix.html	3	4	5	lab38_domestic_baseline.txt	6	21#0	3	{0}%
+stale-mark-internet-appendix.html	3	4	6	lab38_domestic_baseline.txt	6	21#0	5,6	[{0}, {1}]
+stale-mark-internet-appendix.html	3	5	0	lab38_domestic_baseline.txt	6	55#0	0	{0}
+stale-mark-internet-appendix.html	3	5	3	lab38_domestic_baseline.txt	6	55#0	1	{0}%
+stale-mark-internet-appendix.html	3	5	4	lab38_domestic_baseline.txt	6	55#0	2	{0}%
+stale-mark-internet-appendix.html	3	5	5	lab38_domestic_baseline.txt	6	55#0	3	{0}%
+stale-mark-internet-appendix.html	3	5	6	lab38_domestic_baseline.txt	6	55#0	5,6	[{0}, {1}]
+stale-mark-internet-appendix.html	4	1	0	lab39_temporal_stability.txt	8	5#0	0	{0}
+stale-mark-internet-appendix.html	4	2	0	lab39_temporal_stability.txt	8	13#0	0	{0}
+stale-mark-internet-appendix.html	4	3	0	lab41_conditional_anatomy.txt	2+4	stressed#2	1	{0}
+stale-mark-internet-appendix.html	5	1	0	lab41_conditional_anatomy.txt	2	5#0	0	{0}
+stale-mark-internet-appendix.html	5	1	1	lab41_conditional_anatomy.txt	2	5#0	1	{0}
+stale-mark-internet-appendix.html	5	1	2	lab41_conditional_anatomy.txt	2	5#0	2	{0}
+stale-mark-internet-appendix.html	5	1	4	lab41_conditional_anatomy.txt	2	5#0	4	{0}
+stale-mark-internet-appendix.html	5	1	5	lab41_conditional_anatomy.txt	2	5#0	5	{0}
+stale-mark-internet-appendix.html	5	2	0	lab41_conditional_anatomy.txt	2	13#0	0	{0}
+stale-mark-internet-appendix.html	5	2	1	lab41_conditional_anatomy.txt	2	13#0	1	{0}
+stale-mark-internet-appendix.html	5	2	2	lab41_conditional_anatomy.txt	2	13#0	2	{0}
+stale-mark-internet-appendix.html	5	2	4	lab41_conditional_anatomy.txt	2	13#0	4	{0}
+stale-mark-internet-appendix.html	5	2	5	lab41_conditional_anatomy.txt	2	13#0	5	{0}
+stale-mark-internet-appendix.html	5	3	0	lab41_conditional_anatomy.txt	2	21#0	0	{0}
+stale-mark-internet-appendix.html	5	3	1	lab41_conditional_anatomy.txt	2	21#0	1	{0}
+stale-mark-internet-appendix.html	5	3	2	lab41_conditional_anatomy.txt	2	21#0	2	{0}
+stale-mark-internet-appendix.html	5	3	4	lab41_conditional_anatomy.txt	2	21#0	4	{0}
+stale-mark-internet-appendix.html	5	3	5	lab41_conditional_anatomy.txt	2	21#0	5	{0}
+stale-mark-internet-appendix.html	5	4	0	lab41_conditional_anatomy.txt	2	55#0	0	{0}
+stale-mark-internet-appendix.html	5	4	1	lab41_conditional_anatomy.txt	2	55#0	1	{0}
+stale-mark-internet-appendix.html	5	4	2	lab41_conditional_anatomy.txt	2	55#0	2	{0}
+stale-mark-internet-appendix.html	5	4	4	lab41_conditional_anatomy.txt	2	55#0	4	{0}
+stale-mark-internet-appendix.html	5	4	5	lab41_conditional_anatomy.txt	2	55#0	5	{0}
+stale-mark-internet-appendix.html	6	1	3	lab10_loss_scale.txt	6	5#0	2,4,5	{0}% [{1}, {2}]
+stale-mark-internet-appendix.html	6	2	4	lab11_markets_continuous.txt	2	13#1	12,14,15	{0}% [{1}, {2}]
+stale-mark-internet-appendix.html	7	1	0	lab27_regime_conditioning.txt	6	55#2	3	VIX top {0}%
+stale-mark-internet-appendix.html	7	1	1	lab27_regime_conditioning.txt	6	55#2	4	{0}
+stale-mark-internet-appendix.html	7	1	2	lab27_regime_conditioning.txt	6	55#2	5	{0}
+stale-mark-internet-appendix.html	7	1	3	lab27_regime_conditioning.txt	6	55#2	7	{0}%
+stale-mark-internet-appendix.html	7	1	5	lab27_regime_conditioning.txt	6	55#2	11	{0}
+stale-mark-internet-appendix.html	7	2	0	lab27_regime_conditioning.txt	6	55#1	3	VIX top {0}%
+stale-mark-internet-appendix.html	7	2	1	lab27_regime_conditioning.txt	6	55#1	4	{0}
+stale-mark-internet-appendix.html	7	2	2	lab27_regime_conditioning.txt	6	55#1	5	{0}
+stale-mark-internet-appendix.html	7	2	3	lab27_regime_conditioning.txt	6	55#1	7	{0}%
+stale-mark-internet-appendix.html	7	2	5	lab27_regime_conditioning.txt	6	55#1	11	{0}
+stale-mark-internet-appendix.html	7	3	0	lab27_regime_conditioning.txt	6	55#0	3	VIX top {0}%
+stale-mark-internet-appendix.html	7	3	2	lab27_regime_conditioning.txt	6	55#0	5	{0}
+stale-mark-internet-appendix.html	7	3	3	lab27_regime_conditioning.txt	6	55#0	7	{0}%
+stale-mark-internet-appendix.html	7	3	5	lab27_regime_conditioning.txt	6	55#0	11	{0}
+stale-mark-internet-appendix.html	7	4	1	lab27_regime_conditioning.txt	6	55#5	4	{0}
+stale-mark-internet-appendix.html	7	4	2	lab27_regime_conditioning.txt	6	55#5	5	{0}
+stale-mark-internet-appendix.html	7	4	3	lab27_regime_conditioning.txt	6	55#5	7	{0}%
+stale-mark-internet-appendix.html	7	4	5	lab27_regime_conditioning.txt	6	55#5	11	{0}
+stale-mark-internet-appendix.html	7	5	0	lab27_regime_conditioning.txt	6	55#3	3	VIX bottom {0}%
+stale-mark-internet-appendix.html	7	5	2	lab27_regime_conditioning.txt	6	55#3	5	{0}
+stale-mark-internet-appendix.html	7	5	3	lab27_regime_conditioning.txt	6	55#3	7	{0}%
+stale-mark-internet-appendix.html	7	5	5	lab27_regime_conditioning.txt	6	55#3	11	{0}
+stale-mark-internet-appendix.html	7	6	2	lab27_regime_conditioning.txt	6	55#6	5	{0}
+stale-mark-internet-appendix.html	7	6	3	lab27_regime_conditioning.txt	6	55#6	7	{0}%
+stale-mark-internet-appendix.html	7	6	5	lab27_regime_conditioning.txt	6	55#6	11	{0}
+stale-mark-internet-appendix.html	8	1	0	lab37_lead_lag.txt	6	3#1	0	{0}
+stale-mark-internet-appendix.html	8	1	1	lab37_lead_lag.txt	6	3#1	1	{0}%
+stale-mark-internet-appendix.html	8	1	2	lab37_lead_lag.txt	6	3#1	2	{0}%
+stale-mark-internet-appendix.html	8	1	3	lab37_lead_lag.txt	6	3#1	3	{0}%
+stale-mark-internet-appendix.html	8	1	4	lab37_lead_lag.txt	6	3#1	4	{0}%
+stale-mark-internet-appendix.html	8	1	5	lab37_lead_lag.txt	6	3#1	5	{0}%
+stale-mark-internet-appendix.html	8	1	6	lab37_lead_lag.txt	6	3#1	6	{0}%
+stale-mark-internet-appendix.html	8	2	0	lab37_lead_lag.txt	6	5#1	0	{0}
+stale-mark-internet-appendix.html	8	2	1	lab37_lead_lag.txt	6	5#1	1	{0}%
+stale-mark-internet-appendix.html	8	2	2	lab37_lead_lag.txt	6	5#1	2	{0}%
+stale-mark-internet-appendix.html	8	2	3	lab37_lead_lag.txt	6	5#1	3	{0}%
+stale-mark-internet-appendix.html	8	2	4	lab37_lead_lag.txt	6	5#1	4	{0}%
+stale-mark-internet-appendix.html	8	2	5	lab37_lead_lag.txt	6	5#1	5	{0}%
+stale-mark-internet-appendix.html	8	2	6	lab37_lead_lag.txt	6	5#1	6	{0}%
+stale-mark-internet-appendix.html	8	3	0	lab37_lead_lag.txt	6	13#1	0	{0}
+stale-mark-internet-appendix.html	8	3	1	lab37_lead_lag.txt	6	13#1	1	{0}%
+stale-mark-internet-appendix.html	8	3	2	lab37_lead_lag.txt	6	13#1	2	{0}%
+stale-mark-internet-appendix.html	8	3	3	lab37_lead_lag.txt	6	13#1	3	{0}%
+stale-mark-internet-appendix.html	8	3	4	lab37_lead_lag.txt	6	13#1	4	{0}%
+stale-mark-internet-appendix.html	8	3	5	lab37_lead_lag.txt	6	13#1	5	{0}%
+stale-mark-internet-appendix.html	8	3	6	lab37_lead_lag.txt	6	13#1	6	{0}%
+stale-mark-internet-appendix.html	8	4	0	lab37_lead_lag.txt	6	21#1	0	{0}
+stale-mark-internet-appendix.html	8	4	1	lab37_lead_lag.txt	6	21#1	1	{0}%
+stale-mark-internet-appendix.html	8	4	2	lab37_lead_lag.txt	6	21#1	2	{0}%
+stale-mark-internet-appendix.html	8	4	3	lab37_lead_lag.txt	6	21#1	3	{0}%
+stale-mark-internet-appendix.html	8	4	4	lab37_lead_lag.txt	6	21#1	4	{0}%
+stale-mark-internet-appendix.html	8	4	5	lab37_lead_lag.txt	6	21#1	5	{0}%
+stale-mark-internet-appendix.html	8	4	6	lab37_lead_lag.txt	6	21#1	6	{0}%
+stale-mark-internet-appendix.html	8	5	0	lab37_lead_lag.txt	6	55#1	0	{0}
+stale-mark-internet-appendix.html	8	5	1	lab37_lead_lag.txt	6	55#1	1	{0}%
+stale-mark-internet-appendix.html	8	5	2	lab37_lead_lag.txt	6	55#1	2	{0}%
+stale-mark-internet-appendix.html	8	5	3	lab37_lead_lag.txt	6	55#1	3	{0}%
+stale-mark-internet-appendix.html	8	5	4	lab37_lead_lag.txt	6	55#1	4	{0}%
+stale-mark-internet-appendix.html	8	5	5	lab37_lead_lag.txt	6	55#1	5	{0}%
+stale-mark-internet-appendix.html	8	5	6	lab37_lead_lag.txt	6	55#1	6	{0}%
+stale-mark-internet-appendix.html	10	1	2	lab51_foreign_options.txt	8	SPX#0	1	{0}
+stale-mark-internet-appendix.html	10	1	3	lab51_foreign_options.txt	8	SPX#0	2	{0}%
+stale-mark-internet-appendix.html	10	1	4	lab51_foreign_options.txt	8	SPX#0	3	{0}%
+stale-mark-internet-appendix.html	10	1	5	lab51_foreign_options.txt	8	SPX#0	4	{0}
+stale-mark-internet-appendix.html	10	1	6	lab51_foreign_options.txt	8	SPX#0	5	{0}
+stale-mark-internet-appendix.html	10	2	2	lab51_foreign_options.txt	8	DAX#0	1	{0}
+stale-mark-internet-appendix.html	10	2	3	lab51_foreign_options.txt	8	DAX#0	2	{0}%
+stale-mark-internet-appendix.html	10	2	4	lab51_foreign_options.txt	8	DAX#0	3	{0}%
+stale-mark-internet-appendix.html	10	2	5	lab51_foreign_options.txt	8	DAX#0	4	{0}
+stale-mark-internet-appendix.html	10	2	6	lab51_foreign_options.txt	8	DAX#0	5	{0}
+stale-mark-internet-appendix.html	10	3	2	lab51_foreign_options.txt	8	FTSE#0	1	{0}
+stale-mark-internet-appendix.html	10	3	3	lab51_foreign_options.txt	8	FTSE#0	2	{0}%
+stale-mark-internet-appendix.html	10	3	4	lab51_foreign_options.txt	8	FTSE#0	3	{0}%
+stale-mark-internet-appendix.html	10	3	5	lab51_foreign_options.txt	8	FTSE#0	4	{0}
+stale-mark-internet-appendix.html	10	3	6	lab51_foreign_options.txt	8	FTSE#0	5	{0}
+stale-mark-internet-appendix.html	10	4	2	lab51_foreign_options.txt	8	AXJO#0	1	{0}
+stale-mark-internet-appendix.html	10	4	3	lab51_foreign_options.txt	8	AXJO#0	2	{0}%
+stale-mark-internet-appendix.html	10	4	4	lab51_foreign_options.txt	8	AXJO#0	3	{0}%
+stale-mark-internet-appendix.html	10	4	5	lab51_foreign_options.txt	8	AXJO#0	4	{0}
+stale-mark-internet-appendix.html	10	4	6	lab51_foreign_options.txt	8	AXJO#0	5	{0}
+stale-mark-internet-appendix.html	10	5	2	lab51_foreign_options.txt	8	HSI#0	1	{0}
+stale-mark-internet-appendix.html	10	5	3	lab51_foreign_options.txt	8	HSI#0	2	{0}%
+stale-mark-internet-appendix.html	10	5	4	lab51_foreign_options.txt	8	HSI#0	3	{0}%
+stale-mark-internet-appendix.html	10	5	5	lab51_foreign_options.txt	8	HSI#0	4	{0}
+stale-mark-internet-appendix.html	10	5	6	lab51_foreign_options.txt	8	HSI#0	5	{0}
+stale-mark-internet-appendix.html	10	6	2	lab51_foreign_options.txt	8	BVSP#0	1	{0}
+stale-mark-internet-appendix.html	10	6	3	lab51_foreign_options.txt	8	BVSP#0	2	{0}%
+stale-mark-internet-appendix.html	10	6	4	lab51_foreign_options.txt	8	BVSP#0	3	{0}%
+stale-mark-internet-appendix.html	10	6	5	lab51_foreign_options.txt	8	BVSP#0	4	{0}
+stale-mark-internet-appendix.html	10	6	6	lab51_foreign_options.txt	8	BVSP#0	5	{0}
+stale-mark-internet-appendix.html	10	7	2	lab51_foreign_options.txt	8	N225#0	1	{0}
+stale-mark-internet-appendix.html	10	7	3	lab51_foreign_options.txt	8	N225#0	2	{0}%
+stale-mark-internet-appendix.html	10	7	4	lab51_foreign_options.txt	8	N225#0	3	{0}%
+stale-mark-internet-appendix.html	10	7	5	lab51_foreign_options.txt	8	N225#0	4	{0}
+stale-mark-internet-appendix.html	10	7	6	lab51_foreign_options.txt	8	N225#0	5	{0}
+stale-mark-internet-appendix.html	10	8	2	lab51_foreign_options.txt	8	NSEI#0	1	{0}
+stale-mark-internet-appendix.html	10	8	3	lab51_foreign_options.txt	8	NSEI#0	2	{0}%
+stale-mark-internet-appendix.html	10	8	4	lab51_foreign_options.txt	8	NSEI#0	3	{0}%
+stale-mark-internet-appendix.html	10	8	5	lab51_foreign_options.txt	8	NSEI#0	4	{0}
+stale-mark-internet-appendix.html	10	8	6	lab51_foreign_options.txt	8	NSEI#0	5	{0}
+stale-mark-internet-appendix.html	11	1	2	lab53_no_options_targets.txt	6	AXJO#0	4	{0}
+stale-mark-internet-appendix.html	11	1	3	lab53_no_options_targets.txt	6	AXJO#0	5	{0}%
+stale-mark-internet-appendix.html	11	1	4	lab53_no_options_targets.txt	6	AXJO#0	6	{0}%
+stale-mark-internet-appendix.html	11	1	5	lab53_no_options_targets.txt	6	AXJO#0	7	{0}
+stale-mark-internet-appendix.html	11	1	6	lab53_no_options_targets.txt	6	AXJO#0	8	{0}
+stale-mark-internet-appendix.html	11	2	2	lab53_no_options_targets.txt	6	HSI#0	4	{0}
+stale-mark-internet-appendix.html	11	2	3	lab53_no_options_targets.txt	6	HSI#0	5	{0}%
+stale-mark-internet-appendix.html	11	2	4	lab53_no_options_targets.txt	6	HSI#0	6	{0}%
+stale-mark-internet-appendix.html	11	2	5	lab53_no_options_targets.txt	6	HSI#0	7	{0}
+stale-mark-internet-appendix.html	11	2	6	lab53_no_options_targets.txt	6	HSI#0	8	{0}
+stale-mark-internet-appendix.html	11	3	2	lab53_no_options_targets.txt	6	N225#0	4	{0}
+stale-mark-internet-appendix.html	11	3	3	lab53_no_options_targets.txt	6	N225#0	5	{0}%
+stale-mark-internet-appendix.html	11	3	4	lab53_no_options_targets.txt	6	N225#0	6	{0}%
+stale-mark-internet-appendix.html	11	3	5	lab53_no_options_targets.txt	6	N225#0	7	{0}
+stale-mark-internet-appendix.html	11	3	6	lab53_no_options_targets.txt	6	N225#0	8	{0}
+stale-mark-internet-appendix.html	11	4	2	lab53_no_options_targets.txt	6	NSEI#0	4	{0}
+stale-mark-internet-appendix.html	11	4	3	lab53_no_options_targets.txt	6	NSEI#0	5	{0}%
+stale-mark-internet-appendix.html	11	4	4	lab53_no_options_targets.txt	6	NSEI#0	6	{0}%
+stale-mark-internet-appendix.html	11	4	5	lab53_no_options_targets.txt	6	NSEI#0	7	{0}
+stale-mark-internet-appendix.html	11	4	6	lab53_no_options_targets.txt	6	NSEI#0	8	{0}
+stale-mark-internet-appendix.html	11	5	2	lab53_no_options_targets.txt	6	JKSE#0	3	{0}
+stale-mark-internet-appendix.html	11	5	3	lab53_no_options_targets.txt	6	JKSE#0	4	{0}%
+stale-mark-internet-appendix.html	11	5	4	lab53_no_options_targets.txt	6	JKSE#0	5	{0}%
+stale-mark-internet-appendix.html	11	5	5	lab53_no_options_targets.txt	6	JKSE#0	6	{0}
+stale-mark-internet-appendix.html	11	5	6	lab53_no_options_targets.txt	6	JKSE#0	7	{0}
+stale-mark-internet-appendix.html	11	6	2	lab53_no_options_targets.txt	6	KLCI#0	3	{0}
+stale-mark-internet-appendix.html	11	6	3	lab53_no_options_targets.txt	6	KLCI#0	4	{0}%
+stale-mark-internet-appendix.html	11	6	4	lab53_no_options_targets.txt	6	KLCI#0	5	{0}%
+stale-mark-internet-appendix.html	11	6	5	lab53_no_options_targets.txt	6	KLCI#0	6	{0}
+stale-mark-internet-appendix.html	11	6	6	lab53_no_options_targets.txt	6	KLCI#0	7	{0}
+stale-mark-internet-appendix.html	11	7	2	lab53_no_options_targets.txt	6	CSEALL#0	3	{0}
+stale-mark-internet-appendix.html	11	7	3	lab53_no_options_targets.txt	6	CSEALL#0	4	{0}%
+stale-mark-internet-appendix.html	11	7	4	lab53_no_options_targets.txt	6	CSEALL#0	5	{0}%
+stale-mark-internet-appendix.html	11	7	5	lab53_no_options_targets.txt	6	CSEALL#0	6	{0}
+stale-mark-internet-appendix.html	11	7	6	lab53_no_options_targets.txt	6	CSEALL#0	7	{0}
+stale-mark-internet-appendix.html	11	8	2	lab53_no_options_targets.txt	6	KSE100#0	3	{0}
+stale-mark-internet-appendix.html	11	8	3	lab53_no_options_targets.txt	6	KSE100#0	4	{0}%
+stale-mark-internet-appendix.html	11	8	4	lab53_no_options_targets.txt	6	KSE100#0	5	{0}%
+stale-mark-internet-appendix.html	11	8	5	lab53_no_options_targets.txt	6	KSE100#0	6	{0}
+stale-mark-internet-appendix.html	11	8	6	lab53_no_options_targets.txt	6	KSE100#0	7	{0}
+stale-mark-internet-appendix.html	12	1	0	lab13_origin_median.txt	8	3#0	0	{0}
+stale-mark-internet-appendix.html	12	1	1	lab13_origin_median.txt	8	3#0	1,3,4	{0}% [{1}, {2}]
+stale-mark-internet-appendix.html	12	1	2	lab13_origin_median.txt	8	3#0	5,7,8	{0}% [{1}, {2}]
+stale-mark-internet-appendix.html	12	2	0	lab13_origin_median.txt	8	5#0	0	{0}
+stale-mark-internet-appendix.html	12	2	1	lab13_origin_median.txt	8	5#0	1,3,4	{0}% [{1}, {2}]
+stale-mark-internet-appendix.html	12	2	2	lab13_origin_median.txt	8	5#0	5,7,8	{0}% [{1}, {2}]
+stale-mark-internet-appendix.html	12	3	0	lab13_origin_median.txt	8	13#0	0	{0}
+stale-mark-internet-appendix.html	12	3	1	lab13_origin_median.txt	8	13#0	1,3,4	{0}% [{1}, {2}]
+stale-mark-internet-appendix.html	12	3	2	lab13_origin_median.txt	8	13#0	5,7,8	{0}% [{1}, {2}]
+stale-mark-internet-appendix.html	12	4	0	lab13_origin_median.txt	8	21#0	0	{0}
+stale-mark-internet-appendix.html	12	4	1	lab13_origin_median.txt	8	21#0	1,3,4	{0}% [{1}, {2}]
+stale-mark-internet-appendix.html	12	4	2	lab13_origin_median.txt	8	21#0	5,7,8	{0}% [{1}, {2}]
+stale-mark-internet-appendix.html	12	5	0	lab13_origin_median.txt	8	55#0	0	{0}
+stale-mark-internet-appendix.html	12	5	1	lab13_origin_median.txt	8	55#0	1,3,4	{0}% [{1}, {2}]
+stale-mark-internet-appendix.html	12	5	2	lab13_origin_median.txt	8	55#0	5,7,8	{0}% [{1}, {2}]
+stale-mark-internet-appendix.html	13	1	1	lab53_no_options_targets.txt	8	AXJO#0	1	{0}
+stale-mark-internet-appendix.html	13	1	2	lab53_no_options_targets.txt	8	AXJO#0	2	{0}
+stale-mark-internet-appendix.html	13	1	3	lab53_no_options_targets.txt	8	AXJO#0	3	{0}
+stale-mark-internet-appendix.html	13	1	4	lab53_no_options_targets.txt	8	AXJO#0	4	{0}
+stale-mark-internet-appendix.html	13	1	5	lab53_no_options_targets.txt	8	AXJO#0	5	{0}
+stale-mark-internet-appendix.html	13	2	1	lab53_no_options_targets.txt	8	HSI#0	1	{0}
+stale-mark-internet-appendix.html	13	2	2	lab53_no_options_targets.txt	8	HSI#0	2	{0}
+stale-mark-internet-appendix.html	13	2	3	lab53_no_options_targets.txt	8	HSI#0	3	{0}
+stale-mark-internet-appendix.html	13	2	4	lab53_no_options_targets.txt	8	HSI#0	4	{0}
+stale-mark-internet-appendix.html	13	2	5	lab53_no_options_targets.txt	8	HSI#0	5	{0}
+stale-mark-internet-appendix.html	13	3	1	lab53_no_options_targets.txt	8	N225#0	1	{0}
+stale-mark-internet-appendix.html	13	3	2	lab53_no_options_targets.txt	8	N225#0	2	{0}
+stale-mark-internet-appendix.html	13	3	3	lab53_no_options_targets.txt	8	N225#0	3	{0}
+stale-mark-internet-appendix.html	13	3	4	lab53_no_options_targets.txt	8	N225#0	4	{0}
+stale-mark-internet-appendix.html	13	3	5	lab53_no_options_targets.txt	8	N225#0	5	{0}
+stale-mark-internet-appendix.html	13	4	1	lab53_no_options_targets.txt	8	NSEI#0	1	{0}
+stale-mark-internet-appendix.html	13	4	2	lab53_no_options_targets.txt	8	NSEI#0	2	{0}
+stale-mark-internet-appendix.html	13	4	3	lab53_no_options_targets.txt	8	NSEI#0	3	{0}
+stale-mark-internet-appendix.html	13	4	4	lab53_no_options_targets.txt	8	NSEI#0	4	{0}
+stale-mark-internet-appendix.html	13	4	5	lab53_no_options_targets.txt	8	NSEI#0	5	{0}
+stale-mark-internet-appendix.html	13	5	1	lab53_no_options_targets.txt	8	JKSE#0	1	{0}
+stale-mark-internet-appendix.html	13	5	2	lab53_no_options_targets.txt	8	JKSE#0	2	{0}
+stale-mark-internet-appendix.html	13	5	3	lab53_no_options_targets.txt	8	JKSE#0	3	{0}
+stale-mark-internet-appendix.html	13	5	4	lab53_no_options_targets.txt	8	JKSE#0	4	{0}
+stale-mark-internet-appendix.html	13	5	5	lab53_no_options_targets.txt	8	JKSE#0	5	{0}
+stale-mark-internet-appendix.html	13	6	1	lab53_no_options_targets.txt	8	KLCI#0	1	{0}
+stale-mark-internet-appendix.html	13	6	2	lab53_no_options_targets.txt	8	KLCI#0	2	{0}
+stale-mark-internet-appendix.html	13	6	3	lab53_no_options_targets.txt	8	KLCI#0	3	{0}
+stale-mark-internet-appendix.html	13	6	4	lab53_no_options_targets.txt	8	KLCI#0	4	{0}
+stale-mark-internet-appendix.html	13	6	5	lab53_no_options_targets.txt	8	KLCI#0	5	{0}
+stale-mark-internet-appendix.html	13	7	1	lab53_no_options_targets.txt	8	CSEALL#0	1	{0}
+stale-mark-internet-appendix.html	13	7	2	lab53_no_options_targets.txt	8	CSEALL#0	2	{0}
+stale-mark-internet-appendix.html	13	7	3	lab53_no_options_targets.txt	8	CSEALL#0	3	{0}
+stale-mark-internet-appendix.html	13	7	4	lab53_no_options_targets.txt	8	CSEALL#0	4	{0}
+stale-mark-internet-appendix.html	13	7	5	lab53_no_options_targets.txt	8	CSEALL#0	5	{0}
+stale-mark-internet-appendix.html	13	8	1	lab53_no_options_targets.txt	8	KSE100#0	1	{0}
+stale-mark-internet-appendix.html	13	8	2	lab53_no_options_targets.txt	8	KSE100#0	2	{0}
+stale-mark-internet-appendix.html	13	8	3	lab53_no_options_targets.txt	8	KSE100#0	3	{0}
+stale-mark-internet-appendix.html	13	8	4	lab53_no_options_targets.txt	8	KSE100#0	4	{0}
+stale-mark-internet-appendix.html	13	8	5	lab53_no_options_targets.txt	8	KSE100#0	5	{0}
+stale-mark-internet-appendix.html	13	9	1	lab53_no_options_targets.txt	8	none#0	1	{0}
+stale-mark-internet-appendix.html	13	9	2	lab53_no_options_targets.txt	8	none#0	2	{0}
+stale-mark-internet-appendix.html	13	9	3	lab53_no_options_targets.txt	8	none#0	3	{0}
+stale-mark-internet-appendix.html	13	9	4	lab53_no_options_targets.txt	8	none#0	4	{0}
+stale-mark-internet-appendix.html	13	9	5	lab53_no_options_targets.txt	8	none#0	5	{0}
+stale-mark-internet-appendix.html	14	1	1	lab57_housing_overlap.txt	6	Jan/Apr/Jul/Oct#0	1	{0}
+stale-mark-internet-appendix.html	14	1	2	lab57_housing_overlap.txt	6	Jan/Apr/Jul/Oct#0	2	{0}
+stale-mark-internet-appendix.html	14	1	3	lab57_housing_overlap.txt	6	Jan/Apr/Jul/Oct#0	3	{0}
+stale-mark-internet-appendix.html	14	1	4	lab57_housing_overlap.txt	6	Jan/Apr/Jul/Oct#0	4	{0}%
+stale-mark-internet-appendix.html	14	1	5	lab57_housing_overlap.txt	6	Jan/Apr/Jul/Oct#0	5,6	[{0}, {1}]
+stale-mark-internet-appendix.html	14	1	6	lab57_housing_overlap.txt	6	Jan/Apr/Jul/Oct#0	7	{0}%
+stale-mark-internet-appendix.html	14	1	7	lab57_housing_overlap.txt	6	Jan/Apr/Jul/Oct#0	8,9	[{0}, {1}]
+stale-mark-internet-appendix.html	14	2	1	lab57_housing_overlap.txt	6	Feb/May/Aug/Nov#0	1	{0}
+stale-mark-internet-appendix.html	14	2	2	lab57_housing_overlap.txt	6	Feb/May/Aug/Nov#0	2	{0}
+stale-mark-internet-appendix.html	14	2	3	lab57_housing_overlap.txt	6	Feb/May/Aug/Nov#0	3	{0}
+stale-mark-internet-appendix.html	14	2	4	lab57_housing_overlap.txt	6	Feb/May/Aug/Nov#0	4	{0}%
+stale-mark-internet-appendix.html	14	2	5	lab57_housing_overlap.txt	6	Feb/May/Aug/Nov#0	5,6	[{0}, {1}]
+stale-mark-internet-appendix.html	14	2	6	lab57_housing_overlap.txt	6	Feb/May/Aug/Nov#0	7	{0}%
+stale-mark-internet-appendix.html	14	2	7	lab57_housing_overlap.txt	6	Feb/May/Aug/Nov#0	8,9	[{0}, {1}]
+stale-mark-internet-appendix.html	14	3	1	lab57_housing_overlap.txt	6	Mar/Jun/Sep/Dec#0	1	{0}
+stale-mark-internet-appendix.html	14	3	2	lab57_housing_overlap.txt	6	Mar/Jun/Sep/Dec#0	2	{0}
+stale-mark-internet-appendix.html	14	3	3	lab57_housing_overlap.txt	6	Mar/Jun/Sep/Dec#0	3	{0}
+stale-mark-internet-appendix.html	14	3	4	lab57_housing_overlap.txt	6	Mar/Jun/Sep/Dec#0	4	{0}%
+stale-mark-internet-appendix.html	14	3	5	lab57_housing_overlap.txt	6	Mar/Jun/Sep/Dec#0	5,6	[{0}, {1}]
+stale-mark-internet-appendix.html	14	3	6	lab57_housing_overlap.txt	6	Mar/Jun/Sep/Dec#0	7	{0}%
+stale-mark-internet-appendix.html	14	3	7	lab57_housing_overlap.txt	6	Mar/Jun/Sep/Dec#0	8,9	[{0}, {1}]
+stale-mark-internet-appendix.html	14	4	1	lab57_housing_overlap.txt	6	Jan/Apr/Jul/Oct#1	1	{0}
+stale-mark-internet-appendix.html	14	4	2	lab57_housing_overlap.txt	6	Jan/Apr/Jul/Oct#1	2	{0}
+stale-mark-internet-appendix.html	14	4	3	lab57_housing_overlap.txt	6	Jan/Apr/Jul/Oct#1	3	{0}
+stale-mark-internet-appendix.html	14	4	4	lab57_housing_overlap.txt	6	Jan/Apr/Jul/Oct#1	4	{0}%
+stale-mark-internet-appendix.html	14	4	5	lab57_housing_overlap.txt	6	Jan/Apr/Jul/Oct#1	5,6	[{0}, {1}]
+stale-mark-internet-appendix.html	14	4	6	lab57_housing_overlap.txt	6	Jan/Apr/Jul/Oct#1	7	{0}%
+stale-mark-internet-appendix.html	14	4	7	lab57_housing_overlap.txt	6	Jan/Apr/Jul/Oct#1	8,9	[{0}, {1}]
+stale-mark-internet-appendix.html	14	5	1	lab57_housing_overlap.txt	6	Feb/May/Aug/Nov#1	1	{0}
+stale-mark-internet-appendix.html	14	5	2	lab57_housing_overlap.txt	6	Feb/May/Aug/Nov#1	2	{0}
+stale-mark-internet-appendix.html	14	5	3	lab57_housing_overlap.txt	6	Feb/May/Aug/Nov#1	3	{0}
+stale-mark-internet-appendix.html	14	5	4	lab57_housing_overlap.txt	6	Feb/May/Aug/Nov#1	4	{0}%
+stale-mark-internet-appendix.html	14	5	5	lab57_housing_overlap.txt	6	Feb/May/Aug/Nov#1	5,6	[{0}, {1}]
+stale-mark-internet-appendix.html	14	5	6	lab57_housing_overlap.txt	6	Feb/May/Aug/Nov#1	7	{0}%
+stale-mark-internet-appendix.html	14	5	7	lab57_housing_overlap.txt	6	Feb/May/Aug/Nov#1	8,9	[{0}, {1}]
+stale-mark-internet-appendix.html	14	6	1	lab57_housing_overlap.txt	6	Mar/Jun/Sep/Dec#1	1	{0}
+stale-mark-internet-appendix.html	14	6	2	lab57_housing_overlap.txt	6	Mar/Jun/Sep/Dec#1	2	{0}
+stale-mark-internet-appendix.html	14	6	3	lab57_housing_overlap.txt	6	Mar/Jun/Sep/Dec#1	3	{0}
+stale-mark-internet-appendix.html	14	6	4	lab57_housing_overlap.txt	6	Mar/Jun/Sep/Dec#1	4	{0}%
+stale-mark-internet-appendix.html	14	6	5	lab57_housing_overlap.txt	6	Mar/Jun/Sep/Dec#1	5,6	[{0}, {1}]
+stale-mark-internet-appendix.html	14	6	6	lab57_housing_overlap.txt	6	Mar/Jun/Sep/Dec#1	7	{0}%
+stale-mark-internet-appendix.html	14	6	7	lab57_housing_overlap.txt	6	Mar/Jun/Sep/Dec#1	8,9	[{0}, {1}]
+stale-mark-internet-appendix.html	16	1	0	lab21_stronger_inference.txt	2	0#0	0	{0}
+stale-mark-internet-appendix.html	16	1	1	lab21_stronger_inference.txt	2	0#0	1	{0}
+stale-mark-internet-appendix.html	16	1	2	lab21_stronger_inference.txt	2	0#0	2	{0}
+stale-mark-internet-appendix.html	16	1	3	lab21_stronger_inference.txt	2	0#0	3	{0}
+stale-mark-internet-appendix.html	16	1	4	lab21_stronger_inference.txt	2	0#0	4	{0}
+stale-mark-internet-appendix.html	16	1	5	lab21_stronger_inference.txt	2	0#0	5	{0}
+stale-mark-internet-appendix.html	16	1	6	lab21_stronger_inference.txt	2	0#0	6	{0}
+stale-mark-internet-appendix.html	16	1	7	lab21_stronger_inference.txt	2	0#0	7	{0}
+stale-mark-internet-appendix.html	16	2	0	lab21_stronger_inference.txt	2	1#0	0	{0}
+stale-mark-internet-appendix.html	16	2	1	lab21_stronger_inference.txt	2	1#0	1	{0}
+stale-mark-internet-appendix.html	16	2	2	lab21_stronger_inference.txt	2	1#0	2	{0}
+stale-mark-internet-appendix.html	16	2	3	lab21_stronger_inference.txt	2	1#0	3	{0}
+stale-mark-internet-appendix.html	16	2	4	lab21_stronger_inference.txt	2	1#0	4	{0}
+stale-mark-internet-appendix.html	16	2	5	lab21_stronger_inference.txt	2	1#0	5	{0}
+stale-mark-internet-appendix.html	16	2	6	lab21_stronger_inference.txt	2	1#0	6	{0}
+stale-mark-internet-appendix.html	16	2	7	lab21_stronger_inference.txt	2	1#0	7	{0}
+stale-mark-internet-appendix.html	16	3	0	lab21_stronger_inference.txt	2	3#0	0	{0}
+stale-mark-internet-appendix.html	16	3	1	lab21_stronger_inference.txt	2	3#0	1	{0}
+stale-mark-internet-appendix.html	16	3	2	lab21_stronger_inference.txt	2	3#0	2	{0}
+stale-mark-internet-appendix.html	16	3	3	lab21_stronger_inference.txt	2	3#0	3	{0}
+stale-mark-internet-appendix.html	16	3	4	lab21_stronger_inference.txt	2	3#0	4	{0}
+stale-mark-internet-appendix.html	16	3	5	lab21_stronger_inference.txt	2	3#0	5	{0}
+stale-mark-internet-appendix.html	16	3	6	lab21_stronger_inference.txt	2	3#0	6	{0}
+stale-mark-internet-appendix.html	16	3	7	lab21_stronger_inference.txt	2	3#0	7	{0}
+stale-mark-internet-appendix.html	16	4	0	lab21_stronger_inference.txt	2	5#0	0	{0}
+stale-mark-internet-appendix.html	16	4	1	lab21_stronger_inference.txt	2	5#0	1	{0}
+stale-mark-internet-appendix.html	16	4	2	lab21_stronger_inference.txt	2	5#0	2	{0}
+stale-mark-internet-appendix.html	16	4	3	lab21_stronger_inference.txt	2	5#0	3	{0}
+stale-mark-internet-appendix.html	16	4	4	lab21_stronger_inference.txt	2	5#0	4	{0}
+stale-mark-internet-appendix.html	16	4	5	lab21_stronger_inference.txt	2	5#0	5	{0}
+stale-mark-internet-appendix.html	16	4	6	lab21_stronger_inference.txt	2	5#0	6	{0}
+stale-mark-internet-appendix.html	16	4	7	lab21_stronger_inference.txt	2	5#0	7	{0}
+stale-mark-internet-appendix.html	16	5	0	lab21_stronger_inference.txt	2	13#0	0	{0}
+stale-mark-internet-appendix.html	16	5	1	lab21_stronger_inference.txt	2	13#0	1	{0}
+stale-mark-internet-appendix.html	16	5	2	lab21_stronger_inference.txt	2	13#0	2	{0}
+stale-mark-internet-appendix.html	16	5	3	lab21_stronger_inference.txt	2	13#0	3	{0}
+stale-mark-internet-appendix.html	16	5	4	lab21_stronger_inference.txt	2	13#0	4	{0}
+stale-mark-internet-appendix.html	16	5	5	lab21_stronger_inference.txt	2	13#0	5	{0}
+stale-mark-internet-appendix.html	16	5	6	lab21_stronger_inference.txt	2	13#0	6	{0}
+stale-mark-internet-appendix.html	16	5	7	lab21_stronger_inference.txt	2	13#0	7	{0}
+stale-mark-internet-appendix.html	16	6	0	lab21_stronger_inference.txt	2	21#0	0	{0}
+stale-mark-internet-appendix.html	16	6	1	lab21_stronger_inference.txt	2	21#0	1	{0}
+stale-mark-internet-appendix.html	16	6	2	lab21_stronger_inference.txt	2	21#0	2	{0}
+stale-mark-internet-appendix.html	16	6	3	lab21_stronger_inference.txt	2	21#0	3	{0}
+stale-mark-internet-appendix.html	16	6	4	lab21_stronger_inference.txt	2	21#0	4	{0}
+stale-mark-internet-appendix.html	16	6	5	lab21_stronger_inference.txt	2	21#0	5	{0}
+stale-mark-internet-appendix.html	16	6	6	lab21_stronger_inference.txt	2	21#0	6	{0}
+stale-mark-internet-appendix.html	16	6	7	lab21_stronger_inference.txt	2	21#0	7	{0}
+stale-mark-internet-appendix.html	16	7	0	lab21_stronger_inference.txt	2	55#0	0	{0}
+stale-mark-internet-appendix.html	16	7	1	lab21_stronger_inference.txt	2	55#0	1	{0}
+stale-mark-internet-appendix.html	16	7	2	lab21_stronger_inference.txt	2	55#0	2	{0}
+stale-mark-internet-appendix.html	16	7	3	lab21_stronger_inference.txt	2	55#0	3	{0}
+stale-mark-internet-appendix.html	16	7	4	lab21_stronger_inference.txt	2	55#0	4	{0}
+stale-mark-internet-appendix.html	16	7	5	lab21_stronger_inference.txt	2	55#0	5	{0}
+stale-mark-internet-appendix.html	16	7	6	lab21_stronger_inference.txt	2	55#0	6	{0}
+stale-mark-internet-appendix.html	16	7	7	lab21_stronger_inference.txt	2	55#0	7	{0}
+stale-mark-internet-appendix.html	17	1	0	lab15_nonlinear_given_iv.txt	4	0#1	0	{0}
+stale-mark-internet-appendix.html	17	1	1	lab15_nonlinear_given_iv.txt	4	0#1	1	{0}
+stale-mark-internet-appendix.html	17	1	2	lab15_nonlinear_given_iv.txt	4	0#1	2	{0}
+stale-mark-internet-appendix.html	17	1	3	lab15_nonlinear_given_iv.txt	4	0#1	3	{0}
+stale-mark-internet-appendix.html	17	1	4	lab15_nonlinear_given_iv.txt	4	0#1	5	{0}
+stale-mark-internet-appendix.html	17	1	5	lab15_nonlinear_given_iv.txt	4	0#1	6	{0}
+stale-mark-internet-appendix.html	17	1	6	lab15_nonlinear_given_iv.txt	4	0#1	8	{0}
+stale-mark-internet-appendix.html	17	1	7	lab15_nonlinear_given_iv.txt	4	0#1	9	{0}
+stale-mark-internet-appendix.html	17	1	8	lab15_nonlinear_given_iv.txt	4	0#1	11	{0}
+stale-mark-internet-appendix.html	17	1	9	lab15_nonlinear_given_iv.txt	4	0#1	12	{0}
+stale-mark-internet-appendix.html	17	2	0	lab15_nonlinear_given_iv.txt	4	3#1	0	{0}
+stale-mark-internet-appendix.html	17	2	1	lab15_nonlinear_given_iv.txt	4	3#1	1	{0}
+stale-mark-internet-appendix.html	17	2	2	lab15_nonlinear_given_iv.txt	4	3#1	2	{0}
+stale-mark-internet-appendix.html	17	2	3	lab15_nonlinear_given_iv.txt	4	3#1	3	{0}
+stale-mark-internet-appendix.html	17	2	4	lab15_nonlinear_given_iv.txt	4	3#1	5	{0}
+stale-mark-internet-appendix.html	17	2	5	lab15_nonlinear_given_iv.txt	4	3#1	6	{0}
+stale-mark-internet-appendix.html	17	2	6	lab15_nonlinear_given_iv.txt	4	3#1	8	{0}
+stale-mark-internet-appendix.html	17	2	7	lab15_nonlinear_given_iv.txt	4	3#1	9	{0}
+stale-mark-internet-appendix.html	17	2	8	lab15_nonlinear_given_iv.txt	4	3#1	11	{0}
+stale-mark-internet-appendix.html	17	2	9	lab15_nonlinear_given_iv.txt	4	3#1	12	{0}
+stale-mark-internet-appendix.html	17	3	0	lab15_nonlinear_given_iv.txt	4	5#1	0	{0}
+stale-mark-internet-appendix.html	17	3	1	lab15_nonlinear_given_iv.txt	4	5#1	1	{0}
+stale-mark-internet-appendix.html	17	3	2	lab15_nonlinear_given_iv.txt	4	5#1	2	{0}
+stale-mark-internet-appendix.html	17	3	3	lab15_nonlinear_given_iv.txt	4	5#1	3	{0}
+stale-mark-internet-appendix.html	17	3	4	lab15_nonlinear_given_iv.txt	4	5#1	5	{0}
+stale-mark-internet-appendix.html	17	3	5	lab15_nonlinear_given_iv.txt	4	5#1	6	{0}
+stale-mark-internet-appendix.html	17	3	6	lab15_nonlinear_given_iv.txt	4	5#1	8	{0}
+stale-mark-internet-appendix.html	17	3	7	lab15_nonlinear_given_iv.txt	4	5#1	9	{0}
+stale-mark-internet-appendix.html	17	3	8	lab15_nonlinear_given_iv.txt	4	5#1	11	{0}
+stale-mark-internet-appendix.html	17	3	9	lab15_nonlinear_given_iv.txt	4	5#1	12	{0}
+stale-mark-internet-appendix.html	17	4	0	lab15_nonlinear_given_iv.txt	4	13#1	0	{0}
+stale-mark-internet-appendix.html	17	4	1	lab15_nonlinear_given_iv.txt	4	13#1	1	{0}
+stale-mark-internet-appendix.html	17	4	2	lab15_nonlinear_given_iv.txt	4	13#1	2	{0}
+stale-mark-internet-appendix.html	17	4	3	lab15_nonlinear_given_iv.txt	4	13#1	3	{0}
+stale-mark-internet-appendix.html	17	4	4	lab15_nonlinear_given_iv.txt	4	13#1	5	{0}
+stale-mark-internet-appendix.html	17	4	5	lab15_nonlinear_given_iv.txt	4	13#1	6	{0}
+stale-mark-internet-appendix.html	17	4	6	lab15_nonlinear_given_iv.txt	4	13#1	8	{0}
+stale-mark-internet-appendix.html	17	4	7	lab15_nonlinear_given_iv.txt	4	13#1	9	{0}
+stale-mark-internet-appendix.html	17	4	8	lab15_nonlinear_given_iv.txt	4	13#1	11	{0}
+stale-mark-internet-appendix.html	17	4	9	lab15_nonlinear_given_iv.txt	4	13#1	12	{0}
+stale-mark-internet-appendix.html	17	5	0	lab15_nonlinear_given_iv.txt	4	21#1	0	{0}
+stale-mark-internet-appendix.html	17	5	1	lab15_nonlinear_given_iv.txt	4	21#1	1	{0}
+stale-mark-internet-appendix.html	17	5	2	lab15_nonlinear_given_iv.txt	4	21#1	2	{0}
+stale-mark-internet-appendix.html	17	5	3	lab15_nonlinear_given_iv.txt	4	21#1	3	{0}
+stale-mark-internet-appendix.html	17	5	4	lab15_nonlinear_given_iv.txt	4	21#1	5	{0}
+stale-mark-internet-appendix.html	17	5	5	lab15_nonlinear_given_iv.txt	4	21#1	6	{0}
+stale-mark-internet-appendix.html	17	5	6	lab15_nonlinear_given_iv.txt	4	21#1	8	{0}
+stale-mark-internet-appendix.html	17	5	7	lab15_nonlinear_given_iv.txt	4	21#1	9	{0}
+stale-mark-internet-appendix.html	17	5	8	lab15_nonlinear_given_iv.txt	4	21#1	11	{0}
+stale-mark-internet-appendix.html	17	5	9	lab15_nonlinear_given_iv.txt	4	21#1	12	{0}
+stale-mark-internet-appendix.html	17	6	0	lab15_nonlinear_given_iv.txt	4	55#1	0	{0}
+stale-mark-internet-appendix.html	17	6	1	lab15_nonlinear_given_iv.txt	4	55#1	1	{0}
+stale-mark-internet-appendix.html	17	6	2	lab15_nonlinear_given_iv.txt	4	55#1	2	{0}
+stale-mark-internet-appendix.html	17	6	3	lab15_nonlinear_given_iv.txt	4	55#1	3	{0}
+stale-mark-internet-appendix.html	17	6	4	lab15_nonlinear_given_iv.txt	4	55#1	5	{0}
+stale-mark-internet-appendix.html	17	6	5	lab15_nonlinear_given_iv.txt	4	55#1	6	{0}
+stale-mark-internet-appendix.html	17	6	6	lab15_nonlinear_given_iv.txt	4	55#1	8	{0}
+stale-mark-internet-appendix.html	17	6	7	lab15_nonlinear_given_iv.txt	4	55#1	9	{0}
+stale-mark-internet-appendix.html	17	6	8	lab15_nonlinear_given_iv.txt	4	55#1	11	{0}
+stale-mark-internet-appendix.html	17	6	9	lab15_nonlinear_given_iv.txt	4	55#1	12	{0}
+stale-mark-internet-appendix.html	18	1	0	lab17_horizons.txt	8	1#0	0	{0} day
+stale-mark-internet-appendix.html	18	1	2	lab17_horizons.txt	8	1#0	1	{0}%
+stale-mark-internet-appendix.html	18	1	3	lab17_horizons.txt	8	1#0	7,8	[{0}, {1}]
+stale-mark-internet-appendix.html	18	2	2	lab11_markets_continuous.txt	2	55#0	12	{0}%
+stale-mark-internet-appendix.html	18	2	3	lab11_markets_continuous.txt	2	55#0	14,15	[{0}, {1}]
+stale-mark-internet-appendix.html	18	2	4	lab11_markets_continuous.txt	2	55#0	16	{0}%
+stale-mark-internet-appendix.html	18	3	0	lab17_horizons.txt	8	10#0	0	{0} days
+stale-mark-internet-appendix.html	18	3	2	lab17_horizons.txt	8	10#0	1	{0}%
+stale-mark-internet-appendix.html	18	3	3	lab17_horizons.txt	8	10#0	7,8	[{0}, {1}]
+stale-mark-internet-appendix.html	18	4	0	lab17_horizons.txt	8	21#0	0	{0} days
+stale-mark-internet-appendix.html	18	4	2	lab17_horizons.txt	8	21#0	1	{0}%
+stale-mark-internet-appendix.html	18	4	3	lab17_horizons.txt	8	21#0	7,8	[{0}, {1}]
+stale-mark-internet-appendix.html	19	1	0	lab44_horizon_matched_iv.txt	4	0#0	0	{0}
+stale-mark-internet-appendix.html	19	1	1	lab44_horizon_matched_iv.txt	4	0#0	1	{0}
+stale-mark-internet-appendix.html	19	1	2	lab44_horizon_matched_iv.txt	4	0#0	2	{0}
+stale-mark-internet-appendix.html	19	1	3	lab44_horizon_matched_iv.txt	4	0#0	3	{0}
+stale-mark-internet-appendix.html	19	1	4	lab44_horizon_matched_iv.txt	4	0#0	4	{0}
+stale-mark-internet-appendix.html	19	1	5	lab44_horizon_matched_iv.txt	4	0#0	5	{0}
+stale-mark-internet-appendix.html	19	1	6	lab44_horizon_matched_iv.txt	4	0#0	6	{0}
+stale-mark-internet-appendix.html	19	2	0	lab44_horizon_matched_iv.txt	4	5#0	0	{0}
+stale-mark-internet-appendix.html	19	2	1	lab44_horizon_matched_iv.txt	4	5#0	1	{0}
+stale-mark-internet-appendix.html	19	2	2	lab44_horizon_matched_iv.txt	4	5#0	2	{0}
+stale-mark-internet-appendix.html	19	2	3	lab44_horizon_matched_iv.txt	4	5#0	3	{0}
+stale-mark-internet-appendix.html	19	2	4	lab44_horizon_matched_iv.txt	4	5#0	4	{0}
+stale-mark-internet-appendix.html	19	2	5	lab44_horizon_matched_iv.txt	4	5#0	5	{0}
+stale-mark-internet-appendix.html	19	2	6	lab44_horizon_matched_iv.txt	4	5#0	6	{0}
+stale-mark-internet-appendix.html	19	3	0	lab44_horizon_matched_iv.txt	4	13#0	0	{0}
+stale-mark-internet-appendix.html	19	3	1	lab44_horizon_matched_iv.txt	4	13#0	1	{0}
+stale-mark-internet-appendix.html	19	3	2	lab44_horizon_matched_iv.txt	4	13#0	2	{0}
+stale-mark-internet-appendix.html	19	3	3	lab44_horizon_matched_iv.txt	4	13#0	3	{0}
+stale-mark-internet-appendix.html	19	3	4	lab44_horizon_matched_iv.txt	4	13#0	4	{0}
+stale-mark-internet-appendix.html	19	3	5	lab44_horizon_matched_iv.txt	4	13#0	5	{0}
+stale-mark-internet-appendix.html	19	3	6	lab44_horizon_matched_iv.txt	4	13#0	6	{0}
+stale-mark-internet-appendix.html	19	4	0	lab44_horizon_matched_iv.txt	4	21#0	0	{0}
+stale-mark-internet-appendix.html	19	4	1	lab44_horizon_matched_iv.txt	4	21#0	1	{0}
+stale-mark-internet-appendix.html	19	4	2	lab44_horizon_matched_iv.txt	4	21#0	2	{0}
+stale-mark-internet-appendix.html	19	4	3	lab44_horizon_matched_iv.txt	4	21#0	3	{0}
+stale-mark-internet-appendix.html	19	4	4	lab44_horizon_matched_iv.txt	4	21#0	4	{0}
+stale-mark-internet-appendix.html	19	4	5	lab44_horizon_matched_iv.txt	4	21#0	5	{0}
+stale-mark-internet-appendix.html	19	4	6	lab44_horizon_matched_iv.txt	4	21#0	6	{0}
+stale-mark-internet-appendix.html	19	5	0	lab44_horizon_matched_iv.txt	4	55#0	0	{0}
+stale-mark-internet-appendix.html	19	5	1	lab44_horizon_matched_iv.txt	4	55#0	1	{0}
+stale-mark-internet-appendix.html	19	5	2	lab44_horizon_matched_iv.txt	4	55#0	2	{0}
+stale-mark-internet-appendix.html	19	5	3	lab44_horizon_matched_iv.txt	4	55#0	3	{0}
+stale-mark-internet-appendix.html	19	5	4	lab44_horizon_matched_iv.txt	4	55#0	4	{0}
+stale-mark-internet-appendix.html	19	5	5	lab44_horizon_matched_iv.txt	4	55#0	5	{0}
+stale-mark-internet-appendix.html	19	5	6	lab44_horizon_matched_iv.txt	4	55#0	6	{0}
+stale-mark-internet-appendix.html	20	1	0	lab10_loss_scale.txt	14	1#0	0	{0}
+stale-mark-internet-appendix.html	20	1	1	lab10_loss_scale.txt	14	1#0	1	{0}%
+stale-mark-internet-appendix.html	20	1	2	lab10_loss_scale.txt	14	1#0	2	{0}%
+stale-mark-internet-appendix.html	20	1	3	lab10_loss_scale.txt	14	1#0	3	{0}%
+stale-mark-internet-appendix.html	20	1	4	lab10_loss_scale.txt	14	1#0	4	{0}
+stale-mark-internet-appendix.html	20	1	5	lab10_loss_scale.txt	14	1#0	5	{0}
+stale-mark-internet-appendix.html	20	1	6	lab10_loss_scale.txt	14	1#0	6	{0}
+stale-mark-internet-appendix.html	20	2	0	lab10_loss_scale.txt	14	3#0	0	{0}
+stale-mark-internet-appendix.html	20	2	1	lab10_loss_scale.txt	14	3#0	1	{0}%
+stale-mark-internet-appendix.html	20	2	2	lab10_loss_scale.txt	14	3#0	2	{0}%
+stale-mark-internet-appendix.html	20	2	3	lab10_loss_scale.txt	14	3#0	3	{0}%
+stale-mark-internet-appendix.html	20	2	4	lab10_loss_scale.txt	14	3#0	4	{0}
+stale-mark-internet-appendix.html	20	2	5	lab10_loss_scale.txt	14	3#0	5	{0}
+stale-mark-internet-appendix.html	20	2	6	lab10_loss_scale.txt	14	3#0	6	{0}
+stale-mark-internet-appendix.html	20	3	0	lab10_loss_scale.txt	14	5#0	0	{0}
+stale-mark-internet-appendix.html	20	3	1	lab10_loss_scale.txt	14	5#0	1	{0}%
+stale-mark-internet-appendix.html	20	3	2	lab10_loss_scale.txt	14	5#0	2	{0}%
+stale-mark-internet-appendix.html	20	3	3	lab10_loss_scale.txt	14	5#0	3	{0}%
+stale-mark-internet-appendix.html	20	3	4	lab10_loss_scale.txt	14	5#0	4	{0}
+stale-mark-internet-appendix.html	20	3	5	lab10_loss_scale.txt	14	5#0	5	{0}
+stale-mark-internet-appendix.html	20	3	6	lab10_loss_scale.txt	14	5#0	6	{0}
+stale-mark-internet-appendix.html	20	4	0	lab10_loss_scale.txt	14	8#0	0	{0}
+stale-mark-internet-appendix.html	20	4	1	lab10_loss_scale.txt	14	8#0	1	{0}%
+stale-mark-internet-appendix.html	20	4	2	lab10_loss_scale.txt	14	8#0	2	{0}%
+stale-mark-internet-appendix.html	20	4	3	lab10_loss_scale.txt	14	8#0	3	{0}%
+stale-mark-internet-appendix.html	20	4	4	lab10_loss_scale.txt	14	8#0	4	{0}
+stale-mark-internet-appendix.html	20	4	5	lab10_loss_scale.txt	14	8#0	5	{0}
+stale-mark-internet-appendix.html	20	4	6	lab10_loss_scale.txt	14	8#0	6	{0}
+stale-mark-internet-appendix.html	20	5	0	lab10_loss_scale.txt	14	13#0	0	{0}
+stale-mark-internet-appendix.html	20	5	1	lab10_loss_scale.txt	14	13#0	1	{0}%
+stale-mark-internet-appendix.html	20	5	2	lab10_loss_scale.txt	14	13#0	2	{0}%
+stale-mark-internet-appendix.html	20	5	3	lab10_loss_scale.txt	14	13#0	3	{0}%
+stale-mark-internet-appendix.html	20	5	4	lab10_loss_scale.txt	14	13#0	4	{0}
+stale-mark-internet-appendix.html	20	5	5	lab10_loss_scale.txt	14	13#0	5	{0}
+stale-mark-internet-appendix.html	20	5	6	lab10_loss_scale.txt	14	13#0	6	{0}
+stale-mark-internet-appendix.html	20	6	0	lab10_loss_scale.txt	14	21#0	0	{0}
+stale-mark-internet-appendix.html	20	6	1	lab10_loss_scale.txt	14	21#0	1	{0}%
+stale-mark-internet-appendix.html	20	6	2	lab10_loss_scale.txt	14	21#0	2	{0}%
+stale-mark-internet-appendix.html	20	6	3	lab10_loss_scale.txt	14	21#0	3	{0}%
+stale-mark-internet-appendix.html	20	6	4	lab10_loss_scale.txt	14	21#0	4	{0}
+stale-mark-internet-appendix.html	20	6	5	lab10_loss_scale.txt	14	21#0	5	{0}
+stale-mark-internet-appendix.html	20	6	6	lab10_loss_scale.txt	14	21#0	6	{0}
+stale-mark-internet-appendix.html	20	7	0	lab10_loss_scale.txt	14	34#0	0	{0}
+stale-mark-internet-appendix.html	20	7	1	lab10_loss_scale.txt	14	34#0	1	{0}%
+stale-mark-internet-appendix.html	20	7	2	lab10_loss_scale.txt	14	34#0	2	{0}%
+stale-mark-internet-appendix.html	20	7	3	lab10_loss_scale.txt	14	34#0	3	{0}%
+stale-mark-internet-appendix.html	20	7	4	lab10_loss_scale.txt	14	34#0	4	{0}
+stale-mark-internet-appendix.html	20	7	5	lab10_loss_scale.txt	14	34#0	5	{0}
+stale-mark-internet-appendix.html	20	7	6	lab10_loss_scale.txt	14	34#0	6	{0}
+stale-mark-internet-appendix.html	20	8	0	lab10_loss_scale.txt	14	55#0	0	{0}
+stale-mark-internet-appendix.html	20	8	1	lab10_loss_scale.txt	14	55#0	1	{0}%
+stale-mark-internet-appendix.html	20	8	2	lab10_loss_scale.txt	14	55#0	2	{0}%
+stale-mark-internet-appendix.html	20	8	3	lab10_loss_scale.txt	14	55#0	3	{0}%
+stale-mark-internet-appendix.html	20	8	4	lab10_loss_scale.txt	14	55#0	4	{0}
+stale-mark-internet-appendix.html	20	8	5	lab10_loss_scale.txt	14	55#0	5	{0}
+stale-mark-internet-appendix.html	20	8	6	lab10_loss_scale.txt	14	55#0	6	{0}
+stale-mark-internet-appendix.html	21	1	0	lab28_orthogonal_breadth.txt	4	0#0	0	{0}
+stale-mark-internet-appendix.html	21	1	1	lab28_orthogonal_breadth.txt	4	0#0	1	{0}
+stale-mark-internet-appendix.html	21	1	2	lab28_orthogonal_breadth.txt	4	0#0	2	{0}
+stale-mark-internet-appendix.html	21	1	3	lab28_orthogonal_breadth.txt	4	0#0	3	{0}
+stale-mark-internet-appendix.html	21	1	4	lab28_orthogonal_breadth.txt	4	0#0	4	{0}
+stale-mark-internet-appendix.html	21	1	5	lab28_orthogonal_breadth.txt	4	0#0	5	{0}
+stale-mark-internet-appendix.html	21	1	6	lab28_orthogonal_breadth.txt	4	0#0	6	{0}
+stale-mark-internet-appendix.html	21	1	7	lab28_orthogonal_breadth.txt	4	0#0	7	{0}
+stale-mark-internet-appendix.html	21	2	0	lab28_orthogonal_breadth.txt	4	3#0	0	{0}
+stale-mark-internet-appendix.html	21	2	1	lab28_orthogonal_breadth.txt	4	3#0	1	{0}
+stale-mark-internet-appendix.html	21	2	2	lab28_orthogonal_breadth.txt	4	3#0	2	{0}
+stale-mark-internet-appendix.html	21	2	3	lab28_orthogonal_breadth.txt	4	3#0	3	{0}
+stale-mark-internet-appendix.html	21	2	4	lab28_orthogonal_breadth.txt	4	3#0	4	{0}
+stale-mark-internet-appendix.html	21	2	5	lab28_orthogonal_breadth.txt	4	3#0	5	{0}
+stale-mark-internet-appendix.html	21	2	6	lab28_orthogonal_breadth.txt	4	3#0	6	{0}
+stale-mark-internet-appendix.html	21	2	7	lab28_orthogonal_breadth.txt	4	3#0	7	{0}
+stale-mark-internet-appendix.html	21	3	0	lab28_orthogonal_breadth.txt	4	5#0	0	{0}
+stale-mark-internet-appendix.html	21	3	1	lab28_orthogonal_breadth.txt	4	5#0	1	{0}
+stale-mark-internet-appendix.html	21	3	2	lab28_orthogonal_breadth.txt	4	5#0	2	{0}
+stale-mark-internet-appendix.html	21	3	3	lab28_orthogonal_breadth.txt	4	5#0	3	{0}
+stale-mark-internet-appendix.html	21	3	4	lab28_orthogonal_breadth.txt	4	5#0	4	{0}
+stale-mark-internet-appendix.html	21	3	5	lab28_orthogonal_breadth.txt	4	5#0	5	{0}
+stale-mark-internet-appendix.html	21	3	6	lab28_orthogonal_breadth.txt	4	5#0	6	{0}
+stale-mark-internet-appendix.html	21	3	7	lab28_orthogonal_breadth.txt	4	5#0	7	{0}
+stale-mark-internet-appendix.html	21	4	0	lab28_orthogonal_breadth.txt	4	13#0	0	{0}
+stale-mark-internet-appendix.html	21	4	1	lab28_orthogonal_breadth.txt	4	13#0	1	{0}
+stale-mark-internet-appendix.html	21	4	2	lab28_orthogonal_breadth.txt	4	13#0	2	{0}
+stale-mark-internet-appendix.html	21	4	3	lab28_orthogonal_breadth.txt	4	13#0	3	{0}
+stale-mark-internet-appendix.html	21	4	4	lab28_orthogonal_breadth.txt	4	13#0	4	{0}
+stale-mark-internet-appendix.html	21	4	5	lab28_orthogonal_breadth.txt	4	13#0	5	{0}
+stale-mark-internet-appendix.html	21	4	6	lab28_orthogonal_breadth.txt	4	13#0	6	{0}
+stale-mark-internet-appendix.html	21	4	7	lab28_orthogonal_breadth.txt	4	13#0	7	{0}
+stale-mark-internet-appendix.html	21	5	0	lab28_orthogonal_breadth.txt	4	21#0	0	{0}
+stale-mark-internet-appendix.html	21	5	1	lab28_orthogonal_breadth.txt	4	21#0	1	{0}
+stale-mark-internet-appendix.html	21	5	2	lab28_orthogonal_breadth.txt	4	21#0	2	{0}
+stale-mark-internet-appendix.html	21	5	3	lab28_orthogonal_breadth.txt	4	21#0	3	{0}
+stale-mark-internet-appendix.html	21	5	4	lab28_orthogonal_breadth.txt	4	21#0	4	{0}
+stale-mark-internet-appendix.html	21	5	5	lab28_orthogonal_breadth.txt	4	21#0	5	{0}
+stale-mark-internet-appendix.html	21	5	6	lab28_orthogonal_breadth.txt	4	21#0	6	{0}
+stale-mark-internet-appendix.html	21	5	7	lab28_orthogonal_breadth.txt	4	21#0	7	{0}
+stale-mark-internet-appendix.html	21	6	0	lab28_orthogonal_breadth.txt	4	55#0	0	{0}
+stale-mark-internet-appendix.html	21	6	1	lab28_orthogonal_breadth.txt	4	55#0	1	{0}
+stale-mark-internet-appendix.html	21	6	2	lab28_orthogonal_breadth.txt	4	55#0	2	{0}
+stale-mark-internet-appendix.html	21	6	3	lab28_orthogonal_breadth.txt	4	55#0	3	{0}
+stale-mark-internet-appendix.html	21	6	4	lab28_orthogonal_breadth.txt	4	55#0	4	{0}
+stale-mark-internet-appendix.html	21	6	5	lab28_orthogonal_breadth.txt	4	55#0	5	{0}
+stale-mark-internet-appendix.html	21	6	6	lab28_orthogonal_breadth.txt	4	55#0	6	{0}
+stale-mark-internet-appendix.html	21	6	7	lab28_orthogonal_breadth.txt	4	55#0	7	{0}
+stale-mark-internet-appendix.html	22	1	0	lab08_implied_vol.txt	4	0#0	0	{0}
+stale-mark-internet-appendix.html	22	1	1	lab08_implied_vol.txt	4	0#0	1	{0}
+stale-mark-internet-appendix.html	22	1	2	lab08_implied_vol.txt	4	0#0	2	{0}
+stale-mark-internet-appendix.html	22	1	3	lab08_implied_vol.txt	4	0#0	3	{0}
+stale-mark-internet-appendix.html	22	1	4	lab08_implied_vol.txt	4	0#0	4	{0}
+stale-mark-internet-appendix.html	22	1	5	lab08_implied_vol.txt	4	0#0	5	{0}
+stale-mark-internet-appendix.html	22	1	6	lab08_implied_vol.txt	4	0#0	6	{0}
+stale-mark-internet-appendix.html	22	2	0	lab08_implied_vol.txt	4	3#0	0	{0}
+stale-mark-internet-appendix.html	22	2	1	lab08_implied_vol.txt	4	3#0	1	{0}
+stale-mark-internet-appendix.html	22	2	2	lab08_implied_vol.txt	4	3#0	2	{0}
+stale-mark-internet-appendix.html	22	2	3	lab08_implied_vol.txt	4	3#0	3	{0}
+stale-mark-internet-appendix.html	22	2	4	lab08_implied_vol.txt	4	3#0	4	{0}
+stale-mark-internet-appendix.html	22	2	5	lab08_implied_vol.txt	4	3#0	5	{0}
+stale-mark-internet-appendix.html	22	2	6	lab08_implied_vol.txt	4	3#0	6	{0}
+stale-mark-internet-appendix.html	22	3	0	lab08_implied_vol.txt	4	5#0	0	{0}
+stale-mark-internet-appendix.html	22	3	1	lab08_implied_vol.txt	4	5#0	1	{0}
+stale-mark-internet-appendix.html	22	3	2	lab08_implied_vol.txt	4	5#0	2	{0}
+stale-mark-internet-appendix.html	22	3	3	lab08_implied_vol.txt	4	5#0	3	{0}
+stale-mark-internet-appendix.html	22	3	4	lab08_implied_vol.txt	4	5#0	4	{0}
+stale-mark-internet-appendix.html	22	3	5	lab08_implied_vol.txt	4	5#0	5	{0}
+stale-mark-internet-appendix.html	22	3	6	lab08_implied_vol.txt	4	5#0	6	{0}
+stale-mark-internet-appendix.html	22	4	0	lab08_implied_vol.txt	4	13#0	0	{0}
+stale-mark-internet-appendix.html	22	4	1	lab08_implied_vol.txt	4	13#0	1	{0}
+stale-mark-internet-appendix.html	22	4	2	lab08_implied_vol.txt	4	13#0	2	{0}
+stale-mark-internet-appendix.html	22	4	3	lab08_implied_vol.txt	4	13#0	3	{0}
+stale-mark-internet-appendix.html	22	4	4	lab08_implied_vol.txt	4	13#0	4	{0}
+stale-mark-internet-appendix.html	22	4	5	lab08_implied_vol.txt	4	13#0	5	{0}
+stale-mark-internet-appendix.html	22	4	6	lab08_implied_vol.txt	4	13#0	6	{0}
+stale-mark-internet-appendix.html	22	5	0	lab08_implied_vol.txt	4	21#0	0	{0}
+stale-mark-internet-appendix.html	22	5	1	lab08_implied_vol.txt	4	21#0	1	{0}
+stale-mark-internet-appendix.html	22	5	2	lab08_implied_vol.txt	4	21#0	2	{0}
+stale-mark-internet-appendix.html	22	5	3	lab08_implied_vol.txt	4	21#0	3	{0}
+stale-mark-internet-appendix.html	22	5	4	lab08_implied_vol.txt	4	21#0	4	{0}
+stale-mark-internet-appendix.html	22	5	5	lab08_implied_vol.txt	4	21#0	5	{0}
+stale-mark-internet-appendix.html	22	5	6	lab08_implied_vol.txt	4	21#0	6	{0}
+stale-mark-internet-appendix.html	22	6	0	lab08_implied_vol.txt	4	55#0	0	{0}
+stale-mark-internet-appendix.html	22	6	1	lab08_implied_vol.txt	4	55#0	1	{0}
+stale-mark-internet-appendix.html	22	6	2	lab08_implied_vol.txt	4	55#0	2	{0}
+stale-mark-internet-appendix.html	22	6	3	lab08_implied_vol.txt	4	55#0	3	{0}
+stale-mark-internet-appendix.html	22	6	4	lab08_implied_vol.txt	4	55#0	4	{0}
+stale-mark-internet-appendix.html	22	6	5	lab08_implied_vol.txt	4	55#0	5	{0}
+stale-mark-internet-appendix.html	22	6	6	lab08_implied_vol.txt	4	55#0	6	{0}
+stale-mark-internet-appendix.html	23	1	0	lab23_compressed_everywhere.txt	4	0#0	0	{0}
+stale-mark-internet-appendix.html	23	1	1	lab23_compressed_everywhere.txt	4	0#0	1	{0}
+stale-mark-internet-appendix.html	23	1	2	lab23_compressed_everywhere.txt	4	0#0	2	{0}
+stale-mark-internet-appendix.html	23	1	3	lab23_compressed_everywhere.txt	4	0#0	3	{0}
+stale-mark-internet-appendix.html	23	1	4	lab23_compressed_everywhere.txt	4	0#0	4	{0}
+stale-mark-internet-appendix.html	23	1	5	lab23_compressed_everywhere.txt	4	0#0	5	{0}
+stale-mark-internet-appendix.html	23	1	6	lab23_compressed_everywhere.txt	4	0#0	6	{0}
+stale-mark-internet-appendix.html	23	1	7	lab23_compressed_everywhere.txt	4	0#0	7	{0}
+stale-mark-internet-appendix.html	23	1	8	lab23_compressed_everywhere.txt	4	0#0	8	{0}
+stale-mark-internet-appendix.html	23	2	0	lab23_compressed_everywhere.txt	4	3#0	0	{0}
+stale-mark-internet-appendix.html	23	2	1	lab23_compressed_everywhere.txt	4	3#0	1	{0}
+stale-mark-internet-appendix.html	23	2	2	lab23_compressed_everywhere.txt	4	3#0	2	{0}
+stale-mark-internet-appendix.html	23	2	3	lab23_compressed_everywhere.txt	4	3#0	3	{0}
+stale-mark-internet-appendix.html	23	2	4	lab23_compressed_everywhere.txt	4	3#0	4	{0}
+stale-mark-internet-appendix.html	23	2	5	lab23_compressed_everywhere.txt	4	3#0	5	{0}
+stale-mark-internet-appendix.html	23	2	6	lab23_compressed_everywhere.txt	4	3#0	6	{0}
+stale-mark-internet-appendix.html	23	2	7	lab23_compressed_everywhere.txt	4	3#0	7	{0}
+stale-mark-internet-appendix.html	23	2	8	lab23_compressed_everywhere.txt	4	3#0	8	{0}
+stale-mark-internet-appendix.html	23	3	0	lab23_compressed_everywhere.txt	4	5#0	0	{0}
+stale-mark-internet-appendix.html	23	3	1	lab23_compressed_everywhere.txt	4	5#0	1	{0}
+stale-mark-internet-appendix.html	23	3	2	lab23_compressed_everywhere.txt	4	5#0	2	{0}
+stale-mark-internet-appendix.html	23	3	3	lab23_compressed_everywhere.txt	4	5#0	3	{0}
+stale-mark-internet-appendix.html	23	3	4	lab23_compressed_everywhere.txt	4	5#0	4	{0}
+stale-mark-internet-appendix.html	23	3	5	lab23_compressed_everywhere.txt	4	5#0	5	{0}
+stale-mark-internet-appendix.html	23	3	6	lab23_compressed_everywhere.txt	4	5#0	6	{0}
+stale-mark-internet-appendix.html	23	3	7	lab23_compressed_everywhere.txt	4	5#0	7	{0}
+stale-mark-internet-appendix.html	23	3	8	lab23_compressed_everywhere.txt	4	5#0	8	{0}
+stale-mark-internet-appendix.html	23	4	0	lab23_compressed_everywhere.txt	4	13#0	0	{0}
+stale-mark-internet-appendix.html	23	4	1	lab23_compressed_everywhere.txt	4	13#0	1	{0}
+stale-mark-internet-appendix.html	23	4	2	lab23_compressed_everywhere.txt	4	13#0	2	{0}
+stale-mark-internet-appendix.html	23	4	3	lab23_compressed_everywhere.txt	4	13#0	3	{0}
+stale-mark-internet-appendix.html	23	4	4	lab23_compressed_everywhere.txt	4	13#0	4	{0}
+stale-mark-internet-appendix.html	23	4	5	lab23_compressed_everywhere.txt	4	13#0	5	{0}
+stale-mark-internet-appendix.html	23	4	6	lab23_compressed_everywhere.txt	4	13#0	6	{0}
+stale-mark-internet-appendix.html	23	4	7	lab23_compressed_everywhere.txt	4	13#0	7	{0}
+stale-mark-internet-appendix.html	23	4	8	lab23_compressed_everywhere.txt	4	13#0	8	{0}
+stale-mark-internet-appendix.html	23	5	0	lab23_compressed_everywhere.txt	4	21#0	0	{0}
+stale-mark-internet-appendix.html	23	5	1	lab23_compressed_everywhere.txt	4	21#0	1	{0}
+stale-mark-internet-appendix.html	23	5	2	lab23_compressed_everywhere.txt	4	21#0	2	{0}
+stale-mark-internet-appendix.html	23	5	3	lab23_compressed_everywhere.txt	4	21#0	3	{0}
+stale-mark-internet-appendix.html	23	5	4	lab23_compressed_everywhere.txt	4	21#0	4	{0}
+stale-mark-internet-appendix.html	23	5	5	lab23_compressed_everywhere.txt	4	21#0	5	{0}
+stale-mark-internet-appendix.html	23	5	6	lab23_compressed_everywhere.txt	4	21#0	6	{0}
+stale-mark-internet-appendix.html	23	5	7	lab23_compressed_everywhere.txt	4	21#0	7	{0}
+stale-mark-internet-appendix.html	23	5	8	lab23_compressed_everywhere.txt	4	21#0	8	{0}
+stale-mark-internet-appendix.html	23	6	0	lab23_compressed_everywhere.txt	4	55#0	0	{0}
+stale-mark-internet-appendix.html	23	6	1	lab23_compressed_everywhere.txt	4	55#0	1	{0}
+stale-mark-internet-appendix.html	23	6	2	lab23_compressed_everywhere.txt	4	55#0	2	{0}
+stale-mark-internet-appendix.html	23	6	3	lab23_compressed_everywhere.txt	4	55#0	3	{0}
+stale-mark-internet-appendix.html	23	6	4	lab23_compressed_everywhere.txt	4	55#0	4	{0}
+stale-mark-internet-appendix.html	23	6	5	lab23_compressed_everywhere.txt	4	55#0	5	{0}
+stale-mark-internet-appendix.html	23	6	6	lab23_compressed_everywhere.txt	4	55#0	6	{0}
+stale-mark-internet-appendix.html	23	6	7	lab23_compressed_everywhere.txt	4	55#0	7	{0}
+stale-mark-internet-appendix.html	23	6	8	lab23_compressed_everywhere.txt	4	55#0	8	{0}
+stale-mark-internet-appendix.html	24	2	0	lab54_monthly_feasibility.txt	4	1#0	0	{0} month
+stale-mark-internet-appendix.html	24	2	1	lab54_monthly_feasibility.txt	4	1#0	1	{0}
+stale-mark-internet-appendix.html	24	2	2	lab54_monthly_feasibility.txt	4	1#0	2	{0}
+stale-mark-internet-appendix.html	24	2	3	lab54_monthly_feasibility.txt	4	1#0	3,4,5	{0}% [{1}, {2}]
+stale-mark-internet-appendix.html	24	3	0	lab54_monthly_feasibility.txt	4	2#0	0	{0} months
+stale-mark-internet-appendix.html	24	3	1	lab54_monthly_feasibility.txt	4	2#0	1	{0}
+stale-mark-internet-appendix.html	24	3	2	lab54_monthly_feasibility.txt	4	2#0	2	{0}
+stale-mark-internet-appendix.html	24	3	3	lab54_monthly_feasibility.txt	4	2#0	3,4,5	{0}% [{1}, {2}]
+stale-mark-internet-appendix.html	24	4	0	lab54_monthly_feasibility.txt	4	3#0	0	{0} months
+stale-mark-internet-appendix.html	24	4	1	lab54_monthly_feasibility.txt	4	3#0	1	{0}
+stale-mark-internet-appendix.html	24	4	2	lab54_monthly_feasibility.txt	4	3#0	2	{0}
+stale-mark-internet-appendix.html	24	4	3	lab54_monthly_feasibility.txt	4	3#0	3,4,5	{0}% [{1}, {2}]
+stale-mark-internet-appendix.html	24	5	0	lab54_monthly_feasibility.txt	4	6#0	0	{0} months
+stale-mark-internet-appendix.html	24	5	1	lab54_monthly_feasibility.txt	4	6#0	1	{0}
+stale-mark-internet-appendix.html	24	5	2	lab54_monthly_feasibility.txt	4	6#0	2	{0}
+stale-mark-internet-appendix.html	24	5	3	lab54_monthly_feasibility.txt	4	6#0	3,4,5	{0}% [{1}, {2}]
+stale-mark-internet-appendix.html	25	3	0	lab55_illiquid_measured.txt	6	1#0	0	{0} month
+stale-mark-internet-appendix.html	25	3	1	lab55_illiquid_measured.txt	6	1#0	1	{0}
+stale-mark-internet-appendix.html	25	3	2	lab55_illiquid_measured.txt	6	1#0	2	{0}
+stale-mark-internet-appendix.html	25	3	3	lab55_illiquid_measured.txt	6	1#0	3,4,5	{0}% [{1}, {2}]
+stale-mark-internet-appendix.html	25	3	4	lab55_illiquid_measured.txt	6	1#0	6,8	{0} of {1}
+stale-mark-internet-appendix.html	25	4	0	lab55_illiquid_measured.txt	6	2#0	0	{0} months
+stale-mark-internet-appendix.html	25	4	1	lab55_illiquid_measured.txt	6	2#0	1	{0}
+stale-mark-internet-appendix.html	25	4	2	lab55_illiquid_measured.txt	6	2#0	2	{0}
+stale-mark-internet-appendix.html	25	4	3	lab55_illiquid_measured.txt	6	2#0	3,4,5	{0}% [{1}, {2}]
+stale-mark-internet-appendix.html	25	4	4	lab55_illiquid_measured.txt	6	2#0	6,8	{0} of {1}
+stale-mark-internet-appendix.html	25	5	0	lab55_illiquid_measured.txt	6	3#0	0	{0} months
+stale-mark-internet-appendix.html	25	5	1	lab55_illiquid_measured.txt	6	3#0	1	{0}
+stale-mark-internet-appendix.html	25	5	2	lab55_illiquid_measured.txt	6	3#0	2	{0}
+stale-mark-internet-appendix.html	25	5	3	lab55_illiquid_measured.txt	6	3#0	3,4,5	{0}% [{1}, {2}]
+stale-mark-internet-appendix.html	25	5	4	lab55_illiquid_measured.txt	6	3#0	6,8	{0} of {1}
+stale-mark-internet-appendix.html	25	6	0	lab55_illiquid_measured.txt	6	6#0	0	{0} months
+stale-mark-internet-appendix.html	25	6	1	lab55_illiquid_measured.txt	6	6#0	1	{0}
+stale-mark-internet-appendix.html	25	6	2	lab55_illiquid_measured.txt	6	6#0	2	{0}
+stale-mark-internet-appendix.html	25	6	3	lab55_illiquid_measured.txt	6	6#0	3,4,5	{0}% [{1}, {2}]
+stale-mark-internet-appendix.html	25	6	4	lab55_illiquid_measured.txt	6	6#0	6,8	{0} of {1}
+stale-mark-internet-appendix.html	25	9	0	lab55_illiquid_measured.txt	8	1#0	0	{0} month
+stale-mark-internet-appendix.html	25	9	1	lab55_illiquid_measured.txt	8	1#0	1	{0}
+stale-mark-internet-appendix.html	25	9	2	lab55_illiquid_measured.txt	8	1#0	2	{0}
+stale-mark-internet-appendix.html	25	9	3	lab55_illiquid_measured.txt	8	1#0	3,4,5	{0}% [{1}, {2}]
+stale-mark-internet-appendix.html	25	9	4	lab55_illiquid_measured.txt	8	1#0	6,8	{0} of {1}
+stale-mark-internet-appendix.html	25	10	0	lab55_illiquid_measured.txt	8	2#0	0	{0} months
+stale-mark-internet-appendix.html	25	10	1	lab55_illiquid_measured.txt	8	2#0	1	{0}
+stale-mark-internet-appendix.html	25	10	2	lab55_illiquid_measured.txt	8	2#0	2	{0}
+stale-mark-internet-appendix.html	25	10	3	lab55_illiquid_measured.txt	8	2#0	3,4,5	{0}% [{1}, {2}]
+stale-mark-internet-appendix.html	25	10	4	lab55_illiquid_measured.txt	8	2#0	6,8	{0} of {1}
+stale-mark-internet-appendix.html	25	11	0	lab55_illiquid_measured.txt	8	3#0	0	{0} months
+stale-mark-internet-appendix.html	25	11	1	lab55_illiquid_measured.txt	8	3#0	1	{0}
+stale-mark-internet-appendix.html	25	11	2	lab55_illiquid_measured.txt	8	3#0	2	{0}
+stale-mark-internet-appendix.html	25	11	3	lab55_illiquid_measured.txt	8	3#0	3,4,5	{0}% [{1}, {2}]
+stale-mark-internet-appendix.html	25	11	4	lab55_illiquid_measured.txt	8	3#0	6,8	{0} of {1}
+stale-mark-internet-appendix.html	25	12	0	lab55_illiquid_measured.txt	8	6#0	0	{0} months
+stale-mark-internet-appendix.html	25	12	1	lab55_illiquid_measured.txt	8	6#0	1	{0}
+stale-mark-internet-appendix.html	25	12	2	lab55_illiquid_measured.txt	8	6#0	2	{0}
+stale-mark-internet-appendix.html	25	12	3	lab55_illiquid_measured.txt	8	6#0	3,4,5	{0}% [{1}, {2}]
+stale-mark-internet-appendix.html	25	12	4	lab55_illiquid_measured.txt	8	6#0	6,8	{0} of {1}
+stale-mark-internet-appendix.html	29	1	0	lab60_outage_decomposition.txt	2	5#0	0	{0}
+stale-mark-internet-appendix.html	29	1	1	lab60_outage_decomposition.txt	2	5#0	1	{0}
+stale-mark-internet-appendix.html	29	1	2	lab60_outage_decomposition.txt	2	5#0	2	{0}
+stale-mark-internet-appendix.html	29	1	3	lab60_outage_decomposition.txt	2	5#0	3	{0}
+stale-mark-internet-appendix.html	29	1	4	lab60_outage_decomposition.txt	2	5#0	4	{0}
+stale-mark-internet-appendix.html	29	1	5	lab60_outage_decomposition.txt	2	5#0	5	{0}
+stale-mark-internet-appendix.html	29	1	6	lab60_outage_decomposition.txt	2	5#0	6	{0}
+stale-mark-internet-appendix.html	29	1	7	lab60_outage_decomposition.txt	2	5#0	7	{0}%
+stale-mark-internet-appendix.html	29	2	0	lab60_outage_decomposition.txt	2	13#0	0	{0}
+stale-mark-internet-appendix.html	29	2	1	lab60_outage_decomposition.txt	2	13#0	1	{0}
+stale-mark-internet-appendix.html	29	2	2	lab60_outage_decomposition.txt	2	13#0	2	{0}
+stale-mark-internet-appendix.html	29	2	3	lab60_outage_decomposition.txt	2	13#0	3	{0}
+stale-mark-internet-appendix.html	29	2	4	lab60_outage_decomposition.txt	2	13#0	4	{0}
+stale-mark-internet-appendix.html	29	2	5	lab60_outage_decomposition.txt	2	13#0	5	{0}
+stale-mark-internet-appendix.html	29	2	6	lab60_outage_decomposition.txt	2	13#0	6	{0}
+stale-mark-internet-appendix.html	29	2	7	lab60_outage_decomposition.txt	2	13#0	7	{0}%
+stale-mark-internet-appendix.html	29	3	0	lab60_outage_decomposition.txt	2	21#0	0	{0}
+stale-mark-internet-appendix.html	29	3	1	lab60_outage_decomposition.txt	2	21#0	1	{0}
+stale-mark-internet-appendix.html	29	3	2	lab60_outage_decomposition.txt	2	21#0	2	{0}
+stale-mark-internet-appendix.html	29	3	3	lab60_outage_decomposition.txt	2	21#0	3	{0}
+stale-mark-internet-appendix.html	29	3	4	lab60_outage_decomposition.txt	2	21#0	4	{0}
+stale-mark-internet-appendix.html	29	3	5	lab60_outage_decomposition.txt	2	21#0	5	{0}
+stale-mark-internet-appendix.html	29	3	6	lab60_outage_decomposition.txt	2	21#0	6	{0}
+stale-mark-internet-appendix.html	29	3	7	lab60_outage_decomposition.txt	2	21#0	7	{0}%
+stale-mark-internet-appendix.html	29	4	0	lab60_outage_decomposition.txt	2	55#0	0	{0}
+stale-mark-internet-appendix.html	29	4	1	lab60_outage_decomposition.txt	2	55#0	1	{0}
+stale-mark-internet-appendix.html	29	4	2	lab60_outage_decomposition.txt	2	55#0	2	{0}
+stale-mark-internet-appendix.html	29	4	3	lab60_outage_decomposition.txt	2	55#0	3	{0}
+stale-mark-internet-appendix.html	29	4	4	lab60_outage_decomposition.txt	2	55#0	4	{0}
+stale-mark-internet-appendix.html	29	4	5	lab60_outage_decomposition.txt	2	55#0	5	{0}
+stale-mark-internet-appendix.html	29	4	6	lab60_outage_decomposition.txt	2	55#0	6	{0}
+stale-mark-internet-appendix.html	29	4	7	lab60_outage_decomposition.txt	2	55#0	7	{0}%
+stale-mark-internet-appendix.html	31	1	3	lab64_coupling_common_window.txt	2+4	KSE100#0	4	{0}
+stale-mark-internet-appendix.html	31	1	4	lab64_coupling_common_window.txt	2+4	KSE100#0	5	{0}
+stale-mark-internet-appendix.html	31	1	5	lab64_coupling_common_window.txt	2+4	KSE100#0	6	{0}%
+stale-mark-internet-appendix.html	31	1	6	lab64_coupling_common_window.txt	2+4	KSE100#0	7	{0}%
+stale-mark-internet-appendix.html	31	3	3	lab64_coupling_common_window.txt	2+4	JKSE#0	4	{0}
+stale-mark-internet-appendix.html	31	3	4	lab64_coupling_common_window.txt	2+4	JKSE#0	5	{0}
+stale-mark-internet-appendix.html	31	3	5	lab64_coupling_common_window.txt	2+4	JKSE#0	6	{0}%
+stale-mark-internet-appendix.html	31	3	6	lab64_coupling_common_window.txt	2+4	JKSE#0	7	{0}%
+stale-mark-internet-appendix.html	31	4	3	lab64_coupling_common_window.txt	2+4	KLCI#0	4	{0}
+stale-mark-internet-appendix.html	31	4	4	lab64_coupling_common_window.txt	2+4	KLCI#0	5	{0}
+stale-mark-internet-appendix.html	31	4	5	lab64_coupling_common_window.txt	2+4	KLCI#0	6	{0}%
+stale-mark-internet-appendix.html	31	4	6	lab64_coupling_common_window.txt	2+4	KLCI#0	7	{0}%
+stale-mark-internet-appendix.html	31	5	3	lab64_coupling_common_window.txt	2+4	NSEI#0	4	{0}
+stale-mark-internet-appendix.html	31	5	4	lab64_coupling_common_window.txt	2+4	NSEI#0	5	{0}
+stale-mark-internet-appendix.html	31	5	5	lab64_coupling_common_window.txt	2+4	NSEI#0	6	{0}%
+stale-mark-internet-appendix.html	31	5	6	lab64_coupling_common_window.txt	2+4	NSEI#0	7	{0}%
+stale-mark-internet-appendix.html	31	6	3	lab64_coupling_common_window.txt	2+4	N225#0	4	{0}
+stale-mark-internet-appendix.html	31	6	4	lab64_coupling_common_window.txt	2+4	N225#0	5	{0}
+stale-mark-internet-appendix.html	31	6	5	lab64_coupling_common_window.txt	2+4	N225#0	6	{0}%
+stale-mark-internet-appendix.html	31	6	6	lab64_coupling_common_window.txt	2+4	N225#0	7	{0}%
+stale-mark-internet-appendix.html	31	8	3	lab64_coupling_common_window.txt	2+4	AXJO#0	4	{0}
+stale-mark-internet-appendix.html	31	8	4	lab64_coupling_common_window.txt	2+4	AXJO#0	5	{0}
+stale-mark-internet-appendix.html	31	8	5	lab64_coupling_common_window.txt	2+4	AXJO#0	6	{0}%
+stale-mark-internet-appendix.html	31	8	6	lab64_coupling_common_window.txt	2+4	AXJO#0	7	{0}%
+stale-mark-internet-appendix.html	32	1	3	lab69_proxy_robustness.txt	8	YZ#0	1	{0}%
+stale-mark-internet-appendix.html	32	1	4	lab69_proxy_robustness.txt	8	YZ#0	3,4	[{0}%, {1}%]
+stale-mark-internet-appendix.html	32	1	5	lab69_proxy_robustness.txt	8	YZ#0	5	{0}
+stale-mark-internet-appendix.html	32	2	3	lab69_proxy_robustness.txt	8	CC#0	1	{0}%
+stale-mark-internet-appendix.html	32	2	4	lab69_proxy_robustness.txt	8	CC#0	3,4	[{0}%, {1}%]
+stale-mark-internet-appendix.html	32	2	5	lab69_proxy_robustness.txt	8	CC#0	5	{0}
+stale-mark-internet-appendix.html	32	3	3	lab69_proxy_robustness.txt	8	RS#0	1	{0}%
+stale-mark-internet-appendix.html	32	3	4	lab69_proxy_robustness.txt	8	RS#0	3,4	[{0}%, {1}%]
+stale-mark-internet-appendix.html	32	3	5	lab69_proxy_robustness.txt	8	RS#0	5	{0}
+stale-mark-internet-appendix.html	32	4	3	lab69_proxy_robustness.txt	8	PK#0	1	{0}%
+stale-mark-internet-appendix.html	32	4	4	lab69_proxy_robustness.txt	8	PK#0	3,4	[{0}%, {1}%]
+stale-mark-internet-appendix.html	32	4	5	lab69_proxy_robustness.txt	8	PK#0	5	{0}
+stale-mark-internet-appendix.html	33	1	1	lab70_cell_coverage.txt	2	calm#0	1	{0}
+stale-mark-internet-appendix.html	33	1	3	lab70_cell_coverage.txt	2	calm#0	3	{0}
+stale-mark-internet-appendix.html	33	1	4	lab70_cell_coverage.txt	2	calm#0	5	{0}%
+stale-mark-internet-appendix.html	33	1	5	lab70_cell_coverage.txt	2	calm#0	6	{0}%
+stale-mark-internet-appendix.html	33	2	1	lab70_cell_coverage.txt	2	calm#1	1	{0}
+stale-mark-internet-appendix.html	33	2	3	lab70_cell_coverage.txt	2	calm#1	3	{0}
+stale-mark-internet-appendix.html	33	2	4	lab70_cell_coverage.txt	2	calm#1	5	{0}%
+stale-mark-internet-appendix.html	33	2	5	lab70_cell_coverage.txt	2	calm#1	6	{0}%
+stale-mark-internet-appendix.html	33	3	1	lab70_cell_coverage.txt	2	calm#2	1	{0}
+stale-mark-internet-appendix.html	33	3	3	lab70_cell_coverage.txt	2	calm#2	3	{0}
+stale-mark-internet-appendix.html	33	3	4	lab70_cell_coverage.txt	2	calm#2	5	{0}%
+stale-mark-internet-appendix.html	33	3	5	lab70_cell_coverage.txt	2	calm#2	6	{0}%
+stale-mark-internet-appendix.html	33	4	1	lab70_cell_coverage.txt	2	calm#3	1	{0}
+stale-mark-internet-appendix.html	33	4	3	lab70_cell_coverage.txt	2	calm#3	3	{0}
+stale-mark-internet-appendix.html	33	4	4	lab70_cell_coverage.txt	2	calm#3	5	{0}%
+stale-mark-internet-appendix.html	33	4	5	lab70_cell_coverage.txt	2	calm#3	6	{0}%
+stale-mark-internet-appendix.html	33	5	1	lab70_cell_coverage.txt	2	middle#0	1	{0}
+stale-mark-internet-appendix.html	33	5	3	lab70_cell_coverage.txt	2	middle#0	3	{0}
+stale-mark-internet-appendix.html	33	5	4	lab70_cell_coverage.txt	2	middle#0	5	{0}%
+stale-mark-internet-appendix.html	33	5	5	lab70_cell_coverage.txt	2	middle#0	6	{0}%
+stale-mark-internet-appendix.html	33	6	1	lab70_cell_coverage.txt	2	middle#1	1	{0}
+stale-mark-internet-appendix.html	33	6	3	lab70_cell_coverage.txt	2	middle#1	3	{0}
+stale-mark-internet-appendix.html	33	6	4	lab70_cell_coverage.txt	2	middle#1	5	{0}%
+stale-mark-internet-appendix.html	33	6	5	lab70_cell_coverage.txt	2	middle#1	6	{0}%
+stale-mark-internet-appendix.html	33	7	1	lab70_cell_coverage.txt	2	middle#2	1	{0}
+stale-mark-internet-appendix.html	33	7	3	lab70_cell_coverage.txt	2	middle#2	3	{0}
+stale-mark-internet-appendix.html	33	7	4	lab70_cell_coverage.txt	2	middle#2	5	{0}%
+stale-mark-internet-appendix.html	33	7	5	lab70_cell_coverage.txt	2	middle#2	6	{0}%
+stale-mark-internet-appendix.html	33	9	1	lab70_cell_coverage.txt	2	stressed#0	1	{0}
+stale-mark-internet-appendix.html	33	9	3	lab70_cell_coverage.txt	2	stressed#0	3	{0}
+stale-mark-internet-appendix.html	33	9	4	lab70_cell_coverage.txt	2	stressed#0	5	{0}%
+stale-mark-internet-appendix.html	33	9	5	lab70_cell_coverage.txt	2	stressed#0	6	{0}%
+stale-mark-internet-appendix.html	33	10	1	lab70_cell_coverage.txt	2	stressed#1	1	{0}
+stale-mark-internet-appendix.html	33	10	3	lab70_cell_coverage.txt	2	stressed#1	3	{0}
+stale-mark-internet-appendix.html	33	10	4	lab70_cell_coverage.txt	2	stressed#1	5	{0}%
+stale-mark-internet-appendix.html	33	10	5	lab70_cell_coverage.txt	2	stressed#1	6	{0}%
+stale-mark-internet-appendix.html	33	11	1	lab70_cell_coverage.txt	2	stressed#2	1	{0}
+stale-mark-internet-appendix.html	33	11	3	lab70_cell_coverage.txt	2	stressed#2	3	{0}
+stale-mark-internet-appendix.html	33	11	4	lab70_cell_coverage.txt	2	stressed#2	5	{0}%
+stale-mark-internet-appendix.html	33	11	5	lab70_cell_coverage.txt	2	stressed#2	6	{0}%
+stale-mark-internet-appendix.html	33	13	1	lab70_cell_coverage.txt	2	full#0	2	<i>{0}</i>
+stale-mark-internet-appendix.html	33	13	3	lab70_cell_coverage.txt	2	full#0	4	<i>{0}</i>
+stale-mark-internet-appendix.html	33	13	4	lab70_cell_coverage.txt	2	full#0	6	<i>{0}%</i>
+stale-mark-internet-appendix.html	33	13	5	lab70_cell_coverage.txt	2	full#0	7	<i>{0}%</i>
+stale-mark-internet-appendix.html	34	1	3	lab73_own_options_paired.txt	6	55#0	3	{0}
+stale-mark-internet-appendix.html	34	1	4	lab73_own_options_paired.txt	6	55#0	4	{0}
+stale-mark-internet-appendix.html	34	1	5	lab73_own_options_paired.txt	6	55#0	7	{0}
+stale-mark-internet-appendix.html	34	1	6	lab73_own_options_paired.txt	6	55#0	8	{0}
+stale-mark-internet-appendix.html	34	2	3	lab73_own_options_paired.txt	6	55#1	3	{0}
+stale-mark-internet-appendix.html	34	2	4	lab73_own_options_paired.txt	6	55#1	4	{0}
+stale-mark-internet-appendix.html	34	2	5	lab73_own_options_paired.txt	6	55#1	7	{0}
+stale-mark-internet-appendix.html	34	2	6	lab73_own_options_paired.txt	6	55#1	8	{0}
+stale-mark-internet-appendix.html	34	3	3	lab73_own_options_paired.txt	6	55#2	3	{0}
+stale-mark-internet-appendix.html	34	3	4	lab73_own_options_paired.txt	6	55#2	4	{0}
+stale-mark-internet-appendix.html	34	3	5	lab73_own_options_paired.txt	6	55#2	7	{0}
+stale-mark-internet-appendix.html	34	3	6	lab73_own_options_paired.txt	6	55#2	8	{0}
+stale-mark-internet-appendix.html	34	4	3	lab73_own_options_paired.txt	6	55#3	3	{0}
+stale-mark-internet-appendix.html	34	4	4	lab73_own_options_paired.txt	6	55#3	4	{0}
+stale-mark-internet-appendix.html	34	4	5	lab73_own_options_paired.txt	6	55#3	7	{0}
+stale-mark-internet-appendix.html	34	4	6	lab73_own_options_paired.txt	6	55#3	8	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	0	1	0	lab02_delay_curve.txt	0	0#0	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	0	1	1	lab02_delay_curve.txt	0	0#0	1	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	0	2	0	lab02_delay_curve.txt	0	1#0	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	0	2	1	lab02_delay_curve.txt	0	1#0	1	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	0	3	0	lab02_delay_curve.txt	0	2#0	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	0	3	1	lab02_delay_curve.txt	0	2#0	1	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	0	4	0	lab02_delay_curve.txt	0	3#0	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	0	4	1	lab02_delay_curve.txt	0	3#0	1	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	0	5	0	lab02_delay_curve.txt	0	5#0	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	0	5	1	lab02_delay_curve.txt	0	5#0	1	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	0	6	0	lab02_delay_curve.txt	0	8#0	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	0	6	1	lab02_delay_curve.txt	0	8#0	1	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	0	7	0	lab02_delay_curve.txt	0	13#0	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	0	7	1	lab02_delay_curve.txt	0	13#0	1	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	0	8	0	lab02_delay_curve.txt	0	21#0	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	0	8	1	lab02_delay_curve.txt	0	21#0	1	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	0	9	0	lab02_delay_curve.txt	0	34#0	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	0	9	1	lab02_delay_curve.txt	0	34#0	1	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	0	10	0	lab02_delay_curve.txt	0	55#0	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	0	10	1	lab02_delay_curve.txt	0	55#0	1	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	1	1	0	lab02_delay_curve.txt	0	0#1	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	1	1	1	lab02_delay_curve.txt	0	0#1	1,2,3	{0} [{1}, {2}]
+why-a-simple-threshold-rule-is-hard-to-beat.html	1	1	2	lab02_delay_curve.txt	0	0#1	4,6,7	{0} [{1}, {2}]
+why-a-simple-threshold-rule-is-hard-to-beat.html	1	1	3	lab02_delay_curve.txt	0	0#1	8,10,11	{0} [{1}, {2}]
+why-a-simple-threshold-rule-is-hard-to-beat.html	1	2	0	lab02_delay_curve.txt	0	3#1	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	1	2	1	lab02_delay_curve.txt	0	3#1	1,3,4	{0} [{1}, {2}]
+why-a-simple-threshold-rule-is-hard-to-beat.html	1	2	2	lab02_delay_curve.txt	0	3#1	5,7,8	{0} [{1}, {2}]
+why-a-simple-threshold-rule-is-hard-to-beat.html	1	2	3	lab02_delay_curve.txt	0	3#1	9,11,12	{0} [{1}, {2}]
+why-a-simple-threshold-rule-is-hard-to-beat.html	1	3	0	lab02_delay_curve.txt	0	5#1	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	1	3	1	lab02_delay_curve.txt	0	5#1	1,3,4	{0} [{1}, {2}]
+why-a-simple-threshold-rule-is-hard-to-beat.html	1	3	2	lab02_delay_curve.txt	0	5#1	5,7,8	{0} [{1}, {2}]
+why-a-simple-threshold-rule-is-hard-to-beat.html	1	3	3	lab02_delay_curve.txt	0	5#1	9,11,12	{0} [{1}, {2}]
+why-a-simple-threshold-rule-is-hard-to-beat.html	1	4	0	lab02_delay_curve.txt	0	8#1	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	1	4	1	lab02_delay_curve.txt	0	8#1	1,3,4	{0} [{1}, {2}]
+why-a-simple-threshold-rule-is-hard-to-beat.html	1	4	2	lab02_delay_curve.txt	0	8#1	5,7,8	{0} [{1}, {2}]
+why-a-simple-threshold-rule-is-hard-to-beat.html	1	4	3	lab02_delay_curve.txt	0	8#1	9,11,12	{0} [{1}, {2}]
+why-a-simple-threshold-rule-is-hard-to-beat.html	1	5	0	lab02_delay_curve.txt	0	13#1	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	1	5	1	lab02_delay_curve.txt	0	13#1	1,3,4	{0} [{1}, {2}]
+why-a-simple-threshold-rule-is-hard-to-beat.html	1	5	2	lab02_delay_curve.txt	0	13#1	5,7,8	{0} [{1}, {2}]
+why-a-simple-threshold-rule-is-hard-to-beat.html	1	5	3	lab02_delay_curve.txt	0	13#1	9,11,12	{0} [{1}, {2}]
+why-a-simple-threshold-rule-is-hard-to-beat.html	1	6	0	lab02_delay_curve.txt	0	21#1	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	1	6	2	lab02_delay_curve.txt	0	21#1	4,6,7	{0} [{1}, {2}]
+why-a-simple-threshold-rule-is-hard-to-beat.html	1	6	3	lab02_delay_curve.txt	0	21#1	8,10,11	{0} [{1}, {2}]
+why-a-simple-threshold-rule-is-hard-to-beat.html	2	1	0	lab20_ceiling_is_not_a_ceiling.txt	2+10	0#0	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	2	1	2	lab20_ceiling_is_not_a_ceiling.txt	2+10	0#0	1	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	2	1	5	lab20_ceiling_is_not_a_ceiling.txt	2+10	0#0	2	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	2	1	6	lab20_ceiling_is_not_a_ceiling.txt	2+10	0#0	4	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	2	7	0	lab20_ceiling_is_not_a_ceiling.txt	2+10	13#0	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	2	7	2	lab20_ceiling_is_not_a_ceiling.txt	2+10	13#0	1	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	2	7	5	lab20_ceiling_is_not_a_ceiling.txt	2+10	13#0	2	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	2	7	6	lab20_ceiling_is_not_a_ceiling.txt	2+10	13#0	4	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	2	8	0	lab20_ceiling_is_not_a_ceiling.txt	2+10	21#0	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	2	8	2	lab20_ceiling_is_not_a_ceiling.txt	2+10	21#0	1	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	2	8	5	lab20_ceiling_is_not_a_ceiling.txt	2+10	21#0	2	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	2	8	6	lab20_ceiling_is_not_a_ceiling.txt	2+10	21#0	4	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	2	9	0	lab20_ceiling_is_not_a_ceiling.txt	2+10	34#0	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	2	9	2	lab20_ceiling_is_not_a_ceiling.txt	2+10	34#0	1	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	2	9	5	lab20_ceiling_is_not_a_ceiling.txt	2+10	34#0	2	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	2	9	6	lab20_ceiling_is_not_a_ceiling.txt	2+10	34#0	4	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	2	10	0	lab20_ceiling_is_not_a_ceiling.txt	2+10	55#0	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	2	10	2	lab20_ceiling_is_not_a_ceiling.txt	2+10	55#0	1	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	2	10	5	lab20_ceiling_is_not_a_ceiling.txt	2+10	55#0	2	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	2	10	6	lab20_ceiling_is_not_a_ceiling.txt	2+10	55#0	4	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	1	0	lab24_proper_scores.txt	4	0#2	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	1	2	lab24_proper_scores.txt	4	0#2	2	{0}%
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	1	3	lab24_proper_scores.txt	4	0#2	3	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	1	4	lab24_proper_scores.txt	4	0#2	4	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	2	0	lab24_proper_scores.txt	4	0#4	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	2	2	lab24_proper_scores.txt	4	0#4	2	{0}%
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	2	3	lab24_proper_scores.txt	4	0#4	3	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	2	4	lab24_proper_scores.txt	4	0#4	4	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	2	5	lab24_proper_scores.txt	4	0#4	5	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	2	6	lab24_proper_scores.txt	4	0#4	6	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	3	0	lab24_proper_scores.txt	4	5#2	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	3	2	lab24_proper_scores.txt	4	5#2	2	{0}%
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	3	3	lab24_proper_scores.txt	4	5#2	3	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	3	4	lab24_proper_scores.txt	4	5#2	4	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	4	0	lab24_proper_scores.txt	4	5#4	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	4	2	lab24_proper_scores.txt	4	5#4	2	{0}%
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	4	3	lab24_proper_scores.txt	4	5#4	3	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	4	4	lab24_proper_scores.txt	4	5#4	4	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	4	5	lab24_proper_scores.txt	4	5#4	5	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	4	6	lab24_proper_scores.txt	4	5#4	6	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	5	0	lab24_proper_scores.txt	4	21#2	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	5	2	lab24_proper_scores.txt	4	21#2	2	{0}%
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	5	3	lab24_proper_scores.txt	4	21#2	3	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	5	4	lab24_proper_scores.txt	4	21#2	4	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	6	0	lab24_proper_scores.txt	4	21#4	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	6	2	lab24_proper_scores.txt	4	21#4	2	{0}%
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	6	3	lab24_proper_scores.txt	4	21#4	3	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	6	4	lab24_proper_scores.txt	4	21#4	4	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	6	5	lab24_proper_scores.txt	4	21#4	5	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	6	6	lab24_proper_scores.txt	4	21#4	6	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	7	0	lab24_proper_scores.txt	4	21#0	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	7	2	lab24_proper_scores.txt	4	21#0	3	{0}%
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	7	3	lab24_proper_scores.txt	4	21#0	4	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	7	4	lab24_proper_scores.txt	4	21#0	5	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	7	5	lab24_proper_scores.txt	4	21#0	6	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	3	7	6	lab24_proper_scores.txt	4	21#0	7	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	4	5	0	lab25_window_sensitivity.txt	4	504#1	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	4	5	1	lab25_window_sensitivity.txt	4	504#1	1	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	4	5	2	lab25_window_sensitivity.txt	4	504#1	2	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	4	5	3	lab25_window_sensitivity.txt	4	504#1	5	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	4	5	4	lab25_window_sensitivity.txt	4	504#1	8	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	5	1	0	lab26_quantile_target.txt	4	0.50#0	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	5	1	1	lab26_quantile_target.txt	4	0.50#0	1	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	5	1	4	lab26_quantile_target.txt	4	0.50#0	5	{0}%
+why-a-simple-threshold-rule-is-hard-to-beat.html	5	1	5	lab26_quantile_target.txt	4	0.50#0	6	{0}%
+why-a-simple-threshold-rule-is-hard-to-beat.html	5	2	0	lab26_quantile_target.txt	4	0.65#0	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	5	2	1	lab26_quantile_target.txt	4	0.65#0	1	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	5	2	2	lab26_quantile_target.txt	4	0.65#0	4	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	5	2	4	lab26_quantile_target.txt	4	0.65#0	5	{0}%
+why-a-simple-threshold-rule-is-hard-to-beat.html	5	2	5	lab26_quantile_target.txt	4	0.65#0	6	{0}%
+why-a-simple-threshold-rule-is-hard-to-beat.html	5	3	0	lab26_quantile_target.txt	4	0.75#0	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	5	3	1	lab26_quantile_target.txt	4	0.75#0	1	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	5	3	2	lab26_quantile_target.txt	4	0.75#0	4	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	5	3	4	lab26_quantile_target.txt	4	0.75#0	5	{0}%
+why-a-simple-threshold-rule-is-hard-to-beat.html	5	3	5	lab26_quantile_target.txt	4	0.75#0	6	{0}%
+why-a-simple-threshold-rule-is-hard-to-beat.html	5	4	0	lab26_quantile_target.txt	4	0.90#0	0	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	5	4	1	lab26_quantile_target.txt	4	0.90#0	1	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	5	4	2	lab26_quantile_target.txt	4	0.90#0	4	{0}
+why-a-simple-threshold-rule-is-hard-to-beat.html	5	4	4	lab26_quantile_target.txt	4	0.90#0	5	{0}%
+why-a-simple-threshold-rule-is-hard-to-beat.html	5	4	5	lab26_quantile_target.txt	4	0.90#0	6	{0}%
+why-a-simple-threshold-rule-is-hard-to-beat.html	6	1	1	lab61_block_sensitivity.txt	4	mb#0	9	{0}
