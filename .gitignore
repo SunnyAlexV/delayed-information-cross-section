@@ -1,0 +1,40 @@
+output/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Not published: correspondence, contact details, and generated submissions.
+# papers/variants/ is rebuilt by build_variants.py, and on the author's machine
+# it carries the telephone number that contact.txt supplies, so committing it
+# would republish the number the source keeps out.
+submission/
+contact.txt
+papers/variants/
+papers/ssrn/
+# papers/submission/ holds the assembled journal packages, including a title
+# page carrying the postal address and telephone contact.txt supplies.  Same
+# reason as papers/variants/: it is rebuilt by build_jfec_submission.py and
+# committing it would republish what the source deliberately keeps out.
+papers/submission/
+
+# Work in progress: labs that are not yet wired into run_all.py and so have no
+# stored output to be diffed against.  Shipping one would put a script in the
+# repository that the reproducibility claim does not cover, and a copy of a
+# wired lab sat here identical to its live twin until it was noticed, which is
+# how a duplicate starts to drift.  Nothing here is published; a lab joins the
+# repository by moving into labs/ with its output stored.
+pending-labs/
+cell_registry/
+
+# Vendor inputs, wherever a reader drops them.  data/ ships MANIFEST.tsv rather
+# than the files, and the one redistributable series (FHFA, in data/illiquid/)
+# is committed by name - everything else is licensed and must never be.  This
+# also catches a copy left beside the labs to satisfy a default search path,
+# which is how XYZ.csv nearly reached a public repository.
+labs/*.csv
+data/*.csv
+data/frontier/*.csv
+data/single_market/*.csv
+
+# The resumable record of a local reproduction run: a result, not a source.
+batch_check_state.json
