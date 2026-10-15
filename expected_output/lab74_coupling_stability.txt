@@ -1,0 +1,105 @@
+data folder: /home/claude/data_local
+Prints the rate by the stability of the correlation structure.
+
+target SPX, 4862 test days, 7 foreign peers
+structure read over 252 trailing days against the same window 63 days earlier
+
+================================================================================================
+A.  THE MEASURE, AND WHETHER IT IS STRESS UNDER ANOTHER NAME
+================================================================================================
+  days with a stability reading: 4862 of 4862
+  S runs +0.221 to +0.991, median +0.871
+  rank correlation between S and the VIX level at t-1: +0.118
+  of the least stable third of days, 33% are also in the most stressed third
+  If that share were near one the two cuts would be the same cut and
+  nothing below would be new.
+
+================================================================================================
+B.  THE RATE BY STABILITY, REAL-TIME CUT
+================================================================================================
+Boundaries from each day's own trailing year, so the bucket is one a
+forecaster could have assigned on the morning of the day.
+
+    bucket  delta   N (removed)  D (delay cost)   R = N/D   days
+  unstable      5        0.0815          0.1378       59%   1715
+  unstable     13        0.1939          0.2736       71%   1715
+  unstable     21        0.2906          0.3743       78%   1715
+  unstable     55        0.4827          0.6041       80%   1715
+
+    middle      5        0.0497          0.1423       35%   1449
+    middle     13        0.1418          0.2688       53%   1449
+    middle     21        0.2058          0.3641       57%   1449
+    middle     55        0.2560          0.4316       59%   1449
+
+    stable      5        0.0913          0.1600       57%   1698
+    stable     13        0.1761          0.2689       65%   1698
+    stable     21        0.2076          0.3175       65%   1698
+    stable     55        0.2859          0.4094       70%   1698
+
+================================================================================================
+C.  THE SAME CUT WITH WHOLE-WINDOW BOUNDARIES
+================================================================================================
+Not a rule anyone could have applied on the day; reported because a
+fixed boundary keeps 'unstable' meaning one thing across the sample.
+
+    bucket  delta   N (removed)  D (delay cost)   R = N/D   days
+  unstable      5        0.0881          0.1604       55%   1619
+  unstable     13        0.2119          0.3108       68%   1619
+  unstable     21        0.3137          0.4212       74%   1619
+  unstable     55        0.4910          0.6365       77%   1619
+
+    middle      5        0.0479          0.1332       36%   1624
+    middle     13        0.1078          0.2174       50%   1624
+    middle     21        0.1541          0.2953       52%   1624
+    middle     55        0.2461          0.4150       59%   1624
+
+    stable      5        0.0904          0.1471       61%   1619
+    stable     13        0.1970          0.2836       69%   1619
+    stable     21        0.2415          0.3379       71%   1619
+    stable     55        0.3024          0.4028       75%   1619
+
+================================================================================================
+D.  THE CRISIS THE LIMITATION NAMES
+================================================================================================
+  2008-06-01 to 2009-06-30: 273 test days
+  mean stability inside that window +0.736, outside +0.843
+    bucket  delta   N (removed)  D (delay cost)   R = N/D   days
+    crisis      5        0.1590          0.2393       66%    273
+    crisis     13        0.4073          0.5272       77%    273
+    crisis     21        0.6152          0.7859       78%    273
+    crisis     55        0.9920          1.2059       82%    273
+
+      rest      5        0.0705          0.1414       50%   4589
+      rest     13        0.1582          0.2553       62%   4589
+      rest     21        0.2138          0.3256       66%   4589
+      rest     55        0.3080          0.4418       70%   4589
+
+================================================================================================
+E.  THE CONTRAST, AND WHAT IT LICENSES
+================================================================================================
+Two marginal sets failing to overlap is not a test of a difference,
+which is why the difference itself is resampled here, in blocks of
+80 days with 2000 replications, both
+buckets resampled inside the same replication.
+
+ delta   R stable  R unstable   difference     95% block bootstrap
+     5        57%         59%          -2%       [   -44%,   +26%]
+    13        65%         71%          -5%       [   -36%,   +14%]
+    21        65%         78%         -12%       [   -43%,    +8%]
+    55        70%         80%         -10%       [   -34%,   +11%]
+
+  the stable-minus-unstable difference excludes zero at 0 of 4 delays,
+  and is negative at 4 of 4.
+  The limitation predicts a POSITIVE difference: the rate should be
+  lower where the structure has just reorganised.
+
+  No delay separates the two states on this measure.  That is a
+  failure to detect, not a demonstration that stability does not
+  matter: the unstable bucket is a third of the sample and the
+  sets below are wide.
+
+  Fieller sets for the two extreme buckets at the longest delay,
+  which is where the rate is best identified:
+       stable  R =   70%     interval   [48%, 87%]
+     unstable  R =   80%     interval   [63%, 90%]
+

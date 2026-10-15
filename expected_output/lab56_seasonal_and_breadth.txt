@@ -1,0 +1,300 @@
+data folder: /home/claude/data_local/illiquid
+Prints the seasonal and breadth audits of lab55, Section S31.2.
+
+  panel CaseShiller_metro20_NSA.csv, sha256 41d67644b1e21009..., digest matches
+
+==================================================================================================
+A.  HOW BIG IS THE SHARED SEASONAL, AND HOW SHARED IS IT
+==================================================================================================
+
+           metro   seasonal sd   return sd   variance share
+          Boston        0.558%      0.918%            34.0%
+       Charlotte        0.360%      0.682%            25.6%
+         Chicago        0.604%      1.061%            29.8%
+       Cleveland        0.605%      0.900%            41.7%
+          Denver        0.452%      0.825%            27.6%
+       Las Vegas        0.295%      1.273%             4.9%
+     Los Angeles        0.374%      1.139%             9.9%
+           Miami        0.172%      1.053%             2.5%
+        New York        0.347%      0.776%            18.4%
+        Portland        0.449%      0.889%            23.5%
+       San Diego        0.409%      1.167%            11.3%
+   San Francisco        0.645%      1.406%            19.4%
+           Tampa        0.270%      0.997%             6.7%
+      Washington        0.459%      0.933%            22.3%
+
+  month-of-year pattern explains 19.8% of monthly return
+  variance on average, up to 41.7% at Cleveland.
+  pairwise correlation of the twelve-month profiles across metros:
+    mean +0.893, min +0.540, max +0.993
+
+  So the objection is a real one and not a formality: the seasonal is
+  large enough to matter and nearly common across metros, which is
+  exactly the configuration in which a fresh peer could substitute for a
+  stale own mark by revealing the calendar alone. Part B tests whether
+  that is what happens.
+
+==================================================================================================
+B.  THE PLACEBO: A PEER THAT CARRIES THE SEASONAL AND NOTHING ELSE
+==================================================================================================
+  The real peer mean is replaced by the month-of-year mean OF that peer
+  mean, estimated on the training block only and refreshed on the same
+  12-month cadence as the model. Twelve numbers read off by calendar
+  month. It has the entire shared seasonal and, by construction, no
+  information about what any peer market did in the current month.
+
+  Month dummies are REMOVED from both arms here, so the placebo is given
+  the best possible chance: nothing else in the model is absorbing the
+  calendar, and any seasonal advantage available to a peer is available
+  to this one.
+
+  RETURN TARGET
+
+  real peer mean, no dummies
+  delay   mean own  mean +cross    mean R   metros R>0
+      0     0.7027       0.7192       n/a          n/a
+      1     0.4835       0.5984     65.1%     14 of 14
+      2     0.2417       0.5386     68.9%     14 of 14
+      3     0.1863       0.5418     72.9%     14 of 14
+      6     0.0555       0.5164     70.6%     14 of 14
+
+  SEASONAL PLACEBO, no dummies
+  delay   mean own  mean +cross    mean R   metros R>0
+      0     0.7027       0.6954       n/a          n/a
+      1     0.4835       0.4711     -2.2%      5 of 14
+      2     0.2417       0.2363      1.0%      5 of 14
+      3     0.1863       0.1946      4.2%      8 of 14
+      6     0.0555       0.0979      6.8%     12 of 14
+
+    at delta = 3: real 72.9%, placebo 4.2%, difference +68.7%
+    The placebo earns approximately nothing while the real peer
+    mean earns the published rate. The rate is information and not
+    a calendar effect.
+
+  VOLATILITY TARGET
+
+  real peer mean, no dummies
+  delay   mean own  mean +cross    mean R   metros R>0
+      0     0.9590       0.9577       n/a          n/a
+      1     0.8742       0.8764     -0.4%      6 of 14
+      2     0.7656       0.7844      9.3%      7 of 14
+      3     0.6399       0.6978     18.4%     13 of 14
+      6     0.2827       0.5075     34.5%     14 of 14
+
+  SEASONAL PLACEBO, no dummies
+  delay   mean own  mean +cross    mean R   metros R>0
+      0     0.9590       0.9579       n/a          n/a
+      1     0.8742       0.8709     -3.8%      4 of 14
+      2     0.7656       0.7640     -0.8%      6 of 14
+      3     0.6399       0.6332     -2.8%      5 of 14
+      6     0.2827       0.2621     -4.0%      6 of 14
+
+    at delta = 3: real 18.4%, placebo -2.8%, difference +21.2%
+    The placebo earns approximately nothing while the real peer
+    mean earns the published rate. The rate is information and not
+    a calendar effect.
+
+==================================================================================================
+C.  THREE SEASONAL TREATMENTS, COMPARED DIRECTLY
+==================================================================================================
+  (i)   month dummies in both arms      - lab55's published treatment
+  (ii)  causal deseasonalisation        - training-block month means
+        subtracted from every series before anything is fitted
+  (iii) nothing at all                  - the raw unadjusted series
+
+  (iii) is expected to be the HIGHEST, because it is the only arm in
+  which a peer can still be paid for revealing the calendar. If it is
+  not the highest then the dummies were not removing a nuisance.
+
+  RETURN TARGET
+
+  (i)   month dummies in both arms
+  delay   mean own  mean +cross    mean R   metros R>0
+      0     0.7242       0.7404       n/a          n/a
+      1     0.5696       0.6580    152.7%     14 of 14
+      2     0.3928       0.5965     66.2%     14 of 14
+      3     0.3506       0.5953     67.9%     14 of 14
+      6     0.2079       0.5731     69.1%     14 of 14
+
+  (ii)  causally deseasonalised, no dummies
+  delay   mean own  mean +cross    mean R   metros R>0
+      0     0.6467       0.6737       n/a          n/a
+      1     0.4365       0.5700     60.8%     13 of 13
+      2     0.2178       0.4939     68.9%     14 of 14
+      3     0.1778       0.4960     70.9%     14 of 14
+      6     0.0569       0.4706     69.9%     14 of 14
+
+  (iii) no seasonal handling at all
+  delay   mean own  mean +cross    mean R   metros R>0
+      0     0.7027       0.7192       n/a          n/a
+      1     0.4835       0.5984     65.1%     14 of 14
+      2     0.2417       0.5386     68.9%     14 of 14
+      3     0.1863       0.5418     72.9%     14 of 14
+      6     0.0555       0.5164     70.6%     14 of 14
+
+    at delta = 3: dummies 67.9%, deseasonalised 70.9%, raw 72.9%
+    highest: raw; spread across treatments 5.1%
+    As expected. The untreated arm is the most flattering one, so
+    the published treatment is the conservative choice and the
+    calendar was worth removing.
+
+  VOLATILITY TARGET
+
+  (i)   month dummies in both arms
+  delay   mean own  mean +cross    mean R   metros R>0
+      0     0.9558       0.9543       n/a          n/a
+      1     0.8666       0.8693      0.6%      6 of 14
+      2     0.7522       0.7742     10.2%     10 of 14
+      3     0.6278       0.6852     18.8%     13 of 14
+      6     0.2695       0.4987     34.8%     14 of 14
+
+  (ii)  causally deseasonalised, no dummies
+  delay   mean own  mean +cross    mean R   metros R>0
+      0     0.9518       0.9485       n/a          n/a
+      1     0.8587       0.8563     -2.7%      8 of 14
+      2     0.7422       0.7550      6.0%     11 of 14
+      3     0.6063       0.6595     15.9%     12 of 14
+      6     0.2135       0.4354     30.6%     13 of 14
+
+  (iii) no seasonal handling at all
+  delay   mean own  mean +cross    mean R   metros R>0
+      0     0.9590       0.9577       n/a          n/a
+      1     0.8742       0.8764     -0.4%      6 of 14
+      2     0.7656       0.7844      9.3%      7 of 14
+      3     0.6399       0.6978     18.4%     13 of 14
+      6     0.2827       0.5075     34.5%     14 of 14
+
+    at delta = 3: dummies 18.8%, deseasonalised 15.9%, raw 18.4%
+    highest: dummies; spread across treatments 2.9%
+    The untreated arm is not the highest, but it trails the highest
+    by only 0.4%, which is an order of magnitude inside the
+    interval lab55 reports on R for this coordinate.  The three
+    treatments are indistinguishable on this
+    coordinate, which is not a puzzle: see the note below.
+
+    Why the seasonal barely matters here, structurally rather than
+    empirically: the target is a 12-month rolling variance, and a
+    12-month window necessarily spans every calendar month, so a
+    fixed month-of-year effect largely cancels inside the target
+    before any model sees it. There is little seasonal channel to
+    close on this coordinate, which is also why the Part B placebo
+    came out negative rather than merely small.
+
+==================================================================================================
+D.  THE OTHER DIRECTION: SIX RAGGED PEERS ADDED TO THE SAME FOURTEEN TARGETS
+==================================================================================================
+  lab55 used only the fourteen metros with complete history so that no
+  ragged edge had to be handled. The six late starters are added here as
+  extra PEERS for those same fourteen targets. No target's own history
+  changes, so the comparison is same targets, same clock, more peers,
+  some absent early.
+
+  added: Minneapolis, Phoenix, Seattle, Atlanta, Detroit, Dallas
+  The peer block is the equal-weighted mean, which is computed over
+  whatever peers exist in a given month, so a late starter simply does
+  not enter the mean before it begins. That is the ragged-edge
+  propagation of the paper's own design, on real raggedness.
+
+  RETURN TARGET
+
+  13 balanced peers (lab55)
+  delay   mean own  mean +cross    mean R   metros R>0
+      0     0.7242       0.7404       n/a          n/a
+      1     0.5696       0.6580    152.7%     14 of 14
+      2     0.3928       0.5965     66.2%     14 of 14
+      3     0.3506       0.5953     67.9%     14 of 14
+      6     0.2079       0.5731     69.1%     14 of 14
+
+  19 peers, 6 of them ragged
+  delay   mean own  mean +cross    mean R   metros R>0
+      0     0.7242       0.7388       n/a          n/a
+      1     0.5696       0.6547    158.7%     14 of 14
+      2     0.3928       0.5952     66.1%     14 of 14
+      3     0.3506       0.5914     67.5%     14 of 14
+      6     0.2079       0.5602     67.5%     14 of 14
+
+    at delta = 3: 13 peers 67.9%, 19 peers 67.5%, change -0.3%
+    Breadth does not cost anything. The ragged peers are absorbed
+    without paying an estimation bill, which is what compressing
+    them to a mean is for.
+    It does not HELP either, and that is the more interesting
+    reading. Six additional metros move the rate by 0.3 of a
+    point, so thirteen peers already span whatever common factor
+    the cross-section carries. That is consistent with the single
+    dominant factor lab42 found on equities and with the coupling
+    profiles of Part A correlating +0.89: there is one national
+    housing cycle here, not nineteen independent signals, and a
+    handful of peers is enough to read it.
+
+  VOLATILITY TARGET
+
+  13 balanced peers (lab55)
+  delay   mean own  mean +cross    mean R   metros R>0
+      0     0.9558       0.9543       n/a          n/a
+      1     0.8666       0.8693      0.6%      6 of 14
+      2     0.7522       0.7742     10.2%     10 of 14
+      3     0.6278       0.6852     18.8%     13 of 14
+      6     0.2695       0.4987     34.8%     14 of 14
+
+  19 peers, 6 of them ragged
+  delay   mean own  mean +cross    mean R   metros R>0
+      0     0.9558       0.9542       n/a          n/a
+      1     0.8666       0.8669     -3.1%      5 of 14
+      2     0.7522       0.7745     10.7%     10 of 14
+      3     0.6278       0.6890     19.7%     13 of 14
+      6     0.2695       0.4984     34.9%     14 of 14
+
+    at delta = 3: 13 peers 18.8%, 19 peers 19.7%, change +1.0%
+    Breadth does not cost anything. The ragged peers are absorbed
+    without paying an estimation bill, which is what compressing
+    them to a mean is for.
+    It does not HELP either, and that is the more interesting
+    reading. Six additional metros move the rate by 1.0 of a
+    point, so thirteen peers already span whatever common factor
+    the cross-section carries. That is consistent with the single
+    dominant factor lab42 found on equities and with the coupling
+    profiles of Part A correlating +0.89: there is one national
+    housing cycle here, not nineteen independent signals, and a
+    handful of peers is enough to read it.
+
+==================================================================================================
+VERDICT
+==================================================================================================
+  The seasonal objection was worth raising: month-of-year explains
+  19.8% of monthly return variance on average and the twelve-month
+  profiles correlate +0.89 across metros, so a fresh peer really
+  could have substituted for a stale mark by revealing the calendar.
+
+  return: a peer carrying ONLY the seasonal earns 4.2% where the
+  real peer mean earns 72.9%.
+  volatility: a peer carrying ONLY the seasonal earns -2.8% where the
+  real peer mean earns 18.4%.
+
+  So the rate is not a calendar effect on either coordinate. That is
+  established by a placebo that could have convicted the design and did
+  not, rather than by a control that could only have failed to change
+  the answer.
+
+  return: dummies 67.9%, causally deseasonalised 70.9%, untreated 72.9%.
+  volatility: dummies 18.8%, causally deseasonalised 15.9%, untreated 18.4%.
+
+  return: widening from 13 to 19 peers, six of them ragged, moves the
+  rate from 67.9% to 67.5%.
+  volatility: widening from 13 to 19 peers, six of them ragged, moves the
+  rate from 18.8% to 19.7%.
+
+  What the paper should take from this file. The seasonal objection is
+  the first thing a referee will raise about an unadjusted monthly
+  series, and the answer is not 'we included dummies'. It is that a
+  synthetic peer built to carry the seasonal and nothing else cannot
+  reproduce the result: that is Part B, and it is the sentence to put
+  in the paper.
+
+  Part C is a weaker claim and should be stated as the weaker one it is.
+  On the return target the untreated arm sits +5.1% above the
+  published treatment, so removing the calendar cost the paper points
+  and the published figure is the conservative one.
+  On the volatility target the untreated arm sits -0.4% from the
+  published treatment, which is inside the noise: seasonal handling
+  neither helps nor hurts there, for the structural reason printed in
+  Part C, and no conservatism should be claimed from it.

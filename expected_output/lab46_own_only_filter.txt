@@ -1,0 +1,151 @@
+data folder: /home/claude/data_local
+Prints the own-only state-space control, Section S4.
+
+target SPX, 4852 test days, 7 foreign peers
+
+================================================================================================
+0.  AN OWN-ONLY STATE-SPACE MODEL, PARAMETERS FROZEN BEFORE THE TEST
+================================================================================================
+  fitted on the first 1500 rows, by method of moments:
+    phi = 0.9265   q = 0.05467   r = 0.00000
+    signal share of variance: 100.0%
+    implied half-life of the state: 9.1 trading days
+
+  largest gap between the filtered state and the raw observation: 4.42e-08
+  The moments put no observation noise in this series at all, so the
+  Kalman gain is one and the filtered state IS the observation. That
+  is a finding, not a failure: at daily frequency the decision
+  variable is already its own best estimate of itself, and there is
+  nothing for the update step to clean up.
+
+================================================================================================
+1.  THE PROJECTION, IMPLEMENTED EXACTLY AS ASKED
+================================================================================================
+Hand the ridge phi^(delta+h) xhat(t-delta) instead of xhat(t-delta).
+Same feature, same days, same refit schedule; one is projected forward
+and the other is not.
+
+ delta     stale   projected   difference
+     0  0.502509    0.502509    -3.83e-13
+     3  0.388977    0.388977    -1.53e-13
+     5  0.344678    0.344678    -3.45e-13
+    13  0.219572    0.219572    -1.75e-12
+    21  0.133491    0.133491    -3.93e-12
+    55  0.014569    0.014569    -1.70e-11
+
+  largest difference the projection makes: 1.7e-11
+
+  It makes none, and it cannot. At a fixed delay the projection is one
+  constant per column; the ridge standardises each column before
+  fitting; and (c x - c mu) / (c sd) = (x - mu) / sd. The coefficient
+  simply absorbs the constant. What residue there is comes from the
+  1e-9 added to the standard deviation to keep it from vanishing.
+
+  So the objection cannot bite through the projection. It can only bite
+  through the state itself - if a filtered history carries something the
+  paper's three features do not already span. Part 2 tests that.
+
+================================================================================================
+2.  THE SMOOTHING, WHICH IS THE PART THAT COULD MATTER
+================================================================================================
+The paper's control is the stale level and two rectangular means, 5 and
+22 days. A filter weights the whole history exponentially instead. So
+give the control both: the three features it has, plus exponentially
+weighted averages at half-lives (5, 22, 66) days. Six features against
+three, nested, so anything the filter knows is in there somewhere.
+
+ delta   paper, 3  plus EWMA, 6   difference
+     0     0.5186        0.5167      -0.0018
+     3     0.4097        0.4036      -0.0061
+     5     0.3644        0.3548      -0.0096
+    13     0.2337        0.2107      -0.0230
+    21     0.1476        0.1155      -0.0321
+    55     0.0066       -0.0455      -0.0520
+
+  the exponential control is better at 0 of 6 delays
+  at the origin, where the denominator of R is set: -0.0018
+  taking the better arm at every delay, the own-only curve rises by
+  0.0000 at most
+
+  Three extra columns, every one of them a weighted average of a
+  history the model already has, and the control gets worse - by more
+  the staler it is. Nothing was added to the information set; what was
+  added was six coefficients to estimate where there had been three,
+  on a window that does not grow. This is Section 7's cost of breadth
+  arriving inside the domestic block, and it is the reason the paper's
+  control is three features rather than every feature available.
+
+================================================================================================
+3.  WHAT R(delta) BECOMES AGAINST THE BEST OWN-ONLY CONTROL
+================================================================================================
+The cross-sectional model is unchanged - the paper's, with the foreign
+block current. Only the control in numerator and denominator moves. The
+last column takes the better of the two arms at each delay AND at the
+origin, which is the most hostile reading of the control available.
+
+ delta   S_cross   R, paper   R, +EWMA   R, best
+     3    0.4489      36.0%      40.1%     36.0%
+     5    0.4431      51.0%      54.5%     51.0%
+    13    0.4152      63.7%      66.8%     63.7%
+    21    0.3977      67.4%      70.3%     67.4%
+    55    0.3717      71.3%      74.2%     71.3%
+
+  largest move in the rate against the best control: 0.0%
+  the rate falls against the best control at 0 of 5 delays
+  at eleven weeks: 71.3% as published, 71.3% against the best control
+
+  The middle column is the referees' mechanism caught in the act. The
+  exponential control is the weaker one, and R measured against it is
+  higher at every delay, by up to 4.0% - 74.2% at eleven weeks
+  against the published 71.3%. A weak control inflates the rate, exactly
+  as the algebra says; the question was only ever which control is weak.
+  Here it is the alternative, so the published figure is the smaller of
+  the two on offer and the objection has nothing left to correct.
+
+  Which way a move runs is not obvious from the control alone. R reads
+  the own-only curve at two points, and the origin sets the denominator,
+  so a control that improves mostly at delta = 0 pushes the rate DOWN
+  twice over, while one that improves only at long delays can push it up.
+
+================================================================================================
+4.  DOES A BETTER RULER TIGHTEN THE EFFECTIVE-AGE INTERVAL?
+================================================================================================
+A referee predicted it would, 'dramatically'. The interval is a block
+bootstrap over TEST DAYS, so the prediction is testable: rebuild the
+ruler from the stronger own-only curve, resample the same way, and
+compare the widths. Width in days is not the comparison - a ruler that
+decays faster reads every skill as a younger age and shrinks the
+interval whether or not the measurement got sharper - so the width is
+also reported as a share of the point it surrounds.
+
+   paper ruler:    4.6 days   [2.5, 8.6]   width 6.1 days   1.32 x the point   off-grid 0
+    EWMA ruler:    4.2 days   [2.3, 7.8]   width 5.5 days   1.29 x the point   off-grid 0
+
+  width changes by -11% in days, -2% as a share of the point
+
+================================================================================================
+VERDICT
+================================================================================================
+  The projection the objection names changes nothing at all (2e-11),
+  and the reason is algebraic rather than empirical: a standardised
+  linear model absorbs any deterministic rescaling of its inputs. A
+  filter can only help through the state it builds, so the test that
+  matters is the exponential one.
+
+  Exponential weighting of the whole history beats the paper's two
+  rectangular windows at 0 of 6 delays, and loses by more the staler
+  the control is. The own-only control is not the straw man the
+  objection assumes: it is the strongest arm of the three tried here,
+  and the rate at eleven weeks stays at 71.3%. Measured against the
+  weaker exponential control it would read 74.2%, which is the
+  inflation the referees warned about, pointing the other way.
+
+  The effective-age interval moves by -2% as a share of the point it
+  surrounds, which is not the dramatic tightening predicted. Nor could it
+  be: that width is sampling uncertainty over test days, and changing the
+  ruler changes the age a forecast reads as, not how much that reading
+  varies from one resampled window to the next. Section S12 keeps the
+  paper's ruler, which reads the headline as the older and therefore less
+  flattering 4.6 days rather than 4.2. The prediction was the right kind of
+  claim and the wrong answer, and it was cheaper to test than to argue
+  about.

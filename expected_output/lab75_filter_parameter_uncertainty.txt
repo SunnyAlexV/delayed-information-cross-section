@@ -1,0 +1,113 @@
+data folder: /home/claude/data_local
+Prints the filtered headline under parameter uncertainty.
+
+target SPX, 4862 test days, 7 foreign peers
+frozen fit, first 1500 rows: phi = 0.9631, q = 0.0733, loading on the target = 0.8251
+
+================================================================================================
+A.  THE SAME MODELS WITH PARAMETERS A FORECASTER COULD HAVE HAD
+================================================================================================
+The state space is re-estimated every 252 rows on everything
+strictly before the forecast's own training cut, and each test day
+uses the vintage in force on that day.  The forecasting ridge on top
+is unchanged, so the only difference from Section 11 is that the
+filter's parameters are no longer known in advance.
+
+  21 vintages, from row 1500 to 6540
+  phi across vintages 0.9631 to 0.9758; target loading 0.807 to 0.897
+
+ delta   own only   cross, ridge   filter, frozen   filter, live   live - ridge
+     0     0.5188         0.5089           0.4864         0.4828        -0.0261
+     3     0.4094         0.4492           0.4489         0.4443        -0.0049
+     5     0.3637         0.4434           0.4432         0.4379        -0.0055
+    13     0.2332         0.4150           0.4188         0.4115        -0.0034
+    21     0.1478         0.3973           0.4093         0.4011        +0.0038
+    55     0.0072         0.3729           0.3925         0.3788        +0.0059
+
+  frozen parameters: the filter is ahead at 3 of 6 delays, [13, 21, 55]
+  live parameters:   the filter is ahead at 2 of 6 delays, [21, 55]
+
+ delta   R, ridge   R, frozen   R, live   live - frozen
+     3      36.4%       36.1%     31.9%           -4.2%
+     5      51.4%       51.3%     47.8%           -3.4%
+    13      63.6%       65.0%     62.4%           -2.6%
+    21      67.3%       70.5%     68.3%           -2.2%
+    55      71.5%       75.3%     72.6%           -2.7%
+
+  at eleven weeks: 71.5% as published, 75.3% with the frozen filter, 72.6% with live parameters
+  live filter minus ridge, in R-squared at eleven weeks: +0.0059 [-0.0124, +0.0271]
+  blocks of 80 days, 1500 replications
+
+================================================================================================
+B.  WHAT THE PARAMETERS ARE WORTH KNOWING
+================================================================================================
+Parameter sets are drawn by simulating the fitted model over the
+estimation block and refitting, then the whole panel is re-filtered
+with each draw.  The spread of the reconstruction across those draws
+is the part of the uncertainty the frozen filter does not report.
+
+A moving-block resample of the block itself will not do here, and
+the reason is worth stating: the factor is persistent, the joins
+between blocks break that persistence, and the refit comes back with
+phi biased down and q biased up - far enough that the band excludes
+its own point estimate, which is a sign the instrument is wrong
+rather than a finding about the parameter.
+
+  200 of 200 draws produced a fit
+
+  The draws are refitted the way the data were, so they carry the
+  estimator's own attenuation: a factor extracted from noisy series
+  is a noisy factor, and an AR(1) coefficient fitted to it comes back
+  low.  The raw quantiles therefore sit below the point estimate and
+  are not a band for it.  What the draws measure honestly is the
+  SPREAD, so the band below is recentred on the point estimate and
+  the raw quantiles are printed beside it rather than hidden.
+
+                     point         recentred 95%        raw draw quantiles
+              phi   0.9631      [0.9196, 0.9981]          [0.8164, 0.8949]
+                q   0.0733      [0.0117, 0.1468]          [0.1987, 0.3337]
+   target loading   0.8251      [0.7789, 0.8596]          [0.7989, 0.8796]
+
+  the filter's own posterior standard deviation, averaged over the
+  test days: 0.2273
+  the spread of the reconstruction across parameter draws: 0.2127
+  parameter spread as a share of the filter's own: 94%
+  the two together: 0.3126, which is 1.38 times the band the frozen filter reports
+
+  correlation between the filtered state and the target's own
+  decision variable: 0.9041, recentred band [0.9001, 0.9084]
+
+================================================================================================
+C.  ARE THE INNOVATIONS INNOVATIONS?
+================================================================================================
+Standardised one-step innovations, on the rows the test uses.  Under
+the model they have unit variance and no serial correlation; a
+variance above one means the filter is reporting more precision than
+it has, which is what makes the band in B a floor.
+
+  series     mean   variance   LB(10) p   LB(20) p   |z|>1.96
+  target    0.143      1.741      0.000      0.000      13.2%
+  peer 1    0.104      0.706      0.000      0.000       2.5%
+  peer 2   -0.044      1.162      0.000      0.000       7.0%
+  peer 3    0.391      1.802      0.000      0.000      13.1%
+  peer 4    0.014      1.105      0.000      0.000       5.3%
+  peer 5   -0.068      0.893      0.000      0.000       4.2%
+  peer 6   -0.100      0.937      0.000      0.000       5.2%
+  peer 7   -0.046      1.140      0.000      0.000       6.8%
+
+  series whose innovations fail unit variance or whiteness: 8 of 8
+
+================================================================================================
+VERDICT
+================================================================================================
+  With parameters a forecaster could have had, the filter is still the better
+  cross-sectional model at eleven weeks: 0.3788 against the ridge's 0.3729.
+  The rate at eleven weeks reads 72.6% under live parameters against 75.3% frozen
+  and 71.5% in the published specification.
+  The paired difference against the ridge does not exclude zero,
+  so the filtered specification is not separated from the
+  published one on these days.
+  Parameter uncertainty adds 94% to the filter's own band on
+  the reconstruction, and the innovation diagnostics above say
+  whether even that band is an honest floor.
+

@@ -1,0 +1,111 @@
+loaded 2262 rows, 2017-09-12 to 2026-09-11
+test window: 694 days, 2023-11-27 to 2026-09-02;  base rate 0.468
+
+Decision variables:  a = log(YZ_{t-d}/M_{t-d})   b = log(CC_{t+h}/M_t)
+Target is 1{b>0}; the threshold rule is 1{a>0}.  Under joint normality
+the threshold rule IS the optimal rule, since P(b>0|a) crosses 1/2
+exactly at a=0, so the ceiling below is what ANY function of a can reach.
+
+ delta  corr(a,b)   ceiling  persist-YZ   har-YZ  % of ceiling
+     0     0.4502    64.87%      67.87%   68.59%       104.6%
+     1     0.4039    63.23%      66.71%   67.44%       105.5%
+     2     0.3595    61.71%      65.56%   66.57%       106.2%
+     3     0.3179    60.30%      63.26%   64.84%       104.9%
+     5     0.2539    58.17%      60.95%   60.95%       104.8%
+     8     0.1879    56.02%      57.20%   57.20%       102.1%
+    13     0.1712    55.48%      54.90%   53.75%        99.0%
+    21     0.1741    55.57%      50.00%   51.87%        90.0%
+    34    -0.0418    48.67%      49.86%   47.84%       102.4%
+    55    -0.1202    46.17%      44.24%   46.25%        95.8%
+
+==============================================================================
+THE CENTRING ASSUMPTION, AND WHAT THE BENCHMARK IS WITHOUT IT
+==============================================================================
+Equation (*) is an ORTHANT probability: it is the chance that two
+MEAN-ZERO normals share a sign.  Neither a nor b is mean-zero here.
+Both are log ratios to a TRAILING median, and a trailing median of a
+persistent, right-skewed series is not the current median of it, so
+the split is off-centre by construction rather than by accident.
+
+Dropping the centring assumption costs nothing but an integral.  For
+(a, b) bivariate normal with means mu and standard deviations sd, put
+alpha = -mu_a/sd_a and beta = -mu_b/sd_b.  Then
+
+    accuracy of 1{a>0} = 1 - Phi(alpha) - Phi(beta) + 2 Phi2(alpha, beta; rho)
+
+which collapses to (*) when alpha = beta = 0, since Phi2(0,0;rho) is
+1/4 + arcsin(rho)/(2 pi).  The BAYES rule among functions of a alone is
+then a cut at c rather than at zero, and its accuracy is the same
+expression maximised over c.  Three columns follow: what the centred
+formula predicts, what the sign rule is really worth on a non-centred
+split, and what the best cut on a is worth.
+
+ delta  mu_a/sd_a  mu_b/sd_b   centred  sign rule  Bayes cut  best cut  measured
+     0      0.064     -0.062    64.87%     64.66%     64.99%     0.179    67.87%
+     1      0.063     -0.062    63.23%     63.05%     63.37%     0.178    66.71%
+     2      0.061     -0.062    61.71%     61.53%     61.86%     0.198    65.56%
+     3      0.059     -0.062    60.30%     60.14%     60.48%     0.218    63.26%
+     5      0.059     -0.062    58.17%     58.02%     58.40%     0.260    60.95%
+     8      0.064     -0.062    56.02%     55.86%     56.33%     0.325    57.20%
+    13      0.067     -0.062    55.48%     55.32%     55.82%     0.348    54.90%
+    21      0.075     -0.062    55.57%     55.39%     55.91%     0.352    50.00%
+    34      0.068     -0.062    48.67%     48.54%     52.38%     2.124    49.86%
+    55      0.042     -0.062    46.17%     46.09%     52.27%     2.101    44.24%
+
+  measured accuracy exceeds the CENTRED benchmark at 7 of 10 delays,
+  the non-centred SIGN-RULE accuracy at 7 of 10,
+  and the non-centred BAYES accuracy at 6 of 10.
+
+  delays where the correlation is negative: 2  [34, 55]
+    delta = 34: rho = -0.0418, same-sign accuracy 48.67% is below one half and is beaten by its own negation; the Bayes cut attains 52.38%
+    delta = 55: rho = -0.1202, same-sign accuracy 46.17% is below one half and is beaten by its own negation; the Bayes cut attains 52.27%
+
+ delta  Bayes benchmark  measured  % of benchmark
+     0           64.99%    67.87%          104.4%
+     1           63.37%    66.71%          105.3%
+     2           61.86%    65.56%          106.0%
+     3           60.48%    63.26%          104.6%
+     5           58.40%    60.95%          104.4%
+     8           56.33%    57.20%          101.5%
+    13           55.82%    54.90%           98.3%
+    21           55.91%    50.00%           89.4%
+    34           52.38%    49.86%           95.2%
+    55           52.27%    44.24%           84.6%
+
+  measured accuracy runs from 85% to 106% of the Bayes benchmark, exceeding it at 6 of 10 delays.
+
+  Averaged over the delays out to eight days, measured accuracy sits
+  +2.88 points above the centred benchmark, +3.05 above the
+  non-centred sign-rule accuracy, and +2.69 above the non-centred
+  Bayes accuracy. Dropping the centring assumption moves the benchmark
+  by 0.16 points on average across all ten delays.
+
+  So centring is NOT the explanation either. It is the right correction
+  to make - the formula in the note is an orthant probability and these
+  margins are not centred - but it accounts for a small fraction of the
+  excess, and the honest reading is that the Gaussian model does not
+  explain why the rule scores above it at short delays. An earlier
+  version of the companion note attributed the excess to heavy tails.
+  That was a guess and was never measured; this file measures the
+  other candidate and finds it insufficient too. What remains is the
+  reason the note calls A* a benchmark rather than a ceiling: a
+  quantity the process exceeds by three points on a 694-day sample,
+  with intervals of roughly seven points, is an approximation whose
+  error is not yet attributed.
+
+  The Bayes cut is worth at most 6.18 accuracy points over the
+  zero cut, at delta = 55, and at most 0.52 points at any delay out to
+  three weeks. The gain is concentrated where the correlation has decayed
+  and the optimal cut runs away from zero: at the long delays the best
+  rule is close to never predicting the event at all, which is a statement
+  about the base rate rather than about timing. That is why the note keeps
+  the sign rule and reports the benchmark beside it instead of adopting a
+  fitted cut whose gain lives entirely in the delays it has least to say
+  about.
+
+Readings over either benchmark are the Gaussian approximation failing,
+not a rule beating its own optimum; part of that failure is the centring
+assumption and the rest is not yet attributed.  The one real shortfall is
+at delta = 21, where the benchmark has flattened but the rule has not.
+
+Done.  Every number above came from this file.

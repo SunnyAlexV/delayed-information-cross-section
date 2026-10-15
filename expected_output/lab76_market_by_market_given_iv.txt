@@ -1,0 +1,68 @@
+data folder: /home/claude/data_local
+Prints each foreign market on its own, given implied volatility.
+
+  implied-volatility files and seams:
+    VIX files: ['VIX_History.csv']
+    VDAX files: ['DAX_New_Volatility_Historical_Data.csv', 'DAX_New_Volatility_Historical_Data_1.csv']
+    seam VDAX: 251 overlapping rows, 0 mismatched  -> VERIFIED
+
+target SPX, 4525 test days, 7 foreign peers
+implied-volatility block: VIX, VDAX, VIX lagged a full day
+
+================================================================================================
+A.  ONE MARKET AT A TIME, AGAINST THE IMPLIED-VOLATILITY BASELINE
+================================================================================================
+Positive means the market adds to a forecaster already holding
+implied volatility.  z is Giacomini-White on the loss differential,
+HAC at the delay's own bandwidth.
+
+ delta        N225        AXJO         HSI        NSEI        FTSE         DAX        BVSP
+     0    -0.0021     -0.0010     -0.0016     -0.0001     -0.0002     -0.0004     -0.0005 
+     3    -0.0013     +0.0004     -0.0017     -0.0012     -0.0001     +0.0001     -0.0001 
+     5    -0.0012     +0.0011     -0.0013     -0.0007     +0.0007     +0.0007     +0.0006 
+    13    -0.0018     +0.0023     -0.0013     -0.0013     +0.0007     +0.0012     +0.0011 
+    21    -0.0021     +0.0032     -0.0010     -0.0004     +0.0004     +0.0020     +0.0007 
+    55    -0.0017     +0.0030     -0.0019     -0.0006     +0.0000     +0.0035     +0.0005 
+
+ delta        N225        AXJO         HSI        NSEI        FTSE         DAX        BVSP
+     0       -1.28       -0.48       -0.97       -0.03       -0.11       -0.29       -0.26
+     3       -0.61        0.17       -1.29       -0.40       -0.05        0.07       -0.05
+     5       -0.47        0.38       -0.94       -0.22        0.21        0.38        0.24
+    13       -0.59        0.66       -0.91       -0.40        0.18        0.49        0.37
+    21       -0.68        0.86       -0.67       -0.14        0.11        0.80        0.25
+    55       -0.53        0.83       -1.19       -0.20        0.00        1.32        0.17
+
+  cells: 42; nominally significant at 5%: 0 (0 positive, 0 negative)
+
+================================================================================================
+B.  THE SAME CELLS, CORRECTED THREE WAYS
+================================================================================================
+  Holm, family-wise at 5%:            0 of 42 survive
+  Benjamini-Hochberg, FDR at 5%:      0 of 42 survive
+  nothing survives either correction
+
+================================================================================================
+C.  THE COUNT, AGAINST A JOINT NULL THAT KEEPS THE DEPENDENCE
+================================================================================================
+Holm and BH treat the cells as a list.  These cells share evaluation
+days, so the count's own distribution is what the question needs:
+every cell demeaned under its null, then the whole grid resampled
+with ONE set of block starts per replication, so the cross-cell
+alignment is carried into the null rather than assumed away.
+
+  observed count 0; under the joint null the count has mean 2.9,
+  standard deviation 3.5, 95th percentile 10
+  p for the count: 1.0000 from 2000 replications
+  a binomial at 5% of 42 cells would have mean 2.1 and standard deviation 1.4, which is the spread the
+  dependence makes wrong.
+
+================================================================================================
+VERDICT
+================================================================================================
+  largest single-market increment: DAX at delta = 55, +0.0035 (z = 1.32)
+  largest single-market subtraction: N225 at delta = 21, -0.0021 (z = -0.68)
+  No market survives a family-wise correction and the count is
+  inside its own joint null, so the block's redundancy given
+  implied volatility is not an artefact of pooling seven series:
+  no single member of it is detectable on its own either.
+

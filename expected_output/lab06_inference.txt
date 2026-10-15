@@ -1,0 +1,79 @@
+data folder: /home/claude/data_local
+fitting both models at 10 delays...
+
+==================================================================================
+1. FORMAL TESTS OF EQUAL PREDICTIVE ABILITY (continuous target, SPX)
+==================================================================================
+H0: the foreign cross-section adds nothing.  Positive statistic favours cross.
+ delta    GW (sq loss)      GW (QLIKE)      Clark-West   DM (ref only)
+     0   -2.08 (0.038)   -1.97 (0.049)    0.21 (0.835)   -4.44 (0.000)
+     1   -0.08 (0.937)   -0.12 (0.908)    3.19 (0.001)   -0.16 (0.873)
+     2    1.82 (0.069)    1.46 (0.144)    5.34 (0.000)    3.74 (0.000)
+     3    2.96 (0.003)    2.12 (0.034)    6.13 (0.000)    6.56 (0.000)
+     5    3.88 (0.000)    2.50 (0.013)    6.45 (0.000)    9.96 (0.000)
+     8    4.29 (0.000)    2.56 (0.011)    6.49 (0.000)   12.33 (0.000)
+    13    4.28 (0.000)    2.24 (0.025)    6.07 (0.000)   13.99 (0.000)
+    21    3.99 (0.000)    2.13 (0.033)    5.52 (0.000)   15.53 (0.000)
+    34    4.09 (0.000)    2.17 (0.030)    5.48 (0.000)   17.33 (0.000)
+    55    4.28 (0.000)    2.28 (0.023)    5.54 (0.000)   19.75 (0.000)
+
+GW and Clark-West are HAC-adjusted; p-values in brackets.
+Diebold-Mariano uses the naive standard error and is shown only because
+readers expect it; it is not valid for nested models.
+
+==================================================================================
+2. SIMULTANEOUS BANDS ACROSS THE DELTA GRID
+==================================================================================
+Ten pointwise 95% intervals will breach somewhere by chance.  We bootstrap
+the whole delta-vector jointly and take the sup-t critical value.
+
+sup-t critical value 2.53  (pointwise 95% would use 1.96)
+  bootstrap block 80 days, 3000 draws, 10 delays,
+  studentised by a HAC standard error at the same 80 lags - one
+  length for the kernel and the resampling, and it is block_for(55),
+  the longest dependence in the vector this band covers
+  distribution of the sup-t statistic: median 1.28, 90th 2.18, 95th 2.53, 99th 3.18
+  Bonferroni would use 2.81 for 10 delays at 5%
+  the bootstrap value is below it, which is expected: the delays share
+  overlapping windows of one series, so treating them as independent
+  overstates the correction.
+
+ delta       dR2       SE         pointwise 95%        simultaneous 95%          Bonferroni 95%
+     0   -0.0099   0.0045  [-0.0192,-0.0010]   [-0.0214,+0.0016]   [-0.0226,+0.0028]
+     1   -0.0005   0.0066  [-0.0139,+0.0125]   [-0.0173,+0.0162]   [-0.0191,+0.0180]
+     2   +0.0179   0.0094  [-0.0000,+0.0369]   [-0.0060,+0.0418]   [-0.0086,+0.0444]
+     3   +0.0398   0.0130  [+0.0171,+0.0671]   [+0.0069,+0.0726]*  [+0.0033,+0.0762]
+     5   +0.0797   0.0200  [+0.0467,+0.1246]   [+0.0289,+0.1304]*  [+0.0234,+0.1359]
+     8   +0.1237   0.0280  [+0.0762,+0.1868]   [+0.0528,+0.1945]*  [+0.0451,+0.2022]
+    13   +0.1818   0.0415  [+0.1111,+0.2773]   [+0.0766,+0.2869]*  [+0.0652,+0.2983]
+    21   +0.2495   0.0623  [+0.1472,+0.3937]   [+0.0918,+0.4072]*  [+0.0746,+0.4244]
+    34   +0.3064   0.0751  [+0.1807,+0.4748]   [+0.1165,+0.4964]*  [+0.0958,+0.5171]
+    55   +0.3657   0.0854  [+0.2246,+0.5588]   [+0.1496,+0.5817]*  [+0.1260,+0.6053]
+
+* = still excludes zero under the simultaneous band.
+SE is the per-delay standard error of the dR2, on the same scale as the
+column beside it; the pointwise interval is the bootstrap's own
+percentiles and is not symmetric about the estimate, while the two
+t-based bands are.
+
+==================================================================================
+3. PLACEBO: foreign block circularly shifted by five years
+==================================================================================
+Same series, same distribution, same autocorrelation - alignment destroyed.
+If the result is real the substitution rate must collapse.
+
+ delta    R2 own   R2 cross       dR2     rate    tau         fixed-b 95% set
+     5    0.3637     0.3460   -0.0177  -11.4%    5.9       [   -31%,     3%]
+    21    0.1478     0.1055   -0.0423  -11.4%    5.3       [   -31%,     2%]
+    55    0.0072    -0.0344   -0.0415   -8.1%    5.4       [   -25%,     6%]
+
+==================================================================================
+4. TESTING THE CONVERGENCE CLAIM
+==================================================================================
+The paper says the substitution rate flattens. That is a hypothesis,
+not an observation. H0: R(55) = R(d) for earlier d.
+
+      comparison   R(55) - R(d)          95% interval  verdict
+  R(55) vs R(13)         +0.078   [+0.029,+0.124]  still rising
+  R(55) vs R(21)         +0.042   [+0.010,+0.078]  still rising
+  R(55) vs R(34)         +0.018   [-0.007,+0.040]  flat - cannot reject equality

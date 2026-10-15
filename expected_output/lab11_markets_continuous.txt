@@ -1,0 +1,57 @@
+data folder: /home/claude/data_local
+
+======================================================================================
+FIVE TARGET MARKETS, CONTINUOUS TARGET (log realised variance, h = 5)
+======================================================================================
+Same general timing rule as lab05: a peer counts only if its close precedes
+the target's, otherwise it contributes the previous session.
+
+--- target SPX (21.0 UTC), 4862 test days, 6 same-day peers ['N225', 'AXJO', 'HSI', 'NSEI', 'FTSE', 'DAX']
+     delta   R2 own  R2 cross                 R(d) R2              R(d) QLIKE    tau            fixed-b R2         fixed-b QLIKE
+         5   0.3637    0.4434         51% [ 35%, 66%]         59% [ 36%, 76%]    5.9       51% [ 33%, 68%]       59% [ 17%, 84%]
+        13   0.2332    0.4150         64% [ 51%, 74%]         74% [ 55%, 86%]    5.9       64% [ 48%, 77%]       74% [ 22%, 90%]
+        21   0.1478    0.3973         67% [ 54%, 77%]         78% [ 58%, 89%]    5.3       67% [ 50%, 79%]       78% [ 11%, 92%]
+        55   0.0072    0.3729         71% [ 60%, 81%]         81% [ 62%, 91%]    5.4       71% [ 54%, 83%]       81% [ 27%, 95%]
+
+--- target FTSE (16.5 UTC), 4638 test days, 4 same-day peers ['N225', 'AXJO', 'HSI', 'NSEI']
+     delta   R2 own  R2 cross                 R(d) R2              R(d) QLIKE    tau            fixed-b R2         fixed-b QLIKE
+         5   0.3153    0.4337         74% [ 53%, 91%]         83% [ 59%, 99%]    6.7       74% [ 53%, 89%]       83% [ 51%,100%]
+        13   0.1892    0.4250         82% [ 68%, 93%]         91% [ 74%, 98%]    5.5       82% [ 67%, 92%]       91% [ 44%, 98%]
+        21   0.1202    0.4202         84% [ 71%, 94%]         93% [ 78%, 99%]    5.1       84% [ 67%, 93%]       93% [ 38%, 99%]
+        55   0.0237    0.4201         88% [ 76%, 96%]         94% [ 81%,100%]    5.2       88% [ 74%, 95%]       94% [ 50%,100%]
+
+--- target DAX (16.5 UTC), 4683 test days, 4 same-day peers ['N225', 'AXJO', 'HSI', 'NSEI']
+     delta   R2 own  R2 cross                 R(d) R2              R(d) QLIKE    tau            fixed-b R2         fixed-b QLIKE
+         5   0.3535    0.4459         55% [ 37%, 70%]         62% [ 38%, 79%]    6.8       55% [ 36%, 70%]       62% [ 23%, 85%]
+        13   0.2327    0.4307         69% [ 55%, 79%]         77% [ 56%, 88%]    5.7       69% [ 53%, 78%]       77% [  7%, 89%]
+        21   0.1761    0.4205         71% [ 58%, 80%]         80% [ 62%, 89%]    5.1       71% [ 56%, 80%]       80% [  1%, 91%]
+        55   0.0448    0.3965         74% [ 65%, 82%]         82% [ 68%, 90%]    5.1       74% [ 62%, 82%]       82% [ 42%, 92%]
+
+--- target N225 (6.0 UTC), 4693 test days, 0 same-day peers []
+     delta   R2 own  R2 cross                 R(d) R2              R(d) QLIKE    tau            fixed-b R2         fixed-b QLIKE
+         5   0.2311    0.2868         45% [  4%, 75%]         60% [ 18%, 90%]    6.9       45% [ -3%, 79%]       60% [ -4%, 98%]
+        13   0.1284    0.2508         54% [ 24%, 76%]         67% [ 32%, 86%]    6.4       54% [ 17%, 79%]       67% [ 13%, 91%]
+        21   0.0766    0.2305         55% [ 23%, 75%]         70% [ 35%, 87%]    5.1       55% [ 14%, 79%]       70% [  8%, 92%]
+        55  -0.0129    0.2060         59% [ 35%, 76%]         70% [ 34%, 87%]    5.1       59% [ 20%, 80%]       70% [ -4%, 91%]
+
+--- target HSI (8.0 UTC), 4756 test days, 2 same-day peers ['N225', 'AXJO']
+     delta   R2 own  R2 cross                 R(d) R2              R(d) QLIKE    tau            fixed-b R2         fixed-b QLIKE
+         5   0.3187    0.3943         56% [ 28%, 81%]         71% [ 43%, 98%]    7.0       56% [ 28%, 79%]       71% [ 35%, 96%]
+        13   0.2291    0.3728         64% [ 42%, 84%]         75% [ 52%, 97%]    5.7       64% [ 40%, 84%]       75% [ 47%, 98%]
+        21   0.1702    0.3557         65% [ 47%, 84%]         75% [ 54%, 96%]    5.9       65% [ 44%, 84%]       75% [ 50%, 98%]
+        55   0.0105    0.3111         68% [ 54%, 82%]         74% [ 58%, 91%]    4.8       68% [ 48%, 85%]       74% [ 53%, 99%]
+
+======================================================================================
+SUMMARY AT delta = 55, ORDERED BY SAME-DAY PEER COUNT
+======================================================================================
+  target  same-day peers   R2 own d=0  R2 own d=55  R2 cross d=55    R(55)
+     SPX               6       0.5188       0.0072         0.3729      71%
+    FTSE               4       0.4756       0.0237         0.4201      88%
+     DAX               4       0.5216       0.0448         0.3965      74%
+     HSI               2       0.4542       0.0105         0.3111      68%
+    N225               0       0.3562      -0.0129         0.2060      59%
+
+The Nikkei is the case that carries information: it closes before every
+other market in the sample, so it has NO same-day foreign observation and
+should recover least if the mechanism is what we claim.  Past that one
+contrast, five markets cannot resolve an ordering.
