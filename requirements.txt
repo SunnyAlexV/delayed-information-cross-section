@@ -1,0 +1,16 @@
+# NumPy and pandas are the only dependencies: the ridge regressions, the
+# bootstrap and the HAC covariances are all written out in the labs rather
+# than imported.
+#
+# These are MINIMUMS, not pins, and that is a known gap in the replication
+# story rather than a preference.  The package claims that every script
+# reproduces its stored output byte for byte, and across a NumPy major version
+# that claim is not automatically true: generator streams and reduction orders
+# can both move.  Before the replicability review, run
+#
+#     python make_all.py --data <folder>
+#
+# end to end, and replace the two lines below with == pins on whatever
+# versions produced the match, recording the Python version beside them.
+numpy>=1.24
+pandas>=2.0
